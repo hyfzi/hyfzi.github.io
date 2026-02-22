@@ -1,0 +1,25 @@
+---
+title: "R function"
+---
+
+# match()
+
+**`match()`** function in R Language is used to return the positions of the first match of the elements of the first vector in the second vector. If the element is not found, it returns NA.
+
+**Example 1:**
+```{r}
+
+x1 <- c("a", "b", "c", "d", "e")
+x2 <- c("d", "f", "g", "a", "e", "k")
+
+match(x1, x2)
+```
+
+**Example 2:**
+```{r}
+x1 <- c("a", "b", "c", "d", "e")
+x2 <- c("d", "f", "g", "a", "e", "k")
+
+idx <- match(x1, x2)
+x2[na.omit(idx)]
+```

@@ -3,13 +3,30 @@ project:
   output-dir: docs
 
 website:
-  title: "hyfzi.github.io"
+  title: hyfzi
+  page-navigation: true
   navbar:
+    search: true
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-
+      - text: "Home"
+        href: index.qmd
+      - text: "R"
+        href: R.qmd
+      
+  sidebar:
+    - title: "R"
+      style: "docked"
+      background: light
+      contents:
+        - section: "R Base"
+          href: R.qmd
+          contents:
+            - R.qmd
+            - R1.qmd
+        - section: "R plot"
+          href: visnetwork.qmd
+          contents:
+            - visnetwork.qmd
 format:
   html:
     theme:

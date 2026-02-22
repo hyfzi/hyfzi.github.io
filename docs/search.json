@@ -1,16 +1,43 @@
 [
   {
+    "objectID": "visnetwork.html",
+    "href": "visnetwork.html",
+    "title": "visnetwork",
+    "section": "",
+    "text": "visnetwork",
+    "crumbs": [
+      "R",
+      "R plot"
+    ]
+  },
+  {
+    "objectID": "R.html",
+    "href": "R.html",
+    "title": "R function",
+    "section": "",
+    "text": "match()\nmatch() function in R Language is used to return the positions of the first match of the elements of the first vector in the second vector. If the element is not found, it returns NA.\nExample 1:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nmatch(x1, x2)\n\n[1]  4 NA NA  1  5\n\n\nExample 2:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nidx &lt;- match(x1, x2)\nx2[na.omit(idx)]\n\n[1] \"a\" \"d\" \"e\"",
+    "crumbs": [
+      "R",
+      "R Base"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "hyfzi.github.io",
+    "title": "hyfzi",
     "section": "",
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "R1.html",
+    "href": "R1.html",
+    "title": "R1",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "About this site\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "R",
+      "R Base",
+      "R1"
+    ]
   }
 ]

@@ -1,5 +1,5 @@
 ---
-title: "hyfzi.github.io"
+title: "hyfzi"
 ---
 
 This is a Quarto website.

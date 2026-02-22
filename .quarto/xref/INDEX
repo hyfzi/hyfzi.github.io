@@ -4,5 +4,17 @@
   },
   "about.qmd": {
     "about.html": "06b367b3"
+  },
+  "R.qmd": {
+    "R.html": "b335e3cf"
+  },
+  "R1.qmd": {
+    "R1.html": "513bbb4a"
+  },
+  "visnetwork.qmd": {
+    "visnetwork.html": "f2f2213b"
+  },
+  "tidyverse.qmd": {
+    "tidyverse.html": "51d40162"
   }
 }
