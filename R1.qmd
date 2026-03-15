@@ -1,9 +1,11 @@
 ---
-title: "R1"
+title: "版本升级"
 ---
 
-About this site
+# R版本更新
 
-```{r}
-1 + 1
+```{r eval=FALSE}
+install.packages("installr")
+require(installr)
+updateR()
 ```

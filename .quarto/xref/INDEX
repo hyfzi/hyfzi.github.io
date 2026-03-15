@@ -16,5 +16,11 @@
   },
   "tidyverse.qmd": {
     "tidyverse.html": "51d40162"
+  },
+  "oncology.qmd": {
+    "oncology.html": "4dc19fd8"
+  },
+  "pfs.qmd": {
+    "pfs.html": "168b4db5"
   }
 }

@@ -1,0 +1,55 @@
+---
+title: "tidyverse"
+format: html
+---
+
+# 常用函数
+
+## replace_na()
+
+**Example 1:**
+
+```{r}
+# 向量
+library(tidyr)
+
+x <- c("a", NA, "b")
+x <- replace_na(x, "")
+x
+```
+
+**Example 2:**
+
+```{r}
+# 批量处理多个变量
+library(dplyr)
+library(tidyr)
+
+df <- tibble(
+  id    = 1:6,
+  name  = c("Alice", NA, "Charlie", "David", NA, "Frank"),
+  score = c(90, 85, NA, 88, 92, NA),
+  date  = as.Date(c("2024-01-01", NA, "2024-01-03", "2024-01-04", NA, "2024-01-06"))
+)
+
+df <- df %>%
+  mutate(across(where(is.character), ~ replace_na(.x, "")))
+
+```
+
+## recode()
+
+**Example 1:**
+
+```{r}
+x <- c("a", "b", "a", "c", "d", "c")
+
+lookup <- c(
+  "a" = "A",
+  "b" = "B",
+  "c" = "C",
+  "d" = "D"
+)
+
+recode(x, !!!lookup)
+```

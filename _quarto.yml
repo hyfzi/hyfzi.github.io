@@ -10,23 +10,38 @@ website:
     left:
       - text: "Home"
         href: index.qmd
-      - text: "R"
+      - text: "R语言"
         href: R.qmd
-      
+      - text: "实体瘤"
+        href: oncology.qmd
+        
   sidebar:
     - title: "R"
       style: "docked"
       background: light
       contents:
-        - section: "R Base"
-          href: R.qmd
+        - section: "R基础"
           contents:
             - R.qmd
             - R1.qmd
-        - section: "R plot"
+        - section: "tidyverse"
+          href: tidyverse.qmd
+          contents:
+            - tidyverse.qmd
+        - section: "画图"
           href: visnetwork.qmd
           contents:
             - visnetwork.qmd
+    - title: "实体瘤"
+      style: "docked"
+      background: light
+      contents:
+        - section: "实体瘤"
+          href: oncology.qmd
+          contents:
+            - oncology.qmd
+            - pfs.qmd
+            
 format:
   html:
     theme:
