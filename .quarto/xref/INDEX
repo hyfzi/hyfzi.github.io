@@ -22,5 +22,47 @@
   },
   "pfs.qmd": {
     "pfs.html": "168b4db5"
+  },
+  "addates.qmd": {
+    "addates.html": "580c3307"
+  },
+  "adrs.qmd": {
+    "adrs.html": "e596046e"
+  },
+  "adtr.qmd": {
+    "adtr.html": "beb73402"
+  },
+  "adtte.qmd": {
+    "adtte.html": "a004f1b5"
+  },
+  "oncology/addates.qmd": {
+    "addates.html": "fc58ab7b"
+  },
+  "oncology/adrs.qmd": {
+    "adrs.html": "c7335455"
+  },
+  "oncology/adtr.qmd": {
+    "adtr.html": "da897650"
+  },
+  "oncology/adtte.qmd": {
+    "adtte.html": "3f99fd2c"
+  },
+  "oncology/oncology.qmd": {
+    "oncology.html": "ed1a4421"
+  },
+  "oncology/pfs.qmd": {
+    "pfs.html": "a040eba4"
+  },
+  "r/R.qmd": {
+    "R.html": "6cac209f"
+  },
+  "r/R1.qmd": {
+    "R1.html": "b6e77edd"
+  },
+  "r/tidyverse.qmd": {
+    "tidyverse.html": "72927514"
+  },
+  "r/visnetwork.qmd": {
+    "visnetwork.html": "98344885"
   }
 }

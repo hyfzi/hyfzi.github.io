@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RECIST 1.1 – hyfzi</title>
+<title>函数 – hyfzi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +20,63 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./pfs.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3e9113b4e0cf801fa0085b3cc9c6a63c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../r/R1.html" rel="next">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3e9113b4e0cf801fa0085b3cc9c6a63c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -81,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">hyfzi</span>
     </a>
   </div>
@@ -92,15 +127,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./R.html"> 
+    <a class="nav-link active" href="../r/R.html" aria-current="page"> 
 <span class="menu-text">R语言</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./oncology.html" aria-current="page"> 
+    <a class="nav-link" href="../oncology/oncology.html"> 
 <span class="menu-text">实体瘤</span></a>
   </li>  
 </ul>
@@ -114,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./oncology.html">实体瘤</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../r/R.html">R基础</a></li><li class="breadcrumb-item"><a href="../r/R.html">函数</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -128,8 +163,8 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./oncology.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">实体瘤</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">R基础</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -137,14 +172,48 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./oncology.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">RECIST 1.1</span></a>
+  <a href="../r/R.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">函数</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./pfs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">无进展生存期(PFS)</span></a>
+  <a href="../r/R1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">版本升级</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../r/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">tidyverse</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">tidyverse</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../r/visnetwork.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">画图</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/visnetwork.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">visnetwork</span></a>
   </div>
 </li>
       </ul>
@@ -159,17 +228,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#recist-1.1简介" id="toc-recist-1.1简介" class="nav-link active" data-scroll-target="#recist-1.1简介">1 RECIST 1.1简介</a>
+  <li><a href="#常用函数" id="toc-常用函数" class="nav-link active" data-scroll-target="#常用函数">常用函数</a>
   <ul class="collapse">
-  <li><a href="#时间点疗效time-point-response" id="toc-时间点疗效time-point-response" class="nav-link" data-scroll-target="#时间点疗效time-point-response">1.1 时间点疗效(Time point response)</a></li>
-  <li><a href="#最佳总体疗效best-overall-response-bor" id="toc-最佳总体疗效best-overall-response-bor" class="nav-link" data-scroll-target="#最佳总体疗效best-overall-response-bor">1.2 最佳总体疗效(Best overall response, BOR)</a>
-  <ul class="collapse">
-  <li><a href="#确认的最佳总体疗效" id="toc-确认的最佳总体疗效" class="nav-link" data-scroll-target="#确认的最佳总体疗效">1.2.1 确认的最佳总体疗效</a></li>
-  <li><a href="#未确认的最佳总体疗效" id="toc-未确认的最佳总体疗效" class="nav-link" data-scroll-target="#未确认的最佳总体疗效">1.2.2 未确认的最佳总体疗效</a></li>
-  </ul></li>
-  <li><a href="#客观缓解率ovrall-response-rate-orr" id="toc-客观缓解率ovrall-response-rate-orr" class="nav-link" data-scroll-target="#客观缓解率ovrall-response-rate-orr">1.3 客观缓解率(ovrall response rate, ORR)</a></li>
-  <li><a href="#疾病控制率disease-control-rate-dcr" id="toc-疾病控制率disease-control-rate-dcr" class="nav-link" data-scroll-target="#疾病控制率disease-control-rate-dcr">1.4 疾病控制率(disease control rate, DCR)</a></li>
-  <li><a href="#临床获益率clinical-benefit-rate-cbr" id="toc-临床获益率clinical-benefit-rate-cbr" class="nav-link" data-scroll-target="#临床获益率clinical-benefit-rate-cbr">1.5 临床获益率(clinical benefit rate, CBR)</a></li>
+  <li><a href="#match" id="toc-match" class="nav-link" data-scroll-target="#match">match()</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -177,9 +238,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../r/R.html">R基础</a></li><li class="breadcrumb-item"><a href="../r/R.html">函数</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">RECIST 1.1</h1>
+<h1 class="title">函数</h1>
 </div>
 
 
@@ -196,136 +257,32 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="recist-1.1简介" class="level1">
-<h1>1 RECIST 1.1简介</h1>
-<p>Response Evaluation Criteria in Solid Tumors (RECIST) 1.1是实体瘤疗效评估的标准方法，主要用于评估肿瘤对治疗的反应。RECIST 1.1定义了肿瘤的测量方法、评估时间点以及不同疗效类别的标准。</p>
-<p>实体瘤评估的具体过程：<br>
-1. <strong>基线评估</strong>：在治疗开始前，对患者的肿瘤进行全面评估，选定一定数量的靶病灶和非靶病灶，计算所有靶病灶的直径和。<br>
-2. <strong>肿瘤评估</strong>：在治疗过程中，按照预定的时间点对患者进行评估，如靶病灶的径长、直径和，非靶病灶的状态以及是否出现新病灶等。<br>
-3. <strong>总体评估</strong>：研究人员为每个时间点的靶病灶、非靶病灶、新病灶的肿瘤评估结果进行分类，同时结合所有病灶判断所有病灶总的总体评估结果。<br>
-4. <strong>最佳总体疗效（BOR）</strong>：根据3所有病灶总的总体评估结果，计算整个治疗过程中患者达到的最佳疗效类别，作为最终的疗效评估结果。</p>
-<section id="时间点疗效time-point-response" class="level2">
-<h2 class="anchored" data-anchor-id="时间点疗效time-point-response">1.1 时间点疗效(Time point response)</h2>
-<p>最佳时点疗效就是上文实体瘤评估过程中的第3点，同时也是crf中直接记录的结果，不需要编程计算。</p>
-<ol type="1">
-<li>靶病灶评估
-<ol type="a">
-<li>基线无靶病灶</li>
-<li>完全缓解(CR)：所有靶病灶消失，淋巴结短径&lt;10mm。</li>
-<li>部分缓解(PR)：以基线为参照，靶病灶直径总和至少减少30%。</li>
-<li>疾病进展(PD): 以既往直径总和最小值作为参照，靶病灶直径总和至少增加20%，且增加的绝对值至少5mm。</li>
-<li>疾病稳定(SD)：既不满足PR也不满足PD的情况。</li>
-<li>无法评估(NE)：无法评估靶病灶的情况。</li>
-</ol></li>
-<li>非靶病灶评估
-<ol type="a">
-<li>基线无非靶病灶</li>
-<li>完全缓解(CR)：所有非靶病灶消失，且肿瘤标志物正常，淋巴结短径&lt;10mm。</li>
-<li>疾病进展(PD)：出现一个或多个新病灶，或非靶病灶明显恶化。</li>
-<li>非完全缓解/非疾病进展(Non-CR/Non-PD)：既不满足CR也不满足PD的情况。</li>
-<li>不可评估(NE)：无法评估非靶病灶的情况。</li>
-</ol></li>
-<li>新病灶评估
-<ol type="a">
-<li>有新病灶</li>
-<li>无新病灶</li>
-</ol></li>
-<li>总体评估（所有病灶总的总体评估结果）
-<ol type="a">
-<li>总体评估结果分两类，一类是基线存在靶病灶，另一类是基线无靶病灶。两种情况的总体评估判断规则如下表所示。</li>
-</ol></li>
-</ol>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/time_point_response_target.png" class="img-fluid figure-img"></p>
-<figcaption>基线存在靶病灶</figcaption>
-</figure>
+<section id="常用函数" class="level1">
+<h1>常用函数</h1>
+<section id="match" class="level2">
+<h2 class="anchored" data-anchor-id="match">match()</h2>
+<p><strong><code>match()</code></strong> function in R Language is used to return the positions of the first match of the elements of the first vector in the second vector. If the element is not found, it returns NA.</p>
+<p><strong>Example 1:</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"d"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"a"</span>, <span class="st">"e"</span>, <span class="st">"k"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">match</span>(x1, x2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  4 NA NA  1  5</code></pre>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/time_point_response_nontarget.png" class="img-fluid figure-img"></p>
-<figcaption>基线不存在靶病灶</figcaption>
-</figure>
+<p><strong>Example 2:</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"d"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"a"</span>, <span class="st">"e"</span>, <span class="st">"k"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">match</span>(x1, x2)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>x2[<span class="fu">na.omit</span>(idx)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a" "d" "e"</code></pre>
 </div>
 </div>
-</div>
-</div>
-</section>
-<section id="最佳总体疗效best-overall-response-bor" class="level2">
-<h2 class="anchored" data-anchor-id="最佳总体疗效best-overall-response-bor">1.2 最佳总体疗效(Best overall response, BOR)</h2>
-<p><strong>评估日期(Date of Response)</strong>始终基于影像学检查日期（而非访视或做疗效总体评估的日期）。如果针对特定访视的影像学检查在不同日期进行，若总体评估（所有病灶总的评估结果）为疾病进展（PD），则评估日期为该访视内最早一次的影像学检查日期；否则为最晚的影像学检查日期。<br> 最佳总体疗效（BOR）为基线后、疾病进展或新抗前最佳的总体评估结果。通常crf不会直接收集，由编程计算。最佳总体疗效可分未确认的和未确认的两类。</p>
-<section id="确认的最佳总体疗效" class="level3">
-<h3 class="anchored" data-anchor-id="确认的最佳总体疗效">1.2.1 确认的最佳总体疗效</h3>
-<ul>
-<li>确认的最佳总体疗效判断规则如下：
-<ul>
-<li>CR：在新抗或疾病进展前存在至少两次评估结果为CR，且两次评估之间至少间隔4周。</li>
-<li>PR：在新抗或疾病进展前存在至少两次评估结果为PR或更好（PR-CR,PR-PR），且两次评估之间至少间隔4周。PR-SD-PR能被确认为PR，若两个PR之间的间隔大于等于4周。</li>
-<li>SD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为CR、PR。X通常设为6周。</li>
-<li>Non-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为非完全缓解/非疾病进展或更优，但未被确认为CR、PR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)</li>
-<li>PD：基线后新抗前存在疗效评估为PD，且未被确认为CR、PR或SD。</li>
-<li>NE：除上述情况外的其他情况。NE的原因需要被汇总记录。
-<ul>
-<li>所有基线后肿瘤总体评估均为NE。</li>
-<li>基线后首次评估前开启新的抗肿瘤治疗。</li>
-<li>无基线后肿瘤评估。</li>
-<li>SD持续时间不满足≥42天。</li>
-<li>其他</li>
-</ul></li>
-</ul></li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>值得注意的是，CR后面不能跟PR、SD。PR后面能跟一个SD，如PR-SD-PR可以被确认为PR。但PR-SD-SD-PR不能被确认为PR。若中间存在小于等于两个NE,这可被确认为PR，如PR-NR-PR,PR-NE-NE-PR,PR-SD-NE-PR,PR-NE-SD-PR等都可以被确认为PR。</p>
-</div>
-</div>
-</section>
-<section id="未确认的最佳总体疗效" class="level3">
-<h3 class="anchored" data-anchor-id="未确认的最佳总体疗效">1.2.2 未确认的最佳总体疗效</h3>
-<ul>
-<li>未确认的最佳总体疗效判断规则如下：
-<ul>
-<li>uCR：在新抗或疾病进展前存在CR。</li>
-<li>uPR：在新抗或疾病进展前存在PR。</li>
-<li>SD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。</li>
-<li>Non-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)</li>
-<li>PD：基线后新抗前存在疗效评估为PD，且未被确认为uCR、uPR或SD。</li>
-<li>NE：除上述情况外的其他情况。NE的原因需要被汇总记录。
-<ul>
-<li>所有基线后肿瘤总体评估均为NE。</li>
-<li>基线后首次评估前开启新的抗肿瘤治疗。</li>
-<li>无基线后肿瘤评估。</li>
-<li>SD持续时间不满足≥42天。</li>
-<li>其他</li>
-</ul></li>
-</ul></li>
-</ul>
-</section>
-</section>
-<section id="客观缓解率ovrall-response-rate-orr" class="level2">
-<h2 class="anchored" data-anchor-id="客观缓解率ovrall-response-rate-orr">1.3 客观缓解率(ovrall response rate, ORR)</h2>
-<p>客观缓解率是指在特定分析集中BOR为CR或PR的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的ORR。</p>
-</section>
-<section id="疾病控制率disease-control-rate-dcr" class="level2">
-<h2 class="anchored" data-anchor-id="疾病控制率disease-control-rate-dcr">1.4 疾病控制率(disease control rate, DCR)</h2>
-<p>疾病控制率是指在特定分析集中BOR为CR、PR或SD的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的DCR。</p>
-</section>
-<section id="临床获益率clinical-benefit-rate-cbr" class="level2">
-<h2 class="anchored" data-anchor-id="临床获益率clinical-benefit-rate-cbr">1.5 临床获益率(clinical benefit rate, CBR)</h2>
-<p>临床获益率是指在特定分析集中BOR为CR、PR或SD持续至少T周的患者比例。（T通常设为12周）。也分为基于确认的BOR和未确认的BOR计算的两个版本的CBR。</p>
 
 
 </section>
@@ -736,8 +693,8 @@ Note
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./pfs.html" class="pagination-link" aria-label="无进展生存期(PFS)">
-        <span class="nav-page-text">无进展生存期(PFS)</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../r/R1.html" class="pagination-link" aria-label="版本升级">
+        <span class="nav-page-text">版本升级</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

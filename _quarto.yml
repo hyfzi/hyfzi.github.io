@@ -11,9 +11,9 @@ website:
       - text: "Home"
         href: index.qmd
       - text: "R语言"
-        href: R.qmd
+        href: r/R.qmd
       - text: "实体瘤"
-        href: oncology.qmd
+        href: oncology/oncology.qmd
         
   sidebar:
     - title: "R"
@@ -22,25 +22,32 @@ website:
       contents:
         - section: "R基础"
           contents:
-            - R.qmd
-            - R1.qmd
+            - r/R.qmd
+            - r/R1.qmd
         - section: "tidyverse"
-          href: tidyverse.qmd
+          href: r/tidyverse.qmd
           contents:
-            - tidyverse.qmd
+            - r/tidyverse.qmd
         - section: "画图"
-          href: visnetwork.qmd
+          href: r/visnetwork.qmd
           contents:
-            - visnetwork.qmd
+            - r/visnetwork.qmd
     - title: "实体瘤"
       style: "docked"
       background: light
       contents:
         - section: "实体瘤"
-          href: oncology.qmd
+          href: oncology/oncology.qmd
           contents:
-            - oncology.qmd
-            - pfs.qmd
+            - oncology/oncology.qmd
+            - oncology/pfs.qmd
+        - section: "ADaM"
+          href: oncology/adtr.qmd
+          contents:
+            - oncology/adtr.qmd
+            - oncology/adrs.qmd
+            - oncology/addates.qmd
+            - oncology/adtte.qmd
             
 format:
   html:
