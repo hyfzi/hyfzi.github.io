@@ -174,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../oncology/addates.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">addates</span></a>
+ <span class="menu-text">ADDATES</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -244,15 +244,16 @@ Note
 <p>治疗开始日期通常指随机化日期或给药开始日期，具体定义应在统计分析计划中明确。</p>
 </div>
 </div>
-<p>PFS时间将始终基于影像学检查日期，而非crf总体评估页面中收集的<em>评估日期</em>（可能不是实际的影像学检查日期而是研究者给出的判定日期）进行计算。如果针对特定访视的RECIST影像学检查在不同日期进行，则进展日期将根据该访视内最早一次影像学检查的日期确定。同前文介绍的<a href="../oncology/oncology.html#date-of-response"><strong>评估日期</strong></a>，下文说的肿瘤评估日期也是这个定义。</p>
+<p>PFS时间将始终基于<a href="../oncology/oncology.html#date-of-response"><strong>总体评估日期</strong></a>。</p>
+<p><strong>有效的肿瘤总体评估日期</strong>：总体疗效评估结果为CR,PR,SD或Non-CR/Non-PD的总体评估日期。NE或未查的评估日期将不会被用作为删失日期。</p>
 <section id="pfs事件的定义" class="level2">
 <h2 class="anchored" data-anchor-id="pfs事件的定义">1.1 PFS事件的定义</h2>
-<p>PFS事件只包含疾病进展和死亡。疾病进展和死亡发生在上次有效肿瘤评估/治疗开始日期（xx）天内才能被定义为PFS事件。xx通常为2个肿瘤评估周期。</p>
+<p>PFS事件只包含疾病进展和死亡。疾病进展和死亡发生在上次有效肿瘤评估/治疗开始日期xx天内才能被定义为PFS事件。xx通常为2个肿瘤评估周期。</p>
 </section>
 <section id="pfs删失" class="level2">
 <h2 class="anchored" data-anchor-id="pfs删失">1.2 PFS删失</h2>
-<p>受试者没有发生疾病进展或死亡，或疾病进展或死亡发生在上次有效肿瘤评估/治疗开始日期（xx）天后，PFS时间将被删失。删失时间为疾病进展或死亡前的最后一次肿瘤评估日期。此外，若参与者在PFS事件前发生新抗肿瘤治疗，删失日期为新抗肿瘤治疗前末次有效肿瘤评估日期/治疗开始日期。</p>
-<p><strong>基线后有效肿瘤评估日期</strong>：总体疗效评估结果为CR,PR,SD或Non-CR/Non-PD的肿瘤评估日期。NE或未查的评估日期将不会被用作为删失日期。<br> 对于没有有效的基线肿瘤记录或在起始日后xx天内没有有效的基线后肿瘤评估的患者，其数据将在起始日进行删失。除非患者在起始日后xx天内死亡，在这种情况下，死亡将作为事件，发生时间记为死亡日期。xx通常为2个肿瘤评估周期。</p>
+<p>受试者没有发生疾病进展或死亡，或疾病进展或死亡发生在上次有效肿瘤评估/治疗开始日期xx天后，PFS时间将被删失。删失时间为疾病进展或死亡前的最后一次有效的肿瘤总体评估日期。此外，若参与者在PFS事件前发生新抗肿瘤治疗，删失日期为新抗肿瘤治疗前末次有效肿瘤总体评估日期/治疗开始日期。</p>
+<p>对于没有有效的基线肿瘤记录或在起始日后xx天内没有有效的基线后肿瘤评估的患者，其数据将在起始日进行删失。除非患者在起始日后xx天内死亡，在这种情况下，死亡将作为事件，发生时间记为死亡日期。xx通常为2个肿瘤评估周期。</p>
 </section>
 <section id="pfs的删失准则" class="level2">
 <h2 class="anchored" data-anchor-id="pfs的删失准则">1.2.1 PFS的删失准则</h2>
@@ -271,12 +272,12 @@ Note
 </thead>
 <tbody>
 <tr class="odd">
-<td>无基线肿瘤评估或未进行任何基线后肿瘤评估，并且治疗开始xx天内未出现死亡</td>
+<td>无基线或基线后有效肿评，并且治疗开始xx天内未出现死亡</td>
 <td>随机/给药日期</td>
 <td>删失</td>
 </tr>
 <tr class="even">
-<td>无基线肿瘤评估或未进行任何基线后肿瘤评估，并且治疗开始xx天内出现死亡</td>
+<td>无基线或基线后有效肿评，并且治疗开始xx天内出现死亡</td>
 <td>死亡日期</td>
 <td>事件</td>
 </tr>
@@ -302,9 +303,6 @@ Note
 </tr>
 </tbody>
 </table>
-<div class="footnotes">
-
-</div>
 </section>
 <section id="非固定肿评间隔的xx天分类讨论" class="level2">
 <h2 class="anchored" data-anchor-id="非固定肿评间隔的xx天分类讨论">1.2.2 非固定肿评间隔的xx天分类讨论</h2>

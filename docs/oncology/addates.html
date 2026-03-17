@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>addates – hyfzi</title>
+<title>ADDATES – hyfzi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -115,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../oncology/adtr.html">ADaM</a></li><li class="breadcrumb-item"><a href="../oncology/addates.html">addates</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../oncology/adtr.html">ADaM</a></li><li class="breadcrumb-item"><a href="../oncology/addates.html">ADDATES</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -174,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../oncology/addates.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">addates</span></a>
+ <span class="menu-text">ADDATES</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -190,15 +190,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#addates介绍" id="toc-addates介绍" class="nav-link active" data-scroll-target="#addates介绍">1 ADDATES介绍</a></li>
+  <li><a href="#addates中包含的变量" id="toc-addates中包含的变量" class="nav-link" data-scroll-target="#addates中包含的变量">2 ADDATES中包含的变量</a></li>
+  <li><a href="#addates中的adtdescadtdecd和adt变量详细描述" id="toc-addates中的adtdescadtdecd和adt变量详细描述" class="nav-link" data-scroll-target="#addates中的adtdescadtdecd和adt变量详细描述">3 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../oncology/adtr.html">ADaM</a></li><li class="breadcrumb-item"><a href="../oncology/addates.html">addates</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../oncology/adtr.html">ADaM</a></li><li class="breadcrumb-item"><a href="../oncology/addates.html">ADDATES</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">addates</h1>
+<h1 class="title">ADDATES</h1>
 </div>
 
 
@@ -215,8 +223,147 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="addates介绍" class="level1">
+<h1>1 ADDATES介绍</h1>
+<p><strong>ADDATES</strong>是一个专门用于记录与肿瘤评估相关的日期变量的数据集。它包含了受试者的用药日期、随机化日期、影像学检查日期、疾病进展日期等多个关键时间点。这些日期变量对于计算无进展生存期（PFS）等重要终点指标至关重要。</p>
+</section>
+<section id="addates中包含的变量" class="level1">
+<h1>2 ADDATES中包含的变量</h1>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>变量名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>USUBJID</td>
+<td>受试者水平唯一标识符</td>
+</tr>
+<tr class="even">
+<td>ASEQ</td>
+<td>受试者水平日期记录序列号</td>
+</tr>
+<tr class="odd">
+<td>ADT</td>
+<td>日期</td>
+</tr>
+<tr class="even">
+<td>ADTDESC</td>
+<td>日期描述</td>
+</tr>
+<tr class="odd">
+<td>ADTDECD</td>
+<td>日期描述编号</td>
+</tr>
+<tr class="even">
+<td>ADY</td>
+<td>分析相对日</td>
+</tr>
+<tr class="odd">
+<td>RSEVAL</td>
+<td>评估者</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="addates中的adtdescadtdecd和adt变量详细描述" class="level1">
+<h1>3 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ADTDESC</th>
+<th>ADTDESCD</th>
+<th>ADT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>受试者水平-USUBJID</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>首次用药日期</td>
+<td>TRTSDT</td>
+<td>ADSL.TRTSDT</td>
+</tr>
+<tr class="odd">
+<td>随机化日期</td>
+<td>RANDDT</td>
+<td>ADSL.RANDDT</td>
+</tr>
+<tr class="even">
+<td>新抗肿瘤治疗日期</td>
+<td>NCTXSDT</td>
+<td>ADSL.NCTXSDT</td>
+</tr>
+<tr class="odd">
+<td>研究结束日期</td>
+<td>EOSDT</td>
+<td>ADSL.EOSDT</td>
+</tr>
+<tr class="even">
+<td>已知最后生存日期</td>
+<td>LSTALVTD</td>
+<td>ADSL.LSTALVTD</td>
+</tr>
+<tr class="odd">
+<td>死亡日期</td>
+<td>DTHDT</td>
+<td>ADSL.DTHDT</td>
+</tr>
+<tr class="even">
+<td><strong>受试者+评估者-USUBJID+RSEVAL</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>基线肿瘤检查日期</td>
+<td>TEVALDT</td>
+<td>基线前末次有效的影像学检查日期（TR.TRDTC）。</td>
+</tr>
+<tr class="even">
+<td><strong>每个受试者+评估者+评估标准-USUBJID+RSEVAL+RSSCAT</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>基线后首次有效的肿瘤评估影像学检查日期</td>
+<td>FEVALDT</td>
+<td>基线后首次出现的有效的肿瘤总体评估日期</td>
+</tr>
+<tr class="even">
+<td>首次疾病进展日期</td>
+<td>PDDT</td>
+<td>基线后最早的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC = “PD”</td>
+</tr>
+<tr class="odd">
+<td>新抗肿瘤治疗（若有）及疾病进展（若有）前的末次可评估影像学检查日期</td>
+<td>LINETRD</td>
+<td>取NCTXSDT（≤）和PDDT（＜）之前最晚的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC ≠ “NE”等非有效值评估</td>
+</tr>
+<tr class="even">
+<td>首次客观缓解（经确认的）日期</td>
+<td>CRUTDT</td>
+<td>ADRS.ADT，当 ADRS.ANL12FL = “是”</td>
+</tr>
+<tr class="odd">
+<td>首次客观缓解（未确认的）日期</td>
+<td>URTUDT</td>
+<td>ADRS.ADT，当 ADRS.ANL22FL = “是”</td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
