@@ -180,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../oncology/adtte.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">adtte</span></a>
+ <span class="menu-text">ADTTE</span></a>
   </div>
 </li>
       </ul>
@@ -196,8 +196,8 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#addates介绍" id="toc-addates介绍" class="nav-link active" data-scroll-target="#addates介绍">1 ADDATES介绍</a></li>
-  <li><a href="#addates中包含的变量" id="toc-addates中包含的变量" class="nav-link" data-scroll-target="#addates中包含的变量">2 ADDATES中包含的变量</a></li>
-  <li><a href="#addates中的adtdescadtdecd和adt变量详细描述" id="toc-addates中的adtdescadtdecd和adt变量详细描述" class="nav-link" data-scroll-target="#addates中的adtdescadtdecd和adt变量详细描述">3 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述</a></li>
+  <li><a href="#addates中包含的变量" id="toc-addates中包含的变量" class="nav-link" data-scroll-target="#addates中包含的变量">1.1 ADDATES中包含的变量</a></li>
+  <li><a href="#addates-adtdesc" id="toc-addates-adtdesc" class="nav-link" data-scroll-target="#addates-adtdesc">1.2 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述</a></li>
   </ul>
 </nav>
     </div>
@@ -225,10 +225,10 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="addates介绍" class="level1">
 <h1>1 ADDATES介绍</h1>
-<p><strong>ADDATES</strong>是一个专门用于记录与肿瘤评估相关的日期变量的数据集。它包含了受试者的用药日期、随机化日期、影像学检查日期、疾病进展日期等多个关键时间点。这些日期变量对于计算无进展生存期（PFS）等重要终点指标至关重要。</p>
+<p>ADDATES是一个专门用于记录与肿瘤评估相关的日期变量的数据集。它包含了受试者的用药日期、随机化日期、影像学检查日期、疾病进展日期等多个关键时间点。这些日期变量对于计算无进展生存期（PFS）等重要终点指标至关重要。</p>
 </section>
 <section id="addates中包含的变量" class="level1">
-<h1>2 ADDATES中包含的变量</h1>
+<h1>1.1 ADDATES中包含的变量</h1>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -238,43 +238,39 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td>USUBJID</td>
-<td>受试者水平唯一标识符</td>
+<td>USUBJID、ASEQ</td>
+<td></td>
 </tr>
 <tr class="even">
-<td>ASEQ</td>
-<td>受试者水平日期记录序列号</td>
-</tr>
-<tr class="odd">
 <td>ADT</td>
 <td>日期</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>ADTDESC</td>
 <td>日期描述</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>ADTDECD</td>
 <td>日期描述编号</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>ADY</td>
 <td>分析相对日</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>RSEVAL</td>
 <td>评估者</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="addates中的adtdescadtdecd和adt变量详细描述" class="level1">
-<h1>3 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述</h1>
+<section id="addates-adtdesc" class="level1">
+<h1>1.2 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述</h1>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 32%">
+<col style="width: 21%">
+<col style="width: 45%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -327,17 +323,17 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td>基线肿瘤检查日期</td>
 <td>TEVALDT</td>
-<td>基线前末次有效的影像学检查日期（TR.TRDTC）。</td>
+<td>基线前末次有效的影像学检查日期（TR.TRDTC）</td>
 </tr>
 <tr class="even">
-<td><strong>每个受试者+评估者+评估标准-USUBJID+RSEVAL+RSSCAT</strong></td>
+<td><strong>每个受试者+评估者+评估标准-USUBJID+RSEVAL+RSCAT</strong></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>基线后首次有效的肿瘤评估影像学检查日期</td>
 <td>FEVALDT</td>
-<td>基线后首次出现的有效的肿瘤总体评估日期</td>
+<td>基线后、新抗前首次出现的有效的肿瘤总体评估日期</td>
 </tr>
 <tr class="even">
 <td>首次疾病进展日期</td>
@@ -346,8 +342,8 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td>新抗肿瘤治疗（若有）及疾病进展（若有）前的末次可评估影像学检查日期</td>
-<td>LINETRD</td>
-<td>取NCTXSDT（≤）和PDDT（＜）之前最晚的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC ≠ “NE”等非有效值评估</td>
+<td>LINTERDT</td>
+<td>取NCTXSDT(≤)和PDDT(&lt;)之前最晚的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC ≠ “NE”等非有效值评估</td>
 </tr>
 <tr class="even">
 <td>首次客观缓解（经确认的）日期</td>
@@ -356,7 +352,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td>首次客观缓解（未确认的）日期</td>
-<td>URTUDT</td>
+<td>URUTDT</td>
 <td>ADRS.ADT，当 ADRS.ANL22FL = “是”</td>
 </tr>
 </tbody>
@@ -773,8 +769,8 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../oncology/adtte.html" class="pagination-link" aria-label="adtte">
-        <span class="nav-page-text">adtte</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../oncology/adtte.html" class="pagination-link" aria-label="ADTTE">
+        <span class="nav-page-text">ADTTE</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

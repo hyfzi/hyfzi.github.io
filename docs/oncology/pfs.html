@@ -180,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../oncology/adtte.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">adtte</span></a>
+ <span class="menu-text">ADTTE</span></a>
   </div>
 </li>
       </ul>
@@ -200,7 +200,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#pfs事件的定义" id="toc-pfs事件的定义" class="nav-link" data-scroll-target="#pfs事件的定义">1.1 PFS事件的定义</a></li>
   <li><a href="#pfs删失" id="toc-pfs删失" class="nav-link" data-scroll-target="#pfs删失">1.2 PFS删失</a></li>
   <li><a href="#pfs的删失准则" id="toc-pfs的删失准则" class="nav-link" data-scroll-target="#pfs的删失准则">1.2.1 PFS的删失准则</a></li>
-  <li><a href="#非固定肿评间隔的xx天分类讨论" id="toc-非固定肿评间隔的xx天分类讨论" class="nav-link" data-scroll-target="#非固定肿评间隔的xx天分类讨论">1.2.2 非固定肿评间隔的xx天分类讨论</a></li>
+  <li><a href="#pfs-rs2dur" id="toc-pfs-rs2dur" class="nav-link" data-scroll-target="#pfs-rs2dur">1.2.2 肿评间隔的xx天分类讨论</a>
+  <ul class="collapse">
+  <li><a href="#固定肿评间隔" id="toc-固定肿评间隔" class="nav-link" data-scroll-target="#固定肿评间隔">1.2.2.1 固定肿评间隔</a></li>
+  <li><a href="#非固定肿评间隔" id="toc-非固定肿评间隔" class="nav-link" data-scroll-target="#非固定肿评间隔">1.2.2.2 非固定肿评间隔</a></li>
+  </ul></li>
   <li><a href="#pfs删失原因" id="toc-pfs删失原因" class="nav-link" data-scroll-target="#pfs删失原因">1.3 PFS删失原因</a></li>
   </ul></li>
   </ul>
@@ -244,24 +248,23 @@ Note
 <p>治疗开始日期通常指随机化日期或给药开始日期，具体定义应在统计分析计划中明确。</p>
 </div>
 </div>
-<p>PFS时间将始终基于<a href="../oncology/oncology.html#date-of-response"><strong>总体评估日期</strong></a>。</p>
-<p><strong>有效的肿瘤总体评估日期</strong>：总体疗效评估结果为CR,PR,SD或Non-CR/Non-PD的总体评估日期。NE或未查的评估日期将不会被用作为删失日期。</p>
+<p><strong>有效的总体评估日期</strong>：总体疗效评估结果为CR,PR,SD或Non-CR/Non-PD的<a href="../oncology/oncology.html#date-of-response"><strong>总体评估日期</strong></a>。NE或未查的评估日期将不会被用作为事件/删失日期。PFS时间将始终基于有效的总体评估日期。</p>
 <section id="pfs事件的定义" class="level2">
 <h2 class="anchored" data-anchor-id="pfs事件的定义">1.1 PFS事件的定义</h2>
-<p>PFS事件只包含疾病进展和死亡。疾病进展和死亡发生在上次有效肿瘤评估/治疗开始日期xx天内才能被定义为PFS事件。xx通常为2个肿瘤评估周期。</p>
+<p>PFS事件只包含疾病进展和死亡。疾病进展和死亡发生在上次有效肿瘤评估/治疗开始日期xx天内才能被定义为PFS事件。xx通常为2个肿瘤评估间隔。</p>
 </section>
 <section id="pfs删失" class="level2">
 <h2 class="anchored" data-anchor-id="pfs删失">1.2 PFS删失</h2>
-<p>受试者没有发生疾病进展或死亡，或疾病进展或死亡发生在上次有效肿瘤评估/治疗开始日期xx天后，PFS时间将被删失。删失时间为疾病进展或死亡前的最后一次有效的肿瘤总体评估日期。此外，若参与者在PFS事件前发生新抗肿瘤治疗，删失日期为新抗肿瘤治疗前末次有效肿瘤总体评估日期/治疗开始日期。</p>
-<p>对于没有有效的基线肿瘤记录或在起始日后xx天内没有有效的基线后肿瘤评估的患者，其数据将在起始日进行删失。除非患者在起始日后xx天内死亡，在这种情况下，死亡将作为事件，发生时间记为死亡日期。xx通常为2个肿瘤评估周期。</p>
+<p>受试者没有发生疾病进展或死亡，或疾病进展或死亡发生在上次有效肿瘤评估/治疗开始日期xx天后，PFS时间将被删失。删失日期为疾病进展或死亡前的最后一次有效的肿瘤评估日期。此外，若受试者在PFS事件前发生新抗肿瘤治疗，删失日期为新抗肿瘤治疗前末次有效的肿瘤评估日期/治疗开始日期。</p>
+<p>对于没有有效的基线或基线后肿瘤评估的受试者，会判为删失，删失日期为治疗开始日期。除非受试者在治疗开始后xx天内死亡，在这种情况下，死亡将作为事件，发生日期记为死亡日期。xx通常为2个肿瘤评估周期。</p>
 </section>
 <section id="pfs的删失准则" class="level2">
 <h2 class="anchored" data-anchor-id="pfs的删失准则">1.2.1 PFS的删失准则</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 43%">
+<col style="width: 46%">
+<col style="width: 9%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -292,21 +295,28 @@ Note
 <td>删失</td>
 </tr>
 <tr class="odd">
-<td>参与者在PFS事件前发生新抗肿瘤治疗<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></td>
+<td>受试者在PFS事件前发生新抗肿瘤治疗<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></td>
 <td>在进展（或死亡）日期之前最后一次有效的肿瘤评估日期/治疗开始日期</td>
 <td>删失</td>
 </tr>
 <tr class="even">
-<td>数据截止或退出研究或失访前未发生疾病进展或死亡</td>
+<td>数据截止或退出研究或失访前未发生疾病进展、死亡和新抗</td>
 <td>最后一次有效的肿瘤评估日期</td>
 <td>删失</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="非固定肿评间隔的xx天分类讨论" class="level2">
-<h2 class="anchored" data-anchor-id="非固定肿评间隔的xx天分类讨论">1.2.2 非固定肿评间隔的xx天分类讨论</h2>
-<p><mark>肿瘤评估流程：前24周每6周（±7天）进行一次影像学疗效评估，24周后每9周（±7天）进行一次影像学疗效评估。</mark></p>
+<section id="pfs-rs2dur" class="level2">
+<h2 class="anchored" data-anchor-id="pfs-rs2dur">1.2.2 肿评间隔的xx天分类讨论</h2>
+<section id="固定肿评间隔" class="level3">
+<h3 class="anchored" data-anchor-id="固定肿评间隔">1.2.2.1 固定肿评间隔</h3>
+<p>若方案设计中肿瘤评估间隔的设计是固定的，如一直都是每6周（±7）天进行一次疗效评估，那么xx天就通常为6周*7+时间窗。</p>
+</section>
+<section id="非固定肿评间隔" class="level3">
+<h3 class="anchored" data-anchor-id="非固定肿评间隔">1.2.2.2 非固定肿评间隔</h3>
+<p>若方案设计中肿瘤评估间隔不是固定的，如<mark>肿瘤评估流程：前24周每6周（±7天）进行一次影像学疗效评估，24周后每9周（±7天）进行一次影像学疗效评估。</mark>那么xx天的确定就需要分类讨论。</p>
+<p>具体的思路：按照事件发生前的末次肿评日期距离治疗开始日期的时间间隔，来确定受试者在该时间点所处的肿评周期，从而匹配对应的计划肿瘤评估频率。</p>
 <p><strong>类别1（无基线后有效肿评/首次肿评发生PD）</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -316,16 +326,16 @@ Note
 </colgroup>
 <thead>
 <tr class="header">
-<th>时间窗</th>
+<th>时间窗（Y）</th>
 <th>两次肿评间隔天数（X）</th>
-<th>xx</th>
+<th>xx天</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>无基线后有效肿评/首次肿评发生PD</td>
 <td>X = 疾病进展或死亡日期 - 治疗开始日期</td>
-<td>—</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>无</td>
@@ -345,14 +355,14 @@ Note
 <tr class="header">
 <th>时间窗（Y）</th>
 <th>两次肿评间隔天数（X）</th>
-<th>xx</th>
+<th>xx天</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Y = 疾病进展或死亡前最后一次有效的影像学检查日期 - 治疗开始日期</td>
 <td>X = 疾病进展或死亡日期-疾病进展或死亡前最后一次有效的影像学检查日期</td>
-<td>—</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>0 &lt; Y ≤105（第12周及之前，12×7+21）</td>
@@ -371,6 +381,7 @@ Note
 </tr>
 </tbody>
 </table>
+</section>
 </section>
 <section id="pfs删失原因" class="level2">
 <h2 class="anchored" data-anchor-id="pfs删失原因">1.3 PFS删失原因</h2>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>adtte – hyfzi</title>
+<title>ADTTE – hyfzi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -69,6 +104,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -114,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../oncology/adtr.html">ADaM</a></li><li class="breadcrumb-item"><a href="../oncology/adtte.html">adtte</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../oncology/adtr.html">ADaM</a></li><li class="breadcrumb-item"><a href="../oncology/adtte.html">ADTTE</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -173,13 +211,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../oncology/addates.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">addates</span></a>
+ <span class="menu-text">ADDATES</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../oncology/adtte.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">adtte</span></a>
+ <span class="menu-text">ADTTE</span></a>
   </div>
 </li>
       </ul>
@@ -189,15 +227,41 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#adtte中包含的变量" id="toc-adtte中包含的变量" class="nav-link active" data-scroll-target="#adtte中包含的变量">1 ADTTE中包含的变量</a></li>
+  <li><a href="#pfs" id="toc-pfs" class="nav-link" data-scroll-target="#pfs">2 PFS</a>
+  <ul class="collapse">
+  <li><a href="#pfs事件删失判断流程图" id="toc-pfs事件删失判断流程图" class="nav-link" data-scroll-target="#pfs事件删失判断流程图">2.1 PFS事件/删失判断流程图</a></li>
+  <li><a href="#pfs事件删失详细说明" id="toc-pfs事件删失详细说明" class="nav-link" data-scroll-target="#pfs事件删失详细说明">2.2 PFS事件/删失详细说明</a>
+  <ul class="collapse">
+  <li><a href="#evnt01" id="toc-evnt01" class="nav-link" data-scroll-target="#evnt01">EVNT01</a></li>
+  <li><a href="#evnt02" id="toc-evnt02" class="nav-link" data-scroll-target="#evnt02">EVNT02</a></li>
+  <li><a href="#evnt03" id="toc-evnt03" class="nav-link" data-scroll-target="#evnt03">EVNT03</a></li>
+  <li><a href="#cnsr01" id="toc-cnsr01" class="nav-link" data-scroll-target="#cnsr01">CNSR01</a></li>
+  <li><a href="#cnsr02" id="toc-cnsr02" class="nav-link" data-scroll-target="#cnsr02">CNSR02</a></li>
+  <li><a href="#cnsr03" id="toc-cnsr03" class="nav-link" data-scroll-target="#cnsr03">CNSR03</a></li>
+  <li><a href="#cnsr04" id="toc-cnsr04" class="nav-link" data-scroll-target="#cnsr04">CNSR04</a></li>
+  <li><a href="#cnsr05" id="toc-cnsr05" class="nav-link" data-scroll-target="#cnsr05">CNSR05</a></li>
+  <li><a href="#cnsr06" id="toc-cnsr06" class="nav-link" data-scroll-target="#cnsr06">CNSR06</a></li>
+  <li><a href="#cnsr07" id="toc-cnsr07" class="nav-link" data-scroll-target="#cnsr07">CNSR07</a></li>
+  <li><a href="#cnsr08" id="toc-cnsr08" class="nav-link" data-scroll-target="#cnsr08">CNSR08</a></li>
+  <li><a href="#cnsr09" id="toc-cnsr09" class="nav-link" data-scroll-target="#cnsr09">CNSR09</a></li>
+  <li><a href="#cnsr10" id="toc-cnsr10" class="nav-link" data-scroll-target="#cnsr10">CNSR10</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../oncology/adtr.html">ADaM</a></li><li class="breadcrumb-item"><a href="../oncology/adtte.html">adtte</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../oncology/adtr.html">ADaM</a></li><li class="breadcrumb-item"><a href="../oncology/adtte.html">ADTTE</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">adtte</h1>
+<h1 class="title">ADTTE</h1>
 </div>
 
 
@@ -214,8 +278,477 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="adtte中包含的变量" class="level1">
+<h1>1 ADTTE中包含的变量</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 34%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>变量名</th>
+<th>描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>USUBJID、ASEQ</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>PARCAT1</td>
+<td>参数类别1</td>
+<td>RSCIST 1.1</td>
+</tr>
+<tr class="odd">
+<td>PARAM</td>
+<td>参数</td>
+<td>无进展生存期（月）</td>
+</tr>
+<tr class="even">
+<td>PARAMCD</td>
+<td>参数简称</td>
+<td>PFS、OS、TTR、DOR</td>
+</tr>
+<tr class="odd">
+<td>AVAL</td>
+<td>分析值</td>
+<td>(ADT-STARTDT+1)/30.4375</td>
+</tr>
+<tr class="even">
+<td>STARTDT</td>
+<td>事件时间起点日期</td>
+<td>给药日期、开始日期</td>
+</tr>
+<tr class="odd">
+<td>CNSR</td>
+<td>删失</td>
+<td>0,1</td>
+</tr>
+<tr class="even">
+<td>EVNTDESC</td>
+<td>事件或删失描述</td>
+<td>疾病进展日期、开始新抗肿瘤治疗…..</td>
+</tr>
+<tr class="odd">
+<td>CNSDTDSC</td>
+<td>删失日期描述</td>
+<td>新抗肿瘤前末次肿瘤评估日期…..</td>
+</tr>
+<tr class="even">
+<td>ADT</td>
+<td>日期-分析用</td>
+<td>疾病进展日期、新抗肿瘤前末次肿瘤评估日期.</td>
+</tr>
+<tr class="odd">
+<td>RSEVAL</td>
+<td>评估者</td>
+<td>研究者、IRC</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pfs" class="level1">
+<h1>2 PFS</h1>
+<section id="pfs事件删失判断流程图" class="level2">
+<h2 class="anchored" data-anchor-id="pfs事件删失判断流程图">2.1 PFS事件/删失判断流程图</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  A[是否有基线及基线后肿评?] -- 否 --&gt; B1[是否死亡?]
+  A[是否有基线及基线后肿评?] -- 是 --&gt; B2[是否PD?]
+
+  B1[是否死亡?] -- 否 --&gt; CNSR01[CNSR01]
+  B1[是否死亡?] -- 是 --&gt; C1[死亡前是否发生新抗?]
+  C1[死亡前是否发生新抗?] -- 否 --&gt; C2[死亡距离开始日期是否超过两个肿评间隔?]
+  C1[死亡前是否发生新抗?] -- 是 --&gt; CNSR02[CNSR02]
+  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT01[EVNT01]
+  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR03[CNSR03]
+
+  B2[是否PD?] -- 否 --&gt; D2[是否死亡?]
+  B2[是否PD?] -- 是 --&gt; D1[PD前是否发生新抗?]
+  D1[PD前是否发生新抗?] -- 否 --&gt; D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?]
+  D1[PD前是否发生新抗?] -- 是 --&gt; CNSR04[CNSR04]
+  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT03[EVNT03]
+  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR05[CNSR05]
+
+  D2[是否死亡?] -- 否 --&gt; E2[是否发生新抗?]
+  D2[是否死亡?] -- 是 --&gt; E1[死亡前是否发生新抗?]
+
+  E1[死亡前是否发生新抗?] -- 否 --&gt; E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?]
+  E1[死亡前是否发生新抗?] -- 是 --&gt; CNSR06[CNSR06]
+
+  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT02[EVNT02]
+  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR07[CNSR07]
+  E2[是否发生新抗?] -- 否 --&gt; E4[是否退出试验?]
+  E2[是否发生新抗?] -- 是 --&gt; CNSR10[CNSR10]
+  E4[是否退出试验?] -- 否 --&gt; CNSR08[CNSR08]
+  E4[是否退出试验?] -- 是 --&gt; CNSR09[CNSR09]
+  
+
+  %% 点击跳转
+  click EVNT01 "#evnt01"
+  click EVNT02 "#evnt02"
+  click EVNT03 "#evnt03"
+
+  click CNSR01 "#cnsr01"
+  click CNSR02 "#cnsr02"
+  click CNSR03 "#cnsr03"
+  click CNSR04 "#cnsr04"
+  click CNSR05 "#cnsr05"
+  click CNSR06 "#cnsr06"
+  click CNSR07 "#cnsr07"
+  click CNSR08 "#cnsr08"
+  click CNSR09 "#cnsr09"
+  click CNSR10 "#cnsr10"
+  %% 样式
+  classDef event fill:#A8E6A3,stroke:#2E7D32,stroke-width:2px;
+  classDef censor fill:#FFE082,stroke:#EF6C00,stroke-width:2px;
+
+  class EVNT01,EVNT02,EVNT03,EVNT04 event;
+  class CNSR01,CNSR02,CNSR03,CNSR04,CNSR05,CNSR06,CNSR07,CNSR08,CNSR09,CNSR10 censor;
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="pfs事件删失详细说明" class="level2">
+<h2 class="anchored" data-anchor-id="pfs事件删失详细说明">2.2 PFS事件/删失详细说明</h2>
+<p>下文代码中用的日期在ADDATES <a href="../oncology/addates.html#addates-adtdesc">1.2章节</a>中有详细说明，RS2DUR为两次肿评间隔天数，在PFS <a href="../oncology/pfs.html#pfs-rs2dur">1.2.2章节</a>有详细介绍。</p>
+<section id="evnt01" class="level3">
+<h3 class="anchored" data-anchor-id="evnt01">EVNT01</h3>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>无基线或无基线后评估</li>
+<li>未发生PD</li>
+<li>未开始新抗肿治疗</li>
+<li>死亡</li>
+<li>死亡距离开始日期未超过两个肿评间隔</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.na</span>(TEVALDT) <span class="sc">|</span> <span class="fu">is.na</span>(FEVALDT)) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(NCTXSDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> (DTHDT <span class="sc">-</span> STARTDT <span class="sc">&lt;=</span> RS2DUR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = DTHDT</li>
+<li>EVNTDESC = 死亡</li>
+</ol></li>
+</ol>
+</section>
+<section id="evnt02" class="level3">
+<h3 class="anchored" data-anchor-id="evnt02">EVNT02</h3>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>未PD</li>
+<li>死亡</li>
+<li>死亡前未发生新抗</li>
+<li>死亡距离开始/上次肿评日期未超过两个肿评间隔</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> (<span class="fu">is.na</span>(NCTXSDT) <span class="sc">|</span> NCTXSDT <span class="sc">&gt;=</span> DTHDT) <span class="sc">&amp;</span> (DTHDT <span class="sc">-</span> STARTDT<span class="sc">/</span>LINTERDT <span class="sc">&lt;=</span> RS2DUR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = DTHDT</li>
+<li>EVNTDESC = 死亡</li>
+</ol></li>
+</ol>
+</section>
+<section id="evnt03" class="level3">
+<h3 class="anchored" data-anchor-id="evnt03">EVNT03</h3>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>发生PD</li>
+<li>PD前未发生新抗</li>
+<li>PD距离开始/上次肿评日期未超过两个肿评间隔</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> (<span class="fu">is.na</span>(NCTXSDT) <span class="sc">|</span> NCTXSDT <span class="sc">&gt;=</span> PDDT) <span class="sc">&amp;</span> (PDDT <span class="sc">-</span> STARTDT<span class="sc">/</span>LINTERDT <span class="sc">&lt;=</span> RS2DUR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = PDDT</li>
+<li>EVNTDESC = 疾病进展</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr01" class="level3">
+<h3 class="anchored" data-anchor-id="cnsr01">CNSR01</h3>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>无基线或无基线后评估</li>
+<li>未发生死亡</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.na</span>(TEVALDT) <span class="sc">|</span> <span class="fu">is.na</span>(FEVALDT)) <span class="sc">&amp;</span> <span class="fu">is.na</span>(DTHDT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = STARTDT</li>
+<li>EVNTDESC = 无基线或基线后影像学检查</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 开始日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr02" class="level3">
+<h3 class="anchored" data-anchor-id="cnsr02">CNSR02</h3>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>无基线或无基线后评估</li>
+<li>死亡</li>
+<li>死亡前发生新抗</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.na</span>(TEVALDT) <span class="sc">|</span> <span class="fu">is.na</span>(FEVALDT)) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(NCTXSDT) <span class="sc">&amp;</span> NCTXSDT <span class="sc">&lt;</span> DTHDT</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = STARTDT</li>
+<li>EVNTDESC = 开始新抗肿瘤治疗</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 开始日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr03" class="level3">
+<h3 class="anchored" data-anchor-id="cnsr03">CNSR03</h3>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>无基线或无基线后评估</li>
+<li>死亡</li>
+<li>未发生新抗</li>
+<li>死亡距离开始日期超过两个肿评间隔</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.na</span>(TEVALDT) <span class="sc">|</span> <span class="fu">is.na</span>(FEVALDT)) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(NCTXSDT) <span class="sc">&amp;</span> (DTHDT <span class="sc">-</span> STARTDT <span class="sc">&gt;</span> RS2DUR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = STARTDT</li>
+<li>EVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 开始日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr04" class="level3">
+<h3 class="anchored" data-anchor-id="cnsr04">CNSR04</h3>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>发生PD</li>
+<li>PD前发生新抗</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(NCTXSDT) <span class="sc">&amp;</span> NCTXSDT <span class="sc">&lt;</span> PDDT</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = STARTDT/LINTERDT</li>
+<li>EVNTDESC = 开始新抗肿瘤治疗</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 开始日期/新抗肿瘤治疗之前的末次可评价影像学检查日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr05" class="level3">
+<h3 class="anchored" data-anchor-id="cnsr05">CNSR05</h3>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>发生PD</li>
+<li>PD前未发生新抗</li>
+<li>PD距离开始/上次肿评日期超过两个肿评间隔</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> (<span class="fu">is.na</span>(NCTXSDT) <span class="sc">|</span> NCTXSDT <span class="sc">&gt;=</span> PDDT) <span class="sc">&amp;</span> (PDDT <span class="sc">-</span> STARTDT<span class="sc">/</span>LINTERDT <span class="sc">&gt;</span> RS2DUR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = STARTDT/LINTERDT</li>
+<li>EVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = STARTDT/疾病进展前的末次可评价影像学检查日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr06" class="level3">
+<h3 class="anchored" data-anchor-id="cnsr06">CNSR06</h3>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>无PD</li>
+<li>死亡</li>
+<li>死亡前发生新抗</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(NCTXSDT) <span class="sc">&amp;</span> NCTXSDT <span class="sc">&lt;</span> DTHDT</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = LINTERDT</li>
+<li>EVNTDESC = 开始新抗肿瘤治疗</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr07" class="level3">
+<h3 class="anchored" data-anchor-id="cnsr07">CNSR07</h3>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>无PD</li>
+<li>死亡</li>
+<li>死亡前未发生新抗</li>
+<li>死亡距离上次肿评日期超过两个肿评间隔</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> (<span class="fu">is.na</span>(NCTXSDT) <span class="sc">|</span> NCTXSDT <span class="sc">&gt;=</span> DTHDT) <span class="sc">&amp;</span> (DTHDT <span class="sc">-</span> LINTERDT <span class="sc">&gt;</span> RS2DUR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = LINTERDT</li>
+<li>EVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 死亡前的末次可评价影像学检查日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr08" class="level3">
+<h3 class="anchored" data-anchor-id="cnsr08">CNSR08</h3>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>无PD</li>
+<li>无死亡</li>
+<li>无新抗</li>
+<li>未退出试验</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(EOSDT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = LINTERDT</li>
+<li>EVNTDESC = 继续试验，无事发生</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 最后一次可评价影像学检查日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr09" class="level3">
+<h3 class="anchored" data-anchor-id="cnsr09">CNSR09</h3>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>无PD</li>
+<li>无死亡</li>
+<li>无新抗</li>
+<li>退出试验</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(EOSDT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = EOSDT</li>
+<li>EVNTDESC = 失访/撤回知情同意/其他</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 最后一次可评价影像学检查日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr10" class="level3">
+<h3 class="anchored" data-anchor-id="cnsr10">CNSR10</h3>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>无PD</li>
+<li>无死亡</li>
+<li>发生新抗</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(NCTXSDT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = LINTERDT</li>
+<li>EVNTDESC = 开始新抗肿瘤治疗</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期</li>
+</ol></li>
+</ol>
 
 
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -620,8 +1153,8 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../oncology/addates.html" class="pagination-link" aria-label="addates">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">addates</span>
+      <a href="../oncology/addates.html" class="pagination-link" aria-label="ADDATES">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ADDATES</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

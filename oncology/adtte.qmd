@@ -1,3 +1,326 @@
 ---
-title: "adtte"
+title: "ADTTE"
 ---
+
+# 1 ADTTE中包含的变量
+
+| 变量名        | 描述             |                                           |
+|-------------------|-------------------------|----------------------------|
+| USUBJID、ASEQ |                  |                                           |
+| PARCAT1       | 参数类别1        | RSCIST 1.1                                |
+| PARAM         | 参数             | 无进展生存期（月）                        |
+| PARAMCD       | 参数简称         | PFS、OS、TTR、DOR                         |
+| AVAL          | 分析值           | (ADT-STARTDT+1)/30.4375                   |
+| STARTDT       | 事件时间起点日期 | 给药日期、开始日期                        |
+| CNSR          | 删失             | 0,1                                       |
+| EVNTDESC      | 事件或删失描述   | 疾病进展日期、开始新抗肿瘤治疗.....       |
+| CNSDTDSC      | 删失日期描述     | 新抗肿瘤前末次肿瘤评估日期.....           |
+| ADT           | 日期-分析用      | 疾病进展日期、新抗肿瘤前末次肿瘤评估日期. |
+| RSEVAL        | 评估者           | 研究者、IRC                               |
+
+# 2 PFS
+
+## 2.1 PFS事件/删失判断流程图
+
+```{mermaid}
+flowchart TD
+  A[是否有基线及基线后肿评?] -- 否 --> B1[是否死亡?]
+  A[是否有基线及基线后肿评?] -- 是 --> B2[是否PD?]
+
+  B1[是否死亡?] -- 否 --> CNSR01[CNSR01]
+  B1[是否死亡?] -- 是 --> C1[死亡前是否发生新抗?]
+  C1[死亡前是否发生新抗?] -- 否 --> C2[死亡距离开始日期是否超过两个肿评间隔?]
+  C1[死亡前是否发生新抗?] -- 是 --> CNSR02[CNSR02]
+  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 否 --> EVNT01[EVNT01]
+  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 是 --> CNSR03[CNSR03]
+
+  B2[是否PD?] -- 否 --> D2[是否死亡?]
+  B2[是否PD?] -- 是 --> D1[PD前是否发生新抗?]
+  D1[PD前是否发生新抗?] -- 否 --> D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?]
+  D1[PD前是否发生新抗?] -- 是 --> CNSR04[CNSR04]
+  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --> EVNT03[EVNT03]
+  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --> CNSR05[CNSR05]
+
+  D2[是否死亡?] -- 否 --> E2[是否发生新抗?]
+  D2[是否死亡?] -- 是 --> E1[死亡前是否发生新抗?]
+
+  E1[死亡前是否发生新抗?] -- 否 --> E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?]
+  E1[死亡前是否发生新抗?] -- 是 --> CNSR06[CNSR06]
+
+  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --> EVNT02[EVNT02]
+  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --> CNSR07[CNSR07]
+  E2[是否发生新抗?] -- 否 --> E4[是否退出试验?]
+  E2[是否发生新抗?] -- 是 --> CNSR10[CNSR10]
+  E4[是否退出试验?] -- 否 --> CNSR08[CNSR08]
+  E4[是否退出试验?] -- 是 --> CNSR09[CNSR09]
+  
+
+  %% 点击跳转
+  click EVNT01 "#evnt01"
+  click EVNT02 "#evnt02"
+  click EVNT03 "#evnt03"
+
+  click CNSR01 "#cnsr01"
+  click CNSR02 "#cnsr02"
+  click CNSR03 "#cnsr03"
+  click CNSR04 "#cnsr04"
+  click CNSR05 "#cnsr05"
+  click CNSR06 "#cnsr06"
+  click CNSR07 "#cnsr07"
+  click CNSR08 "#cnsr08"
+  click CNSR09 "#cnsr09"
+  click CNSR10 "#cnsr10"
+  %% 样式
+  classDef event fill:#A8E6A3,stroke:#2E7D32,stroke-width:2px;
+  classDef censor fill:#FFE082,stroke:#EF6C00,stroke-width:2px;
+
+  class EVNT01,EVNT02,EVNT03,EVNT04 event;
+  class CNSR01,CNSR02,CNSR03,CNSR04,CNSR05,CNSR06,CNSR07,CNSR08,CNSR09,CNSR10 censor;
+
+```
+
+## 2.2 PFS事件/删失详细说明
+
+下文代码中用的日期在ADDATES [1.2章节](addates.qmd#addates-adtdesc)中有详细说明，RS2DUR为两次肿评间隔天数，在PFS [1.2.2章节](pfs.qmd#pfs-rs2dur)有详细介绍。
+
+### EVNT01 {#evnt01}
+
+1.  逻辑
+    a)  无基线或无基线后评估
+    b)  未发生PD
+    c)  未开始新抗肿治疗
+    d)  死亡
+    e)  死亡距离开始日期未超过两个肿评间隔
+2.  代码
+
+```{r eval=FALSE}
+(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(PDDT) & is.na(NCTXSDT) & !is.na(DTHDT) & (DTHDT - STARTDT <= RS2DUR)
+```
+
+3.  变量值
+    a)  ADT = DTHDT
+    b)  EVNTDESC = 死亡
+
+### EVNT02 {#evnt02}
+
+1.  逻辑
+    a)  有基线和基线后评估
+    b)  未PD
+    c)  死亡
+    d)  死亡前未发生新抗
+    e)  死亡距离开始/上次肿评日期未超过两个肿评间隔
+2.  代码
+
+```{r eval=FALSE}
+!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT >= DTHDT) & (DTHDT - STARTDT/LINTERDT <= RS2DUR)
+```
+
+3.  变量值
+    a)  ADT = DTHDT
+    b)  EVNTDESC = 死亡
+
+### EVNT03 {#evnt03}
+
+1.  逻辑
+    a)  有基线和基线后评估
+    b)  发生PD
+    c)  PD前未发生新抗
+    d)  PD距离开始/上次肿评日期未超过两个肿评间隔
+2.  代码
+
+```{r eval=FALSE}
+!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT >= PDDT) & (PDDT - STARTDT/LINTERDT <= RS2DUR)
+```
+
+3.  变量值
+    a)  ADT = PDDT
+    b)  EVNTDESC = 疾病进展
+
+### CNSR01 {#cnsr01}
+
+1.  逻辑
+    a)  无基线或无基线后评估
+    b)  未发生死亡
+2.  代码
+
+```{r eval=FALSE}
+(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(DTHDT)
+```
+
+3.  变量值
+    a)  ADT = STARTDT
+    b)  EVNTDESC = 无基线或基线后影像学检查
+    c)  CNSR = 1
+    d)  CNSDTDSC = 开始日期
+
+### CNSR02 {#cnsr02}
+
+1.  逻辑
+    a)  无基线或无基线后评估
+    b)  死亡
+    c)  死亡前发生新抗
+2.  代码
+
+```{r eval=FALSE}
+(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT < DTHDT
+```
+
+3.  变量值
+    a)  ADT = STARTDT
+    b)  EVNTDESC = 开始新抗肿瘤治疗
+    c)  CNSR = 1
+    d)  CNSDTDSC = 开始日期
+
+### CNSR03 {#cnsr03}
+
+1.  逻辑
+    a)  无基线或无基线后评估
+    b)  死亡
+    c)  未发生新抗
+    d)  死亡距离开始日期超过两个肿评间隔
+2.  代码
+
+```{r eval=FALSE}
+(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & is.na(NCTXSDT) & (DTHDT - STARTDT > RS2DUR)
+```
+
+3.  变量值
+    a)  ADT = STARTDT
+    b)  EVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件
+    c)  CNSR = 1
+    d)  CNSDTDSC = 开始日期
+
+### CNSR04 {#cnsr04}
+
+1.  逻辑
+    a)  有基线和基线后评估
+    b)  发生PD
+    c)  PD前发生新抗
+2.  代码
+
+```{r eval=FALSE}
+!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & !is.na(NCTXSDT) & NCTXSDT < PDDT
+```
+
+3.  变量值
+    a)  ADT = STARTDT/LINTERDT
+    b)  EVNTDESC = 开始新抗肿瘤治疗
+    c)  CNSR = 1
+    d)  CNSDTDSC = 开始日期/新抗肿瘤治疗之前的末次可评价影像学检查日期
+
+### CNSR05 {#cnsr05}
+
+1.  逻辑
+    a)  有基线和基线后评估
+    b)  发生PD
+    c)  PD前未发生新抗
+    d)  PD距离开始/上次肿评日期超过两个肿评间隔
+2.  代码
+
+```{r eval=FALSE}
+!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT >= PDDT) & (PDDT - STARTDT/LINTERDT > RS2DUR)
+```
+
+3.  变量值
+    a)  ADT = STARTDT/LINTERDT
+    b)  EVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件
+    c)  CNSR = 1
+    d)  CNSDTDSC = STARTDT/疾病进展前的末次可评价影像学检查日期
+
+### CNSR06 {#cnsr06}
+
+1.  逻辑
+    a)  有基线和基线后评估
+    b)  无PD
+    c)  死亡
+    d)  死亡前发生新抗
+2.  代码
+
+```{r eval=FALSE}
+!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT < DTHDT
+```
+
+3.  变量值
+    a)  ADT = LINTERDT
+    b)  EVNTDESC = 开始新抗肿瘤治疗
+    c)  CNSR = 1
+    d)  CNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期
+
+### CNSR07 {#cnsr07}
+
+1.  逻辑
+    a)  有基线和基线后评估
+    b)  无PD
+    c)  死亡
+    d)  死亡前未发生新抗
+    e)  死亡距离上次肿评日期超过两个肿评间隔
+2.  代码
+
+```{r eval=FALSE}
+!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT >= DTHDT) & (DTHDT - LINTERDT > RS2DUR)
+```
+
+3.  变量值
+    a)  ADT = LINTERDT
+    b)  EVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件
+    c)  CNSR = 1
+    d)  CNSDTDSC = 死亡前的末次可评价影像学检查日期
+
+### CNSR08 {#cnsr08}
+
+1.  逻辑
+    a)  有基线和基线后评估
+    b)  无PD
+    c)  无死亡
+    d)  无新抗
+    e)  未退出试验
+2.  代码
+
+```{r eval=FALSE}
+!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & is.na(EOSDT)
+```
+
+3.  变量值
+    a)  ADT = LINTERDT
+    b)  EVNTDESC = 继续试验，无事发生
+    c)  CNSR = 1
+    d)  CNSDTDSC = 最后一次可评价影像学检查日期
+
+### CNSR09 {#cnsr09}
+
+1.  逻辑
+    a)  有基线和基线后评估
+    b)  无PD
+    c)  无死亡
+    d)  无新抗
+    e)  退出试验
+2.  代码
+
+```{r eval=FALSE}
+!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(EOSDT)
+```
+
+3.  变量值
+    a)  ADT = EOSDT
+    b)  EVNTDESC = 失访/撤回知情同意/其他
+    c)  CNSR = 1
+    d)  CNSDTDSC = 最后一次可评价影像学检查日期
+
+### CNSR10 {#cnsr10}
+
+1.  逻辑
+    a)  有基线和基线后评估
+    b)  无PD
+    c)  无死亡
+    d)  发生新抗
+2.  代码
+
+```{r eval=FALSE}
+!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(NCTXSDT)
+```
+
+3.  变量值
+    a)  ADT = LINTERDT
+    b)  EVNTDESC = 开始新抗肿瘤治疗
+    c)  CNSR = 1
+    d)  CNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期

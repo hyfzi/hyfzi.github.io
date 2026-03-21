@@ -3,37 +3,36 @@ title: "ADDATES"
 ---
 
 # 1 ADDATES介绍
-**ADDATES**是一个专门用于记录与肿瘤评估相关的日期变量的数据集。它包含了受试者的用药日期、随机化日期、影像学检查日期、疾病进展日期等多个关键时间点。这些日期变量对于计算无进展生存期（PFS）等重要终点指标至关重要。
 
-# 2 ADDATES中包含的变量
+ADDATES是一个专门用于记录与肿瘤评估相关的日期变量的数据集。它包含了受试者的用药日期、随机化日期、影像学检查日期、疾病进展日期等多个关键时间点。这些日期变量对于计算无进展生存期（PFS）等重要终点指标至关重要。
 
-| 变量名 | 描述 |
-| --- | --- |
-| USUBJID | 受试者水平唯一标识符 |
-| ASEQ | 受试者水平日期记录序列号 |
-| ADT | 日期 |
-| ADTDESC | 日期描述 |
-| ADTDECD | 日期描述编号 |
-| ADY | 分析相对日 |
-| RSEVAL | 评估者 |
+# 1.1 ADDATES中包含的变量
 
-# 3 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述
+| 变量名        | 描述         |
+|---------------|--------------|
+| USUBJID、ASEQ |              |
+| ADT           | 日期         |
+| ADTDESC       | 日期描述     |
+| ADTDECD       | 日期描述编号 |
+| ADY           | 分析相对日   |
+| RSEVAL        | 评估者       |
+
+# 1.2 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述 {#addates-adtdesc}
 
 | ADTDESC | ADTDESCD | ADT |
-|---|---|---|
-| **受试者水平-USUBJID** | | |
+|------------------------|----------------|---------------------------------|
+| **受试者水平-USUBJID** |  |  |
 | 首次用药日期 | TRTSDT | ADSL.TRTSDT |
 | 随机化日期 | RANDDT | ADSL.RANDDT |
 | 新抗肿瘤治疗日期 | NCTXSDT | ADSL.NCTXSDT |
 | 研究结束日期 | EOSDT | ADSL.EOSDT |
 | 已知最后生存日期 | LSTALVTD | ADSL.LSTALVTD |
 | 死亡日期 | DTHDT | ADSL.DTHDT |
-| **受试者+评估者-USUBJID+RSEVAL** | | |
-| 基线肿瘤检查日期 | TEVALDT | 基线前末次有效的影像学检查日期（TR.TRDTC）。|
-| **每个受试者+评估者+评估标准-USUBJID+RSEVAL+RSSCAT** | | |
-| 基线后首次有效的肿瘤评估影像学检查日期 | FEVALDT | 基线后首次出现的有效的肿瘤总体评估日期 | 基线后最早的ADRS.ADT when PARAMCD = "OVRLRESP" & ADRS.AVALC ≠ "NE"等非有效值评估|
+| **受试者+评估者-USUBJID+RSEVAL** |  |  |
+| 基线肿瘤检查日期 | TEVALDT | 基线前末次有效的影像学检查日期（TR.TRDTC） |
+| **每个受试者+评估者+评估标准-USUBJID+RSEVAL+RSCAT** |  |  |
+| 基线后首次有效的肿瘤评估影像学检查日期 | FEVALDT | 基线后、新抗前首次出现的有效的肿瘤总体评估日期 |
 | 首次疾病进展日期 | PDDT | 基线后最早的ADRS.ADT，当ADRS.PARAMCD = "OVRLRESP"，ADRS.AVALC = "PD" |
-| 新抗肿瘤治疗（若有）及疾病进展（若有）前的末次可评估影像学检查日期 | LINETRD | 取NCTXSDT（≤）和PDDT（<）之前最晚的ADRS.ADT，当ADRS.PARAMCD = "OVRLRESP"，ADRS.AVALC ≠ "NE"等非有效值评估 |
+| 新抗肿瘤治疗（若有）及疾病进展（若有）前的末次可评估影像学检查日期 | LINTERDT | 取NCTXSDT(≤)和PDDT(\<)之前最晚的ADRS.ADT，当ADRS.PARAMCD = "OVRLRESP"，ADRS.AVALC ≠ "NE"等非有效值评估 |
 | 首次客观缓解（经确认的）日期 | CRUTDT | ADRS.ADT，当 ADRS.ANL12FL = "是" |
-| 首次客观缓解（未确认的）日期 | URTUDT | ADRS.ADT，当 ADRS.ANL22FL = "是" |
-
+| 首次客观缓解（未确认的）日期 | URUTDT | ADRS.ADT，当 ADRS.ANL22FL = "是" |
