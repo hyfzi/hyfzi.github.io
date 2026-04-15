@@ -320,7 +320,7 @@ flowchart TD
 ```
 
 3.  变量值
-    a)  ADT = LINTERDT
+    a)  ADT = LINTERDT/STARTDT
     b)  EVNTDESC = 开始新抗肿瘤治疗
     c)  CNSR = 1
-    d)  CNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期
+    d)  CNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期/开始日期

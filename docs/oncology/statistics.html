@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>adtr – hyfzi</title>
+<title>统计方法 – hyfzi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../oncology/adrs.html" rel="next">
-<link href="../oncology/pfs.html" rel="prev">
+<link href="../oncology/adtte.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -115,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../oncology/adtr.html">ADaM</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../oncology/statistics.html">统计方法</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -152,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../oncology/adtr.html" class="sidebar-item-text sidebar-link active">
+            <a href="../oncology/adtr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ADaM</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -161,7 +160,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../oncology/adtr.html" class="sidebar-item-text sidebar-link active">
+  <a href="../oncology/adtr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">adtr</span></a>
   </div>
 </li>
@@ -187,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../oncology/statistics.html" class="sidebar-item-text sidebar-link">
+            <a href="../oncology/statistics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">统计方法</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -196,7 +195,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../oncology/statistics.html" class="sidebar-item-text sidebar-link">
+  <a href="../oncology/statistics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">统计方法</span></a>
   </div>
 </li>
@@ -207,15 +206,35 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#最佳总体缓解bor相关统计方法" id="toc-最佳总体缓解bor相关统计方法" class="nav-link active" data-scroll-target="#最佳总体缓解bor相关统计方法">1 最佳总体缓解(BOR)相关统计方法</a>
+  <ul class="collapse">
+  <li><a href="#确切概率法clopper-pearson" id="toc-确切概率法clopper-pearson" class="nav-link" data-scroll-target="#确切概率法clopper-pearson">1.1 确切概率法（Clopper-Pearson）</a></li>
+  <li><a href="#miettinen-nurminen法" id="toc-miettinen-nurminen法" class="nav-link" data-scroll-target="#miettinen-nurminen法">1.2 Miettinen-Nurminen法</a></li>
+  </ul></li>
+  <li><a href="#无进展生存期相关统计方法" id="toc-无进展生存期相关统计方法" class="nav-link" data-scroll-target="#无进展生存期相关统计方法">2 无进展生存期相关统计方法</a>
+  <ul class="collapse">
+  <li><a href="#kaplan-meier法估计各治疗组的中位pfs及其95ci" id="toc-kaplan-meier法估计各治疗组的中位pfs及其95ci" class="nav-link" data-scroll-target="#kaplan-meier法估计各治疗组的中位pfs及其95ci">2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI</a></li>
+  <li><a href="#kaplan-meier法估计各时间点的无进展生存率" id="toc-kaplan-meier法估计各时间点的无进展生存率" class="nav-link" data-scroll-target="#kaplan-meier法估计各时间点的无进展生存率">2.2 Kaplan-Meier法估计各时间点的无进展生存率</a></li>
+  <li><a href="#对数秩检验log-rank-test进行组间p值" id="toc-对数秩检验log-rank-test进行组间p值" class="nav-link" data-scroll-target="#对数秩检验log-rank-test进行组间p值">2.3 对数秩检验（log-rank test）进行组间P值</a></li>
+  <li><a href="#cox比例风险模型评估组间hr及95-ci" id="toc-cox比例风险模型评估组间hr及95-ci" class="nav-link" data-scroll-target="#cox比例风险模型评估组间hr及95-ci">2.4 Cox比例风险模型评估组间HR及95% CI</a></li>
+  <li><a href="#pfs随访时间" id="toc-pfs随访时间" class="nav-link" data-scroll-target="#pfs随访时间">2.5 PFS随访时间</a></li>
+  <li><a href="#sas代码" id="toc-sas代码" class="nav-link" data-scroll-target="#sas代码">3 SAS代码</a></li>
+  <li><a href="#参数说明" id="toc-参数说明" class="nav-link" data-scroll-target="#参数说明">3.1 参数说明</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">adtr</h1>
+<h1 class="title">统计方法</h1>
 </div>
 
 
@@ -232,8 +251,47 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="最佳总体缓解bor相关统计方法" class="level1">
+<h1>1 最佳总体缓解(BOR)相关统计方法</h1>
+<section id="确切概率法clopper-pearson" class="level2">
+<h2 class="anchored" data-anchor-id="确切概率法clopper-pearson">1.1 确切概率法（Clopper-Pearson）</h2>
+</section>
+<section id="miettinen-nurminen法" class="level2">
+<h2 class="anchored" data-anchor-id="miettinen-nurminen法">1.2 Miettinen-Nurminen法</h2>
+</section>
+</section>
+<section id="无进展生存期相关统计方法" class="level1">
+<h1>2 无进展生存期相关统计方法</h1>
+<p>研究常涉及的无进展生存期相关统计方法：采用Kaplan-Meier法估计各治疗组的中位PFS及其95%CI，并构建各治疗组的Kaplan-Meier曲线。同时，还将用Kaplan-Meier法估计在3、6、9、12个月（或其他合适时间点）时的无进展生存率及其95% CI。同时将采用对数秩检验（log-rank test）进行组间比较。采用Cox比例风险模型评估组间HR及95% CI。</p>
+<section id="kaplan-meier法估计各治疗组的中位pfs及其95ci" class="level2">
+<h2 class="anchored" data-anchor-id="kaplan-meier法估计各治疗组的中位pfs及其95ci">2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI</h2>
+</section>
+<section id="kaplan-meier法估计各时间点的无进展生存率" class="level2">
+<h2 class="anchored" data-anchor-id="kaplan-meier法估计各时间点的无进展生存率">2.2 Kaplan-Meier法估计各时间点的无进展生存率</h2>
+</section>
+<section id="对数秩检验log-rank-test进行组间p值" class="level2">
+<h2 class="anchored" data-anchor-id="对数秩检验log-rank-test进行组间p值">2.3 对数秩检验（log-rank test）进行组间P值</h2>
+</section>
+<section id="cox比例风险模型评估组间hr及95-ci" class="level2">
+<h2 class="anchored" data-anchor-id="cox比例风险模型评估组间hr及95-ci">2.4 Cox比例风险模型评估组间HR及95% CI</h2>
+</section>
+<section id="pfs随访时间" class="level2">
+<h2 class="anchored" data-anchor-id="pfs随访时间">2.5 PFS随访时间</h2>
+</section>
+<section id="sas代码" class="level2">
+<h2 class="anchored" data-anchor-id="sas代码">3 SAS代码</h2>
+<pre class="sas"><code>proc lifetest data=adtte outsurv=occur1 method=KM timelist=3,6,9,12 reduceout;
+  time aval*cnsr(1);
+  strata trt01pn / test=logrank;
+  ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;
+run;</code></pre>
+</section>
+<section id="参数说明" class="level2">
+<h2 class="anchored" data-anchor-id="参数说明">3.1 参数说明</h2>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -638,14 +696,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../oncology/pfs.html" class="pagination-link" aria-label="无进展生存期(PFS)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">无进展生存期(PFS)</span>
+      <a href="../oncology/adtte.html" class="pagination-link" aria-label="ADTTE">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ADTTE</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../oncology/adrs.html" class="pagination-link" aria-label="adrs">
-        <span class="nav-page-text">adrs</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

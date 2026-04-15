@@ -48,6 +48,10 @@ website:
             - oncology/adrs.qmd
             - oncology/addates.qmd
             - oncology/adtte.qmd
+        - section: "统计方法"
+          href: oncology/statistics.qmd
+          contents:
+            - oncology/statistics.qmd
             
 format:
   html:

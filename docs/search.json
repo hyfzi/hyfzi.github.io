@@ -117,7 +117,7 @@
     "href": "oncology/adtte.html#pfs事件删失详细说明",
     "title": "ADTTE",
     "section": "2.2 PFS事件/删失详细说明",
-    "text": "2.2 PFS事件/删失详细说明\n下文代码中用的日期在ADDATES 1.2章节中有详细说明，RS2DUR为两次肿评间隔天数，在PFS 1.2.2章节有详细介绍。\n\nEVNT01\n\n逻辑\n\n无基线或无基线后评估\n未发生PD\n未开始新抗肿治疗\n死亡\n死亡距离开始日期未超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(PDDT) & is.na(NCTXSDT) & !is.na(DTHDT) & (DTHDT - STARTDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT02\n\n逻辑\n\n有基线和基线后评估\n未PD\n死亡\n死亡前未发生新抗\n死亡距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT03\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = PDDT\nEVNTDESC = 疾病进展\n\n\n\n\nCNSR01\n\n逻辑\n\n无基线或无基线后评估\n未发生死亡\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(DTHDT)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 无基线或基线后影像学检查\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR02\n\n逻辑\n\n无基线或无基线后评估\n死亡\n死亡前发生新抗\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR03\n\n逻辑\n\n无基线或无基线后评估\n死亡\n未发生新抗\n死亡距离开始日期超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & is.na(NCTXSDT) & (DTHDT - STARTDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR04\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & !is.na(NCTXSDT) & NCTXSDT &lt; PDDT\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期/新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR05\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = STARTDT/疾病进展前的末次可评价影像学检查日期\n\n\n\n\nCNSR06\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR07\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前未发生新抗\n死亡距离上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 死亡前的末次可评价影像学检查日期\n\n\n\n\nCNSR08\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n未退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & is.na(EOSDT)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 继续试验，无事发生\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR09\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(EOSDT)\n\n\n变量值\n\nADT = EOSDT\nEVNTDESC = 失访/撤回知情同意/其他\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR10\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(NCTXSDT)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期",
+    "text": "2.2 PFS事件/删失详细说明\n下文代码中用的日期在ADDATES 1.2章节中有详细说明，RS2DUR为两次肿评间隔天数，在PFS 1.2.2章节有详细介绍。\n\nEVNT01\n\n逻辑\n\n无基线或无基线后评估\n未发生PD\n未开始新抗肿治疗\n死亡\n死亡距离开始日期未超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(PDDT) & is.na(NCTXSDT) & !is.na(DTHDT) & (DTHDT - STARTDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT02\n\n逻辑\n\n有基线和基线后评估\n未PD\n死亡\n死亡前未发生新抗\n死亡距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT03\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = PDDT\nEVNTDESC = 疾病进展\n\n\n\n\nCNSR01\n\n逻辑\n\n无基线或无基线后评估\n未发生死亡\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(DTHDT)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 无基线或基线后影像学检查\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR02\n\n逻辑\n\n无基线或无基线后评估\n死亡\n死亡前发生新抗\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR03\n\n逻辑\n\n无基线或无基线后评估\n死亡\n未发生新抗\n死亡距离开始日期超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & is.na(NCTXSDT) & (DTHDT - STARTDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR04\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & !is.na(NCTXSDT) & NCTXSDT &lt; PDDT\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期/新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR05\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = STARTDT/疾病进展前的末次可评价影像学检查日期\n\n\n\n\nCNSR06\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR07\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前未发生新抗\n死亡距离上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 死亡前的末次可评价影像学检查日期\n\n\n\n\nCNSR08\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n未退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & is.na(EOSDT)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 继续试验，无事发生\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR09\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(EOSDT)\n\n\n变量值\n\nADT = EOSDT\nEVNTDESC = 失访/撤回知情同意/其他\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR10\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(NCTXSDT)\n\n\n变量值\n\nADT = LINTERDT/STARTDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期/开始日期",
     "crumbs": [
       "实体瘤",
       "ADaM",
@@ -136,7 +136,7 @@
     "href": "oncology/addates.html",
     "title": "ADDATES",
     "section": "",
-    "text": "1 ADDATES介绍\nADDATES是一个专门用于记录与肿瘤评估相关的日期变量的数据集。它包含了受试者的用药日期、随机化日期、影像学检查日期、疾病进展日期等多个关键时间点。这些日期变量对于计算无进展生存期（PFS）等重要终点指标至关重要。\n\n\n1.1 ADDATES中包含的变量\n\n\n\n变量名\n描述\n\n\n\n\nUSUBJID、ASEQ\n\n\n\nADT\n日期\n\n\nADTDESC\n日期描述\n\n\nADTDECD\n日期描述编号\n\n\nADY\n分析相对日\n\n\nRSEVAL\n评估者\n\n\n\n\n\n1.2 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述\n\n\n\n\n\n\n\n\nADTDESC\nADTDESCD\nADT\n\n\n\n\n受试者水平-USUBJID\n\n\n\n\n首次用药日期\nTRTSDT\nADSL.TRTSDT\n\n\n随机化日期\nRANDDT\nADSL.RANDDT\n\n\n新抗肿瘤治疗日期\nNCTXSDT\nADSL.NCTXSDT\n\n\n研究结束日期\nEOSDT\nADSL.EOSDT\n\n\n已知最后生存日期\nLSTALVTD\nADSL.LSTALVTD\n\n\n死亡日期\nDTHDT\nADSL.DTHDT\n\n\n受试者+评估者-USUBJID+RSEVAL\n\n\n\n\n基线肿瘤检查日期\nTEVALDT\n基线前末次有效的影像学检查日期（TR.TRDTC）\n\n\n每个受试者+评估者+评估标准-USUBJID+RSEVAL+RSCAT\n\n\n\n\n基线后首次有效的肿瘤评估影像学检查日期\nFEVALDT\n基线后、新抗前首次出现的有效的肿瘤总体评估日期\n\n\n首次疾病进展日期\nPDDT\n基线后最早的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC = “PD”\n\n\n新抗肿瘤治疗（若有）及疾病进展（若有）前的末次可评估影像学检查日期\nLINTERDT\n取NCTXSDT(≤)和PDDT(&lt;)之前最晚的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC ≠ “NE”等非有效值评估\n\n\n首次客观缓解（经确认的）日期\nCRUTDT\nADRS.ADT，当 ADRS.ANL12FL = “是”\n\n\n首次客观缓解（未确认的）日期\nURUTDT\nADRS.ADT，当 ADRS.ANL22FL = “是”",
+    "text": "1 ADDATES介绍\nADDATES是一个专门用于记录与肿瘤评估相关的日期变量的数据集。它包含了受试者的用药日期、随机化日期、影像学检查日期、疾病进展日期等多个关键时间点。这些日期变量对于计算无进展生存期（PFS）等重要终点指标至关重要。\n\n\n1.1 ADDATES中包含的变量\n\n\n\n变量名\n描述\n\n\n\n\nUSUBJID、ASEQ\n\n\n\nADT\n日期\n\n\nADTDESC\n日期描述\n\n\nADTDECD\n日期描述编号\n\n\nADY\n分析相对日\n\n\nRSEVAL\n评估者\n\n\n\n\n\n1.2 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述\n\n\n\n\n\n\n\n\nADTDESC\nADTDESCD\nADT\n\n\n\n\n受试者水平-USUBJID\n\n\n\n\n首次用药日期\nTRTSDT\nADSL.TRTSDT\n\n\n随机化日期\nRANDDT\nADSL.RANDDT\n\n\n新抗肿瘤治疗日期\nNCTXSDT\nADSL.NCTXSDT\n\n\n研究结束日期\nEOSDT\nADSL.EOSDT\n\n\n已知最后生存日期\nLSTALVTD\nADSL.LSTALVTD\n\n\n死亡日期\nDTHDT\nADSL.DTHDT\n\n\n受试者+评估者-USUBJID+RSEVAL\n\n\n\n\n基线肿瘤检查日期\nTEVALDT\n基线前末次有效的影像学检查日期（TR.TRDTC）\n\n\n每个受试者+评估者+评估标准-USUBJID+RSEVAL+RSCAT\n\n\n\n\n基线后首次有效的肿瘤评估影像学检查日期\nFEVALDT\n基线后、新抗前首次出现的有效的肿瘤总体评估日期\n\n\n首次疾病进展日期\nPDDT\n基线后最早的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC = “PD”\n\n\n新抗肿瘤治疗（若有）及疾病进展（若有）前的末次可评估影像学检查日期\nLINTERDT\n取基线后NCTXSDT(≤)和PDDT(&lt;)之前最晚的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC ≠ “NE”等非有效值评估\n\n\n首次客观缓解（经确认的）日期\nCRUTDT\nADRS.ADT，当 ADRS.ANL12FL = “是”\n\n\n首次客观缓解（未确认的）日期\nURUTDT\nADRS.ADT，当 ADRS.ANL22FL = “是”",
     "crumbs": [
       "实体瘤",
       "ADaM",
@@ -258,6 +258,83 @@
     "crumbs": [
       "R语言",
       "tidyverse"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
+    "href": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
+    "title": "统计方法",
+    "section": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
+    "text": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
+    "href": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
+    "title": "统计方法",
+    "section": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
+    "text": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
+    "href": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
+    "title": "统计方法",
+    "section": "2.3 对数秩检验（log-rank test）进行组间P值",
+    "text": "2.3 对数秩检验（log-rank test）进行组间P值",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
+    "href": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
+    "title": "统计方法",
+    "section": "2.4 Cox比例风险模型评估组间HR及95% CI",
+    "text": "2.4 Cox比例风险模型评估组间HR及95% CI",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#pfs随访时间",
+    "href": "oncology/statistics.html#pfs随访时间",
+    "title": "统计方法",
+    "section": "2.5 PFS随访时间",
+    "text": "2.5 PFS随访时间",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#sas代码",
+    "href": "oncology/statistics.html#sas代码",
+    "title": "统计方法",
+    "section": "3 SAS代码",
+    "text": "3 SAS代码\nproc lifetest data=adtte outsurv=occur1 method=KM timelist=3,6,9,12 reduceout;\n  time aval*cnsr(1);\n  strata trt01pn / test=logrank;\n  ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;\nrun;",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#参数说明",
+    "href": "oncology/statistics.html#参数说明",
+    "title": "统计方法",
+    "section": "3.1 参数说明",
+    "text": "3.1 参数说明",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
     ]
   }
 ]

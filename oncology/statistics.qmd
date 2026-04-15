@@ -1,0 +1,35 @@
+---
+title: "统计方法"
+---
+
+# 1 最佳总体缓解(BOR)相关统计方法
+
+## 1.1 确切概率法（Clopper-Pearson）
+
+## 1.2 Miettinen-Nurminen法
+
+# 2 无进展生存期相关统计方法
+
+研究常涉及的无进展生存期相关统计方法：采用Kaplan-Meier法估计各治疗组的中位PFS及其95%CI，并构建各治疗组的Kaplan-Meier曲线。同时，还将用Kaplan-Meier法估计在3、6、9、12个月（或其他合适时间点）时的无进展生存率及其95% CI。同时将采用对数秩检验（log-rank test）进行组间比较。采用Cox比例风险模型评估组间HR及95% CI。
+
+## 2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI
+
+## 2.2 Kaplan-Meier法估计各时间点的无进展生存率
+
+## 2.3 对数秩检验（log-rank test）进行组间P值
+
+## 2.4 Cox比例风险模型评估组间HR及95% CI
+
+## 2.5 PFS随访时间
+
+## 3 SAS代码
+
+``` sas
+proc lifetest data=adtte outsurv=occur1 method=KM timelist=3,6,9,12 reduceout;
+  time aval*cnsr(1);
+  strata trt01pn / test=logrank;
+  ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;
+run;
+```
+
+## 3.1 参数说明
