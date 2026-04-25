@@ -70,5 +70,14 @@
   },
   "oncology/pk.qmd": {
     "pk.html": "05b1fe14"
+  },
+  "knowledge_base.qmd": {
+    "knowledge_base.html": "7b3b9c8b"
+  },
+  "pk/pk.qmd": {
+    "pk.html": "b0408e30"
+  },
+  "ex/ex.qmd": {
+    "ex.html": "8854b5ab"
   }
 }

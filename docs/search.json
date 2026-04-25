@@ -12,80 +12,33 @@
     ]
   },
   {
-    "objectID": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
-    "href": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
-    "title": "统计方法",
-    "section": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
-    "text": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
+    "objectID": "pk/pk.html",
+    "href": "pk/pk.html",
+    "title": "药代动力学",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nPCTPT\n计划时点名称\n\n\nPCTPTREF\n参照时间点\n\n\nPCRFTDTC\n参照时间点日期\n\n\n\n\n\n\n\n\n\n变量名\n描述\n\n\n\n\nPCTPT、PCTPTNUM、PCTPTREF、PCRFTDTC\n\n\n\nATPT、ATPTN\n分析时点\n\n\nATPTREF\n分析时点参照\n\n\nARFTDTC\n分析时点参照日期\n\n\nARELTM\n(ADTM-ARFTDTC)/3600\n\n\nANL01FL\n\n\n\nANL02FL\n\n\n\nANL03FL\n\n\n\n\n1.对于第一周期PK密采血样，如采血时间超窗，血药浓度将不纳入汇总和均值/中位图绘制，怎样的算超窗？\n回答：方案中会写。\n2.ATPT在什么情况下会用到？\n回答：稀疏采血C1D8在密集采血中记录成visit=C1D1,pctpt=168h±6h。tlf分析展示是又要归类于C1D1。此时ATPT就派上用场了。\n3.ATPTREF在什么情况下会用到?\n回答：在密集采血中，可能会有要求C2D1给药前30min归类到C1D1访视，用相对C1D1首次给药的时间进行分析。",
     "crumbs": [
-      "实体瘤",
-      "统计方法"
+      "药代动力学"
     ]
   },
   {
-    "objectID": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
-    "href": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
-    "title": "统计方法",
-    "section": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
-    "text": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
+    "objectID": "pk/pk.html#sdtm.pc",
+    "href": "pk/pk.html#sdtm.pc",
+    "title": "药代动力学",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nPCTPT\n计划时点名称\n\n\nPCTPTREF\n参照时间点\n\n\nPCRFTDTC\n参照时间点日期",
     "crumbs": [
-      "实体瘤",
-      "统计方法"
+      "药代动力学"
     ]
   },
   {
-    "objectID": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
-    "href": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
-    "title": "统计方法",
-    "section": "2.3 对数秩检验（log-rank test）进行组间P值",
-    "text": "2.3 对数秩检验（log-rank test）进行组间P值",
+    "objectID": "pk/pk.html#adam.adpc",
+    "href": "pk/pk.html#adam.adpc",
+    "title": "药代动力学",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nPCTPT、PCTPTNUM、PCTPTREF、PCRFTDTC\n\n\n\nATPT、ATPTN\n分析时点\n\n\nATPTREF\n分析时点参照\n\n\nARFTDTC\n分析时点参照日期\n\n\nARELTM\n(ADTM-ARFTDTC)/3600\n\n\nANL01FL\n\n\n\nANL02FL\n\n\n\nANL03FL\n\n\n\n\n1.对于第一周期PK密采血样，如采血时间超窗，血药浓度将不纳入汇总和均值/中位图绘制，怎样的算超窗？\n回答：方案中会写。\n2.ATPT在什么情况下会用到？\n回答：稀疏采血C1D8在密集采血中记录成visit=C1D1,pctpt=168h±6h。tlf分析展示是又要归类于C1D1。此时ATPT就派上用场了。\n3.ATPTREF在什么情况下会用到?\n回答：在密集采血中，可能会有要求C2D1给药前30min归类到C1D1访视，用相对C1D1首次给药的时间进行分析。",
     "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
-    "href": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
-    "title": "统计方法",
-    "section": "2.4 Cox比例风险模型评估组间HR及95% CI",
-    "text": "2.4 Cox比例风险模型评估组间HR及95% CI",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#pfs随访时间",
-    "href": "oncology/statistics.html#pfs随访时间",
-    "title": "统计方法",
-    "section": "2.5 PFS随访时间",
-    "text": "2.5 PFS随访时间",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#sas代码",
-    "href": "oncology/statistics.html#sas代码",
-    "title": "统计方法",
-    "section": "3 SAS代码",
-    "text": "3 SAS代码\nproc lifetest data=adtte outsurv=occur1 method=KM timelist=3,6,9,12 reduceout;\n  time aval*cnsr(1);\n  strata trt01pn / test=logrank;\n  ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;\nrun;",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#参数说明",
-    "href": "oncology/statistics.html#参数说明",
-    "title": "统计方法",
-    "section": "3.1 参数说明",
-    "text": "3.1 参数说明",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
+      "药代动力学"
     ]
   },
   {
@@ -173,7 +126,6 @@
     "text": "变量名\n描述\n\n\n\n\n\nUSUBJID、ASEQ\n\n\n\n\nPARCAT1\n参数类别1\nRSCIST 1.1\n\n\nPARAM\n参数\n无进展生存期（月）\n\n\nPARAMCD\n参数简称\nPFS、OS、TTR、DOR\n\n\nAVAL\n分析值\n(ADT-STARTDT+1)/30.4375\n\n\nSTARTDT\n事件时间起点日期\n给药日期、开始日期\n\n\nCNSR\n删失\n0,1\n\n\nEVNTDESC\n事件或删失描述\n疾病进展日期、开始新抗肿瘤治疗…..\n\n\nCNSDTDSC\n删失日期描述\n新抗肿瘤前末次肿瘤评估日期…..\n\n\nADT\n日期-分析用\n疾病进展日期、新抗肿瘤前末次肿瘤评估日期.\n\n\nRSEVAL\n评估者\n研究者、IRC",
     "crumbs": [
       "实体瘤",
-      "ADaM",
       "ADTTE"
     ]
   },
@@ -185,7 +137,6 @@
     "text": "2.1 PFS事件/删失判断流程图\n\n\n\n\n\nflowchart TD\n  A[是否有基线及基线后肿评?] -- 否 --&gt; B1[是否死亡?]\n  A[是否有基线及基线后肿评?] -- 是 --&gt; B2[是否PD?]\n\n  B1[是否死亡?] -- 否 --&gt; CNSR01[CNSR01]\n  B1[是否死亡?] -- 是 --&gt; C1[死亡前是否发生新抗?]\n  C1[死亡前是否发生新抗?] -- 否 --&gt; C2[死亡距离开始日期是否超过两个肿评间隔?]\n  C1[死亡前是否发生新抗?] -- 是 --&gt; CNSR02[CNSR02]\n  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT01[EVNT01]\n  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR03[CNSR03]\n\n  B2[是否PD?] -- 否 --&gt; D2[是否死亡?]\n  B2[是否PD?] -- 是 --&gt; D1[PD前是否发生新抗?]\n  D1[PD前是否发生新抗?] -- 否 --&gt; D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?]\n  D1[PD前是否发生新抗?] -- 是 --&gt; CNSR04[CNSR04]\n  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT03[EVNT03]\n  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR05[CNSR05]\n\n  D2[是否死亡?] -- 否 --&gt; E2[是否发生新抗?]\n  D2[是否死亡?] -- 是 --&gt; E1[死亡前是否发生新抗?]\n\n  E1[死亡前是否发生新抗?] -- 否 --&gt; E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?]\n  E1[死亡前是否发生新抗?] -- 是 --&gt; CNSR06[CNSR06]\n\n  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT02[EVNT02]\n  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR07[CNSR07]\n  E2[是否发生新抗?] -- 否 --&gt; E4[是否退出试验?]\n  E2[是否发生新抗?] -- 是 --&gt; CNSR10[CNSR10]\n  E4[是否退出试验?] -- 否 --&gt; CNSR08[CNSR08]\n  E4[是否退出试验?] -- 是 --&gt; CNSR09[CNSR09]\n  \n\n  %% 点击跳转\n  click EVNT01 \"#evnt01\"\n  click EVNT02 \"#evnt02\"\n  click EVNT03 \"#evnt03\"\n\n  click CNSR01 \"#cnsr01\"\n  click CNSR02 \"#cnsr02\"\n  click CNSR03 \"#cnsr03\"\n  click CNSR04 \"#cnsr04\"\n  click CNSR05 \"#cnsr05\"\n  click CNSR06 \"#cnsr06\"\n  click CNSR07 \"#cnsr07\"\n  click CNSR08 \"#cnsr08\"\n  click CNSR09 \"#cnsr09\"\n  click CNSR10 \"#cnsr10\"\n  %% 样式\n  classDef event fill:#A8E6A3,stroke:#2E7D32,stroke-width:2px;\n  classDef censor fill:#FFE082,stroke:#EF6C00,stroke-width:2px;\n\n  class EVNT01,EVNT02,EVNT03,EVNT04 event;\n  class CNSR01,CNSR02,CNSR03,CNSR04,CNSR05,CNSR06,CNSR07,CNSR08,CNSR09,CNSR10 censor;",
     "crumbs": [
       "实体瘤",
-      "ADaM",
       "ADTTE"
     ]
   },
@@ -197,8 +148,24 @@
     "text": "2.2 PFS事件/删失详细说明\n下文代码中用的日期在ADDATES 1.2章节中有详细说明，RS2DUR为两次肿评间隔天数，在PFS 1.2.2章节有详细介绍。\n\nEVNT01\n\n逻辑\n\n无基线或无基线后评估\n未发生PD\n未开始新抗肿治疗\n死亡\n死亡距离开始日期未超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(PDDT) & is.na(NCTXSDT) & !is.na(DTHDT) & (DTHDT - STARTDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT02\n\n逻辑\n\n有基线和基线后评估\n未PD\n死亡\n死亡前未发生新抗\n死亡距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT03\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = PDDT\nEVNTDESC = 疾病进展\n\n\n\n\nCNSR01\n\n逻辑\n\n无基线或无基线后评估\n未发生死亡\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(DTHDT)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 无基线或基线后影像学检查\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR02\n\n逻辑\n\n无基线或无基线后评估\n死亡\n死亡前发生新抗\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR03\n\n逻辑\n\n无基线或无基线后评估\n死亡\n未发生新抗\n死亡距离开始日期超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & is.na(NCTXSDT) & (DTHDT - STARTDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR04\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & !is.na(NCTXSDT) & NCTXSDT &lt; PDDT\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期/新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR05\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = STARTDT/疾病进展前的末次可评价影像学检查日期\n\n\n\n\nCNSR06\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR07\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前未发生新抗\n死亡距离上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 死亡前的末次可评价影像学检查日期\n\n\n\n\nCNSR08\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n未退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & is.na(EOSDT)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 继续试验，无事发生\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR09\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(EOSDT)\n\n\n变量值\n\nADT = EOSDT\nEVNTDESC = 失访/撤回知情同意/其他\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR10\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(NCTXSDT)\n\n\n变量值\n\nADT = LINTERDT/STARTDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期/开始日期",
     "crumbs": [
       "实体瘤",
-      "ADaM",
       "ADTTE"
+    ]
+  },
+  {
+    "objectID": "knowledge_base.html",
+    "href": "knowledge_base.html",
+    "title": "最近在处理什么？",
+    "section": "",
+    "text": "最近在处理什么？\n\n\n🧬 实体瘤\nRECIST 1.1, BOR, PFS, DOR\n进入 →\n\n\n💊 药物暴露\nEC、EX\n进入 →\n\n\n🧪 药代动力学\nPK，PP，密集采血\n进入 →"
+  },
+  {
+    "objectID": "ex/ex.html",
+    "href": "ex/ex.html",
+    "title": "药物暴露",
+    "section": "",
+    "text": "1.给药页面CRF设计\n\n\n2.TLF展示的统计量\n\n\n3.与其他页面间的关联",
+    "crumbs": [
+      "药物暴露"
     ]
   },
   {
@@ -237,7 +204,6 @@
     "text": "1 ADDATES介绍\nADDATES是一个专门用于记录与肿瘤评估相关的日期变量的数据集。它包含了受试者的用药日期、随机化日期、影像学检查日期、疾病进展日期等多个关键时间点。这些日期变量对于计算无进展生存期（PFS）等重要终点指标至关重要。\n\n\n1.1 ADDATES中包含的变量\n\n\n\n变量名\n描述\n\n\n\n\nUSUBJID、ASEQ\n\n\n\nADT\n日期\n\n\nADTDESC\n日期描述\n\n\nADTDECD\n日期描述编号\n\n\nADY\n分析相对日\n\n\nRSEVAL\n评估者\n\n\n\n\n\n1.2 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述\n\n\n\n\n\n\n\n\nADTDESC\nADTDESCD\nADT\n\n\n\n\n受试者水平-USUBJID\n\n\n\n\n首次用药日期\nTRTSDT\nADSL.TRTSDT\n\n\n随机化日期\nRANDDT\nADSL.RANDDT\n\n\n新抗肿瘤治疗日期\nNCTXSDT\nADSL.NCTXSDT\n\n\n研究结束日期\nEOSDT\nADSL.EOSDT\n\n\n已知最后生存日期\nLSTALVTD\nADSL.LSTALVTD\n\n\n死亡日期\nDTHDT\nADSL.DTHDT\n\n\n受试者+评估者-USUBJID+RSEVAL\n\n\n\n\n基线肿瘤检查日期\nTEVALDT\n基线前末次有效的影像学检查日期（TR.TRDTC）\n\n\n每个受试者+评估者+评估标准-USUBJID+RSEVAL+RSCAT\n\n\n\n\n基线后首次有效的肿瘤评估影像学检查日期\nFEVALDT\n基线后、新抗前首次出现的有效的肿瘤总体评估日期\n\n\n首次疾病进展日期\nPDDT\n基线后最早的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC = “PD”\n\n\n新抗肿瘤治疗（若有）及疾病进展（若有）前的末次可评估影像学检查日期\nLINTERDT\n取基线后NCTXSDT(≤)和PDDT(&lt;)之前最晚的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC ≠ “NE”等非有效值评估\n\n\n首次客观缓解（经确认的）日期\nCRUTDT\nADRS.ADT，当 ADRS.ANL12FL = “是”\n\n\n首次客观缓解（未确认的）日期\nURUTDT\nADRS.ADT，当 ADRS.ANL22FL = “是”",
     "crumbs": [
       "实体瘤",
-      "ADaM",
       "ADDATES"
     ]
   },
@@ -249,7 +215,7 @@
     "text": "ADTR数据集存放病灶信息，如靶病灶径长、靶病灶直径和、非靶病状态、是否有新病灶等。在出瀑布图时会被用到。\n\n\n\n\n\n\n\n\n\n变量名\n描述\n\n\n\n\nUSUBJID、ASEQ、TRGRPID、TRLNKID、TULOC\n\n\n\nPARAM、PARAMCD\nLDIAM-最长径，LPERP-最短径，TUMSTATE-肿瘤状态，DIAMETER-直径，ASUMDIAM-分析用靶病灶直径总和，SUMDIAM-直径总和。\n按照USUBJID+TREVAL+VISIT，输出一条分析用靶病灶直径和\n\n\nPARAMTYP\n当PARAMCD为ASUMDIAM时，PARAMTYP=衍生\n\n\nPARCAT1\nTRCAT(淋巴结、非淋巴结）\n\n\nAVAL、AVALC\n\n\n\nBASE、BASEC\n\n\n\nCHG\n\n\n\nPCHG\n\n\n\nTRDTC、ADT、ADY\nASUMDIAM的ADT为各访视靶病灶影像学检查日期的最大值\n\n\nVISIT、VISITNUM\n\n\n\nABLFL\n首次给药前最后一次非空检测\n\n\nANL01FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若发生在首次疾病进展和新抗肿瘤当天或之前，则赋值’是’\n\n\nANL02FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若该条记录对应的靶病灶评估结果有效，则赋值’是’\n\n\nANL03FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)且ANL01FL和ANL02FL为’是’的记录，选择基线后最早出现的最小PCHG值。\n\n\nTRMETHOD、TREVAL\n\n\n\nANADIR\n分析用先前最小直径和\n\n\nNADIRCHG\n相对最小直径和变化值\n\n\nPCNSD\n相对最小直径和变化百分比\n\n\n\n需要注意的是，除了EDC中直接收集的靶病灶直径和外，在ADTR中我们还会额外编程衍生\"分析用靶病灶直径和\"。程序员在编程时，最好核对下直接收集的和程序衍生的靶病灶直径和结果是否一致。",
     "crumbs": [
       "实体瘤",
-      "ADaM"
+      "ADTR"
     ]
   },
   {
@@ -260,7 +226,7 @@
     "text": "变量名\n描述\n\n\n\n\nUSUBJID、ASEQ、TRGRPID、TRLNKID、TULOC\n\n\n\nPARAM、PARAMCD\nLDIAM-最长径，LPERP-最短径，TUMSTATE-肿瘤状态，DIAMETER-直径，ASUMDIAM-分析用靶病灶直径总和，SUMDIAM-直径总和。\n按照USUBJID+TREVAL+VISIT，输出一条分析用靶病灶直径和\n\n\nPARAMTYP\n当PARAMCD为ASUMDIAM时，PARAMTYP=衍生\n\n\nPARCAT1\nTRCAT(淋巴结、非淋巴结）\n\n\nAVAL、AVALC\n\n\n\nBASE、BASEC\n\n\n\nCHG\n\n\n\nPCHG\n\n\n\nTRDTC、ADT、ADY\nASUMDIAM的ADT为各访视靶病灶影像学检查日期的最大值\n\n\nVISIT、VISITNUM\n\n\n\nABLFL\n首次给药前最后一次非空检测\n\n\nANL01FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若发生在首次疾病进展和新抗肿瘤当天或之前，则赋值’是’\n\n\nANL02FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若该条记录对应的靶病灶评估结果有效，则赋值’是’\n\n\nANL03FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)且ANL01FL和ANL02FL为’是’的记录，选择基线后最早出现的最小PCHG值。\n\n\nTRMETHOD、TREVAL\n\n\n\nANADIR\n分析用先前最小直径和\n\n\nNADIRCHG\n相对最小直径和变化值\n\n\nPCNSD\n相对最小直径和变化百分比\n\n\n\n需要注意的是，除了EDC中直接收集的靶病灶直径和外，在ADTR中我们还会额外编程衍生\"分析用靶病灶直径和\"。程序员在编程时，最好核对下直接收集的和程序衍生的靶病灶直径和结果是否一致。",
     "crumbs": [
       "实体瘤",
-      "ADaM"
+      "ADTR"
     ]
   },
   {
@@ -324,39 +290,80 @@
     ]
   },
   {
-    "objectID": "oncology/pk.html",
-    "href": "oncology/pk.html",
-    "title": "药代动力学参数",
-    "section": "",
-    "text": "变量名\n描述\n\n\n\n\nPCTPT\n计划时点名称\n\n\nPCTPTREF\n参照时间点\n\n\nPCRFTDTC\n参照时间点日期\n\n\n\n\n\n\n\n\n\n变量名\n描述\n\n\n\n\nPCTPT、PCTPTNUM、PCTPTREF、PCRFTDTC\n\n\n\nATPT、ATPTN\n分析时点\n\n\nATPTREF\n分析时点参照\n\n\nARFTDTC\n分析时点参照日期\n\n\nARELTM\n(ADTM-ARFTDTC)/3600\n\n\nANL01FL\n\n\n\nANL02FL\n\n\n\nANL03FL\n\n\n\n\n1.对于第一周期PK密采血样，如采血时间超窗，血药浓度将不纳入汇总和均值/中位图绘制，怎样的算超窗？\n回答：方案中会写。\n2.ATPT在什么情况下会用到？\n回答：稀疏采血C1D8在密集采血中记录成visit=C1D1,pctpt=168h±6h。tlf分析展示是又要归类于C1D1。此时ATPT就派上用场了。\n3.ATPTREF在什么情况下会用到?\n回答：在密集采血中，可能会有要求C2D1给药前30min归类到C1D1访视，用相对C1D1首次给药的时间进行分析。",
+    "objectID": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
+    "href": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
+    "title": "统计方法",
+    "section": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
+    "text": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
     "crumbs": [
       "实体瘤",
-      "ADaM",
-      "药代动力学参数"
+      "统计方法"
     ]
   },
   {
-    "objectID": "oncology/pk.html#sdtm.pc",
-    "href": "oncology/pk.html#sdtm.pc",
-    "title": "药代动力学参数",
-    "section": "",
-    "text": "变量名\n描述\n\n\n\n\nPCTPT\n计划时点名称\n\n\nPCTPTREF\n参照时间点\n\n\nPCRFTDTC\n参照时间点日期",
+    "objectID": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
+    "href": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
+    "title": "统计方法",
+    "section": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
+    "text": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
     "crumbs": [
       "实体瘤",
-      "ADaM",
-      "药代动力学参数"
+      "统计方法"
     ]
   },
   {
-    "objectID": "oncology/pk.html#adam.adpc",
-    "href": "oncology/pk.html#adam.adpc",
-    "title": "药代动力学参数",
-    "section": "",
-    "text": "变量名\n描述\n\n\n\n\nPCTPT、PCTPTNUM、PCTPTREF、PCRFTDTC\n\n\n\nATPT、ATPTN\n分析时点\n\n\nATPTREF\n分析时点参照\n\n\nARFTDTC\n分析时点参照日期\n\n\nARELTM\n(ADTM-ARFTDTC)/3600\n\n\nANL01FL\n\n\n\nANL02FL\n\n\n\nANL03FL\n\n\n\n\n1.对于第一周期PK密采血样，如采血时间超窗，血药浓度将不纳入汇总和均值/中位图绘制，怎样的算超窗？\n回答：方案中会写。\n2.ATPT在什么情况下会用到？\n回答：稀疏采血C1D8在密集采血中记录成visit=C1D1,pctpt=168h±6h。tlf分析展示是又要归类于C1D1。此时ATPT就派上用场了。\n3.ATPTREF在什么情况下会用到?\n回答：在密集采血中，可能会有要求C2D1给药前30min归类到C1D1访视，用相对C1D1首次给药的时间进行分析。",
+    "objectID": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
+    "href": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
+    "title": "统计方法",
+    "section": "2.3 对数秩检验（log-rank test）进行组间P值",
+    "text": "2.3 对数秩检验（log-rank test）进行组间P值",
     "crumbs": [
       "实体瘤",
-      "ADaM",
-      "药代动力学参数"
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
+    "href": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
+    "title": "统计方法",
+    "section": "2.4 Cox比例风险模型评估组间HR及95% CI",
+    "text": "2.4 Cox比例风险模型评估组间HR及95% CI",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#pfs随访时间",
+    "href": "oncology/statistics.html#pfs随访时间",
+    "title": "统计方法",
+    "section": "2.5 PFS随访时间",
+    "text": "2.5 PFS随访时间",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#sas代码",
+    "href": "oncology/statistics.html#sas代码",
+    "title": "统计方法",
+    "section": "3 SAS代码",
+    "text": "3 SAS代码\nproc lifetest data=adtte outsurv=occur1 method=KM timelist=3,6,9,12 reduceout;\n  time aval*cnsr(1);\n  strata trt01pn / test=logrank;\n  ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;\nrun;",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#参数说明",
+    "href": "oncology/statistics.html#参数说明",
+    "title": "统计方法",
+    "section": "3.1 参数说明",
+    "text": "3.1 参数说明",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
     ]
   },
   {

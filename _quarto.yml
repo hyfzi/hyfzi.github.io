@@ -4,16 +4,15 @@ project:
 
 website:
   title: Zoey
-  page-navigation: false
   navbar:
     search: true
     left:
       - text: "Home"
         href: index.qmd
+      - text: "临床编程"
+        href: knowledge_base.qmd       
       - text: "R语言"
         href: r/R.qmd
-      - text: "实体瘤"
-        href: oncology/oncology.qmd
         
   sidebar:
     - title: "R"
@@ -41,18 +40,27 @@ website:
           contents:
             - oncology/oncology.qmd
             - oncology/pfs.qmd
-        - section: "ADaM"
-          href: oncology/adtr.qmd
-          contents:
             - oncology/adtr.qmd
             - oncology/adrs.qmd
             - oncology/addates.qmd
             - oncology/adtte.qmd
-            - oncology/pk.qmd
-        - section: "统计方法"
-          href: oncology/statistics.qmd
-          contents:
             - oncology/statistics.qmd
+    - title: "药物暴露"
+      style: "docked"
+      background: light
+      contents:
+        - section: "药物暴露"
+          href: ex/ex.qmd
+          contents:
+            - ex/ex.qmd
+    - title: "药代动力学"
+      style: "docked"
+      background: light
+      contents:
+        - section: "药代动力学"
+          href: pk/pk.qmd
+          contents:
+            - pk/pk.qmd
             
 format:
   html:
@@ -62,5 +70,5 @@ format:
     css: styles.css
     toc: true
 
-editor: visual
+editor: source
 

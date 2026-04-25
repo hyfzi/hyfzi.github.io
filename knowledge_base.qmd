@@ -1,0 +1,32 @@
+---
+title: ""
+page-layout: full
+toc: false
+---
+
+# 最近在处理什么？
+
+::: {.card-container}
+
+::: {.card}
+### 🧬 实体瘤
+RECIST 1.1, BOR, PFS, DOR
+
+[进入 →](/oncology/oncology.html)
+:::
+
+::: {.card}
+### 💊 药物暴露
+EC、EX
+
+[进入 →](/ex/ex.html)
+:::
+
+::: {.card}
+### 🧪 药代动力学
+PK，PP，密集采血
+
+[进入 →](/pk/pk.html)
+:::
+
+:::
