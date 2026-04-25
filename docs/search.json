@@ -12,6 +12,83 @@
     ]
   },
   {
+    "objectID": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
+    "href": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
+    "title": "统计方法",
+    "section": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
+    "text": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
+    "href": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
+    "title": "统计方法",
+    "section": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
+    "text": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
+    "href": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
+    "title": "统计方法",
+    "section": "2.3 对数秩检验（log-rank test）进行组间P值",
+    "text": "2.3 对数秩检验（log-rank test）进行组间P值",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
+    "href": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
+    "title": "统计方法",
+    "section": "2.4 Cox比例风险模型评估组间HR及95% CI",
+    "text": "2.4 Cox比例风险模型评估组间HR及95% CI",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#pfs随访时间",
+    "href": "oncology/statistics.html#pfs随访时间",
+    "title": "统计方法",
+    "section": "2.5 PFS随访时间",
+    "text": "2.5 PFS随访时间",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#sas代码",
+    "href": "oncology/statistics.html#sas代码",
+    "title": "统计方法",
+    "section": "3 SAS代码",
+    "text": "3 SAS代码\nproc lifetest data=adtte outsurv=occur1 method=KM timelist=3,6,9,12 reduceout;\n  time aval*cnsr(1);\n  strata trt01pn / test=logrank;\n  ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;\nrun;",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#参数说明",
+    "href": "oncology/statistics.html#参数说明",
+    "title": "统计方法",
+    "section": "3.1 参数说明",
+    "text": "3.1 参数说明",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
     "objectID": "oncology/pfs.html",
     "href": "oncology/pfs.html",
     "title": "无进展生存期(PFS)",
@@ -127,9 +204,30 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "hyfzi",
+    "title": "Zoey",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "A SAS Programmer\n\n\n\nMacalester College | St. Paul, MN B.A in Economics | Sept 2007 - June 2011\n\n\n\nWengo Analytics | Head Data Scientist | April 2018 - present"
+  },
+  {
+    "objectID": "index.html#bio",
+    "href": "index.html#bio",
+    "title": "Zoey",
+    "section": "",
+    "text": "A SAS Programmer"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Zoey",
+    "section": "",
+    "text": "Macalester College | St. Paul, MN B.A in Economics | Sept 2007 - June 2011"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Zoey",
+    "section": "",
+    "text": "Wengo Analytics | Head Data Scientist | April 2018 - present"
   },
   {
     "objectID": "oncology/addates.html",
@@ -141,6 +239,28 @@
       "实体瘤",
       "ADaM",
       "ADDATES"
+    ]
+  },
+  {
+    "objectID": "oncology/adtr.html",
+    "href": "oncology/adtr.html",
+    "title": "ADTR",
+    "section": "",
+    "text": "ADTR数据集存放病灶信息，如靶病灶径长、靶病灶直径和、非靶病状态、是否有新病灶等。在出瀑布图时会被用到。\n\n\n\n\n\n\n\n\n\n变量名\n描述\n\n\n\n\nUSUBJID、ASEQ、TRGRPID、TRLNKID、TULOC\n\n\n\nPARAM、PARAMCD\nLDIAM-最长径，LPERP-最短径，TUMSTATE-肿瘤状态，DIAMETER-直径，ASUMDIAM-分析用靶病灶直径总和，SUMDIAM-直径总和。\n按照USUBJID+TREVAL+VISIT，输出一条分析用靶病灶直径和\n\n\nPARAMTYP\n当PARAMCD为ASUMDIAM时，PARAMTYP=衍生\n\n\nPARCAT1\nTRCAT(淋巴结、非淋巴结）\n\n\nAVAL、AVALC\n\n\n\nBASE、BASEC\n\n\n\nCHG\n\n\n\nPCHG\n\n\n\nTRDTC、ADT、ADY\nASUMDIAM的ADT为各访视靶病灶影像学检查日期的最大值\n\n\nVISIT、VISITNUM\n\n\n\nABLFL\n首次给药前最后一次非空检测\n\n\nANL01FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若发生在首次疾病进展和新抗肿瘤当天或之前，则赋值’是’\n\n\nANL02FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若该条记录对应的靶病灶评估结果有效，则赋值’是’\n\n\nANL03FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)且ANL01FL和ANL02FL为’是’的记录，选择基线后最早出现的最小PCHG值。\n\n\nTRMETHOD、TREVAL\n\n\n\nANADIR\n分析用先前最小直径和\n\n\nNADIRCHG\n相对最小直径和变化值\n\n\nPCNSD\n相对最小直径和变化百分比\n\n\n\n需要注意的是，除了EDC中直接收集的靶病灶直径和外，在ADTR中我们还会额外编程衍生\"分析用靶病灶直径和\"。程序员在编程时，最好核对下直接收集的和程序衍生的靶病灶直径和结果是否一致。",
+    "crumbs": [
+      "实体瘤",
+      "ADaM"
+    ]
+  },
+  {
+    "objectID": "oncology/adtr.html#adtr包含的变量",
+    "href": "oncology/adtr.html#adtr包含的变量",
+    "title": "ADTR",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nUSUBJID、ASEQ、TRGRPID、TRLNKID、TULOC\n\n\n\nPARAM、PARAMCD\nLDIAM-最长径，LPERP-最短径，TUMSTATE-肿瘤状态，DIAMETER-直径，ASUMDIAM-分析用靶病灶直径总和，SUMDIAM-直径总和。\n按照USUBJID+TREVAL+VISIT，输出一条分析用靶病灶直径和\n\n\nPARAMTYP\n当PARAMCD为ASUMDIAM时，PARAMTYP=衍生\n\n\nPARCAT1\nTRCAT(淋巴结、非淋巴结）\n\n\nAVAL、AVALC\n\n\n\nBASE、BASEC\n\n\n\nCHG\n\n\n\nPCHG\n\n\n\nTRDTC、ADT、ADY\nASUMDIAM的ADT为各访视靶病灶影像学检查日期的最大值\n\n\nVISIT、VISITNUM\n\n\n\nABLFL\n首次给药前最后一次非空检测\n\n\nANL01FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若发生在首次疾病进展和新抗肿瘤当天或之前，则赋值’是’\n\n\nANL02FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若该条记录对应的靶病灶评估结果有效，则赋值’是’\n\n\nANL03FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)且ANL01FL和ANL02FL为’是’的记录，选择基线后最早出现的最小PCHG值。\n\n\nTRMETHOD、TREVAL\n\n\n\nANADIR\n分析用先前最小直径和\n\n\nNADIRCHG\n相对最小直径和变化值\n\n\nPCNSD\n相对最小直径和变化百分比\n\n\n\n需要注意的是，除了EDC中直接收集的靶病灶直径和外，在ADTR中我们还会额外编程衍生\"分析用靶病灶直径和\"。程序员在编程时，最好核对下直接收集的和程序衍生的靶病灶直径和结果是否一致。",
+    "crumbs": [
+      "实体瘤",
+      "ADaM"
     ]
   },
   {
@@ -204,6 +324,42 @@
     ]
   },
   {
+    "objectID": "oncology/pk.html",
+    "href": "oncology/pk.html",
+    "title": "药代动力学参数",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nPCTPT\n计划时点名称\n\n\nPCTPTREF\n参照时间点\n\n\nPCRFTDTC\n参照时间点日期\n\n\n\n\n\n\n\n\n\n变量名\n描述\n\n\n\n\nPCTPT、PCTPTNUM、PCTPTREF、PCRFTDTC\n\n\n\nATPT、ATPTN\n分析时点\n\n\nATPTREF\n分析时点参照\n\n\nARFTDTC\n分析时点参照日期\n\n\nARELTM\n(ADTM-ARFTDTC)/3600\n\n\nANL01FL\n\n\n\nANL02FL\n\n\n\nANL03FL\n\n\n\n\n1.对于第一周期PK密采血样，如采血时间超窗，血药浓度将不纳入汇总和均值/中位图绘制，怎样的算超窗？\n回答：方案中会写。\n2.ATPT在什么情况下会用到？\n回答：稀疏采血C1D8在密集采血中记录成visit=C1D1,pctpt=168h±6h。tlf分析展示是又要归类于C1D1。此时ATPT就派上用场了。\n3.ATPTREF在什么情况下会用到?\n回答：在密集采血中，可能会有要求C2D1给药前30min归类到C1D1访视，用相对C1D1首次给药的时间进行分析。",
+    "crumbs": [
+      "实体瘤",
+      "ADaM",
+      "药代动力学参数"
+    ]
+  },
+  {
+    "objectID": "oncology/pk.html#sdtm.pc",
+    "href": "oncology/pk.html#sdtm.pc",
+    "title": "药代动力学参数",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nPCTPT\n计划时点名称\n\n\nPCTPTREF\n参照时间点\n\n\nPCRFTDTC\n参照时间点日期",
+    "crumbs": [
+      "实体瘤",
+      "ADaM",
+      "药代动力学参数"
+    ]
+  },
+  {
+    "objectID": "oncology/pk.html#adam.adpc",
+    "href": "oncology/pk.html#adam.adpc",
+    "title": "药代动力学参数",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nPCTPT、PCTPTNUM、PCTPTREF、PCRFTDTC\n\n\n\nATPT、ATPTN\n分析时点\n\n\nATPTREF\n分析时点参照\n\n\nARFTDTC\n分析时点参照日期\n\n\nARELTM\n(ADTM-ARFTDTC)/3600\n\n\nANL01FL\n\n\n\nANL02FL\n\n\n\nANL03FL\n\n\n\n\n1.对于第一周期PK密采血样，如采血时间超窗，血药浓度将不纳入汇总和均值/中位图绘制，怎样的算超窗？\n回答：方案中会写。\n2.ATPT在什么情况下会用到？\n回答：稀疏采血C1D8在密集采血中记录成visit=C1D1,pctpt=168h±6h。tlf分析展示是又要归类于C1D1。此时ATPT就派上用场了。\n3.ATPTREF在什么情况下会用到?\n回答：在密集采血中，可能会有要求C2D1给药前30min归类到C1D1访视，用相对C1D1首次给药的时间进行分析。",
+    "crumbs": [
+      "实体瘤",
+      "ADaM",
+      "药代动力学参数"
+    ]
+  },
+  {
     "objectID": "r/R.html",
     "href": "r/R.html",
     "title": "函数",
@@ -258,83 +414,6 @@
     "crumbs": [
       "R语言",
       "tidyverse"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
-    "href": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
-    "title": "统计方法",
-    "section": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
-    "text": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
-    "href": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
-    "title": "统计方法",
-    "section": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
-    "text": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
-    "href": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
-    "title": "统计方法",
-    "section": "2.3 对数秩检验（log-rank test）进行组间P值",
-    "text": "2.3 对数秩检验（log-rank test）进行组间P值",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
-    "href": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
-    "title": "统计方法",
-    "section": "2.4 Cox比例风险模型评估组间HR及95% CI",
-    "text": "2.4 Cox比例风险模型评估组间HR及95% CI",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#pfs随访时间",
-    "href": "oncology/statistics.html#pfs随访时间",
-    "title": "统计方法",
-    "section": "2.5 PFS随访时间",
-    "text": "2.5 PFS随访时间",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#sas代码",
-    "href": "oncology/statistics.html#sas代码",
-    "title": "统计方法",
-    "section": "3 SAS代码",
-    "text": "3 SAS代码\nproc lifetest data=adtte outsurv=occur1 method=KM timelist=3,6,9,12 reduceout;\n  time aval*cnsr(1);\n  strata trt01pn / test=logrank;\n  ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;\nrun;",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#参数说明",
-    "href": "oncology/statistics.html#参数说明",
-    "title": "统计方法",
-    "section": "3.1 参数说明",
-    "text": "3.1 参数说明",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
     ]
   }
 ]

@@ -67,5 +67,8 @@
   },
   "oncology/statistics.qmd": {
     "statistics.html": "24f2e54f"
+  },
+  "oncology/pk.qmd": {
+    "pk.html": "05b1fe14"
   }
 }

@@ -3,8 +3,8 @@ project:
   output-dir: docs
 
 website:
-  title: hyfzi
-  page-navigation: true
+  title: Zoey
+  page-navigation: false
   navbar:
     search: true
     left:
@@ -48,6 +48,7 @@ website:
             - oncology/adrs.qmd
             - oncology/addates.qmd
             - oncology/adtte.qmd
+            - oncology/pk.qmd
         - section: "统计方法"
           href: oncology/statistics.qmd
           contents:

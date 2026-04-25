@@ -1,11 +1,29 @@
 ---
-title: "hyfzi"
+title: "Zoey"
+image: /images/touxiang.png
+about:
+  template: trestles
+  links:
+    - text: GitHub
+      icon: github
+      url: "https://github.com/hyfzi"
+    - text: Email
+      url: "zhyi_feng@126.com"
+    - text: CV
+      url: "cv.pdf"
+comments: false
 ---
 
-This is a Quarto website.
+::: column-page
+## Bio
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+A SAS Programmer
 
-```{r}
-1 + 1
-```
+## Education
+
+Macalester College \| St. Paul, MN B.A in Economics \| Sept 2007 - June 2011
+
+## Experience
+
+Wengo Analytics \| Head Data Scientist \| April 2018 - present
+:::
