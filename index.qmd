@@ -16,15 +16,15 @@ toc: false
 ---
 
 ::: column-page
-## Bio
+## 个人简介
 
-A SAS Programmer
+临床试验SAS程序员
 
-## Education
+## 教育背景
 
-Macalester College \| St. Paul, MN B.A in Economics \| Sept 2007 - June 2011
+上海吃饭大学 \| 应用统计学 \| 09 2023 - 06 2021
 
-## Experience
+## 工作经验
 
-Wengo Analytics \| Head Data Scientist \| April 2018 - present
+内资药厂 \| SAS程序员 \| 09 2023 - present
 :::
