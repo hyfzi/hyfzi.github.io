@@ -8,9 +8,12 @@ about:
       icon: github
       url: "https://github.com/hyfzi"
     - text: Email
-      url: "zhyi_feng@126.com"
-    - text: CV
-      url: "cv.pdf"
+      url: "mailto:zhyi_feng@126.com"
+    - text: ShinyApp
+      url: "https://hyfzi.shinyapps.io/dashboard/"
+    - text: "13661707263"
+      icon: phone
+      
 comments: false
 toc: false
 ---
@@ -22,9 +25,19 @@ toc: false
 
 ## 教育背景
 
-上海吃饭大学 \| 应用统计学 \| 09 2023 - 06 2021
+上海吃饭大学 \| 应用统计学 \| 06 2021 - 09 2023
 
 ## 工作经验
 
 内资药厂 \| SAS程序员 \| 09 2023 - present
+
+## 项目展示
+
+基于 R / Shiny 构建的临床试验交互式分析看板，用于：
+- 👥 巴啦啦1
+- 📊 巴啦啦2
+
+<!-- 👉 **Online Demo**  
+[🚀 Launch Dashboard](https://hyfzi.shinyapps.io/dashboard/) -->
+
 :::

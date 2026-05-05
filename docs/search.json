@@ -1,15 +1,38 @@
 [
   {
-    "objectID": "r/R1.html",
-    "href": "r/R1.html",
-    "title": "版本升级",
+    "objectID": "r/tidyverse.html",
+    "href": "r/tidyverse.html",
+    "title": "tidyverse",
     "section": "",
-    "text": "R版本更新\n\ninstall.packages(\"installr\")\nrequire(installr)\nupdateR()",
-    "crumbs": [
-      "R语言",
-      "R基础",
-      "版本升级"
-    ]
+    "text": "Example 1:\n\n# 向量\nlibrary(tidyr)\n\nx &lt;- c(\"a\", NA, \"b\")\nx &lt;- replace_na(x, \"\")\nx\n\n[1] \"a\" \"\"  \"b\"\n\n\nExample 2:\n\n# 批量处理多个变量\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyr)\n\ndf &lt;- tibble(\n  id    = 1:6,\n  name  = c(\"Alice\", NA, \"Charlie\", \"David\", NA, \"Frank\"),\n  score = c(90, 85, NA, 88, 92, NA),\n  date  = as.Date(c(\"2024-01-01\", NA, \"2024-01-03\", \"2024-01-04\", NA, \"2024-01-06\"))\n)\n\ndf &lt;- df %&gt;%\n  mutate(across(where(is.character), ~ replace_na(.x, \"\")))\n\n\n\n\nExample 1:\n\nx &lt;- c(\"a\", \"b\", \"a\", \"c\", \"d\", \"c\")\n\nlookup &lt;- c(\n  \"a\" = \"A\",\n  \"b\" = \"B\",\n  \"c\" = \"C\",\n  \"d\" = \"D\"\n)\n\nrecode(x, !!!lookup)\n\n[1] \"A\" \"B\" \"A\" \"C\" \"D\" \"C\""
+  },
+  {
+    "objectID": "r/tidyverse.html#replace_na",
+    "href": "r/tidyverse.html#replace_na",
+    "title": "tidyverse",
+    "section": "",
+    "text": "Example 1:\n\n# 向量\nlibrary(tidyr)\n\nx &lt;- c(\"a\", NA, \"b\")\nx &lt;- replace_na(x, \"\")\nx\n\n[1] \"a\" \"\"  \"b\"\n\n\nExample 2:\n\n# 批量处理多个变量\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyr)\n\ndf &lt;- tibble(\n  id    = 1:6,\n  name  = c(\"Alice\", NA, \"Charlie\", \"David\", NA, \"Frank\"),\n  score = c(90, 85, NA, 88, 92, NA),\n  date  = as.Date(c(\"2024-01-01\", NA, \"2024-01-03\", \"2024-01-04\", NA, \"2024-01-06\"))\n)\n\ndf &lt;- df %&gt;%\n  mutate(across(where(is.character), ~ replace_na(.x, \"\")))"
+  },
+  {
+    "objectID": "r/tidyverse.html#recode",
+    "href": "r/tidyverse.html#recode",
+    "title": "tidyverse",
+    "section": "",
+    "text": "Example 1:\n\nx &lt;- c(\"a\", \"b\", \"a\", \"c\", \"d\", \"c\")\n\nlookup &lt;- c(\n  \"a\" = \"A\",\n  \"b\" = \"B\",\n  \"c\" = \"C\",\n  \"d\" = \"D\"\n)\n\nrecode(x, !!!lookup)\n\n[1] \"A\" \"B\" \"A\" \"C\" \"D\" \"C\""
+  },
+  {
+    "objectID": "r/R.html",
+    "href": "r/R.html",
+    "title": "函数",
+    "section": "",
+    "text": "match() function in R Language is used to return the positions of the first match of the elements of the first vector in the second vector. If the element is not found, it returns NA.\nExample 1:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nmatch(x1, x2)\n\n[1]  4 NA NA  1  5\n\n\nExample 2:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nidx &lt;- match(x1, x2)\nx2[na.omit(idx)]\n\n[1] \"a\" \"d\" \"e\""
+  },
+  {
+    "objectID": "r/R.html#match",
+    "href": "r/R.html#match",
+    "title": "函数",
+    "section": "",
+    "text": "match() function in R Language is used to return the positions of the first match of the elements of the first vector in the second vector. If the element is not found, it returns NA.\nExample 1:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nmatch(x1, x2)\n\n[1]  4 NA NA  1  5\n\n\nExample 2:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nidx &lt;- match(x1, x2)\nx2[na.omit(idx)]\n\n[1] \"a\" \"d\" \"e\""
   },
   {
     "objectID": "pk/pk.html",
@@ -193,7 +216,7 @@
     "href": "index.html",
     "title": "Zoey",
     "section": "",
-    "text": "临床试验SAS程序员\n\n\n\n上海吃饭大学 | 应用统计学 | 09 2023 - 06 2021\n\n\n\n内资药厂 | SAS程序员 | 09 2023 - present"
+    "text": "临床试验SAS程序员\n\n\n\n上海吃饭大学 | 应用统计学 | 06 2021 - 09 2023\n\n\n\n内资药厂 | SAS程序员 | 09 2023 - present\n\n\n\n基于 R / Shiny 构建的临床试验交互式分析看板，用于： - 👥 巴啦啦1 - 📊 巴啦啦2"
   },
   {
     "objectID": "index.html#个人简介",
@@ -207,7 +230,7 @@
     "href": "index.html#教育背景",
     "title": "Zoey",
     "section": "",
-    "text": "上海吃饭大学 | 应用统计学 | 09 2023 - 06 2021"
+    "text": "上海吃饭大学 | 应用统计学 | 06 2021 - 09 2023"
   },
   {
     "objectID": "index.html#工作经验",
@@ -215,6 +238,13 @@
     "title": "Zoey",
     "section": "",
     "text": "内资药厂 | SAS程序员 | 09 2023 - present"
+  },
+  {
+    "objectID": "index.html#项目展示",
+    "href": "index.html#项目展示",
+    "title": "Zoey",
+    "section": "",
+    "text": "基于 R / Shiny 构建的临床试验交互式分析看板，用于： - 👥 巴啦啦1 - 📊 巴啦啦2"
   },
   {
     "objectID": "oncology/addates.html",
@@ -387,60 +417,30 @@
     ]
   },
   {
-    "objectID": "r/R.html",
-    "href": "r/R.html",
-    "title": "函数",
+    "objectID": "r/barplot.html",
+    "href": "r/barplot.html",
+    "title": "barplot",
     "section": "",
-    "text": "match() function in R Language is used to return the positions of the first match of the elements of the first vector in the second vector. If the element is not found, it returns NA.\nExample 1:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nmatch(x1, x2)\n\n[1]  4 NA NA  1  5\n\n\nExample 2:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nidx &lt;- match(x1, x2)\nx2[na.omit(idx)]\n\n[1] \"a\" \"d\" \"e\"",
+    "text": "在临床试验数据中，常常关心不同治疗组在性别、BMI、首次确诊临床分期等变量下的分布情况，而条形图恰好能够直观、清晰地展示。。",
     "crumbs": [
-      "R语言",
-      "R基础",
-      "函数"
+      "画图-ggplot2"
     ]
   },
   {
-    "objectID": "r/R.html#match",
-    "href": "r/R.html#match",
-    "title": "函数",
-    "section": "",
-    "text": "match() function in R Language is used to return the positions of the first match of the elements of the first vector in the second vector. If the element is not found, it returns NA.\nExample 1:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nmatch(x1, x2)\n\n[1]  4 NA NA  1  5\n\n\nExample 2:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nidx &lt;- match(x1, x2)\nx2[na.omit(idx)]\n\n[1] \"a\" \"d\" \"e\"",
+    "objectID": "r/barplot.html#绘图代码",
+    "href": "r/barplot.html#绘图代码",
+    "title": "barplot",
+    "section": "3 绘图代码",
+    "text": "3 绘图代码\n\n3.1 条形图（分类变量）\n\n\n3.2 直方图（数值型变量）",
     "crumbs": [
-      "R语言",
-      "R基础",
-      "函数"
+      "画图-ggplot2"
     ]
   },
   {
-    "objectID": "r/tidyverse.html",
-    "href": "r/tidyverse.html",
-    "title": "tidyverse",
+    "objectID": "r/R1.html",
+    "href": "r/R1.html",
+    "title": "版本升级",
     "section": "",
-    "text": "Example 1:\n\n# 向量\nlibrary(tidyr)\n\nx &lt;- c(\"a\", NA, \"b\")\nx &lt;- replace_na(x, \"\")\nx\n\n[1] \"a\" \"\"  \"b\"\n\n\nExample 2:\n\n# 批量处理多个变量\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyr)\n\ndf &lt;- tibble(\n  id    = 1:6,\n  name  = c(\"Alice\", NA, \"Charlie\", \"David\", NA, \"Frank\"),\n  score = c(90, 85, NA, 88, 92, NA),\n  date  = as.Date(c(\"2024-01-01\", NA, \"2024-01-03\", \"2024-01-04\", NA, \"2024-01-06\"))\n)\n\ndf &lt;- df %&gt;%\n  mutate(across(where(is.character), ~ replace_na(.x, \"\")))\n\n\n\n\nExample 1:\n\nx &lt;- c(\"a\", \"b\", \"a\", \"c\", \"d\", \"c\")\n\nlookup &lt;- c(\n  \"a\" = \"A\",\n  \"b\" = \"B\",\n  \"c\" = \"C\",\n  \"d\" = \"D\"\n)\n\nrecode(x, !!!lookup)\n\n[1] \"A\" \"B\" \"A\" \"C\" \"D\" \"C\"",
-    "crumbs": [
-      "R语言",
-      "tidyverse"
-    ]
-  },
-  {
-    "objectID": "r/tidyverse.html#replace_na",
-    "href": "r/tidyverse.html#replace_na",
-    "title": "tidyverse",
-    "section": "",
-    "text": "Example 1:\n\n# 向量\nlibrary(tidyr)\n\nx &lt;- c(\"a\", NA, \"b\")\nx &lt;- replace_na(x, \"\")\nx\n\n[1] \"a\" \"\"  \"b\"\n\n\nExample 2:\n\n# 批量处理多个变量\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyr)\n\ndf &lt;- tibble(\n  id    = 1:6,\n  name  = c(\"Alice\", NA, \"Charlie\", \"David\", NA, \"Frank\"),\n  score = c(90, 85, NA, 88, 92, NA),\n  date  = as.Date(c(\"2024-01-01\", NA, \"2024-01-03\", \"2024-01-04\", NA, \"2024-01-06\"))\n)\n\ndf &lt;- df %&gt;%\n  mutate(across(where(is.character), ~ replace_na(.x, \"\")))",
-    "crumbs": [
-      "R语言",
-      "tidyverse"
-    ]
-  },
-  {
-    "objectID": "r/tidyverse.html#recode",
-    "href": "r/tidyverse.html#recode",
-    "title": "tidyverse",
-    "section": "",
-    "text": "Example 1:\n\nx &lt;- c(\"a\", \"b\", \"a\", \"c\", \"d\", \"c\")\n\nlookup &lt;- c(\n  \"a\" = \"A\",\n  \"b\" = \"B\",\n  \"c\" = \"C\",\n  \"d\" = \"D\"\n)\n\nrecode(x, !!!lookup)\n\n[1] \"A\" \"B\" \"A\" \"C\" \"D\" \"C\"",
-    "crumbs": [
-      "R语言",
-      "tidyverse"
-    ]
+    "text": "R版本更新\n\ninstall.packages(\"installr\")\nrequire(installr)\nupdateR()"
   }
 ]

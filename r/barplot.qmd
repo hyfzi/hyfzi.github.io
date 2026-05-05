@@ -1,0 +1,63 @@
+---
+title: "barplot"
+format: html
+---
+
+在临床试验数据中，常常关心不同治疗组在性别、BMI、首次确诊临床分期等变量下的分布情况，而条形图恰好能够直观、清晰地展示。。
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(dplyr)
+library(ggplot2)
+library(pharmaverseadam)
+
+# glimpse(adsl)
+df <- adsl |> 
+  filter(ARMCD == "Scrnfail") |>
+  group_by(.data[["SEX"]], .data[["TRT01P"]], ) |> 
+  summarise(
+  n = n_distinct(USUBJID),
+  .groups = "drop"
+  ) |> 
+  ungroup()
+
+df2 <- df %>%
+  mutate(pct = n / sum(n)) |> 
+  mutate(SEX = reorder(SEX, pct, FUN = sum))
+
+ggplot(df2, aes(x = SEX, y = pct, fill = TRT01P)) +
+  geom_col() +
+  scale_y_continuous(labels = scales::percent) +
+  coord_flip() +
+  labs(
+    x = "Sex",
+    y = "Percentage (Overall)",
+    fill = "Treatment"
+  ) +
+  theme_minimal()
+
+```
+
+# 1 数据来源
+数据来源为pharmaverseadam包中的adsl数据集，包含了临床试验中受试者的基本信息。还需要用到dplyr包进行数据处理。
+```{r}
+#| warning: false
+#| message: false
+library(dplyr)
+library(pharmaverseadam)
+```
+
+# 2 数据整理
+为了绘制条形图，我们需要先整理数据：每一行对应一个性别（SEX）与治疗组（TRT01P）的组合，并包含该组合的受试者数量（n）及其占总体的比例（pct）。下面通过代码完成这一数据准备过程：
+```{r}
+
+```
+
+## 3 绘图代码
+### 3.1 条形图（分类变量）
+
+### 3.2 直方图（数值型变量）
+
+

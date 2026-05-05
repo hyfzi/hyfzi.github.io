@@ -79,5 +79,8 @@
   },
   "ex/ex.qmd": {
     "ex.html": "8854b5ab"
+  },
+  "r/barplot.qmd": {
+    "barplot.html": "62597db4"
   }
 }
