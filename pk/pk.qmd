@@ -4,7 +4,7 @@ title: "药代动力学"
 
 # 药代动力学参数
 
-## SDTM.PC
+## 1 SDTM.PC
 
 | 变量名   | 描述           |
 |----------|----------------|
@@ -12,24 +12,213 @@ title: "药代动力学"
 | PCTPTREF | 参照时间点     |
 | PCRFTDTC | 参照时间点日期 |
 
-## ADAM.ADPC
+## 2 ADAM.ADPC
 
-| 变量名                              | 描述                |
-|-------------------------------------|---------------------|
-| PCTPT、PCTPTNUM、PCTPTREF、PCRFTDTC |                     |
-| ATPT、ATPTN                         | 分析时点            |
-| ATPTREF                             | 分析时点参照        |
-| ARFTDTC                             | 分析时点参照日期    |
-| ARELTM                              | (ADTM-ARFTDTC)/3600 |
-| ANL01FL                             |                     |
-| ANL02FL                             |                     |
-| ANL03FL                             |                     |
+| 变量名                              | 描述                     |
+|-------------------------------------|--------------------------|
+| PCTPT、PCTPTNUM、PCTPTREF、PCRFTDTC |                          |
+| ATPT、ATPTN                         | 分析时点                 |
+| ATPTREF                             | 分析时点参照             |
+| ARFTDTC                             | 分析时点参照日期         |
+| ARELTM                              | (ADTM-ARFTDTC)/3600      |
+| ANL01FL                             | 标记统计汇总用的观测     |
+| ANL02FL                             | 标记个体血药浓度用的观测 |
+| ANL03FL                             | 标记WNL用的观测          |
 
 ``` note
-1.对于第一周期PK密采血样，如采血时间超窗，血药浓度将不纳入汇总和均值/中位图绘制，怎样的算超窗？
-回答：方案中会写。
-2.ATPT在什么情况下会用到？
+1.ATPT在什么情况下会用到？
 回答：稀疏采血C1D8在密集采血中记录成visit=C1D1,pctpt=168h±6h。tlf分析展示是又要归类于C1D1。此时ATPT就派上用场了。
-3.ATPTREF在什么情况下会用到?
+2.ATPTREF在什么情况下会用到?
 回答：在密集采血中，可能会有要求C2D1给药前30min归类到C1D1访视，用相对C1D1首次给药的时间进行分析。
 ```
+
+### 2.1 PK缺失值和低于定量下限（BQLs）
+
+#### 2.1.1 统计汇总、绘制平均/中位浓度-时间曲线：
+
+1.  2个可测定浓度间出现单个BQL时处理为缺失
+
+    -   有值--BQL--有值，BQL要处理为缺失。因为前后都有药，中间突然完全没药，其实不合理，可能是抽血问题、仪器误差等，而不是真正的浓度为0，所以处理成缺失，认为这个点不可靠。
+
+2.  Tmax之后的连续BQLs后的可测定浓度也处理为缺失
+
+    -   Tmax为达到最高浓度时的时间点，如果Tmax后已经连续多个BQL，说明药物已基本清除，这时后面突然出现20（Tmax）--BQL--BQL--3，这里的3很可疑，真实药物代谢不会这样，可能是样本污染等，所以处理为缺失。
+
+3.  其余情况所有的BQLs处理为0
+
+    -   BQL意味着药物已经低到几乎没有了，所以统计平均浓度、中位浓度时，常直接按0计算。
+
+**完整的例子：**
+
+| 时间 | 浓度     | 分析用浓度 |
+|------|----------|------------|
+| 0    | 0        | 0          |
+| 1    | 5        | 5          |
+| 2    | 12(Tmax) | 12         |
+| 3    | BQL      | missing    |
+| 4    | 8        | 8          |
+| 6    | 2        | 2          |
+| 8    | BQL      | 0          |
+| 12   | BQL      | 0          |
+| 16   | 3        | missing    |
+
+#### 2.1.2 个体血药浓度时间图：
+
+1.  可测定浓度间单个的BQL处理为缺失，可测定浓度间连续的BQLs设定为0，连续的BQLs以后的浓度数据保留
+
+2.  Tmax之前出现的BQLs处理为0
+
+3.  Tmax之后出现的BQLs处理为缺失
+
+**完整的例子：**
+
+| 时间 | 浓度 | 分析用浓度 |
+|------|------|------------|
+| 0    | BQL  | 0          |
+| 1    | 2    | 2          |
+| 2    | 10   | 10         |
+| 3    | BQL  | missing    |
+| 4    | 8    | 8          |
+| 5    | BQL  | 0          |
+| 6    | BQL  | 0          |
+| 8    | 5    | 5          |
+| 12   | BQL  | missing    |
+
+#### 2.1.3 WNL(PK参数)：
+
+1.  可测定浓度间的BQLs处理为缺失，Tmax之后的连续BQLs后的可测定浓度处理为缺失
+
+2.  Tmax之前出现的BQLs处理为0
+
+3.  Tmax之后出现的BQLs处理为缺失
+
+**完整的例子：**
+
+| 时间 | 浓度     | 分析用浓度 |
+|------|----------|------------|
+| 0    | BQL      | 0          |
+| 1    | 2        | 2          |
+| 2    | 10       | 10         |
+| 3    | BQL      | missing    |
+| 4    | 11       | 11         |
+| 5    | 5        | 5          |
+| 6    | 10       | 10         |
+| 7    | BQL      | missing    |
+| 8    | BQL      | missing    |
+| 9    | 18(Tmax) | 18         |
+| 10   | 3        | 3          |
+| 11   | BQL      | missing    |
+| 12   | BQL      | missing    |
+| 13   | 2        | missing    |
+
+# 3 TLF
+
+## 3.1 各组xxx血药浓度数据汇总（PK浓度分析集）-密集采血
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+# 隐藏代码，只显示结果
+library(gt)
+library(tibble)
+library(dplyr)
+
+df <- tribble(
+  ~计划采血时间, ~试验组, ~对照组, ~type,
+  "输注前30min内", "", "", "section",
+  "例数", "xx (x)", "xx (x)","detail",
+  "例数（BQL）", "xx (x)", "xx (x)","detail",
+  "平均值（标准差）", "", "", "detail",
+  "变异系数（%）", "xx (x)", "xx (x)","detail",
+  "最小值，最大值", "xx (x)", "xx (x)","detail",
+  "中位数", "", "", "detail",
+  "几何均数", "xx (x)", "xx (x)","detail",
+  "几何变异系数（%）", "xx (x)", "xx (x)","detail",
+  "输注结束5分钟内", "", "", "section",
+  "例数", "xx (x)", "xx (x)","detail",
+  "例数（BQL）", "xx (x)", "xx (x)","detail",
+  "平均值（标准差）", "", "", "detail",
+  "变异系数（%）", "xx (x)", "xx (x)","detail",
+  "最小值，最大值", "xx (x)", "xx (x)","detail",
+  "中位数", "", "", "detail",
+  "几何均数", "xx (x)", "xx (x)","detail",
+  "几何变异系数（%）", "xx (x)", "xx (x)","detail"
+)
+
+gt_tbl <- df %>%
+  select(-type) %>%
+  gt()
+
+gt_tbl %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_body(
+      rows = df$type == "section",
+      columns = 计划采血时间
+    )
+  ) %>%
+  tab_style(
+    style = cell_text(indent = px(20)),
+    locations = cells_body(
+      rows = df$type == "detail",
+      columns = 计划采血时间
+    )
+  )
+```
+
+## 3.2 参数计算公式
+
+### 3.2.1 参数类别1-模型可直接给出
+
+例数，平均值 ，标准差，变异系数（%），最小值，最大值，中位数。
+
+$\text{平均值}=\frac{\sum_{i=1}^{n}x_i}{n}$，表示整体平均浓度水平。
+
+$\text{标准差}=\sqrt{\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}}$，其中$\bar{x}=\text{平均值}$，表示数据离平均值有多分散。标准差越大，数据波动越大。
+
+$\text{变异系数（CV%）}=\frac{\text{标准差}}{\text{平均值}}\times100$，不同均值间，SD不好直接比较，所以引入变异系数，可以反应数据波动占平均值的比例。
+
+**上面几个参数，可通过SAS中PROC MEANS过程步直接得到，代码如下：**
+
+``` sas
+proc means data=adpc; 
+by trt01pn trt01p avisitn avisit aptptn aptpt maxdlen;
+var aval;
+output out=stat_adpc n= nmiss= mean= std= cv= min= max= median= /autoname;
+run;
+```
+
+其中，例数 - n，平均值 - mean，标准差 - std，变异系数（%）- cv，最小值- min，最大值 - max，中位数 - median
+
+### 3.2.2 参数类别2-需编程衍生
+
+几何均数，几何变异系数（%）
+
+$\text{几何均数（Geo Mean）}=e^{\overline{\ln(x)}}$，其中$\overline{\ln(x)}=\frac{\sum_{i=1}^{n}\ln(x_i)}{n}$
+
+$\text{几何变异系数（GeoCV%）}=\sqrt{e^{SD_{\ln}^2}-1}\times100$,其中$SD_{\ln}=\text{log转换后数据的标准差}$
+
+**几何均数和几何变异系数不能直接通过模型计算，我们先需要计算自然对数转换后的均值和标准差。然后再根据公式计算几何均数和几何变异系数。**
+
+**具体步骤如下：**
+
+1.计算自然对数转换后的均值（Mean log transformed）和标准差（SD log transformed)
+
+``` sas
+proc means data=adpc; 
+by trt01pn trt01p avisitn avisit aptptn aptpt maxdlen;
+var logaval;
+output out=stat_adpc n= nmiss= mean= std= cv= min= max= median= /autoname;
+run;
+```
+
+**2.用上步得到的自然对数尺度下得到的均值和标准差，计算几何均数和几何变异系数。**
+
+``` sas
+if logaval_mean>. then geomean = exp(logaval_mean);
+if logaval_stddev>. then geostd = exp(logaval_stddev);
+if nmiss(logaval_stddev,logaval_mean)=0 then geocv = sqrt(exp(logaval_stddev**2)-1)*100;
+```
+
+### 3.2.3 小数位数保留（小数VS有效数字）

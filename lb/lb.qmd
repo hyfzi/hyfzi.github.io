@@ -1,0 +1,34 @@
+---
+title: "LB"
+---
+
+# 实验室检查
+
+## ADAM.ADLB
+
+| 变量名                    | 描述                                    |
+|---------------------------|-----------------------------------------|
+| USUBJID\\ASEQ\\LBSEQ      |                                         |
+| PARAM\\PARAMCD\\PARAMN    |                                         |
+| PARAMTYP                  | 对于衍生的观测，PARAMTYP="衍生"         |
+| PARCAT1                   | LB.LBCAT                                |
+| AVAL\\AVALC               | LB.LBSTRESN,若包含\<,\>号，提取数值部分 |
+| WAYSHIFT                  | 低、高、双向（毒性方向参数指示符）      |
+| ATOXGRL/ATOXGRLN/ATOXDSCL | 分析毒性等级-低                         |
+| ATOXGRH/ATOXGRHN/ATOXDSCH | 分析毒性等级-高                         |
+| BTOXGRL/BTOXGRLN          | 基线分析毒性等级-低                     |
+| BTOXGRH/BTOXGRHN          | 基线分析毒性等级-高                     |
+| BASE\\BASEC               |                                         |
+| CHG\\PCHG                 |                                         |
+| ANRIND                    | LB.LBNRIND（参考范围指示符）            |
+| BNRIND                    | 基线参考范围指示符                      |
+| ANRLO                     | LB.LBSTRNLO                             |
+| ANRHI                     | LB.LBSTNRHI                             |
+| LBDTC\\ADT\\ADY           |                                         |
+| VISIT\\VISITNUM           |                                         |
+| AVISIT\\AVISITN           |                                         |
+| ABLFL                     | 基线记录                                |
+| APBLFL                    | 基线后记录                              |
+| LBCLSIG\\LBCLSIGN         | 临床意义                                |
+| BASESIG\\BASESIGN         | 基线临床意义                            |
+| ANLXXFL                   |                                         |

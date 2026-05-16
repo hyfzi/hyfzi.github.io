@@ -82,5 +82,11 @@
   },
   "r/barplot.qmd": {
     "barplot.html": "62597db4"
+  },
+  "lb/lb.qmd": {
+    "lb.html": "5bb7e8a9"
+  },
+  "lb/lb_ctcae.qmd": {
+    "lb_ctcae.html": "ba42bdf5"
   }
 }
