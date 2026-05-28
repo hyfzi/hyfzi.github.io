@@ -1,0 +1,32 @@
+---
+title: ""
+page-layout: full
+toc: false
+---
+
+# R编程，你在找什么？
+
+::: {.card-container}
+
+::: {.card}
+### 🧹 数据处理（Transform）
+逻辑值、字符、数值、日期、缺失值等处理以及数据合并（join）
+
+[进入 →](/r/transform.html)
+:::
+
+<!-- ::: {.card}
+### 💊 药物暴露
+EC、EX
+
+[进入 →](/ex/ex.html)
+:::
+
+::: {.card}
+### 🧪 药代动力学
+PK，PP，密集采血
+
+[进入 →](/pk/pk.html)
+::: -->
+
+:::

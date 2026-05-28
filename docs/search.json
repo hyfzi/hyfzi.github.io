@@ -1,67 +1,404 @@
 [
   {
-    "objectID": "r/tidyverse.html",
-    "href": "r/tidyverse.html",
-    "title": "tidyverse",
+    "objectID": "rules/dipp.html",
+    "href": "rules/dipp.html",
+    "title": "数据完整性保护计划（DIPP）",
     "section": "",
-    "text": "Example 1:\n\n# 向量\nlibrary(tidyr)\n\nx &lt;- c(\"a\", NA, \"b\")\nx &lt;- replace_na(x, \"\")\nx\n\n[1] \"a\" \"\"  \"b\"\n\n\nExample 2:\n\n# 批量处理多个变量\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyr)\n\ndf &lt;- tibble(\n  id    = 1:6,\n  name  = c(\"Alice\", NA, \"Charlie\", \"David\", NA, \"Frank\"),\n  score = c(90, 85, NA, 88, 92, NA),\n  date  = as.Date(c(\"2024-01-01\", NA, \"2024-01-03\", \"2024-01-04\", NA, \"2024-01-06\"))\n)\n\ndf &lt;- df %&gt;%\n  mutate(across(where(is.character), ~ replace_na(.x, \"\")))\n\n\n\n\nExample 1:\n\nx &lt;- c(\"a\", \"b\", \"a\", \"c\", \"d\", \"c\")\n\nlookup &lt;- c(\n  \"a\" = \"A\",\n  \"b\" = \"B\",\n  \"c\" = \"C\",\n  \"d\" = \"D\"\n)\n\nrecode(x, !!!lookup)\n\n[1] \"A\" \"B\" \"A\" \"C\" \"D\" \"C\""
-  },
-  {
-    "objectID": "r/tidyverse.html#replace_na",
-    "href": "r/tidyverse.html#replace_na",
-    "title": "tidyverse",
-    "section": "",
-    "text": "Example 1:\n\n# 向量\nlibrary(tidyr)\n\nx &lt;- c(\"a\", NA, \"b\")\nx &lt;- replace_na(x, \"\")\nx\n\n[1] \"a\" \"\"  \"b\"\n\n\nExample 2:\n\n# 批量处理多个变量\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyr)\n\ndf &lt;- tibble(\n  id    = 1:6,\n  name  = c(\"Alice\", NA, \"Charlie\", \"David\", NA, \"Frank\"),\n  score = c(90, 85, NA, 88, 92, NA),\n  date  = as.Date(c(\"2024-01-01\", NA, \"2024-01-03\", \"2024-01-04\", NA, \"2024-01-06\"))\n)\n\ndf &lt;- df %&gt;%\n  mutate(across(where(is.character), ~ replace_na(.x, \"\")))"
-  },
-  {
-    "objectID": "r/tidyverse.html#recode",
-    "href": "r/tidyverse.html#recode",
-    "title": "tidyverse",
-    "section": "",
-    "text": "Example 1:\n\nx &lt;- c(\"a\", \"b\", \"a\", \"c\", \"d\", \"c\")\n\nlookup &lt;- c(\n  \"a\" = \"A\",\n  \"b\" = \"B\",\n  \"c\" = \"C\",\n  \"d\" = \"D\"\n)\n\nrecode(x, !!!lookup)\n\n[1] \"A\" \"B\" \"A\" \"C\" \"D\" \"C\""
-  },
-  {
-    "objectID": "r/R.html",
-    "href": "r/R.html",
-    "title": "函数",
-    "section": "",
-    "text": "match() function in R Language is used to return the positions of the first match of the elements of the first vector in the second vector. If the element is not found, it returns NA.\nExample 1:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nmatch(x1, x2)\n\n[1]  4 NA NA  1  5\n\n\nExample 2:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nidx &lt;- match(x1, x2)\nx2[na.omit(idx)]\n\n[1] \"a\" \"d\" \"e\""
-  },
-  {
-    "objectID": "r/R.html#match",
-    "href": "r/R.html#match",
-    "title": "函数",
-    "section": "",
-    "text": "match() function in R Language is used to return the positions of the first match of the elements of the first vector in the second vector. If the element is not found, it returns NA.\nExample 1:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nmatch(x1, x2)\n\n[1]  4 NA NA  1  5\n\n\nExample 2:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nidx &lt;- match(x1, x2)\nx2[na.omit(idx)]\n\n[1] \"a\" \"d\" \"e\""
-  },
-  {
-    "objectID": "pk/pk.html",
-    "href": "pk/pk.html",
-    "title": "药代动力学",
-    "section": "",
-    "text": "变量名\n描述\n\n\n\n\nPCTPT\n计划时点名称\n\n\nPCTPTREF\n参照时间点\n\n\nPCRFTDTC\n参照时间点日期\n\n\n\n\n\n\n\n\n\n变量名\n描述\n\n\n\n\nPCTPT、PCTPTNUM、PCTPTREF、PCRFTDTC\n\n\n\nATPT、ATPTN\n分析时点\n\n\nATPTREF\n分析时点参照\n\n\nARFTDTC\n分析时点参照日期\n\n\nARELTM\n(ADTM-ARFTDTC)/3600\n\n\nANL01FL\n标记统计汇总用的观测\n\n\nANL02FL\n标记个体血药浓度用的观测\n\n\nANL03FL\n标记WNL用的观测\n\n\n\n1.ATPT在什么情况下会用到？\n回答：稀疏采血C1D8在密集采血中记录成visit=C1D1,pctpt=168h±6h。tlf分析展示是又要归类于C1D1。此时ATPT就派上用场了。\n2.ATPTREF在什么情况下会用到?\n回答：在密集采血中，可能会有要求C2D1给药前30min归类到C1D1访视，用相对C1D1首次给药的时间进行分析。\n\n\n\n\n\n2个可测定浓度间出现单个BQL时处理为缺失\n\n有值–BQL–有值，BQL要处理为缺失。因为前后都有药，中间突然完全没药，其实不合理，可能是抽血问题、仪器误差等，而不是真正的浓度为0，所以处理成缺失，认为这个点不可靠。\n\nTmax之后的连续BQLs后的可测定浓度也处理为缺失\n\nTmax为达到最高浓度时的时间点，如果Tmax后已经连续多个BQL，说明药物已基本清除，这时后面突然出现20（Tmax）–BQL–BQL–3，这里的3很可疑，真实药物代谢不会这样，可能是样本污染等，所以处理为缺失。\n\n其余情况所有的BQLs处理为0\n\nBQL意味着药物已经低到几乎没有了，所以统计平均浓度、中位浓度时，常直接按0计算。\n\n\n完整的例子：\n\n\n\n时间\n浓度\n分析用浓度\n\n\n\n\n0\n0\n0\n\n\n1\n5\n5\n\n\n2\n12(Tmax)\n12\n\n\n3\nBQL\nmissing\n\n\n4\n8\n8\n\n\n6\n2\n2\n\n\n8\nBQL\n0\n\n\n12\nBQL\n0\n\n\n16\n3\nmissing\n\n\n\n\n\n\n\n可测定浓度间单个的BQL处理为缺失，可测定浓度间连续的BQLs设定为0，连续的BQLs以后的浓度数据保留\nTmax之前出现的BQLs处理为0\nTmax之后出现的BQLs处理为缺失\n\n完整的例子：\n\n\n\n时间\n浓度\n分析用浓度\n\n\n\n\n0\nBQL\n0\n\n\n1\n2\n2\n\n\n2\n10\n10\n\n\n3\nBQL\nmissing\n\n\n4\n8\n8\n\n\n5\nBQL\n0\n\n\n6\nBQL\n0\n\n\n8\n5\n5\n\n\n12\nBQL\nmissing\n\n\n\n\n\n\n\n可测定浓度间的BQLs处理为缺失，Tmax之后的连续BQLs后的可测定浓度处理为缺失\nTmax之前出现的BQLs处理为0\nTmax之后出现的BQLs处理为缺失\n\n完整的例子：\n\n\n\n时间\n浓度\n分析用浓度\n\n\n\n\n0\nBQL\n0\n\n\n1\n2\n2\n\n\n2\n10\n10\n\n\n3\nBQL\nmissing\n\n\n4\n11\n11\n\n\n5\n5\n5\n\n\n6\n10\n10\n\n\n7\nBQL\nmissing\n\n\n8\nBQL\nmissing\n\n\n9\n18(Tmax)\n18\n\n\n10\n3\n3\n\n\n11\nBQL\nmissing\n\n\n12\nBQL\nmissing\n\n\n13\n2\nmissing",
+    "text": "DIPP：Data Integrity Protection Plan。在关键III期开放试验中，为避免研究进行时数据就按照实际分组进行汇总数据分析，导致研究者和赞助方对数据的了解过早，从而可能引入偏倚，影响研究的科学性和可靠性。因此，在研究进行时，通常会制定一个数据完整性保护计划（DIPP），以确保在研究进行过程中，数据的处理和分析不会泄露治疗分组的信息。",
     "crumbs": [
-      "药代动力学"
+      "法规"
     ]
   },
   {
-    "objectID": "pk/pk.html#sdtm.pc",
-    "href": "pk/pk.html#sdtm.pc",
-    "title": "药代动力学",
-    "section": "",
-    "text": "变量名\n描述\n\n\n\n\nPCTPT\n计划时点名称\n\n\nPCTPTREF\n参照时间点\n\n\nPCRFTDTC\n参照时间点日期",
+    "objectID": "rules/dipp.html#编程人员",
+    "href": "rules/dipp.html#编程人员",
+    "title": "数据完整性保护计划（DIPP）",
+    "section": "2.1 编程人员",
+    "text": "2.1 编程人员\n\n可生成合并或虚拟分组，用于支持研究阶段性数据审阅\n仅在锁库后使用实际分组生成TLFs",
     "crumbs": [
-      "药代动力学"
+      "法规"
     ]
   },
   {
-    "objectID": "pk/pk.html#adam.adpc",
-    "href": "pk/pk.html#adam.adpc",
-    "title": "药代动力学",
-    "section": "",
-    "text": "变量名\n描述\n\n\n\n\nPCTPT、PCTPTNUM、PCTPTREF、PCRFTDTC\n\n\n\nATPT、ATPTN\n分析时点\n\n\nATPTREF\n分析时点参照\n\n\nARFTDTC\n分析时点参照日期\n\n\nARELTM\n(ADTM-ARFTDTC)/3600\n\n\nANL01FL\n标记统计汇总用的观测\n\n\nANL02FL\n标记个体血药浓度用的观测\n\n\nANL03FL\n标记WNL用的观测\n\n\n\n1.ATPT在什么情况下会用到？\n回答：稀疏采血C1D8在密集采血中记录成visit=C1D1,pctpt=168h±6h。tlf分析展示是又要归类于C1D1。此时ATPT就派上用场了。\n2.ATPTREF在什么情况下会用到?\n回答：在密集采血中，可能会有要求C2D1给药前30min归类到C1D1访视，用相对C1D1首次给药的时间进行分析。\n\n\n\n\n\n2个可测定浓度间出现单个BQL时处理为缺失\n\n有值–BQL–有值，BQL要处理为缺失。因为前后都有药，中间突然完全没药，其实不合理，可能是抽血问题、仪器误差等，而不是真正的浓度为0，所以处理成缺失，认为这个点不可靠。\n\nTmax之后的连续BQLs后的可测定浓度也处理为缺失\n\nTmax为达到最高浓度时的时间点，如果Tmax后已经连续多个BQL，说明药物已基本清除，这时后面突然出现20（Tmax）–BQL–BQL–3，这里的3很可疑，真实药物代谢不会这样，可能是样本污染等，所以处理为缺失。\n\n其余情况所有的BQLs处理为0\n\nBQL意味着药物已经低到几乎没有了，所以统计平均浓度、中位浓度时，常直接按0计算。\n\n\n完整的例子：\n\n\n\n时间\n浓度\n分析用浓度\n\n\n\n\n0\n0\n0\n\n\n1\n5\n5\n\n\n2\n12(Tmax)\n12\n\n\n3\nBQL\nmissing\n\n\n4\n8\n8\n\n\n6\n2\n2\n\n\n8\nBQL\n0\n\n\n12\nBQL\n0\n\n\n16\n3\nmissing\n\n\n\n\n\n\n\n可测定浓度间单个的BQL处理为缺失，可测定浓度间连续的BQLs设定为0，连续的BQLs以后的浓度数据保留\nTmax之前出现的BQLs处理为0\nTmax之后出现的BQLs处理为缺失\n\n完整的例子：\n\n\n\n时间\n浓度\n分析用浓度\n\n\n\n\n0\nBQL\n0\n\n\n1\n2\n2\n\n\n2\n10\n10\n\n\n3\nBQL\nmissing\n\n\n4\n8\n8\n\n\n5\nBQL\n0\n\n\n6\nBQL\n0\n\n\n8\n5\n5\n\n\n12\nBQL\nmissing\n\n\n\n\n\n\n\n可测定浓度间的BQLs处理为缺失，Tmax之后的连续BQLs后的可测定浓度处理为缺失\nTmax之前出现的BQLs处理为0\nTmax之后出现的BQLs处理为缺失\n\n完整的例子：\n\n\n\n时间\n浓度\n分析用浓度\n\n\n\n\n0\nBQL\n0\n\n\n1\n2\n2\n\n\n2\n10\n10\n\n\n3\nBQL\nmissing\n\n\n4\n11\n11\n\n\n5\n5\n5\n\n\n6\n10\n10\n\n\n7\nBQL\nmissing\n\n\n8\nBQL\nmissing\n\n\n9\n18(Tmax)\n18\n\n\n10\n3\n3\n\n\n11\nBQL\nmissing\n\n\n12\nBQL\nmissing\n\n\n13\n2\nmissing",
+    "objectID": "rules/dipp.html#独立数据检查委员会idmc",
+    "href": "rules/dipp.html#独立数据检查委员会idmc",
+    "title": "数据完整性保护计划（DIPP）",
+    "section": "2.2 独立数据检查委员会（iDMC）",
+    "text": "2.2 独立数据检查委员会（iDMC）\niDMC负责在DMC会议开门或闭门上，提供合计或分组表格，用于协助申办方保护参与者的安全与获益。",
     "crumbs": [
-      "药代动力学"
+      "法规"
+    ]
+  },
+  {
+    "objectID": "r/transform.html",
+    "href": "r/transform.html",
+    "title": "数据处理（Transform）",
+    "section": "",
+    "text": "数值比较是最常见的生成逻辑向量的方式，比较运算符号包括：&gt;, &lt;, &gt;=, &lt;=, ==, !=，常和filter()搭配使用。\n\nflights |&gt; \n  filter(dep_delay &gt; 60)\n\n# A tibble: 26,581 × 19\n    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;\n 1  2013     1     1      811            630       101     1047            830\n 2  2013     1     1      826            715        71     1136           1045\n 3  2013     1     1      848           1835       853     1001           1950\n 4  2013     1     1      957            733       144     1056            853\n 5  2013     1     1     1114            900       134     1447           1222\n 6  2013     1     1     1120            944        96     1331           1213\n 7  2013     1     1     1301           1150        71     1518           1345\n 8  2013     1     1     1337           1220        77     1649           1531\n 9  2013     1     1     1400           1250        70     1645           1502\n10  2013     1     1     1505           1310       115     1638           1431\n# ℹ 26,571 more rows\n# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,\n#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,\n#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;\n\n\n\n\n由于计算机存储数值的方式，浮点数比较可能会出现意外的结果，建议使用near()函数进行比较。\n\nx &lt;- c(1/5*5, sqrt(2)^2)\nx\n\n[1] 1 2\n\nx == c(1,2)\n\n[1]  TRUE FALSE\n\nnear(x, c(1,2))\n\n[1] TRUE TRUE\n\nprint(x, digits = 20)\n\n[1] 1.0000000000000000000 2.0000000000000004441\n\n\n\n\n\nNA可以理解为未知（UNKNOWN）,与任何值（包括NA）比较的结果都是NA。如果要判断一个值是否为NA，应该使用is.na()函数。而不是variable == NA。\n\nNA &gt; 5\n\n[1] NA\n\n# 不知道 是否等于 不知道 等于 不知道\nNA == NA\n\n[1] NA\n\nflights |&gt; \n  filter(is.na(dep_delay))\n\n# A tibble: 8,255 × 19\n    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;\n 1  2013     1     1       NA           1630        NA       NA           1815\n 2  2013     1     1       NA           1935        NA       NA           2240\n 3  2013     1     1       NA           1500        NA       NA           1825\n 4  2013     1     1       NA            600        NA       NA            901\n 5  2013     1     2       NA           1540        NA       NA           1747\n 6  2013     1     2       NA           1620        NA       NA           1746\n 7  2013     1     2       NA           1355        NA       NA           1459\n 8  2013     1     2       NA           1420        NA       NA           1644\n 9  2013     1     2       NA           1321        NA       NA           1536\n10  2013     1     2       NA           1545        NA       NA           1910\n# ℹ 8,245 more rows\n# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,\n#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,\n#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;\n\nflights |&gt; \n  filter(dep_delay == NA)\n\n# A tibble: 0 × 19\n# ℹ 19 variables: year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;, dep_time &lt;int&gt;,\n#   sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,\n#   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,\n#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,\n#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;\n\n\n\n\n\n\n布尔运算符有&（AND）, |（OR）, !（NOT），xor()（exclusive OR）。需要注意的是||和&&是短路运算符，他们只会返回一个TRUE/FALSE值，通常用于控制流语句中。\n\n\n在布尔运算中，NA有点复杂，比如下面的例子，你乍看一眼会觉得不一致。\n\ndf &lt;- tibble(\n  x = c(TRUE, FALSE, NA)\n)\ndf |&gt; \n  mutate(\n    and = x & NA,\n    or = x | NA\n  )\n\n# A tibble: 3 × 3\n  x     and   or   \n  &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt;\n1 TRUE  NA    TRUE \n2 FALSE FALSE NA   \n3 NA    NA    NA   \n\n\n一个非常好的帮助我们理解的方法是：我们可以把NA想象成既可以是TRUE也可是FALSE的值，那么TRUE & NA的结果可以是TRUE & TRUE（TRUE）或者TRUE & FALSE（FALSE），所以最终结果是NA。同样的，FALSE | NA的结果可以是FALSE | TRUE（TRUE）或者FALSE | FALSE（FALSE），所以最终结果FALSE。NA 遇到任何值任何运算都是NA。\n\n\n\n%in%操作符是一个非常有用的工具，可以用来检查一个值是否在一个向量中。它的语法是：x %in% y，返回一个长度与x相同的逻辑向量，表示x中的每个元素是否在y中出现过。注意，NA在%in%和布尔比较中结果不一致，NA %in% c(NA, 1)返回TRUE，而NA == NA返回NA。\n\n\n\n在R里，TRUE会被当做1，FALSE会被当做0。因此，我们可以对逻辑向量进行统计汇总，比如求和、平均值等。比如下面的例子，我们可以计算飞机起飞延误不超过1小时的比例。\n\nflights |&gt; \n  group_by(year, month, day) |&gt;\n  summarise(\n    prop = mean(dep_delay &lt;= 60, na.rm = TRUE),\n    .groups = \"drop\"\n  )\n\n# A tibble: 365 × 4\n    year month   day  prop\n   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;\n 1  2013     1     1 0.939\n 2  2013     1     2 0.914\n 3  2013     1     3 0.941\n 4  2013     1     4 0.953\n 5  2013     1     5 0.964\n 6  2013     1     6 0.959\n 7  2013     1     7 0.956\n 8  2013     1     8 0.975\n 9  2013     1     9 0.986\n10  2013     1    10 0.977\n# ℹ 355 more rows\n\n\nany和all函数也非常有用，any(x)等于|，all(x)等于&。\n\n\n\n逻辑向量可以用来对数据进行子集化，在实际中非常常见。比如下面的例子，我们可以得到飞机延误的记录。\n\nflights |&gt; \n  filter(arr_delay &gt; 0) |&gt; \n  group_by(year, month, day) |&gt;\n  summarise(\n    behind = mean(dep_delay, na.rm = TRUE),\n    n = n(),\n    .groups = \"drop\"\n  )\n\n# A tibble: 365 × 5\n    year month   day behind     n\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;\n 1  2013     1     1   22.4   461\n 2  2013     1     2   24.5   535\n 3  2013     1     3   22.3   460\n 4  2013     1     4   30.4   297\n 5  2013     1     5   20.8   238\n 6  2013     1     6   18.0   381\n 7  2013     1     7   26.5   243\n 8  2013     1     8   15.1   275\n 9  2013     1     9   15.6   287\n10  2013     1    10   24.9   220\n# ℹ 355 more rows\n\n\n上面的例子计算了飞机延误的时间平均值，但如果我们同时也想得到飞机提前的平均值呢？下面的例子展示了如何使用条件子集来计算飞机延误和提前的平均值。\n\n# 平均延误时间\nflights |&gt; \n  group_by(year, month, day) |&gt;\n  summarise(\n    behind = mean(dep_delay[dep_delay &gt; 0], na.rm = TRUE),\n    ahead = mean(dep_delay[dep_delay &lt; 0], na.rm = TRUE),\n    n = n(),\n    .groups = \"drop\"\n  )\n\n# A tibble: 365 × 6\n    year month   day behind ahead     n\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;\n 1  2013     1     1   32.7 -4.26   842\n 2  2013     1     2   32.6 -4.11   943\n 3  2013     1     3   28.5 -4.28   914\n 4  2013     1     4   26.2 -4.54   915\n 5  2013     1     5   21.8 -4.34   720\n 6  2013     1     6   22.0 -4.40   832\n 7  2013     1     7   26.2 -4.71   933\n 8  2013     1     8   21.2 -4.94   899\n 9  2013     1     9   26.4 -5.24   902\n10  2013     1    10   32.6 -5.29   932\n# ℹ 355 more rows\n\n# 延误航班占比\nflights |&gt; \n  group_by(year, month, day) |&gt;\n  summarise(\n    behind = mean(dep_delay &gt; 0, na.rm = TRUE),\n    ahead = mean(dep_delay &lt; 0, na.rm = TRUE),\n    n = n(),\n    .groups = \"drop\"\n  )\n\n# A tibble: 365 × 6\n    year month   day behind ahead     n\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;\n 1  2013     1     1  0.420 0.510   842\n 2  2013     1     2  0.481 0.449   943\n 3  2013     1     3  0.457 0.476   914\n 4  2013     1     4  0.430 0.512   915\n 5  2013     1     5  0.374 0.561   720\n 6  2013     1     6  0.426 0.505   832\n 7  2013     1     7  0.318 0.624   933\n 8  2013     1     8  0.273 0.656   899\n 9  2013     1     9  0.230 0.722   902\n10  2013     1    10  0.206 0.730   932\n# ℹ 355 more rows\n\n\n\n\n\n\n\nif_else()有4个参数，第1个是条件判断，第2个是条件判断为TRUE是返回的值，第3个是条件判断为FALSE时返回的值，第4个是条件判断为NA时返回的值。\n\nx &lt;- c(-3:3, NA)\nif_else(x &gt; 0, \"+ve\", \"-ve\", \"???\")\n\n[1] \"-ve\" \"-ve\" \"-ve\" \"-ve\" \"+ve\" \"+ve\" \"+ve\" \"???\"\n\nif_else(x == 0, \"0\", if_else(x &gt; 0, \"+ve\", \"-ve\", \"???\"))\n\n[1] \"-ve\" \"-ve\" \"-ve\" \"0\"   \"+ve\" \"+ve\" \"+ve\" NA   \n\n\n\n\n\ncase_when()类似嵌套的if_else()语句，如果没有匹配到条件，会赋值NA。\n\nx &lt;- c(-3:3, NA)\ncase_when(\n  x == 0 ~ \"0\",\n  x &lt; 0 ~ \"-ve\",\n  x &gt; 0 ~ \"+ve\",\n  is.na(x) ~ \"???\"\n)\n\n[1] \"-ve\" \"-ve\" \"-ve\" \"0\"   \"+ve\" \"+ve\" \"+ve\" \"???\"\n\ncase_when(\n  x &lt; 0 ~ \"-ve\",\n  x &gt; 0 ~ \"+ve\"\n)\n\n[1] \"-ve\" \"-ve\" \"-ve\" NA    \"+ve\" \"+ve\" \"+ve\" NA   \n\n\n需要注意的是，case_when和if_else() 的输出结果需要时兼容的，例如输出的结果必需全是字符型或数值型，不能字符和数值两种形式掺杂。",
+    "crumbs": [
+      "数据处理",
+      "数据处理（Transform）"
+    ]
+  },
+  {
+    "objectID": "r/transform.html#数值比较numeric-comparison",
+    "href": "r/transform.html#数值比较numeric-comparison",
+    "title": "数据处理（Transform）",
+    "section": "",
+    "text": "数值比较是最常见的生成逻辑向量的方式，比较运算符号包括：&gt;, &lt;, &gt;=, &lt;=, ==, !=，常和filter()搭配使用。\n\nflights |&gt; \n  filter(dep_delay &gt; 60)\n\n# A tibble: 26,581 × 19\n    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;\n 1  2013     1     1      811            630       101     1047            830\n 2  2013     1     1      826            715        71     1136           1045\n 3  2013     1     1      848           1835       853     1001           1950\n 4  2013     1     1      957            733       144     1056            853\n 5  2013     1     1     1114            900       134     1447           1222\n 6  2013     1     1     1120            944        96     1331           1213\n 7  2013     1     1     1301           1150        71     1518           1345\n 8  2013     1     1     1337           1220        77     1649           1531\n 9  2013     1     1     1400           1250        70     1645           1502\n10  2013     1     1     1505           1310       115     1638           1431\n# ℹ 26,571 more rows\n# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,\n#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,\n#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;\n\n\n\n\n由于计算机存储数值的方式，浮点数比较可能会出现意外的结果，建议使用near()函数进行比较。\n\nx &lt;- c(1/5*5, sqrt(2)^2)\nx\n\n[1] 1 2\n\nx == c(1,2)\n\n[1]  TRUE FALSE\n\nnear(x, c(1,2))\n\n[1] TRUE TRUE\n\nprint(x, digits = 20)\n\n[1] 1.0000000000000000000 2.0000000000000004441\n\n\n\n\n\nNA可以理解为未知（UNKNOWN）,与任何值（包括NA）比较的结果都是NA。如果要判断一个值是否为NA，应该使用is.na()函数。而不是variable == NA。\n\nNA &gt; 5\n\n[1] NA\n\n# 不知道 是否等于 不知道 等于 不知道\nNA == NA\n\n[1] NA\n\nflights |&gt; \n  filter(is.na(dep_delay))\n\n# A tibble: 8,255 × 19\n    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;\n 1  2013     1     1       NA           1630        NA       NA           1815\n 2  2013     1     1       NA           1935        NA       NA           2240\n 3  2013     1     1       NA           1500        NA       NA           1825\n 4  2013     1     1       NA            600        NA       NA            901\n 5  2013     1     2       NA           1540        NA       NA           1747\n 6  2013     1     2       NA           1620        NA       NA           1746\n 7  2013     1     2       NA           1355        NA       NA           1459\n 8  2013     1     2       NA           1420        NA       NA           1644\n 9  2013     1     2       NA           1321        NA       NA           1536\n10  2013     1     2       NA           1545        NA       NA           1910\n# ℹ 8,245 more rows\n# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,\n#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,\n#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;\n\nflights |&gt; \n  filter(dep_delay == NA)\n\n# A tibble: 0 × 19\n# ℹ 19 variables: year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;, dep_time &lt;int&gt;,\n#   sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,\n#   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,\n#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,\n#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;",
+    "crumbs": [
+      "数据处理",
+      "数据处理（Transform）"
+    ]
+  },
+  {
+    "objectID": "r/transform.html#布尔运行boolean-algebra",
+    "href": "r/transform.html#布尔运行boolean-algebra",
+    "title": "数据处理（Transform）",
+    "section": "",
+    "text": "布尔运算符有&（AND）, |（OR）, !（NOT），xor()（exclusive OR）。需要注意的是||和&&是短路运算符，他们只会返回一个TRUE/FALSE值，通常用于控制流语句中。\n\n\n在布尔运算中，NA有点复杂，比如下面的例子，你乍看一眼会觉得不一致。\n\ndf &lt;- tibble(\n  x = c(TRUE, FALSE, NA)\n)\ndf |&gt; \n  mutate(\n    and = x & NA,\n    or = x | NA\n  )\n\n# A tibble: 3 × 3\n  x     and   or   \n  &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt;\n1 TRUE  NA    TRUE \n2 FALSE FALSE NA   \n3 NA    NA    NA   \n\n\n一个非常好的帮助我们理解的方法是：我们可以把NA想象成既可以是TRUE也可是FALSE的值，那么TRUE & NA的结果可以是TRUE & TRUE（TRUE）或者TRUE & FALSE（FALSE），所以最终结果是NA。同样的，FALSE | NA的结果可以是FALSE | TRUE（TRUE）或者FALSE | FALSE（FALSE），所以最终结果FALSE。NA 遇到任何值任何运算都是NA。\n\n\n\n%in%操作符是一个非常有用的工具，可以用来检查一个值是否在一个向量中。它的语法是：x %in% y，返回一个长度与x相同的逻辑向量，表示x中的每个元素是否在y中出现过。注意，NA在%in%和布尔比较中结果不一致，NA %in% c(NA, 1)返回TRUE，而NA == NA返回NA。\n\n\n\n在R里，TRUE会被当做1，FALSE会被当做0。因此，我们可以对逻辑向量进行统计汇总，比如求和、平均值等。比如下面的例子，我们可以计算飞机起飞延误不超过1小时的比例。\n\nflights |&gt; \n  group_by(year, month, day) |&gt;\n  summarise(\n    prop = mean(dep_delay &lt;= 60, na.rm = TRUE),\n    .groups = \"drop\"\n  )\n\n# A tibble: 365 × 4\n    year month   day  prop\n   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;\n 1  2013     1     1 0.939\n 2  2013     1     2 0.914\n 3  2013     1     3 0.941\n 4  2013     1     4 0.953\n 5  2013     1     5 0.964\n 6  2013     1     6 0.959\n 7  2013     1     7 0.956\n 8  2013     1     8 0.975\n 9  2013     1     9 0.986\n10  2013     1    10 0.977\n# ℹ 355 more rows\n\n\nany和all函数也非常有用，any(x)等于|，all(x)等于&。\n\n\n\n逻辑向量可以用来对数据进行子集化，在实际中非常常见。比如下面的例子，我们可以得到飞机延误的记录。\n\nflights |&gt; \n  filter(arr_delay &gt; 0) |&gt; \n  group_by(year, month, day) |&gt;\n  summarise(\n    behind = mean(dep_delay, na.rm = TRUE),\n    n = n(),\n    .groups = \"drop\"\n  )\n\n# A tibble: 365 × 5\n    year month   day behind     n\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;\n 1  2013     1     1   22.4   461\n 2  2013     1     2   24.5   535\n 3  2013     1     3   22.3   460\n 4  2013     1     4   30.4   297\n 5  2013     1     5   20.8   238\n 6  2013     1     6   18.0   381\n 7  2013     1     7   26.5   243\n 8  2013     1     8   15.1   275\n 9  2013     1     9   15.6   287\n10  2013     1    10   24.9   220\n# ℹ 355 more rows\n\n\n上面的例子计算了飞机延误的时间平均值，但如果我们同时也想得到飞机提前的平均值呢？下面的例子展示了如何使用条件子集来计算飞机延误和提前的平均值。\n\n# 平均延误时间\nflights |&gt; \n  group_by(year, month, day) |&gt;\n  summarise(\n    behind = mean(dep_delay[dep_delay &gt; 0], na.rm = TRUE),\n    ahead = mean(dep_delay[dep_delay &lt; 0], na.rm = TRUE),\n    n = n(),\n    .groups = \"drop\"\n  )\n\n# A tibble: 365 × 6\n    year month   day behind ahead     n\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;\n 1  2013     1     1   32.7 -4.26   842\n 2  2013     1     2   32.6 -4.11   943\n 3  2013     1     3   28.5 -4.28   914\n 4  2013     1     4   26.2 -4.54   915\n 5  2013     1     5   21.8 -4.34   720\n 6  2013     1     6   22.0 -4.40   832\n 7  2013     1     7   26.2 -4.71   933\n 8  2013     1     8   21.2 -4.94   899\n 9  2013     1     9   26.4 -5.24   902\n10  2013     1    10   32.6 -5.29   932\n# ℹ 355 more rows\n\n# 延误航班占比\nflights |&gt; \n  group_by(year, month, day) |&gt;\n  summarise(\n    behind = mean(dep_delay &gt; 0, na.rm = TRUE),\n    ahead = mean(dep_delay &lt; 0, na.rm = TRUE),\n    n = n(),\n    .groups = \"drop\"\n  )\n\n# A tibble: 365 × 6\n    year month   day behind ahead     n\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;\n 1  2013     1     1  0.420 0.510   842\n 2  2013     1     2  0.481 0.449   943\n 3  2013     1     3  0.457 0.476   914\n 4  2013     1     4  0.430 0.512   915\n 5  2013     1     5  0.374 0.561   720\n 6  2013     1     6  0.426 0.505   832\n 7  2013     1     7  0.318 0.624   933\n 8  2013     1     8  0.273 0.656   899\n 9  2013     1     9  0.230 0.722   902\n10  2013     1    10  0.206 0.730   932\n# ℹ 355 more rows\n\n\n\n\n\n\n\nif_else()有4个参数，第1个是条件判断，第2个是条件判断为TRUE是返回的值，第3个是条件判断为FALSE时返回的值，第4个是条件判断为NA时返回的值。\n\nx &lt;- c(-3:3, NA)\nif_else(x &gt; 0, \"+ve\", \"-ve\", \"???\")\n\n[1] \"-ve\" \"-ve\" \"-ve\" \"-ve\" \"+ve\" \"+ve\" \"+ve\" \"???\"\n\nif_else(x == 0, \"0\", if_else(x &gt; 0, \"+ve\", \"-ve\", \"???\"))\n\n[1] \"-ve\" \"-ve\" \"-ve\" \"0\"   \"+ve\" \"+ve\" \"+ve\" NA   \n\n\n\n\n\ncase_when()类似嵌套的if_else()语句，如果没有匹配到条件，会赋值NA。\n\nx &lt;- c(-3:3, NA)\ncase_when(\n  x == 0 ~ \"0\",\n  x &lt; 0 ~ \"-ve\",\n  x &gt; 0 ~ \"+ve\",\n  is.na(x) ~ \"???\"\n)\n\n[1] \"-ve\" \"-ve\" \"-ve\" \"0\"   \"+ve\" \"+ve\" \"+ve\" \"???\"\n\ncase_when(\n  x &lt; 0 ~ \"-ve\",\n  x &gt; 0 ~ \"+ve\"\n)\n\n[1] \"-ve\" \"-ve\" \"-ve\" NA    \"+ve\" \"+ve\" \"+ve\" NA   \n\n\n需要注意的是，case_when和if_else() 的输出结果需要时兼容的，例如输出的结果必需全是字符型或数值型，不能字符和数值两种形式掺杂。",
+    "crumbs": [
+      "数据处理",
+      "数据处理（Transform）"
+    ]
+  },
+  {
+    "objectID": "r/R1.html",
+    "href": "r/R1.html",
+    "title": "版本升级",
+    "section": "",
+    "text": "R版本更新\n\ninstall.packages(\"installr\")\nrequire(installr)\nupdateR()"
+  },
+  {
+    "objectID": "r/barplot.html",
+    "href": "r/barplot.html",
+    "title": "barplot",
+    "section": "",
+    "text": "在临床试验数据中，常常关心不同治疗组在性别、BMI、首次确诊临床分期等变量下的分布情况，而条形图恰好能够直观、清晰地展示。。"
+  },
+  {
+    "objectID": "r/barplot.html#绘图代码",
+    "href": "r/barplot.html#绘图代码",
+    "title": "barplot",
+    "section": "3 绘图代码",
+    "text": "3 绘图代码\n\n3.1 条形图（分类变量）\n\n\n3.2 直方图（数值型变量）"
+  },
+  {
+    "objectID": "oncology/statistics.html",
+    "href": "oncology/statistics.html",
+    "title": "统计方法",
+    "section": "",
+    "text": "proc freq data=orr_nonstaf;\nby trt01pn;\nweight count/zeros;\ntables resp/binomial(exact level='1') alpha=0.05;\nods output binomialcls=cl_orr;\nrun;\n\n\n\n\n\n\nods trace on;\nods output PdiffCLs=PdiffCLs;\nproc freq data=orr;\n  weight count/zeros;\n  table trt01pn*resp/riskdiff(cl=mn column=2)  alpha=0.05;\nrun;\nods output close;\nods trace off;\n\n\n\nods trace on;\nods output CommonPdiff=CommonPdiff;\nproc freq data=orr;\n  weight count/zeros;\n  table stratirt*trt01pn*resp/commonriskdiff(cl=mh column=2)  alpha=0.05;\nrun;\nods output close;\nods trace off;",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#客观缓解率及各组率的95ci",
+    "href": "oncology/statistics.html#客观缓解率及各组率的95ci",
+    "title": "统计方法",
+    "section": "",
+    "text": "proc freq data=orr_nonstaf;\nby trt01pn;\nweight count/zeros;\ntables resp/binomial(exact level='1') alpha=0.05;\nods output binomialcls=cl_orr;\nrun;",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#率差及其95置信区间",
+    "href": "oncology/statistics.html#率差及其95置信区间",
+    "title": "统计方法",
+    "section": "",
+    "text": "ods trace on;\nods output PdiffCLs=PdiffCLs;\nproc freq data=orr;\n  weight count/zeros;\n  table trt01pn*resp/riskdiff(cl=mn column=2)  alpha=0.05;\nrun;\nods output close;\nods trace off;\n\n\n\nods trace on;\nods output CommonPdiff=CommonPdiff;\nproc freq data=orr;\n  weight count/zeros;\n  table stratirt*trt01pn*resp/commonriskdiff(cl=mh column=2)  alpha=0.05;\nrun;\nods output close;\nods trace off;",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
+    "href": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
+    "title": "统计方法",
+    "section": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
+    "text": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
+    "href": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
+    "title": "统计方法",
+    "section": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
+    "text": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
+    "href": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
+    "title": "统计方法",
+    "section": "2.3 对数秩检验（log-rank test）进行组间P值",
+    "text": "2.3 对数秩检验（log-rank test）进行组间P值\n\n2.3.1 非分层对数秩检验\n\n\n2.3.2 分层对数秩检验\nproc lifetest data=adtte method=KM;\n  time aval*cnsr(1);\n  strata trt01pn / test=logrank;\n  ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;\nrun;\n\n  *优效性 单侧p值,group=\"P\"中的P是对照组 *;\n proc sql noprint;\n   select logrank into :rank1 from stats1 where grpn=2; ***group=\"P\";\n quit;\n\n\ndata homtests2;\n    set homtests1; \n  /*对照组好*/\n    if &rank1.&lt;0 then p_oneside=1-probchisq/2;   /*单侧P值*/\n  /*试验组好*/\n  if &rank1.&gt;=0 then p_oneside=probchisq/2;\n\n    if p_oneside&lt;0.0001 then pvalue=\"&lt;0.0001\";\n    else pvalue=strip(put(round(p_oneside,0.0001),8.4));\nrun;",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
+    "href": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
+    "title": "统计方法",
+    "section": "2.4 Cox比例风险模型评估组间HR及95% CI",
+    "text": "2.4 Cox比例风险模型评估组间HR及95% CI\n\n2.4.1 非分层Cox比例风险模型\n\n\n2.4.2 分层Cox比例风险模型",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#pfs随访时间",
+    "href": "oncology/statistics.html#pfs随访时间",
+    "title": "统计方法",
+    "section": "2.5 PFS随访时间",
+    "text": "2.5 PFS随访时间",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/statistics.html#参数说明",
+    "href": "oncology/statistics.html#参数说明",
+    "title": "统计方法",
+    "section": "3.1 参数说明",
+    "text": "3.1 参数说明",
+    "crumbs": [
+      "实体瘤",
+      "统计方法"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html",
+    "href": "oncology/oncology.html",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "Response Evaluation Criteria in Solid Tumors (RECIST) 1.1是实体瘤疗效评估的标准方法，主要用于评估肿瘤对治疗的反应。RECIST 1.1定义了肿瘤的测量方法、评估时间点以及不同疗效类别的标准。\n实体瘤评估的具体过程：\n1. 基线评估：在治疗开始前，对患者的肿瘤进行全面评估，选定一定数量的靶病灶和非靶病灶，计算所有靶病灶的直径和。对应CRF中的1.肿瘤评估_靶病灶（筛选期），2.肿瘤评估_非靶病灶（筛选期）两个页面。\n2. 肿瘤评估：在治疗过程中，按照预定的时间点对患者进行评估，如靶病灶的径长、直径和，非靶病灶的状态以及是否出现新病灶等。对应CRF中的1.肿瘤评估_靶病灶，2.肿瘤评估_非靶病灶，3.肿瘤评估_新病灶三个页面。\n3. 总体评估：研究人员为每个时间点的靶病灶、非靶病灶、新病灶的肿瘤评估结果进行分类，同时结合所有病灶判断总的总体评估结果。后续说的总体评估结果都是指结合所有病灶得到的总体评估结果。对应CRF中的1.肿瘤评估_总体疗效一个页面。\n4. 最佳总体疗效（BOR）：根据3所有病灶总的总体评估结果，计算整个治疗过程中患者达到的最佳疗效类别，作为最终的疗效评估结果。CRF不收集BOR，通常由编程衍生。\n\n\n最佳时点疗效由CRF中肿瘤评估_总体疗效页面直接收集，不需要衍生计算。\n\n靶病灶评估\n\n基线无靶病灶\n完全缓解(CR)：所有靶病灶消失，淋巴结短径&lt;10mm。\n部分缓解(PR)：以基线为参照，靶病灶直径总和至少减少30%。\n疾病进展(PD)：以既往直径总和最小值作为参照，靶病灶直径总和至少增加20%，且增加的绝对值至少5mm。\n疾病稳定(SD)：既不满足PR也不满足PD的情况。\n无法评估(NE)：无法评估靶病灶的情况。\n\n非靶病灶评估\n\n基线无非靶病灶\n完全缓解(CR)：所有非靶病灶消失，且肿瘤标志物正常，淋巴结短径&lt;10mm。\n疾病进展(PD)：出现一个或多个新病灶，或非靶病灶明显恶化。\n非完全缓解/非疾病进展(Non-CR/Non-PD)：既不满足CR也不满足PD的情况。\n不可评估(NE)：无法评估非靶病灶的情况。\n\n新病灶评估\n\n有新病灶\n无新病灶\n\n总体评估（所有病灶总的总体评估结果）\n\n总体评估结果分两类，一类是基线存在靶病灶，另一类是基线无靶病灶。两种情况的总体评估判断规则如下表所示。\n\n\n\n\n\n\n\n\n基线存在靶病灶\n\n\n\n\n\n\n\n基线不存在靶病灶\n\n\n\n\n\n\n\n\n\n\n总体评估日期(Date of Response)始终基于影像学检查日期，而非CRF总体评估页面中收集的评估日期（可能不是实际的影像学检查日期而是研究者给出的判定日期）。如果针对特定访视的影像学检查在不同日期进行，若总体评估为疾病进展（PD），则总体评估日期为该访视内最早一次的影像学检查日期；否则为最晚的影像学检查日期。后续提及的肿瘤评估日期或总体评估日期，都是说的这个日期。\n最佳总体疗效（BOR）为基线后、疾病进展或新抗前最佳的总体评估结果。通常CRF不会直接收集，由编程计算。最佳总体疗效可分未确认的和未确认的两类。\n\n\n\n\n确认的最佳总体疗效判断规则如下：\n\nCR：在新抗或疾病进展前存在至少两次评估结果为CR，且两次评估之间至少间隔4周。\nPR：在新抗或疾病进展前存在至少两次评估结果为PR或更好（PR-CR,PR-PR），且两次评估之间至少间隔4周。PR-SD-PR能被确认为PR，若两个PR之间的间隔大于等于4周。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为CR、PR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为非完全缓解/非疾病进展或更优，但未被确认为CR、PR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为CR、PR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n值得注意的是，CR后面不能跟PR、SD。PR后面能跟一个SD，如PR-SD-PR可以被确认为PR。但PR-SD-SD-PR不能被确认为PR。若中间存在小于等于两个NE,这可被确认为PR，如PR-NR-PR,PR-NE-NE-PR,PR-SD-NE-PR,PR-NE-SD-PR等都可以被确认为PR。\n\n\n\n\n\n\n未确认的最佳总体疗效判断规则如下：\n\nuCR：在新抗或疾病进展前存在CR。\nuPR：在新抗或疾病进展前存在PR。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为uCR、uPR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他\n\n\n\n\n\n\n\n客观缓解率是指在特定分析集中BOR为CR或PR的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的ORR。\n\n\n\n疾病控制率是指在特定分析集中BOR为CR、PR或SD的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的DCR。\n\n\n\n临床获益率是指在特定分析集中BOR为CR、PR或SD持续至少T周的患者比例。（T通常设为12周）。也分为基于确认的BOR和未确认的BOR计算的两个版本的CBR。",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#时间点疗效time-point-response",
+    "href": "oncology/oncology.html#时间点疗效time-point-response",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "最佳时点疗效由CRF中肿瘤评估_总体疗效页面直接收集，不需要衍生计算。\n\n靶病灶评估\n\n基线无靶病灶\n完全缓解(CR)：所有靶病灶消失，淋巴结短径&lt;10mm。\n部分缓解(PR)：以基线为参照，靶病灶直径总和至少减少30%。\n疾病进展(PD)：以既往直径总和最小值作为参照，靶病灶直径总和至少增加20%，且增加的绝对值至少5mm。\n疾病稳定(SD)：既不满足PR也不满足PD的情况。\n无法评估(NE)：无法评估靶病灶的情况。\n\n非靶病灶评估\n\n基线无非靶病灶\n完全缓解(CR)：所有非靶病灶消失，且肿瘤标志物正常，淋巴结短径&lt;10mm。\n疾病进展(PD)：出现一个或多个新病灶，或非靶病灶明显恶化。\n非完全缓解/非疾病进展(Non-CR/Non-PD)：既不满足CR也不满足PD的情况。\n不可评估(NE)：无法评估非靶病灶的情况。\n\n新病灶评估\n\n有新病灶\n无新病灶\n\n总体评估（所有病灶总的总体评估结果）\n\n总体评估结果分两类，一类是基线存在靶病灶，另一类是基线无靶病灶。两种情况的总体评估判断规则如下表所示。\n\n\n\n\n\n\n\n\n基线存在靶病灶\n\n\n\n\n\n\n\n基线不存在靶病灶",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#最佳总体疗效best-overall-response-bor",
+    "href": "oncology/oncology.html#最佳总体疗效best-overall-response-bor",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "总体评估日期(Date of Response)始终基于影像学检查日期，而非CRF总体评估页面中收集的评估日期（可能不是实际的影像学检查日期而是研究者给出的判定日期）。如果针对特定访视的影像学检查在不同日期进行，若总体评估为疾病进展（PD），则总体评估日期为该访视内最早一次的影像学检查日期；否则为最晚的影像学检查日期。后续提及的肿瘤评估日期或总体评估日期，都是说的这个日期。\n最佳总体疗效（BOR）为基线后、疾病进展或新抗前最佳的总体评估结果。通常CRF不会直接收集，由编程计算。最佳总体疗效可分未确认的和未确认的两类。\n\n\n\n\n确认的最佳总体疗效判断规则如下：\n\nCR：在新抗或疾病进展前存在至少两次评估结果为CR，且两次评估之间至少间隔4周。\nPR：在新抗或疾病进展前存在至少两次评估结果为PR或更好（PR-CR,PR-PR），且两次评估之间至少间隔4周。PR-SD-PR能被确认为PR，若两个PR之间的间隔大于等于4周。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为CR、PR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为非完全缓解/非疾病进展或更优，但未被确认为CR、PR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为CR、PR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n值得注意的是，CR后面不能跟PR、SD。PR后面能跟一个SD，如PR-SD-PR可以被确认为PR。但PR-SD-SD-PR不能被确认为PR。若中间存在小于等于两个NE,这可被确认为PR，如PR-NR-PR,PR-NE-NE-PR,PR-SD-NE-PR,PR-NE-SD-PR等都可以被确认为PR。\n\n\n\n\n\n\n未确认的最佳总体疗效判断规则如下：\n\nuCR：在新抗或疾病进展前存在CR。\nuPR：在新抗或疾病进展前存在PR。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为uCR、uPR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#客观缓解率overall-response-rate-orr",
+    "href": "oncology/oncology.html#客观缓解率overall-response-rate-orr",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "客观缓解率是指在特定分析集中BOR为CR或PR的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的ORR。",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#疾病控制率disease-control-rate-dcr",
+    "href": "oncology/oncology.html#疾病控制率disease-control-rate-dcr",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "疾病控制率是指在特定分析集中BOR为CR、PR或SD的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的DCR。",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#临床获益率clinical-benefit-rate-cbr",
+    "href": "oncology/oncology.html#临床获益率clinical-benefit-rate-cbr",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "临床获益率是指在特定分析集中BOR为CR、PR或SD持续至少T周的患者比例。（T通常设为12周）。也分为基于确认的BOR和未确认的BOR计算的两个版本的CBR。",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/adtr.html",
+    "href": "oncology/adtr.html",
+    "title": "ADTR",
+    "section": "",
+    "text": "ADTR数据集存放病灶信息，如靶病灶径长、靶病灶直径和、非靶病状态、是否有新病灶等。在出瀑布图时会被用到。\n\n\n\n\n\n\n\n\n\n变量名\n描述\n\n\n\n\nUSUBJID、ASEQ、TRGRPID、TRLNKID、TULOC\n\n\n\nPARAM、PARAMCD\nLDIAM-最长径，LPERP-最短径，TUMSTATE-肿瘤状态，DIAMETER-直径，ASUMDIAM-分析用靶病灶直径总和，SUMDIAM-直径总和。\n按照USUBJID+TREVAL+VISIT，输出一条分析用靶病灶直径和\n\n\nPARAMTYP\n当PARAMCD为ASUMDIAM时，PARAMTYP=衍生\n\n\nPARCAT1\nTRCAT(淋巴结、非淋巴结）\n\n\nAVAL、AVALC\n\n\n\nBASE、BASEC\n\n\n\nCHG\n\n\n\nPCHG\n\n\n\nTRDTC、ADT、ADY\nASUMDIAM的ADT为各访视靶病灶影像学检查日期的最大值\n\n\nVISIT、VISITNUM\n\n\n\nABLFL\n首次给药前最后一次非空检测\n\n\nANL01FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若发生在首次疾病进展和新抗肿瘤当天或之前，则赋值’是’\n\n\nANL02FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若该条记录对应的靶病灶评估结果有效，则赋值’是’\n\n\nANL03FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)且ANL01FL和ANL02FL为’是’的记录，选择基线后最早出现的最小PCHG值。\n\n\nTRMETHOD、TREVAL\n\n\n\nANADIR\n分析用先前最小直径和\n\n\nNADIRCHG\n相对最小直径和变化值\n\n\nPCNSD\n相对最小直径和变化百分比\n\n\n\n需要注意的是，除了EDC中直接收集的靶病灶直径和外，在ADTR中我们还会额外编程衍生\"分析用靶病灶直径和\"。程序员在编程时，最好核对下直接收集的和程序衍生的靶病灶直径和结果是否一致。",
+    "crumbs": [
+      "实体瘤",
+      "ADTR"
+    ]
+  },
+  {
+    "objectID": "oncology/adtr.html#adtr包含的变量",
+    "href": "oncology/adtr.html#adtr包含的变量",
+    "title": "ADTR",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nUSUBJID、ASEQ、TRGRPID、TRLNKID、TULOC\n\n\n\nPARAM、PARAMCD\nLDIAM-最长径，LPERP-最短径，TUMSTATE-肿瘤状态，DIAMETER-直径，ASUMDIAM-分析用靶病灶直径总和，SUMDIAM-直径总和。\n按照USUBJID+TREVAL+VISIT，输出一条分析用靶病灶直径和\n\n\nPARAMTYP\n当PARAMCD为ASUMDIAM时，PARAMTYP=衍生\n\n\nPARCAT1\nTRCAT(淋巴结、非淋巴结）\n\n\nAVAL、AVALC\n\n\n\nBASE、BASEC\n\n\n\nCHG\n\n\n\nPCHG\n\n\n\nTRDTC、ADT、ADY\nASUMDIAM的ADT为各访视靶病灶影像学检查日期的最大值\n\n\nVISIT、VISITNUM\n\n\n\nABLFL\n首次给药前最后一次非空检测\n\n\nANL01FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若发生在首次疾病进展和新抗肿瘤当天或之前，则赋值’是’\n\n\nANL02FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若该条记录对应的靶病灶评估结果有效，则赋值’是’\n\n\nANL03FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)且ANL01FL和ANL02FL为’是’的记录，选择基线后最早出现的最小PCHG值。\n\n\nTRMETHOD、TREVAL\n\n\n\nANADIR\n分析用先前最小直径和\n\n\nNADIRCHG\n相对最小直径和变化值\n\n\nPCNSD\n相对最小直径和变化百分比\n\n\n\n需要注意的是，除了EDC中直接收集的靶病灶直径和外，在ADTR中我们还会额外编程衍生\"分析用靶病灶直径和\"。程序员在编程时，最好核对下直接收集的和程序衍生的靶病灶直径和结果是否一致。",
+    "crumbs": [
+      "实体瘤",
+      "ADTR"
+    ]
+  },
+  {
+    "objectID": "oncology/addates.html",
+    "href": "oncology/addates.html",
+    "title": "ADDATES",
+    "section": "",
+    "text": "1 ADDATES介绍\nADDATES是一个专门用于记录与肿瘤评估相关的日期变量的数据集。它包含了受试者的用药日期、随机化日期、影像学检查日期、疾病进展日期等多个关键时间点。这些日期变量对于计算无进展生存期（PFS）等重要终点指标至关重要。\n\n\n1.1 ADDATES中包含的变量\n\n\n\n变量名\n描述\n\n\n\n\nUSUBJID、ASEQ\n\n\n\nADT\n日期\n\n\nADTDESC\n日期描述\n\n\nADTDECD\n日期描述编号\n\n\nADY\n分析相对日\n\n\nRSEVAL\n评估者\n\n\n\n\n\n1.2 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述\n\n\n\n\n\n\n\n\nADTDESC\nADTDESCD\nADT\n\n\n\n\n受试者水平-USUBJID\n\n\n\n\n首次用药日期\nTRTSDT\nADSL.TRTSDT\n\n\n随机化日期\nRANDDT\nADSL.RANDDT\n\n\n新抗肿瘤治疗日期\nNCTXSDT\nADSL.NCTXSDT\n\n\n研究结束日期\nEOSDT\nADSL.EOSDT\n\n\n已知最后生存日期\nLSTALVTD\nADSL.LSTALVTD\n\n\n死亡日期\nDTHDT\nADSL.DTHDT\n\n\n受试者+评估者-USUBJID+RSEVAL\n\n\n\n\n基线肿瘤检查日期\nTEVALDT\n基线前末次有效的影像学检查日期（TR.TRDTC）\n\n\n每个受试者+评估者+评估标准-USUBJID+RSEVAL+RSCAT\n\n\n\n\n基线后首次有效的肿瘤评估影像学检查日期\nFEVALDT\n基线后、新抗前首次出现的有效的肿瘤总体评估日期\n\n\n首次疾病进展日期\nPDDT\n基线后最早的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC = “PD”\n\n\n新抗肿瘤治疗（若有）及疾病进展（若有）前的末次可评估影像学检查日期\nLINTERDT\n取基线后NCTXSDT(≤)和PDDT(&lt;)之前最晚的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC ≠ “NE”等非有效值评估\n\n\n首次客观缓解（经确认的）日期\nCRUTDT\nADRS.ADT，当 ADRS.ANL12FL = “是”\n\n\n首次客观缓解（未确认的）日期\nURUTDT\nADRS.ADT，当 ADRS.ANL22FL = “是”",
+    "crumbs": [
+      "实体瘤",
+      "ADDATES"
+    ]
+  },
+  {
+    "objectID": "lb/lb.html",
+    "href": "lb/lb.html",
+    "title": "LB",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nUSUBJID\\ASEQ\\LBSEQ\n\n\n\nPARAM\\PARAMCD\\PARAMN\n\n\n\nPARAMTYP\n对于衍生的观测，PARAMTYP=“衍生”\n\n\nPARCAT1\nLB.LBCAT\n\n\nAVAL\\AVALC\nLB.LBSTRESN,若包含&lt;,&gt;号，提取数值部分\n\n\nWAYSHIFT\n低、高、双向（毒性方向参数指示符）\n\n\nATOXGRL/ATOXGRLN/ATOXDSCL\n分析毒性等级-低\n\n\nATOXGRH/ATOXGRHN/ATOXDSCH\n分析毒性等级-高\n\n\nBTOXGRL/BTOXGRLN\n基线分析毒性等级-低\n\n\nBTOXGRH/BTOXGRHN\n基线分析毒性等级-高\n\n\nBASE\\BASEC\n\n\n\nCHG\\PCHG\n\n\n\nANRIND\nLB.LBNRIND（参考范围指示符）\n\n\nBNRIND\n基线参考范围指示符\n\n\nANRLO\nLB.LBSTRNLO\n\n\nANRHI\nLB.LBSTNRHI\n\n\nLBDTC\\ADT\\ADY\n\n\n\nVISIT\\VISITNUM\n\n\n\nAVISIT\\AVISITN\n\n\n\nABLFL\n基线记录\n\n\nAPBLFL\n基线后记录\n\n\nLBCLSIG\\LBCLSIGN\n临床意义\n\n\nBASESIG\\BASESIGN\n基线临床意义\n\n\nANLXXFL"
+  },
+  {
+    "objectID": "lb/lb.html#adam.adlb",
+    "href": "lb/lb.html#adam.adlb",
+    "title": "LB",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nUSUBJID\\ASEQ\\LBSEQ\n\n\n\nPARAM\\PARAMCD\\PARAMN\n\n\n\nPARAMTYP\n对于衍生的观测，PARAMTYP=“衍生”\n\n\nPARCAT1\nLB.LBCAT\n\n\nAVAL\\AVALC\nLB.LBSTRESN,若包含&lt;,&gt;号，提取数值部分\n\n\nWAYSHIFT\n低、高、双向（毒性方向参数指示符）\n\n\nATOXGRL/ATOXGRLN/ATOXDSCL\n分析毒性等级-低\n\n\nATOXGRH/ATOXGRHN/ATOXDSCH\n分析毒性等级-高\n\n\nBTOXGRL/BTOXGRLN\n基线分析毒性等级-低\n\n\nBTOXGRH/BTOXGRHN\n基线分析毒性等级-高\n\n\nBASE\\BASEC\n\n\n\nCHG\\PCHG\n\n\n\nANRIND\nLB.LBNRIND（参考范围指示符）\n\n\nBNRIND\n基线参考范围指示符\n\n\nANRLO\nLB.LBSTRNLO\n\n\nANRHI\nLB.LBSTNRHI\n\n\nLBDTC\\ADT\\ADY\n\n\n\nVISIT\\VISITNUM\n\n\n\nAVISIT\\AVISITN\n\n\n\nABLFL\n基线记录\n\n\nAPBLFL\n基线后记录\n\n\nLBCLSIG\\LBCLSIGN\n临床意义\n\n\nBASESIG\\BASESIGN\n基线临床意义\n\n\nANLXXFL"
+  },
+  {
+    "objectID": "ex/ex.html",
+    "href": "ex/ex.html",
+    "title": "药物暴露",
+    "section": "",
+    "text": "给药记录\n\n\n\n字段名称\n字段值\n\n\n\n\n是否给药\n\n\n\n如否，未给药原因\n不良事件、永久停药、其他\n\n\n未给药原因为不良事件，请选择相关不良事件（可多选）\n\n\n\n其他未给药原因\n\n\n\n是否延迟给药\n\n\n\n如是，延迟给药原因\n不良事件、其他\n\n\n延迟给药原因为不良事件，请选择相关不良事件（可多选）\n\n\n\n其他延迟给药原因\n\n\n\n是否有剂量调整\n\n\n\n剂量调整原因\n不良事件、其他\n\n\n剂量调整原因为不良事件，请选择相关不良事件（可多选）\n\n\n\n其他剂量调整原因描述\n\n\n\n计划给药剂量水平（mg/m^2）\n\n\n\n其他计划给药剂量水平（mg/m^2）\n\n\n\n计划给药总剂量（mg）\n\n\n\n实际给药总剂量（mg）\n\n\n\n若有其他与计划不一致的给药情况，请描述并提供原因\n\n\n\n给药开始日期/时间\n\n\n\n给药结束日期/时间\n\n\n\n给药过程是否中断\n\n\n\n给药中断原因\n不良事件、其他\n\n\n给药中断原因为不良事件，请选择相关不良事件（可多选 ）\n\n\n\n其他原因 ，请描述\n\n\n\n中断后药物处置\n\n\n\n其他处置 ，请描述",
+    "crumbs": [
+      "药物暴露"
+    ]
+  },
+  {
+    "objectID": "ex/ex.html#剂量减少",
+    "href": "ex/ex.html#剂量减少",
+    "title": "药物暴露",
+    "section": "3.1 剂量减少",
+    "text": "3.1 剂量减少\n\n若给药页面剂量调整原因等于不良事件，那么就会有一条对应的不良事件，且该不良事件对研究药物采取的措施为“剂量减少”。\n\n但如果项目有CUTOFF，可能会造成存在导致研究药物剂量减少的AE，但没有剂量调整的给药记录。原因是发生剂量调整的给药开始日期在CUTOFF后，但对应的AE是一条持续发生的，AE开始日期早于CUTOFF日期。例如：S0001 AESTDAT=2025-12-12 AEOUT=未好转/未缓解/持续 AEACN=剂量减少，但给药页面对应的是C5D1 EXSTDAT=2026-04-01 发生剂量减少，所以这条给药记录被删掉了。",
+    "crumbs": [
+      "药物暴露"
+    ]
+  },
+  {
+    "objectID": "ex/ex.html#延迟给药",
+    "href": "ex/ex.html#延迟给药",
+    "title": "药物暴露",
+    "section": "3.2 延迟给药",
+    "text": "3.2 延迟给药\n\n如果药物暴露页面记录了延迟给药原因为不良事件的记录，那对应不良事件页面会存在一条AE，但对研究药物采取的措施不一定为暂停用药，因为这条AE可能同时对应减少剂量和暂停用药。由于剂量减少同时是先发生的，所以对于同时存在减少剂量和暂停用药的AE，AEACN会记录减少剂量。\n如果存在一条AE，AEACN为暂停用药，药物暴露页面也可能不会有对应的给药记录，因为可能没有到给药周期，所以不会录入。\n\n综上，延迟给药/暂停用药对不上是可以接受的，但剂量减少需要注意，在无CUTOFF下，通过两个数据源计算的例数应该保持一致。",
+    "crumbs": [
+      "药物暴露"
+    ]
+  },
+  {
+    "objectID": "clinical-programming.html",
+    "href": "clinical-programming.html",
+    "title": "你在忙什么？",
+    "section": "",
+    "text": "你在忙什么？\n\n\n🧬 实体瘤\nRECIST 1.1, BOR, PFS, DOR\n进入 →\n\n\n💊 药物暴露\nEC、EX\n进入 →\n\n\n🧪 药代动力学\nPK，PP，密集采血\n进入 →\n\n\n📚 法规\nDIPP\n进入 →"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Zoey",
+    "section": "",
+    "text": "临床试验SAS程序员\n\n\n\n上海吃饭大学 | 应用统计学 | 06 2021 - 09 2023\n\n\n\n内资药厂 | SAS程序员 | 09 2023 - present\n\n\n\n基于 R / Shiny 构建的临床试验交互式分析看板，用于： - 👥 巴啦啦1 - 📊 巴啦啦2"
+  },
+  {
+    "objectID": "index.html#个人简介",
+    "href": "index.html#个人简介",
+    "title": "Zoey",
+    "section": "",
+    "text": "临床试验SAS程序员"
+  },
+  {
+    "objectID": "index.html#教育背景",
+    "href": "index.html#教育背景",
+    "title": "Zoey",
+    "section": "",
+    "text": "上海吃饭大学 | 应用统计学 | 06 2021 - 09 2023"
+  },
+  {
+    "objectID": "index.html#工作经验",
+    "href": "index.html#工作经验",
+    "title": "Zoey",
+    "section": "",
+    "text": "内资药厂 | SAS程序员 | 09 2023 - present"
+  },
+  {
+    "objectID": "index.html#项目展示",
+    "href": "index.html#项目展示",
+    "title": "Zoey",
+    "section": "",
+    "text": "基于 R / Shiny 构建的临床试验交互式分析看板，用于： - 👥 巴啦啦1 - 📊 巴啦啦2"
+  },
+  {
+    "objectID": "lb/lb_ctcae.html",
+    "href": "lb/lb_ctcae.html",
+    "title": "Lab值对应的CTCAE等级",
+    "section": "",
+    "text": "1 不良事件、不良反应\n不良事件，指受试者接受试验用药品后出现的所有不良医学事件，不一定与试验用药品有因果关系。 药物不良反应，指临床试验中发生的任何与试验用药品可能有关的医学时间，与试验用药品有合理的因果关系。 # 2 严重程度 两种记录方式： 1. 轻度、中度、重度 2. 1级、2级、3级、4级、5级 ## 常见不良事件评价标准（CTCAE） ≥3级看着都是SAE?? 后续整理下思路"
+  },
+  {
+    "objectID": "oncology/adtte.html",
+    "href": "oncology/adtte.html",
+    "title": "ADTTE",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\n\nUSUBJID、ASEQ\n\n\n\n\nPARCAT1\n参数类别1\nRSCIST 1.1\n\n\nPARAM\n参数\n无进展生存期（月）\n\n\nPARAMCD\n参数简称\nPFS、OS、TTR、DOR\n\n\nAVAL\n分析值\n(ADT-STARTDT+1)/30.4375\n\n\nSTARTDT\n事件时间起点日期\n给药日期、开始日期\n\n\nCNSR\n删失\n0,1\n\n\nEVNTDESC\n事件或删失描述\n疾病进展日期、开始新抗肿瘤治疗…..\n\n\nCNSDTDSC\n删失日期描述\n新抗肿瘤前末次肿瘤评估日期…..\n\n\nADT\n日期-分析用\n疾病进展日期、新抗肿瘤前末次肿瘤评估日期.\n\n\nRSEVAL\n评估者\n研究者、IRC",
+    "crumbs": [
+      "实体瘤",
+      "ADTTE"
+    ]
+  },
+  {
+    "objectID": "oncology/adtte.html#pfs事件删失判断流程图",
+    "href": "oncology/adtte.html#pfs事件删失判断流程图",
+    "title": "ADTTE",
+    "section": "2.1 PFS事件/删失判断流程图",
+    "text": "2.1 PFS事件/删失判断流程图\n\n\n\n\n\nflowchart TD\n  A[是否有基线及基线后肿评?] -- 否 --&gt; B1[是否死亡?]\n  A[是否有基线及基线后肿评?] -- 是 --&gt; B2[是否PD?]\n\n  B1[是否死亡?] -- 否 --&gt; CNSR01[CNSR01]\n  B1[是否死亡?] -- 是 --&gt; C1[死亡前是否发生新抗?]\n  C1[死亡前是否发生新抗?] -- 否 --&gt; C2[死亡距离开始日期是否超过两个肿评间隔?]\n  C1[死亡前是否发生新抗?] -- 是 --&gt; CNSR02[CNSR02]\n  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT01[EVNT01]\n  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR03[CNSR03]\n\n  B2[是否PD?] -- 否 --&gt; D2[是否死亡?]\n  B2[是否PD?] -- 是 --&gt; D1[PD前是否发生新抗?]\n  D1[PD前是否发生新抗?] -- 否 --&gt; D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?]\n  D1[PD前是否发生新抗?] -- 是 --&gt; CNSR04[CNSR04]\n  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT03[EVNT03]\n  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR05[CNSR05]\n\n  D2[是否死亡?] -- 否 --&gt; E2[是否发生新抗?]\n  D2[是否死亡?] -- 是 --&gt; E1[死亡前是否发生新抗?]\n\n  E1[死亡前是否发生新抗?] -- 否 --&gt; E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?]\n  E1[死亡前是否发生新抗?] -- 是 --&gt; CNSR06[CNSR06]\n\n  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT02[EVNT02]\n  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR07[CNSR07]\n  E2[是否发生新抗?] -- 否 --&gt; E4[是否退出试验?]\n  E2[是否发生新抗?] -- 是 --&gt; CNSR10[CNSR10]\n  E4[是否退出试验?] -- 否 --&gt; CNSR08[CNSR08]\n  E4[是否退出试验?] -- 是 --&gt; CNSR09[CNSR09]\n  \n\n  %% 点击跳转\n  click EVNT01 \"#evnt01\"\n  click EVNT02 \"#evnt02\"\n  click EVNT03 \"#evnt03\"\n\n  click CNSR01 \"#cnsr01\"\n  click CNSR02 \"#cnsr02\"\n  click CNSR03 \"#cnsr03\"\n  click CNSR04 \"#cnsr04\"\n  click CNSR05 \"#cnsr05\"\n  click CNSR06 \"#cnsr06\"\n  click CNSR07 \"#cnsr07\"\n  click CNSR08 \"#cnsr08\"\n  click CNSR09 \"#cnsr09\"\n  click CNSR10 \"#cnsr10\"\n  %% 样式\n  classDef event fill:#A8E6A3,stroke:#2E7D32,stroke-width:2px;\n  classDef censor fill:#FFE082,stroke:#EF6C00,stroke-width:2px;\n\n  class EVNT01,EVNT02,EVNT03,EVNT04 event;\n  class CNSR01,CNSR02,CNSR03,CNSR04,CNSR05,CNSR06,CNSR07,CNSR08,CNSR09,CNSR10 censor;",
+    "crumbs": [
+      "实体瘤",
+      "ADTTE"
+    ]
+  },
+  {
+    "objectID": "oncology/adtte.html#pfs事件删失详细说明",
+    "href": "oncology/adtte.html#pfs事件删失详细说明",
+    "title": "ADTTE",
+    "section": "2.2 PFS事件/删失详细说明",
+    "text": "2.2 PFS事件/删失详细说明\n下文代码中用的日期在ADDATES 1.2章节中有详细说明，RS2DUR为两次肿评间隔天数，在PFS 1.2.2章节有详细介绍。\n\nEVNT01\n\n逻辑\n\n无基线或无基线后评估\n未发生PD\n未开始新抗肿治疗\n死亡\n死亡距离开始日期未超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(PDDT) & is.na(NCTXSDT) & !is.na(DTHDT) & (DTHDT - STARTDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT02\n\n逻辑\n\n有基线和基线后评估\n未PD\n死亡\n死亡前未发生新抗\n死亡距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT03\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = PDDT\nEVNTDESC = 疾病进展\n\n\n\n\nCNSR01\n\n逻辑\n\n无基线或无基线后评估\n未发生死亡\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(DTHDT)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 无基线或基线后影像学检查\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR02\n\n逻辑\n\n无基线或无基线后评估\n死亡\n死亡前发生新抗\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR03\n\n逻辑\n\n无基线或无基线后评估\n死亡\n未发生新抗\n死亡距离开始日期超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & is.na(NCTXSDT) & (DTHDT - STARTDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR04\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & !is.na(NCTXSDT) & NCTXSDT &lt; PDDT\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期/新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR05\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = STARTDT/疾病进展前的末次可评价影像学检查日期\n\n\n\n\nCNSR06\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR07\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前未发生新抗\n死亡距离上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 死亡前的末次可评价影像学检查日期\n\n\n\n\nCNSR08\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n未退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & is.na(EOSDT)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 继续试验，无事发生\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR09\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(EOSDT)\n\n\n变量值\n\nADT = EOSDT\nEVNTDESC = 失访/撤回知情同意/其他\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR10\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(NCTXSDT)\n\n\n变量值\n\nADT = LINTERDT/STARTDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期/开始日期",
+    "crumbs": [
+      "实体瘤",
+      "ADTTE"
     ]
   },
   {
@@ -142,313 +479,41 @@
     ]
   },
   {
-    "objectID": "oncology/adtte.html",
-    "href": "oncology/adtte.html",
-    "title": "ADTTE",
-    "section": "",
-    "text": "变量名\n描述\n\n\n\n\n\nUSUBJID、ASEQ\n\n\n\n\nPARCAT1\n参数类别1\nRSCIST 1.1\n\n\nPARAM\n参数\n无进展生存期（月）\n\n\nPARAMCD\n参数简称\nPFS、OS、TTR、DOR\n\n\nAVAL\n分析值\n(ADT-STARTDT+1)/30.4375\n\n\nSTARTDT\n事件时间起点日期\n给药日期、开始日期\n\n\nCNSR\n删失\n0,1\n\n\nEVNTDESC\n事件或删失描述\n疾病进展日期、开始新抗肿瘤治疗…..\n\n\nCNSDTDSC\n删失日期描述\n新抗肿瘤前末次肿瘤评估日期…..\n\n\nADT\n日期-分析用\n疾病进展日期、新抗肿瘤前末次肿瘤评估日期.\n\n\nRSEVAL\n评估者\n研究者、IRC",
-    "crumbs": [
-      "实体瘤",
-      "ADTTE"
-    ]
-  },
-  {
-    "objectID": "oncology/adtte.html#pfs事件删失判断流程图",
-    "href": "oncology/adtte.html#pfs事件删失判断流程图",
-    "title": "ADTTE",
-    "section": "2.1 PFS事件/删失判断流程图",
-    "text": "2.1 PFS事件/删失判断流程图\n\n\n\n\n\nflowchart TD\n  A[是否有基线及基线后肿评?] -- 否 --&gt; B1[是否死亡?]\n  A[是否有基线及基线后肿评?] -- 是 --&gt; B2[是否PD?]\n\n  B1[是否死亡?] -- 否 --&gt; CNSR01[CNSR01]\n  B1[是否死亡?] -- 是 --&gt; C1[死亡前是否发生新抗?]\n  C1[死亡前是否发生新抗?] -- 否 --&gt; C2[死亡距离开始日期是否超过两个肿评间隔?]\n  C1[死亡前是否发生新抗?] -- 是 --&gt; CNSR02[CNSR02]\n  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT01[EVNT01]\n  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR03[CNSR03]\n\n  B2[是否PD?] -- 否 --&gt; D2[是否死亡?]\n  B2[是否PD?] -- 是 --&gt; D1[PD前是否发生新抗?]\n  D1[PD前是否发生新抗?] -- 否 --&gt; D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?]\n  D1[PD前是否发生新抗?] -- 是 --&gt; CNSR04[CNSR04]\n  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT03[EVNT03]\n  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR05[CNSR05]\n\n  D2[是否死亡?] -- 否 --&gt; E2[是否发生新抗?]\n  D2[是否死亡?] -- 是 --&gt; E1[死亡前是否发生新抗?]\n\n  E1[死亡前是否发生新抗?] -- 否 --&gt; E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?]\n  E1[死亡前是否发生新抗?] -- 是 --&gt; CNSR06[CNSR06]\n\n  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT02[EVNT02]\n  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR07[CNSR07]\n  E2[是否发生新抗?] -- 否 --&gt; E4[是否退出试验?]\n  E2[是否发生新抗?] -- 是 --&gt; CNSR10[CNSR10]\n  E4[是否退出试验?] -- 否 --&gt; CNSR08[CNSR08]\n  E4[是否退出试验?] -- 是 --&gt; CNSR09[CNSR09]\n  \n\n  %% 点击跳转\n  click EVNT01 \"#evnt01\"\n  click EVNT02 \"#evnt02\"\n  click EVNT03 \"#evnt03\"\n\n  click CNSR01 \"#cnsr01\"\n  click CNSR02 \"#cnsr02\"\n  click CNSR03 \"#cnsr03\"\n  click CNSR04 \"#cnsr04\"\n  click CNSR05 \"#cnsr05\"\n  click CNSR06 \"#cnsr06\"\n  click CNSR07 \"#cnsr07\"\n  click CNSR08 \"#cnsr08\"\n  click CNSR09 \"#cnsr09\"\n  click CNSR10 \"#cnsr10\"\n  %% 样式\n  classDef event fill:#A8E6A3,stroke:#2E7D32,stroke-width:2px;\n  classDef censor fill:#FFE082,stroke:#EF6C00,stroke-width:2px;\n\n  class EVNT01,EVNT02,EVNT03,EVNT04 event;\n  class CNSR01,CNSR02,CNSR03,CNSR04,CNSR05,CNSR06,CNSR07,CNSR08,CNSR09,CNSR10 censor;",
-    "crumbs": [
-      "实体瘤",
-      "ADTTE"
-    ]
-  },
-  {
-    "objectID": "oncology/adtte.html#pfs事件删失详细说明",
-    "href": "oncology/adtte.html#pfs事件删失详细说明",
-    "title": "ADTTE",
-    "section": "2.2 PFS事件/删失详细说明",
-    "text": "2.2 PFS事件/删失详细说明\n下文代码中用的日期在ADDATES 1.2章节中有详细说明，RS2DUR为两次肿评间隔天数，在PFS 1.2.2章节有详细介绍。\n\nEVNT01\n\n逻辑\n\n无基线或无基线后评估\n未发生PD\n未开始新抗肿治疗\n死亡\n死亡距离开始日期未超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(PDDT) & is.na(NCTXSDT) & !is.na(DTHDT) & (DTHDT - STARTDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT02\n\n逻辑\n\n有基线和基线后评估\n未PD\n死亡\n死亡前未发生新抗\n死亡距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT03\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = PDDT\nEVNTDESC = 疾病进展\n\n\n\n\nCNSR01\n\n逻辑\n\n无基线或无基线后评估\n未发生死亡\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(DTHDT)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 无基线或基线后影像学检查\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR02\n\n逻辑\n\n无基线或无基线后评估\n死亡\n死亡前发生新抗\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR03\n\n逻辑\n\n无基线或无基线后评估\n死亡\n未发生新抗\n死亡距离开始日期超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & is.na(NCTXSDT) & (DTHDT - STARTDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR04\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & !is.na(NCTXSDT) & NCTXSDT &lt; PDDT\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期/新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR05\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = STARTDT/疾病进展前的末次可评价影像学检查日期\n\n\n\n\nCNSR06\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR07\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前未发生新抗\n死亡距离上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 死亡前的末次可评价影像学检查日期\n\n\n\n\nCNSR08\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n未退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & is.na(EOSDT)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 继续试验，无事发生\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR09\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(EOSDT)\n\n\n变量值\n\nADT = EOSDT\nEVNTDESC = 失访/撤回知情同意/其他\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR10\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(NCTXSDT)\n\n\n变量值\n\nADT = LINTERDT/STARTDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期/开始日期",
-    "crumbs": [
-      "实体瘤",
-      "ADTTE"
-    ]
-  },
-  {
-    "objectID": "knowledge_base.html",
-    "href": "knowledge_base.html",
-    "title": "你在忙什么？",
-    "section": "",
-    "text": "你在忙什么？\n\n\n🧬 实体瘤\nRECIST 1.1, BOR, PFS, DOR\n进入 →\n\n\n💊 药物暴露\nEC、EX\n进入 →\n\n\n🧪 药代动力学\nPK，PP，密集采血\n进入 →"
-  },
-  {
-    "objectID": "ex/ex.html",
-    "href": "ex/ex.html",
-    "title": "药物暴露",
-    "section": "",
-    "text": "给药记录\n\n\n\n字段名称\n字段值\n\n\n\n\n是否给药\n\n\n\n如否，未给药原因\n不良事件、永久停药、其他\n\n\n未给药原因为不良事件，请选择相关不良事件（可多选）\n\n\n\n其他未给药原因\n\n\n\n是否延迟给药\n\n\n\n如是，延迟给药原因\n不良事件、其他\n\n\n延迟给药原因为不良事件，请选择相关不良事件（可多选）\n\n\n\n其他延迟给药原因\n\n\n\n是否有剂量调整\n\n\n\n剂量调整原因\n不良事件、其他\n\n\n剂量调整原因为不良事件，请选择相关不良事件（可多选）\n\n\n\n其他剂量调整原因描述\n\n\n\n计划给药剂量水平（mg/m^2）\n\n\n\n其他计划给药剂量水平（mg/m^2）\n\n\n\n计划给药总剂量（mg）\n\n\n\n实际给药总剂量（mg）\n\n\n\n若有其他与计划不一致的给药情况，请描述并提供原因\n\n\n\n给药开始日期/时间\n\n\n\n给药结束日期/时间\n\n\n\n给药过程是否中断\n\n\n\n给药中断原因\n不良事件、其他\n\n\n给药中断原因为不良事件，请选择相关不良事件（可多选 ）\n\n\n\n其他原因 ，请描述\n\n\n\n中断后药物处置\n\n\n\n其他处置 ，请描述",
-    "crumbs": [
-      "药物暴露"
-    ]
-  },
-  {
-    "objectID": "ex/ex.html#剂量减少",
-    "href": "ex/ex.html#剂量减少",
-    "title": "药物暴露",
-    "section": "3.1 剂量减少",
-    "text": "3.1 剂量减少\n\n若给药页面剂量调整原因等于不良事件，那么就会有一条对应的不良事件，且该不良事件对研究药物采取的措施为“剂量减少”。\n\n但如果项目有CUTOFF，可能会造成存在导致研究药物剂量减少的AE，但没有剂量调整的给药记录。原因是发生剂量调整的给药开始日期在CUTOFF后，但对应的AE是一条持续发生的，AE开始日期早于CUTOFF日期。例如：S0001 AESTDAT=2025-12-12 AEOUT=未好转/未缓解/持续 AEACN=剂量减少，但给药页面对应的是C5D1 EXSTDAT=2026-04-01 发生剂量减少，所以这条给药记录被删掉了。",
-    "crumbs": [
-      "药物暴露"
-    ]
-  },
-  {
-    "objectID": "ex/ex.html#延迟给药",
-    "href": "ex/ex.html#延迟给药",
-    "title": "药物暴露",
-    "section": "3.2 延迟给药",
-    "text": "3.2 延迟给药\n\n如果药物暴露页面记录了延迟给药原因为不良事件的记录，那对应不良事件页面会存在一条AE，但对研究药物采取的措施不一定为暂停用药，因为这条AE可能同时对应减少剂量和暂停用药。由于剂量减少同时是先发生的，所以对于同时存在减少剂量和暂停用药的AE，AEACN会记录减少剂量。\n如果存在一条AE，AEACN为暂停用药，药物暴露页面也可能不会有对应的给药记录，因为可能没有到给药周期，所以不会录入。\n\n综上，延迟给药/暂停用药对不上是可以接受的，但剂量减少需要注意，在无CUTOFF下，通过两个数据源计算的例数应该保持一致。",
-    "crumbs": [
-      "药物暴露"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Zoey",
-    "section": "",
-    "text": "临床试验SAS程序员\n\n\n\n上海吃饭大学 | 应用统计学 | 06 2021 - 09 2023\n\n\n\n内资药厂 | SAS程序员 | 09 2023 - present\n\n\n\n基于 R / Shiny 构建的临床试验交互式分析看板，用于： - 👥 巴啦啦1 - 📊 巴啦啦2"
-  },
-  {
-    "objectID": "index.html#个人简介",
-    "href": "index.html#个人简介",
-    "title": "Zoey",
-    "section": "",
-    "text": "临床试验SAS程序员"
-  },
-  {
-    "objectID": "index.html#教育背景",
-    "href": "index.html#教育背景",
-    "title": "Zoey",
-    "section": "",
-    "text": "上海吃饭大学 | 应用统计学 | 06 2021 - 09 2023"
-  },
-  {
-    "objectID": "index.html#工作经验",
-    "href": "index.html#工作经验",
-    "title": "Zoey",
-    "section": "",
-    "text": "内资药厂 | SAS程序员 | 09 2023 - present"
-  },
-  {
-    "objectID": "index.html#项目展示",
-    "href": "index.html#项目展示",
-    "title": "Zoey",
-    "section": "",
-    "text": "基于 R / Shiny 构建的临床试验交互式分析看板，用于： - 👥 巴啦啦1 - 📊 巴啦啦2"
-  },
-  {
-    "objectID": "oncology/addates.html",
-    "href": "oncology/addates.html",
-    "title": "ADDATES",
-    "section": "",
-    "text": "1 ADDATES介绍\nADDATES是一个专门用于记录与肿瘤评估相关的日期变量的数据集。它包含了受试者的用药日期、随机化日期、影像学检查日期、疾病进展日期等多个关键时间点。这些日期变量对于计算无进展生存期（PFS）等重要终点指标至关重要。\n\n\n1.1 ADDATES中包含的变量\n\n\n\n变量名\n描述\n\n\n\n\nUSUBJID、ASEQ\n\n\n\nADT\n日期\n\n\nADTDESC\n日期描述\n\n\nADTDECD\n日期描述编号\n\n\nADY\n分析相对日\n\n\nRSEVAL\n评估者\n\n\n\n\n\n1.2 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述\n\n\n\n\n\n\n\n\nADTDESC\nADTDESCD\nADT\n\n\n\n\n受试者水平-USUBJID\n\n\n\n\n首次用药日期\nTRTSDT\nADSL.TRTSDT\n\n\n随机化日期\nRANDDT\nADSL.RANDDT\n\n\n新抗肿瘤治疗日期\nNCTXSDT\nADSL.NCTXSDT\n\n\n研究结束日期\nEOSDT\nADSL.EOSDT\n\n\n已知最后生存日期\nLSTALVTD\nADSL.LSTALVTD\n\n\n死亡日期\nDTHDT\nADSL.DTHDT\n\n\n受试者+评估者-USUBJID+RSEVAL\n\n\n\n\n基线肿瘤检查日期\nTEVALDT\n基线前末次有效的影像学检查日期（TR.TRDTC）\n\n\n每个受试者+评估者+评估标准-USUBJID+RSEVAL+RSCAT\n\n\n\n\n基线后首次有效的肿瘤评估影像学检查日期\nFEVALDT\n基线后、新抗前首次出现的有效的肿瘤总体评估日期\n\n\n首次疾病进展日期\nPDDT\n基线后最早的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC = “PD”\n\n\n新抗肿瘤治疗（若有）及疾病进展（若有）前的末次可评估影像学检查日期\nLINTERDT\n取基线后NCTXSDT(≤)和PDDT(&lt;)之前最晚的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC ≠ “NE”等非有效值评估\n\n\n首次客观缓解（经确认的）日期\nCRUTDT\nADRS.ADT，当 ADRS.ANL12FL = “是”\n\n\n首次客观缓解（未确认的）日期\nURUTDT\nADRS.ADT，当 ADRS.ANL22FL = “是”",
-    "crumbs": [
-      "实体瘤",
-      "ADDATES"
-    ]
-  },
-  {
-    "objectID": "oncology/adtr.html",
-    "href": "oncology/adtr.html",
-    "title": "ADTR",
-    "section": "",
-    "text": "ADTR数据集存放病灶信息，如靶病灶径长、靶病灶直径和、非靶病状态、是否有新病灶等。在出瀑布图时会被用到。\n\n\n\n\n\n\n\n\n\n变量名\n描述\n\n\n\n\nUSUBJID、ASEQ、TRGRPID、TRLNKID、TULOC\n\n\n\nPARAM、PARAMCD\nLDIAM-最长径，LPERP-最短径，TUMSTATE-肿瘤状态，DIAMETER-直径，ASUMDIAM-分析用靶病灶直径总和，SUMDIAM-直径总和。\n按照USUBJID+TREVAL+VISIT，输出一条分析用靶病灶直径和\n\n\nPARAMTYP\n当PARAMCD为ASUMDIAM时，PARAMTYP=衍生\n\n\nPARCAT1\nTRCAT(淋巴结、非淋巴结）\n\n\nAVAL、AVALC\n\n\n\nBASE、BASEC\n\n\n\nCHG\n\n\n\nPCHG\n\n\n\nTRDTC、ADT、ADY\nASUMDIAM的ADT为各访视靶病灶影像学检查日期的最大值\n\n\nVISIT、VISITNUM\n\n\n\nABLFL\n首次给药前最后一次非空检测\n\n\nANL01FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若发生在首次疾病进展和新抗肿瘤当天或之前，则赋值’是’\n\n\nANL02FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若该条记录对应的靶病灶评估结果有效，则赋值’是’\n\n\nANL03FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)且ANL01FL和ANL02FL为’是’的记录，选择基线后最早出现的最小PCHG值。\n\n\nTRMETHOD、TREVAL\n\n\n\nANADIR\n分析用先前最小直径和\n\n\nNADIRCHG\n相对最小直径和变化值\n\n\nPCNSD\n相对最小直径和变化百分比\n\n\n\n需要注意的是，除了EDC中直接收集的靶病灶直径和外，在ADTR中我们还会额外编程衍生\"分析用靶病灶直径和\"。程序员在编程时，最好核对下直接收集的和程序衍生的靶病灶直径和结果是否一致。",
-    "crumbs": [
-      "实体瘤",
-      "ADTR"
-    ]
-  },
-  {
-    "objectID": "oncology/adtr.html#adtr包含的变量",
-    "href": "oncology/adtr.html#adtr包含的变量",
-    "title": "ADTR",
-    "section": "",
-    "text": "变量名\n描述\n\n\n\n\nUSUBJID、ASEQ、TRGRPID、TRLNKID、TULOC\n\n\n\nPARAM、PARAMCD\nLDIAM-最长径，LPERP-最短径，TUMSTATE-肿瘤状态，DIAMETER-直径，ASUMDIAM-分析用靶病灶直径总和，SUMDIAM-直径总和。\n按照USUBJID+TREVAL+VISIT，输出一条分析用靶病灶直径和\n\n\nPARAMTYP\n当PARAMCD为ASUMDIAM时，PARAMTYP=衍生\n\n\nPARCAT1\nTRCAT(淋巴结、非淋巴结）\n\n\nAVAL、AVALC\n\n\n\nBASE、BASEC\n\n\n\nCHG\n\n\n\nPCHG\n\n\n\nTRDTC、ADT、ADY\nASUMDIAM的ADT为各访视靶病灶影像学检查日期的最大值\n\n\nVISIT、VISITNUM\n\n\n\nABLFL\n首次给药前最后一次非空检测\n\n\nANL01FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若发生在首次疾病进展和新抗肿瘤当天或之前，则赋值’是’\n\n\nANL02FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若该条记录对应的靶病灶评估结果有效，则赋值’是’\n\n\nANL03FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)且ANL01FL和ANL02FL为’是’的记录，选择基线后最早出现的最小PCHG值。\n\n\nTRMETHOD、TREVAL\n\n\n\nANADIR\n分析用先前最小直径和\n\n\nNADIRCHG\n相对最小直径和变化值\n\n\nPCNSD\n相对最小直径和变化百分比\n\n\n\n需要注意的是，除了EDC中直接收集的靶病灶直径和外，在ADTR中我们还会额外编程衍生\"分析用靶病灶直径和\"。程序员在编程时，最好核对下直接收集的和程序衍生的靶病灶直径和结果是否一致。",
-    "crumbs": [
-      "实体瘤",
-      "ADTR"
-    ]
-  },
-  {
-    "objectID": "oncology/oncology.html",
-    "href": "oncology/oncology.html",
-    "title": "RECIST 1.1",
-    "section": "",
-    "text": "Response Evaluation Criteria in Solid Tumors (RECIST) 1.1是实体瘤疗效评估的标准方法，主要用于评估肿瘤对治疗的反应。RECIST 1.1定义了肿瘤的测量方法、评估时间点以及不同疗效类别的标准。\n实体瘤评估的具体过程：\n1. 基线评估：在治疗开始前，对患者的肿瘤进行全面评估，选定一定数量的靶病灶和非靶病灶，计算所有靶病灶的直径和。对应CRF中的1.肿瘤评估_靶病灶（筛选期），2.肿瘤评估_非靶病灶（筛选期）两个页面。\n2. 肿瘤评估：在治疗过程中，按照预定的时间点对患者进行评估，如靶病灶的径长、直径和，非靶病灶的状态以及是否出现新病灶等。对应CRF中的1.肿瘤评估_靶病灶，2.肿瘤评估_非靶病灶，3.肿瘤评估_新病灶三个页面。\n3. 总体评估：研究人员为每个时间点的靶病灶、非靶病灶、新病灶的肿瘤评估结果进行分类，同时结合所有病灶判断总的总体评估结果。后续说的总体评估结果都是指结合所有病灶得到的总体评估结果。对应CRF中的1.肿瘤评估_总体疗效一个页面。\n4. 最佳总体疗效（BOR）：根据3所有病灶总的总体评估结果，计算整个治疗过程中患者达到的最佳疗效类别，作为最终的疗效评估结果。CRF不收集BOR，通常由编程衍生。\n\n\n最佳时点疗效由CRF中肿瘤评估_总体疗效页面直接收集，不需要衍生计算。\n\n靶病灶评估\n\n基线无靶病灶\n完全缓解(CR)：所有靶病灶消失，淋巴结短径&lt;10mm。\n部分缓解(PR)：以基线为参照，靶病灶直径总和至少减少30%。\n疾病进展(PD)：以既往直径总和最小值作为参照，靶病灶直径总和至少增加20%，且增加的绝对值至少5mm。\n疾病稳定(SD)：既不满足PR也不满足PD的情况。\n无法评估(NE)：无法评估靶病灶的情况。\n\n非靶病灶评估\n\n基线无非靶病灶\n完全缓解(CR)：所有非靶病灶消失，且肿瘤标志物正常，淋巴结短径&lt;10mm。\n疾病进展(PD)：出现一个或多个新病灶，或非靶病灶明显恶化。\n非完全缓解/非疾病进展(Non-CR/Non-PD)：既不满足CR也不满足PD的情况。\n不可评估(NE)：无法评估非靶病灶的情况。\n\n新病灶评估\n\n有新病灶\n无新病灶\n\n总体评估（所有病灶总的总体评估结果）\n\n总体评估结果分两类，一类是基线存在靶病灶，另一类是基线无靶病灶。两种情况的总体评估判断规则如下表所示。\n\n\n\n\n\n\n\n\n基线存在靶病灶\n\n\n\n\n\n\n\n基线不存在靶病灶\n\n\n\n\n\n\n\n\n\n\n总体评估日期(Date of Response)始终基于影像学检查日期，而非CRF总体评估页面中收集的评估日期（可能不是实际的影像学检查日期而是研究者给出的判定日期）。如果针对特定访视的影像学检查在不同日期进行，若总体评估为疾病进展（PD），则总体评估日期为该访视内最早一次的影像学检查日期；否则为最晚的影像学检查日期。后续提及的肿瘤评估日期或总体评估日期，都是说的这个日期。\n最佳总体疗效（BOR）为基线后、疾病进展或新抗前最佳的总体评估结果。通常CRF不会直接收集，由编程计算。最佳总体疗效可分未确认的和未确认的两类。\n\n\n\n\n确认的最佳总体疗效判断规则如下：\n\nCR：在新抗或疾病进展前存在至少两次评估结果为CR，且两次评估之间至少间隔4周。\nPR：在新抗或疾病进展前存在至少两次评估结果为PR或更好（PR-CR,PR-PR），且两次评估之间至少间隔4周。PR-SD-PR能被确认为PR，若两个PR之间的间隔大于等于4周。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为CR、PR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为非完全缓解/非疾病进展或更优，但未被确认为CR、PR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为CR、PR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n值得注意的是，CR后面不能跟PR、SD。PR后面能跟一个SD，如PR-SD-PR可以被确认为PR。但PR-SD-SD-PR不能被确认为PR。若中间存在小于等于两个NE,这可被确认为PR，如PR-NR-PR,PR-NE-NE-PR,PR-SD-NE-PR,PR-NE-SD-PR等都可以被确认为PR。\n\n\n\n\n\n\n未确认的最佳总体疗效判断规则如下：\n\nuCR：在新抗或疾病进展前存在CR。\nuPR：在新抗或疾病进展前存在PR。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为uCR、uPR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他\n\n\n\n\n\n\n\n客观缓解率是指在特定分析集中BOR为CR或PR的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的ORR。\n\n\n\n疾病控制率是指在特定分析集中BOR为CR、PR或SD的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的DCR。\n\n\n\n临床获益率是指在特定分析集中BOR为CR、PR或SD持续至少T周的患者比例。（T通常设为12周）。也分为基于确认的BOR和未确认的BOR计算的两个版本的CBR。",
-    "crumbs": [
-      "实体瘤"
-    ]
-  },
-  {
-    "objectID": "oncology/oncology.html#时间点疗效time-point-response",
-    "href": "oncology/oncology.html#时间点疗效time-point-response",
-    "title": "RECIST 1.1",
-    "section": "",
-    "text": "最佳时点疗效由CRF中肿瘤评估_总体疗效页面直接收集，不需要衍生计算。\n\n靶病灶评估\n\n基线无靶病灶\n完全缓解(CR)：所有靶病灶消失，淋巴结短径&lt;10mm。\n部分缓解(PR)：以基线为参照，靶病灶直径总和至少减少30%。\n疾病进展(PD)：以既往直径总和最小值作为参照，靶病灶直径总和至少增加20%，且增加的绝对值至少5mm。\n疾病稳定(SD)：既不满足PR也不满足PD的情况。\n无法评估(NE)：无法评估靶病灶的情况。\n\n非靶病灶评估\n\n基线无非靶病灶\n完全缓解(CR)：所有非靶病灶消失，且肿瘤标志物正常，淋巴结短径&lt;10mm。\n疾病进展(PD)：出现一个或多个新病灶，或非靶病灶明显恶化。\n非完全缓解/非疾病进展(Non-CR/Non-PD)：既不满足CR也不满足PD的情况。\n不可评估(NE)：无法评估非靶病灶的情况。\n\n新病灶评估\n\n有新病灶\n无新病灶\n\n总体评估（所有病灶总的总体评估结果）\n\n总体评估结果分两类，一类是基线存在靶病灶，另一类是基线无靶病灶。两种情况的总体评估判断规则如下表所示。\n\n\n\n\n\n\n\n\n基线存在靶病灶\n\n\n\n\n\n\n\n基线不存在靶病灶",
-    "crumbs": [
-      "实体瘤"
-    ]
-  },
-  {
-    "objectID": "oncology/oncology.html#最佳总体疗效best-overall-response-bor",
-    "href": "oncology/oncology.html#最佳总体疗效best-overall-response-bor",
-    "title": "RECIST 1.1",
-    "section": "",
-    "text": "总体评估日期(Date of Response)始终基于影像学检查日期，而非CRF总体评估页面中收集的评估日期（可能不是实际的影像学检查日期而是研究者给出的判定日期）。如果针对特定访视的影像学检查在不同日期进行，若总体评估为疾病进展（PD），则总体评估日期为该访视内最早一次的影像学检查日期；否则为最晚的影像学检查日期。后续提及的肿瘤评估日期或总体评估日期，都是说的这个日期。\n最佳总体疗效（BOR）为基线后、疾病进展或新抗前最佳的总体评估结果。通常CRF不会直接收集，由编程计算。最佳总体疗效可分未确认的和未确认的两类。\n\n\n\n\n确认的最佳总体疗效判断规则如下：\n\nCR：在新抗或疾病进展前存在至少两次评估结果为CR，且两次评估之间至少间隔4周。\nPR：在新抗或疾病进展前存在至少两次评估结果为PR或更好（PR-CR,PR-PR），且两次评估之间至少间隔4周。PR-SD-PR能被确认为PR，若两个PR之间的间隔大于等于4周。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为CR、PR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为非完全缓解/非疾病进展或更优，但未被确认为CR、PR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为CR、PR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n值得注意的是，CR后面不能跟PR、SD。PR后面能跟一个SD，如PR-SD-PR可以被确认为PR。但PR-SD-SD-PR不能被确认为PR。若中间存在小于等于两个NE,这可被确认为PR，如PR-NR-PR,PR-NE-NE-PR,PR-SD-NE-PR,PR-NE-SD-PR等都可以被确认为PR。\n\n\n\n\n\n\n未确认的最佳总体疗效判断规则如下：\n\nuCR：在新抗或疾病进展前存在CR。\nuPR：在新抗或疾病进展前存在PR。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为uCR、uPR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他",
-    "crumbs": [
-      "实体瘤"
-    ]
-  },
-  {
-    "objectID": "oncology/oncology.html#客观缓解率overall-response-rate-orr",
-    "href": "oncology/oncology.html#客观缓解率overall-response-rate-orr",
-    "title": "RECIST 1.1",
-    "section": "",
-    "text": "客观缓解率是指在特定分析集中BOR为CR或PR的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的ORR。",
-    "crumbs": [
-      "实体瘤"
-    ]
-  },
-  {
-    "objectID": "oncology/oncology.html#疾病控制率disease-control-rate-dcr",
-    "href": "oncology/oncology.html#疾病控制率disease-control-rate-dcr",
-    "title": "RECIST 1.1",
-    "section": "",
-    "text": "疾病控制率是指在特定分析集中BOR为CR、PR或SD的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的DCR。",
-    "crumbs": [
-      "实体瘤"
-    ]
-  },
-  {
-    "objectID": "oncology/oncology.html#临床获益率clinical-benefit-rate-cbr",
-    "href": "oncology/oncology.html#临床获益率clinical-benefit-rate-cbr",
-    "title": "RECIST 1.1",
-    "section": "",
-    "text": "临床获益率是指在特定分析集中BOR为CR、PR或SD持续至少T周的患者比例。（T通常设为12周）。也分为基于确认的BOR和未确认的BOR计算的两个版本的CBR。",
-    "crumbs": [
-      "实体瘤"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
-    "href": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
-    "title": "统计方法",
-    "section": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
-    "text": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
-    "href": "oncology/statistics.html#kaplan-meier法估计各时间点的无进展生存率",
-    "title": "统计方法",
-    "section": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
-    "text": "2.2 Kaplan-Meier法估计各时间点的无进展生存率",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
-    "href": "oncology/statistics.html#对数秩检验log-rank-test进行组间p值",
-    "title": "统计方法",
-    "section": "2.3 对数秩检验（log-rank test）进行组间P值",
-    "text": "2.3 对数秩检验（log-rank test）进行组间P值",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
-    "href": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
-    "title": "统计方法",
-    "section": "2.4 Cox比例风险模型评估组间HR及95% CI",
-    "text": "2.4 Cox比例风险模型评估组间HR及95% CI",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#pfs随访时间",
-    "href": "oncology/statistics.html#pfs随访时间",
-    "title": "统计方法",
-    "section": "2.5 PFS随访时间",
-    "text": "2.5 PFS随访时间",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#sas代码",
-    "href": "oncology/statistics.html#sas代码",
-    "title": "统计方法",
-    "section": "3 SAS代码",
-    "text": "3 SAS代码\nproc lifetest data=adtte outsurv=occur1 method=KM timelist=3,6,9,12 reduceout;\n  time aval*cnsr(1);\n  strata trt01pn / test=logrank;\n  ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;\nrun;",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/statistics.html#参数说明",
-    "href": "oncology/statistics.html#参数说明",
-    "title": "统计方法",
-    "section": "3.1 参数说明",
-    "text": "3.1 参数说明",
-    "crumbs": [
-      "实体瘤",
-      "统计方法"
-    ]
-  },
-  {
-    "objectID": "r/barplot.html",
-    "href": "r/barplot.html",
-    "title": "barplot",
-    "section": "",
-    "text": "在临床试验数据中，常常关心不同治疗组在性别、BMI、首次确诊临床分期等变量下的分布情况，而条形图恰好能够直观、清晰地展示。。",
-    "crumbs": [
-      "画图-ggplot2"
-    ]
-  },
-  {
-    "objectID": "r/barplot.html#绘图代码",
-    "href": "r/barplot.html#绘图代码",
-    "title": "barplot",
-    "section": "3 绘图代码",
-    "text": "3 绘图代码\n\n3.1 条形图（分类变量）\n\n\n3.2 直方图（数值型变量）",
-    "crumbs": [
-      "画图-ggplot2"
-    ]
-  },
-  {
-    "objectID": "r/R1.html",
-    "href": "r/R1.html",
-    "title": "版本升级",
-    "section": "",
-    "text": "R版本更新\n\ninstall.packages(\"installr\")\nrequire(installr)\nupdateR()"
-  },
-  {
-    "objectID": "pk/pk.html#各组xxx血药浓度数据汇总pk浓度分析集",
-    "href": "pk/pk.html#各组xxx血药浓度数据汇总pk浓度分析集",
+    "objectID": "pk/pk.html",
+    "href": "pk/pk.html",
     "title": "药代动力学",
-    "section": "3.1 各组xxx血药浓度数据汇总（PK浓度分析集）",
-    "text": "3.1 各组xxx血药浓度数据汇总（PK浓度分析集）\n\n\n\n\n\n\n\n\n计划采血时间\n试验组\n对照组\n\n\n\n\n输注前30min内\n\n\n\n\n例数\nxx (x)\nxx (x)\n\n\n例数（BQL）\nxx (x)\nxx (x)\n\n\n平均值（标准差）\n\n\n\n\n变异系数（%）\nxx (x)\nxx (x)\n\n\n最小值，最大值\nxx (x)\nxx (x)\n\n\n中位数\n\n\n\n\n几何均数\nxx (x)\nxx (x)\n\n\n几何变异系数（%）\nxx (x)\nxx (x)\n\n\n输注结束5分钟内\n\n\n\n\n例数\nxx (x)\nxx (x)\n\n\n例数（BQL）\nxx (x)\nxx (x)\n\n\n平均值（标准差）\n\n\n\n\n变异系数（%）\nxx (x)\nxx (x)\n\n\n最小值，最大值\nxx (x)\nxx (x)\n\n\n中位数\n\n\n\n\n几何均数\nxx (x)\nxx (x)\n\n\n几何变异系数（%）\nxx (x)\nxx (x)",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nPCTPT\n计划时点名称\n\n\nPCTPTREF\n参照时间点\n\n\nPCRFTDTC\n参照时间点日期\n\n\n\n\n\n\n\n\n\n变量名\n描述\n\n\n\n\nPCTPT、PCTPTNUM、PCTPTREF、PCRFTDTC\n\n\n\nATPT、ATPTN\n分析时点\n\n\nATPTREF\n分析时点参照\n\n\nARFTDTC\n分析时点参照日期\n\n\nARELTM\n(ADTM-ARFTDTC)/3600\n\n\nANL01FL\n标记统计汇总用的观测\n\n\nANL02FL\n标记个体血药浓度用的观测\n\n\nANL03FL\n标记WNL用的观测\n\n\n\n1.ATPT在什么情况下会用到？\n回答：稀疏采血C1D8在密集采血中记录成visit=C1D1,pctpt=168h±6h。tlf分析展示是又要归类于C1D1。此时ATPT就派上用场了。\n2.ATPTREF在什么情况下会用到?\n回答：在密集采血中，可能会有要求C2D1给药前30min归类到C1D1访视，用相对C1D1首次给药的时间进行分析。\n\n\n\n\n\n2个可测定浓度间出现单个BQL时处理为缺失\n\n有值–BQL–有值，BQL要处理为缺失。因为前后都有药，中间突然完全没药，其实不合理，可能是抽血问题、仪器误差等，而不是真正的浓度为0，所以处理成缺失，认为这个点不可靠。\n\nTmax之后的连续BQLs后的可测定浓度也处理为缺失\n\nTmax为达到最高浓度时的时间点，如果Tmax后已经连续多个BQL，说明药物已基本清除，这时后面突然出现20（Tmax）–BQL–BQL–3，这里的3很可疑，真实药物代谢不会这样，可能是样本污染等，所以处理为缺失。\n\n其余情况所有的BQLs处理为0\n\nBQL意味着药物已经低到几乎没有了，所以统计平均浓度、中位浓度时，常直接按0计算。\n\n\n完整的例子：\n\n\n\n时间\n浓度\n分析用浓度\n\n\n\n\n0\n0\n0\n\n\n1\n5\n5\n\n\n2\n12(Tmax)\n12\n\n\n3\nBQL\nmissing\n\n\n4\n8\n8\n\n\n6\n2\n2\n\n\n8\nBQL\n0\n\n\n12\nBQL\n0\n\n\n16\n3\nmissing\n\n\n\n\n\n\n\n可测定浓度间单个的BQL处理为缺失，可测定浓度间连续的BQLs设定为0，连续的BQLs以后的浓度数据保留\nTmax之前出现的BQLs处理为0\nTmax之后出现的BQLs处理为缺失\n\n完整的例子：\n\n\n\n时间\n浓度\n分析用浓度\n\n\n\n\n0\nBQL\n0\n\n\n1\n2\n2\n\n\n2\n10\n10\n\n\n3\nBQL\nmissing\n\n\n4\n8\n8\n\n\n5\nBQL\n0\n\n\n6\nBQL\n0\n\n\n8\n5\n5\n\n\n12\nBQL\nmissing\n\n\n\n\n\n\n\n可测定浓度间的BQLs处理为缺失，Tmax之后的连续BQLs后的可测定浓度处理为缺失\nTmax之前出现的BQLs处理为0\nTmax之后出现的BQLs处理为缺失\n\n完整的例子：\n\n\n\n时间\n浓度\n分析用浓度\n\n\n\n\n0\nBQL\n0\n\n\n1\n2\n2\n\n\n2\n10\n10\n\n\n3\nBQL\nmissing\n\n\n4\n11\n11\n\n\n5\n5\n5\n\n\n6\n10\n10\n\n\n7\nBQL\nmissing\n\n\n8\nBQL\nmissing\n\n\n9\n18(Tmax)\n18\n\n\n10\n3\n3\n\n\n11\nBQL\nmissing\n\n\n12\nBQL\nmissing\n\n\n13\n2\nmissing",
+    "crumbs": [
+      "药代动力学"
+    ]
+  },
+  {
+    "objectID": "pk/pk.html#sdtm.pc",
+    "href": "pk/pk.html#sdtm.pc",
+    "title": "药代动力学",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nPCTPT\n计划时点名称\n\n\nPCTPTREF\n参照时间点\n\n\nPCRFTDTC\n参照时间点日期",
+    "crumbs": [
+      "药代动力学"
+    ]
+  },
+  {
+    "objectID": "pk/pk.html#adam.adpc",
+    "href": "pk/pk.html#adam.adpc",
+    "title": "药代动力学",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nPCTPT、PCTPTNUM、PCTPTREF、PCRFTDTC\n\n\n\nATPT、ATPTN\n分析时点\n\n\nATPTREF\n分析时点参照\n\n\nARFTDTC\n分析时点参照日期\n\n\nARELTM\n(ADTM-ARFTDTC)/3600\n\n\nANL01FL\n标记统计汇总用的观测\n\n\nANL02FL\n标记个体血药浓度用的观测\n\n\nANL03FL\n标记WNL用的观测\n\n\n\n1.ATPT在什么情况下会用到？\n回答：稀疏采血C1D8在密集采血中记录成visit=C1D1,pctpt=168h±6h。tlf分析展示是又要归类于C1D1。此时ATPT就派上用场了。\n2.ATPTREF在什么情况下会用到?\n回答：在密集采血中，可能会有要求C2D1给药前30min归类到C1D1访视，用相对C1D1首次给药的时间进行分析。\n\n\n\n\n\n2个可测定浓度间出现单个BQL时处理为缺失\n\n有值–BQL–有值，BQL要处理为缺失。因为前后都有药，中间突然完全没药，其实不合理，可能是抽血问题、仪器误差等，而不是真正的浓度为0，所以处理成缺失，认为这个点不可靠。\n\nTmax之后的连续BQLs后的可测定浓度也处理为缺失\n\nTmax为达到最高浓度时的时间点，如果Tmax后已经连续多个BQL，说明药物已基本清除，这时后面突然出现20（Tmax）–BQL–BQL–3，这里的3很可疑，真实药物代谢不会这样，可能是样本污染等，所以处理为缺失。\n\n其余情况所有的BQLs处理为0\n\nBQL意味着药物已经低到几乎没有了，所以统计平均浓度、中位浓度时，常直接按0计算。\n\n\n完整的例子：\n\n\n\n时间\n浓度\n分析用浓度\n\n\n\n\n0\n0\n0\n\n\n1\n5\n5\n\n\n2\n12(Tmax)\n12\n\n\n3\nBQL\nmissing\n\n\n4\n8\n8\n\n\n6\n2\n2\n\n\n8\nBQL\n0\n\n\n12\nBQL\n0\n\n\n16\n3\nmissing\n\n\n\n\n\n\n\n可测定浓度间单个的BQL处理为缺失，可测定浓度间连续的BQLs设定为0，连续的BQLs以后的浓度数据保留\nTmax之前出现的BQLs处理为0\nTmax之后出现的BQLs处理为缺失\n\n完整的例子：\n\n\n\n时间\n浓度\n分析用浓度\n\n\n\n\n0\nBQL\n0\n\n\n1\n2\n2\n\n\n2\n10\n10\n\n\n3\nBQL\nmissing\n\n\n4\n8\n8\n\n\n5\nBQL\n0\n\n\n6\nBQL\n0\n\n\n8\n5\n5\n\n\n12\nBQL\nmissing\n\n\n\n\n\n\n\n可测定浓度间的BQLs处理为缺失，Tmax之后的连续BQLs后的可测定浓度处理为缺失\nTmax之前出现的BQLs处理为0\nTmax之后出现的BQLs处理为缺失\n\n完整的例子：\n\n\n\n时间\n浓度\n分析用浓度\n\n\n\n\n0\nBQL\n0\n\n\n1\n2\n2\n\n\n2\n10\n10\n\n\n3\nBQL\nmissing\n\n\n4\n11\n11\n\n\n5\n5\n5\n\n\n6\n10\n10\n\n\n7\nBQL\nmissing\n\n\n8\nBQL\nmissing\n\n\n9\n18(Tmax)\n18\n\n\n10\n3\n3\n\n\n11\nBQL\nmissing\n\n\n12\nBQL\nmissing\n\n\n13\n2\nmissing",
+    "crumbs": [
+      "药代动力学"
+    ]
+  },
+  {
+    "objectID": "pk/pk.html#各组xxx血药浓度数据汇总pk浓度分析集-密集采血",
+    "href": "pk/pk.html#各组xxx血药浓度数据汇总pk浓度分析集-密集采血",
+    "title": "药代动力学",
+    "section": "3.1 各组xxx血药浓度数据汇总（PK浓度分析集）-密集采血",
+    "text": "3.1 各组xxx血药浓度数据汇总（PK浓度分析集）-密集采血\n\n\n\n\n\n\n\n\n计划采血时间\n试验组\n对照组\n\n\n\n\n输注前30min内\n\n\n\n\n例数\nxx (x)\nxx (x)\n\n\n例数（BQL）\nxx (x)\nxx (x)\n\n\n平均值（标准差）\n\n\n\n\n变异系数（%）\nxx (x)\nxx (x)\n\n\n最小值，最大值\nxx (x)\nxx (x)\n\n\n中位数\n\n\n\n\n几何均数\nxx (x)\nxx (x)\n\n\n几何变异系数（%）\nxx (x)\nxx (x)\n\n\n输注结束5分钟内\n\n\n\n\n例数\nxx (x)\nxx (x)\n\n\n例数（BQL）\nxx (x)\nxx (x)\n\n\n平均值（标准差）\n\n\n\n\n变异系数（%）\nxx (x)\nxx (x)\n\n\n最小值，最大值\nxx (x)\nxx (x)\n\n\n中位数\n\n\n\n\n几何均数\nxx (x)\nxx (x)\n\n\n几何变异系数（%）\nxx (x)\nxx (x)",
     "crumbs": [
       "药代动力学"
     ]
@@ -458,30 +523,51 @@
     "href": "pk/pk.html#参数计算公式",
     "title": "药代动力学",
     "section": "3.2 参数计算公式",
-    "text": "3.2 参数计算公式\n\n3.2.1 参数类别1-模型可直接给出\n例数，平均值 ，标准差，变异系数（%），最小值，最大值，中位数。\n\\(\\text{平均值}=\\frac{\\sum_{i=1}^{n}x_i}{n}\\)，表示整体平均浓度水平。\n\\(\\text{标准差}=\\sqrt{\\frac{\\sum_{i=1}^{n}(x_i-\\bar{x})^2}{n-1}}\\)，其中\\(\\bar{x}=\\text{平均值}\\)，表示数据离平均值有多分散。标准差越大，数据波动越大。\n\\(\\text{变异系数（CV%）}=\\frac{\\text{标准差}}{\\text{平均值}}\\times100\\)，不同均值间，SD不好直接比较，所以引入变异系数，可以反应数据波动占平均值的比例。\n上面几个参数，可通过SAS中PROC MEANS过程步直接得到，代码如下：\nproc means data=adpc; \nby trt01pn trt01p avisitn avisit aptptn aptpt maxdlen;\nvar aval;\noutput out=stat_adpc n= nmiss= mean= std= cv= min= max= median= /autoname;\nrun;\n其中，例数 - n，平均值 - mean，标准差 - std，变异系数（%）- cv，最小值- min，最大值 - max，中位数 - median\n\n\n3.2.2 参数类别2-需编程衍生\n几何均数，几何变异系数（%）\n\\(\\text{几何均数（Geo Mean）}=e^{\\overline{\\ln(x)}}\\)，其中\\(\\overline{\\ln(x)}=\\frac{\\sum_{i=1}^{n}\\ln(x_i)}{n}\\)\n\\(\\text{几何变异系数（GeoCV%）}=\\sqrt{e^{SD_{\\ln}^2}-1}\\times100\\),其中\\(SD_{\\ln}=\\text{log转换后数据的标准差}\\)\n几何均数和几何变异系数不能直接通过模型计算，我们先需要计算自然对数转换后的均值和标准差。然后再根据公式计算几何均数和几何变异系数。具体步骤如下：\n1.计算自然对数转换后的均值（Mean log transformed）和标准差（SD log transformed)\nproc means data=adpc; \nby trt01pn trt01p avisitn avisit aptptn aptpt maxdlen;\nvar logaval;\noutput out=stat_adpc n= nmiss= mean= std= cv= min= max= median= /autoname;\nrun;\n2.用上步得到的自然对数尺度下得到的均值和标准差，计算几何均数和几何变异系数。\nif logaval_mean&gt;. then geomean = exp(logaval_mean);\nif logaval_stddev&gt;. then geostd = exp(logaval_stddev);\nif nmiss(logaval_stddev,logaval_mean)=0 then geocv = sqrt(exp(logaval_stddev**2)-1)*100;\n\n\n3.2.3 小数位数保留\n\n2位小数\n\n\n2位有效数字",
+    "text": "3.2 参数计算公式\n\n3.2.1 参数类别1-模型可直接给出\n例数，平均值 ，标准差，变异系数（%），最小值，最大值，中位数。\n\\(\\text{平均值}=\\frac{\\sum_{i=1}^{n}x_i}{n}\\)，表示整体平均浓度水平。\n\\(\\text{标准差}=\\sqrt{\\frac{\\sum_{i=1}^{n}(x_i-\\bar{x})^2}{n-1}}\\)，其中\\(\\bar{x}=\\text{平均值}\\)，表示数据离平均值有多分散。标准差越大，数据波动越大。\n\\(\\text{变异系数（CV%）}=\\frac{\\text{标准差}}{\\text{平均值}}\\times100\\)，不同均值间，SD不好直接比较，所以引入变异系数，可以反应数据波动占平均值的比例。\n上面几个参数，可通过SAS中PROC MEANS过程步直接得到，代码如下：\nproc means data=adpc; \nby trt01pn trt01p avisitn avisit aptptn aptpt maxdlen;\nvar aval;\noutput out=stat_adpc n= nmiss= mean= std= cv= min= max= median= /autoname;\nrun;\n其中，例数 - n，平均值 - mean，标准差 - std，变异系数（%）- cv，最小值- min，最大值 - max，中位数 - median\n\n\n3.2.2 参数类别2-需编程衍生\n几何均数，几何变异系数（%）\n\\(\\text{几何均数（Geo Mean）}=e^{\\overline{\\ln(x)}}\\)，其中\\(\\overline{\\ln(x)}=\\frac{\\sum_{i=1}^{n}\\ln(x_i)}{n}\\)\n\\(\\text{几何变异系数（GeoCV%）}=\\sqrt{e^{SD_{\\ln}^2}-1}\\times100\\),其中\\(SD_{\\ln}=\\text{log转换后数据的标准差}\\)\n几何均数和几何变异系数不能直接通过模型计算，我们先需要计算自然对数转换后的均值和标准差。然后再根据公式计算几何均数和几何变异系数。\n具体步骤如下：\n1.计算自然对数转换后的均值（Mean log transformed）和标准差（SD log transformed)\nproc means data=adpc; \nby trt01pn trt01p avisitn avisit aptptn aptpt maxdlen;\nvar logaval;\noutput out=stat_adpc n= nmiss= mean= std= cv= min= max= median= /autoname;\nrun;\n2.用上步得到的自然对数尺度下得到的均值和标准差，计算几何均数和几何变异系数。\nif logaval_mean&gt;. then geomean = exp(logaval_mean);\nif logaval_stddev&gt;. then geostd = exp(logaval_stddev);\nif nmiss(logaval_stddev,logaval_mean)=0 then geocv = sqrt(exp(logaval_stddev**2)-1)*100;\n\n\n3.2.3 小数位数保留（小数VS有效数字）\n小数位数保留：通常是指保留几位小数，例如保留两位小数，3.14159保留为3.14。\n有效数字：是指从第一个非零数字开始算起的数字位数，例如保留两位有效数字，3.14159保留为3.1，0.00314159保留为0.0031（小数点前面的0不算）。\n\n\n\n数字\n有效数字\n\n\n\n\n1234\n1、2、3、4\n\n\n0.01234\n1、2、3、4（前面的0没意义）\n\n\n0.001020\n1、0、2、0（末尾0有意义）\n\n\n\n保留n位有效数字的数学逻辑：\n\n找到数量级：\\({\\log_{10}(|x|)}\\)，x=1234，log10(x)=3.09，floor后为3。\n算出需要round到什么精度：\\({10^{\\log_{10}(|x|)-n+1}}\\)，如果n=3，则值为10。所以round(1234,10)=1230\n\n\n\n\n数字\n数量级\nRound精度\n结果\n\n\n\n\n1234\n3\n1\n1230\n\n\n0.01234\n-2\n-3\n0.012\n\n\n0.001020\n-3\n-5\n0.00102",
     "crumbs": [
       "药代动力学"
     ]
   },
   {
-    "objectID": "lb/lb_ctcae.html",
-    "href": "lb/lb_ctcae.html",
-    "title": "Lab值对应的CTCAE等级",
+    "objectID": "r/R.html",
+    "href": "r/R.html",
+    "title": "函数",
     "section": "",
-    "text": "1 不良事件、不良反应\n不良事件，指受试者接受试验用药品后出现的所有不良医学事件，不一定与试验用药品有因果关系。 药物不良反应，指临床试验中发生的任何与试验用药品可能有关的医学时间，与试验用药品有合理的因果关系。 # 2 严重程度 两种记录方式： 1. 轻度、中度、重度 2. 1级、2级、3级、4级、5级 ## 常见不良事件评价标准（CTCAE） ≥3级看着都是SAE?? 后续整理下思路"
+    "text": "match() function in R Language is used to return the positions of the first match of the elements of the first vector in the second vector. If the element is not found, it returns NA.\nExample 1:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nmatch(x1, x2)\n\n[1]  4 NA NA  1  5\n\n\nExample 2:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nidx &lt;- match(x1, x2)\nx2[na.omit(idx)]\n\n[1] \"a\" \"d\" \"e\""
   },
   {
-    "objectID": "lb/lb.html",
-    "href": "lb/lb.html",
-    "title": "LB",
+    "objectID": "r/R.html#match",
+    "href": "r/R.html#match",
+    "title": "函数",
     "section": "",
-    "text": "变量名\n描述\n\n\n\n\nUSUBJID\\ASEQ\\LBSEQ\n\n\n\nPARAM\\PARAMCD\\PARAMN\n\n\n\nPARAMTYP\n对于衍生的观测，PARAMTYP=“衍生”\n\n\nPARCAT1\nLB.LBCAT\n\n\nAVAL\\AVALC\nLB.LBSTRESN,若包含&lt;,&gt;号，提取数值部分\n\n\nWAYSHIFT\n低、高、双向（毒性方向参数指示符）\n\n\nATOXGRL/ATOXGRLN/ATOXDSCL\n分析毒性等级-低\n\n\nATOXGRH/ATOXGRHN/ATOXDSCH\n分析毒性等级-高\n\n\nBTOXGRL/BTOXGRLN\n基线分析毒性等级-低\n\n\nBTOXGRH/BTOXGRHN\n基线分析毒性等级-高\n\n\nBASE\\BASEC\n\n\n\nCHG\\PCHG\n\n\n\nANRIND\nLB.LBNRIND（参考范围指示符）\n\n\nBNRIND\n基线参考范围指示符\n\n\nANRLO\nLB.LBSTRNLO\n\n\nANRHI\nLB.LBSTNRHI\n\n\nLBDTC\\ADT\\ADY\n\n\n\nVISIT\\VISITNUM\n\n\n\nAVISIT\\AVISITN\n\n\n\nABLFL\n基线记录\n\n\nAPBLFL\n基线后记录\n\n\nLBCLSIG\\LBCLSIGN\n临床意义\n\n\nBASESIG\\BASESIGN\n基线临床意义\n\n\nANLXXFL"
+    "text": "match() function in R Language is used to return the positions of the first match of the elements of the first vector in the second vector. If the element is not found, it returns NA.\nExample 1:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nmatch(x1, x2)\n\n[1]  4 NA NA  1  5\n\n\nExample 2:\n\nx1 &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nx2 &lt;- c(\"d\", \"f\", \"g\", \"a\", \"e\", \"k\")\n\nidx &lt;- match(x1, x2)\nx2[na.omit(idx)]\n\n[1] \"a\" \"d\" \"e\""
   },
   {
-    "objectID": "lb/lb.html#adam.adlb",
-    "href": "lb/lb.html#adam.adlb",
-    "title": "LB",
+    "objectID": "r/tidyverse.html",
+    "href": "r/tidyverse.html",
+    "title": "tidyverse",
     "section": "",
-    "text": "变量名\n描述\n\n\n\n\nUSUBJID\\ASEQ\\LBSEQ\n\n\n\nPARAM\\PARAMCD\\PARAMN\n\n\n\nPARAMTYP\n对于衍生的观测，PARAMTYP=“衍生”\n\n\nPARCAT1\nLB.LBCAT\n\n\nAVAL\\AVALC\nLB.LBSTRESN,若包含&lt;,&gt;号，提取数值部分\n\n\nWAYSHIFT\n低、高、双向（毒性方向参数指示符）\n\n\nATOXGRL/ATOXGRLN/ATOXDSCL\n分析毒性等级-低\n\n\nATOXGRH/ATOXGRHN/ATOXDSCH\n分析毒性等级-高\n\n\nBTOXGRL/BTOXGRLN\n基线分析毒性等级-低\n\n\nBTOXGRH/BTOXGRHN\n基线分析毒性等级-高\n\n\nBASE\\BASEC\n\n\n\nCHG\\PCHG\n\n\n\nANRIND\nLB.LBNRIND（参考范围指示符）\n\n\nBNRIND\n基线参考范围指示符\n\n\nANRLO\nLB.LBSTRNLO\n\n\nANRHI\nLB.LBSTNRHI\n\n\nLBDTC\\ADT\\ADY\n\n\n\nVISIT\\VISITNUM\n\n\n\nAVISIT\\AVISITN\n\n\n\nABLFL\n基线记录\n\n\nAPBLFL\n基线后记录\n\n\nLBCLSIG\\LBCLSIGN\n临床意义\n\n\nBASESIG\\BASESIGN\n基线临床意义\n\n\nANLXXFL"
+    "text": "Example 1:\n\n# 向量\nlibrary(tidyr)\n\nx &lt;- c(\"a\", NA, \"b\")\nx &lt;- replace_na(x, \"\")\nx\n\n[1] \"a\" \"\"  \"b\"\n\n\nExample 2:\n\n# 批量处理多个变量\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyr)\n\ndf &lt;- tibble(\n  id    = 1:6,\n  name  = c(\"Alice\", NA, \"Charlie\", \"David\", NA, \"Frank\"),\n  score = c(90, 85, NA, 88, 92, NA),\n  date  = as.Date(c(\"2024-01-01\", NA, \"2024-01-03\", \"2024-01-04\", NA, \"2024-01-06\"))\n)\n\ndf &lt;- df %&gt;%\n  mutate(across(where(is.character), ~ replace_na(.x, \"\")))\n\n\n\n\nExample 1:\n\nx &lt;- c(\"a\", \"b\", \"a\", \"c\", \"d\", \"c\")\n\nlookup &lt;- c(\n  \"a\" = \"A\",\n  \"b\" = \"B\",\n  \"c\" = \"C\",\n  \"d\" = \"D\"\n)\n\nrecode(x, !!!lookup)\n\n[1] \"A\" \"B\" \"A\" \"C\" \"D\" \"C\""
+  },
+  {
+    "objectID": "r/tidyverse.html#replace_na",
+    "href": "r/tidyverse.html#replace_na",
+    "title": "tidyverse",
+    "section": "",
+    "text": "Example 1:\n\n# 向量\nlibrary(tidyr)\n\nx &lt;- c(\"a\", NA, \"b\")\nx &lt;- replace_na(x, \"\")\nx\n\n[1] \"a\" \"\"  \"b\"\n\n\nExample 2:\n\n# 批量处理多个变量\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyr)\n\ndf &lt;- tibble(\n  id    = 1:6,\n  name  = c(\"Alice\", NA, \"Charlie\", \"David\", NA, \"Frank\"),\n  score = c(90, 85, NA, 88, 92, NA),\n  date  = as.Date(c(\"2024-01-01\", NA, \"2024-01-03\", \"2024-01-04\", NA, \"2024-01-06\"))\n)\n\ndf &lt;- df %&gt;%\n  mutate(across(where(is.character), ~ replace_na(.x, \"\")))"
+  },
+  {
+    "objectID": "r/tidyverse.html#recode",
+    "href": "r/tidyverse.html#recode",
+    "title": "tidyverse",
+    "section": "",
+    "text": "Example 1:\n\nx &lt;- c(\"a\", \"b\", \"a\", \"c\", \"d\", \"c\")\n\nlookup &lt;- c(\n  \"a\" = \"A\",\n  \"b\" = \"B\",\n  \"c\" = \"C\",\n  \"d\" = \"D\"\n)\n\nrecode(x, !!!lookup)\n\n[1] \"A\" \"B\" \"A\" \"C\" \"D\" \"C\""
+  },
+  {
+    "objectID": "r-programming.html",
+    "href": "r-programming.html",
+    "title": "R编程，你在找什么？",
+    "section": "",
+    "text": "R编程，你在找什么？\n\n\n🧹 数据处理（Transform）\n逻辑值、字符、数值、日期、缺失值等处理以及数据合并（join）\n进入 →"
   }
 ]

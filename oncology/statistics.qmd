@@ -4,9 +4,43 @@ title: "统计方法"
 
 # 1 最佳总体缓解(BOR)相关统计方法
 
-## 1.1 确切概率法（Clopper-Pearson）
+## 1.1 客观缓解率及各组率的95%CI
+### 1.1.1 Clopper-Pearson法
+``` sas
+proc freq data=orr_nonstaf;
+by trt01pn;
+weight count/zeros;
+tables resp/binomial(exact level='1') alpha=0.05;
+ods output binomialcls=cl_orr;
+run;
+```
 
-## 1.2 Miettinen-Nurminen法
+## 1.2 率差及其95%置信区间
+
+### 1.2.1 Miettinen-Nurminen法
+``` sas
+ods trace on;
+ods output PdiffCLs=PdiffCLs;
+proc freq data=orr;
+  weight count/zeros;
+  table trt01pn*resp/riskdiff(cl=mn column=2)  alpha=0.05;
+run;
+ods output close;
+ods trace off;
+```
+
+### 1.2.2 Cochran-Mantel-Haenszel（CMH）法-分层率差
+``` sas
+ods trace on;
+ods output CommonPdiff=CommonPdiff;
+proc freq data=orr;
+  weight count/zeros;
+  table stratirt*trt01pn*resp/commonriskdiff(cl=mh column=2)  alpha=0.05;
+run;
+ods output close;
+ods trace off;
+```
+
 
 # 2 无进展生存期相关统计方法
 
@@ -17,19 +51,38 @@ title: "统计方法"
 ## 2.2 Kaplan-Meier法估计各时间点的无进展生存率
 
 ## 2.3 对数秩检验（log-rank test）进行组间P值
-
-## 2.4 Cox比例风险模型评估组间HR及95% CI
-
-## 2.5 PFS随访时间
-
-## 3 SAS代码
-
+### 2.3.1 非分层对数秩检验
+### 2.3.2 分层对数秩检验
 ``` sas
-proc lifetest data=adtte outsurv=occur1 method=KM timelist=3,6,9,12 reduceout;
+proc lifetest data=adtte method=KM;
   time aval*cnsr(1);
   strata trt01pn / test=logrank;
   ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;
 run;
+
+  *优效性 单侧p值,group="P"中的P是对照组 *;
+ proc sql noprint;
+   select logrank into :rank1 from stats1 where grpn=2; ***group="P";
+ quit;
+
+
+data homtests2;
+	set homtests1; 
+  /*对照组好*/
+	if &rank1.<0 then p_oneside=1-probchisq/2;   /*单侧P值*/
+  /*试验组好*/
+  if &rank1.>=0 then p_oneside=probchisq/2;
+
+	if p_oneside<0.0001 then pvalue="<0.0001";
+	else pvalue=strip(put(round(p_oneside,0.0001),8.4));
+run;
+
 ```
+
+## 2.4 Cox比例风险模型评估组间HR及95% CI
+### 2.4.1 非分层Cox比例风险模型
+### 2.4.2 分层Cox比例风险模型
+
+## 2.5 PFS随访时间
 
 ## 3.1 参数说明

@@ -29,4 +29,10 @@ PK，PP，密集采血
 [进入 →](/pk/pk.html)
 :::
 
+::: {.card}
+### 📚 法规
+DIPP
+
+[进入 →](/rules/dipp.html)
+:::
 :::

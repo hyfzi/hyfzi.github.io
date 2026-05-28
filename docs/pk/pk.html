@@ -124,11 +124,11 @@ window.Quarto = {
 <span class="menu-text">首页</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../knowledge_base.html"> 
+    <a class="nav-link" href="../clinical-programming.html"> 
 <span class="menu-text">临床编程</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../r/R.html"> 
+    <a class="nav-link" href="../r-programming.html"> 
 <span class="menu-text">R语言</span></a>
   </li>  
 </ul>
@@ -191,12 +191,12 @@ window.Quarto = {
   </ul></li>
   <li><a href="#tlf" id="toc-tlf" class="nav-link" data-scroll-target="#tlf">3 TLF</a>
   <ul class="collapse">
-  <li><a href="#各组xxx血药浓度数据汇总pk浓度分析集" id="toc-各组xxx血药浓度数据汇总pk浓度分析集" class="nav-link" data-scroll-target="#各组xxx血药浓度数据汇总pk浓度分析集">3.1 各组xxx血药浓度数据汇总（PK浓度分析集）</a></li>
+  <li><a href="#各组xxx血药浓度数据汇总pk浓度分析集-密集采血" id="toc-各组xxx血药浓度数据汇总pk浓度分析集-密集采血" class="nav-link" data-scroll-target="#各组xxx血药浓度数据汇总pk浓度分析集-密集采血">3.1 各组xxx血药浓度数据汇总（PK浓度分析集）-密集采血</a></li>
   <li><a href="#参数计算公式" id="toc-参数计算公式" class="nav-link" data-scroll-target="#参数计算公式">3.2 参数计算公式</a>
   <ul class="collapse">
   <li><a href="#参数类别1-模型可直接给出" id="toc-参数类别1-模型可直接给出" class="nav-link" data-scroll-target="#参数类别1-模型可直接给出">3.2.1 参数类别1-模型可直接给出</a></li>
   <li><a href="#参数类别2-需编程衍生" id="toc-参数类别2-需编程衍生" class="nav-link" data-scroll-target="#参数类别2-需编程衍生">3.2.2 参数类别2-需编程衍生</a></li>
-  <li><a href="#小数位数保留" id="toc-小数位数保留" class="nav-link" data-scroll-target="#小数位数保留">3.2.3 小数位数保留</a></li>
+  <li><a href="#小数位数保留小数vs有效数字" id="toc-小数位数保留小数vs有效数字" class="nav-link" data-scroll-target="#小数位数保留小数vs有效数字">3.2.3 小数位数保留（小数VS有效数字）</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -535,27 +535,27 @@ window.Quarto = {
 </section>
 <section id="tlf" class="level1">
 <h1>3 TLF</h1>
-<section id="各组xxx血药浓度数据汇总pk浓度分析集" class="level2">
-<h2 class="anchored" data-anchor-id="各组xxx血药浓度数据汇总pk浓度分析集">3.1 各组xxx血药浓度数据汇总（PK浓度分析集）</h2>
+<section id="各组xxx血药浓度数据汇总pk浓度分析集-密集采血" class="level2">
+<h2 class="anchored" data-anchor-id="各组xxx血药浓度数据汇总pk浓度分析集-密集采血">3.1 各组xxx血药浓度数据汇总（PK浓度分析集）-密集采血</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div id="xynrgxdtdl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xynrgxdtdl table {
+<div id="fshsquqszp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fshsquqszp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xynrgxdtdl thead, #xynrgxdtdl tbody, #xynrgxdtdl tfoot, #xynrgxdtdl tr, #xynrgxdtdl td, #xynrgxdtdl th {
+#fshsquqszp thead, #fshsquqszp tbody, #fshsquqszp tfoot, #fshsquqszp tr, #fshsquqszp td, #fshsquqszp th {
   border-style: none;
 }
 
-#xynrgxdtdl p {
+#fshsquqszp p {
   margin: 0;
   padding: 0;
 }
 
-#xynrgxdtdl .gt_table {
+#fshsquqszp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -581,12 +581,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#xynrgxdtdl .gt_caption {
+#fshsquqszp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xynrgxdtdl .gt_title {
+#fshsquqszp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -598,7 +598,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#xynrgxdtdl .gt_subtitle {
+#fshsquqszp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -610,7 +610,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#xynrgxdtdl .gt_heading {
+#fshsquqszp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -622,13 +622,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#xynrgxdtdl .gt_bottom_border {
+#fshsquqszp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xynrgxdtdl .gt_col_headings {
+#fshsquqszp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -643,7 +643,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#xynrgxdtdl .gt_col_heading {
+#fshsquqszp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -663,7 +663,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#xynrgxdtdl .gt_column_spanner_outer {
+#fshsquqszp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -675,15 +675,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#xynrgxdtdl .gt_column_spanner_outer:first-child {
+#fshsquqszp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xynrgxdtdl .gt_column_spanner_outer:last-child {
+#fshsquqszp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xynrgxdtdl .gt_column_spanner {
+#fshsquqszp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -695,11 +695,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#xynrgxdtdl .gt_spanner_row {
+#fshsquqszp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xynrgxdtdl .gt_group_heading {
+#fshsquqszp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -725,7 +725,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#xynrgxdtdl .gt_empty_group_heading {
+#fshsquqszp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -740,15 +740,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#xynrgxdtdl .gt_from_md > :first-child {
+#fshsquqszp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xynrgxdtdl .gt_from_md > :last-child {
+#fshsquqszp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xynrgxdtdl .gt_row {
+#fshsquqszp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -767,7 +767,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#xynrgxdtdl .gt_stub {
+#fshsquqszp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -780,7 +780,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#xynrgxdtdl .gt_stub_row_group {
+#fshsquqszp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -794,15 +794,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#xynrgxdtdl .gt_row_group_first td {
+#fshsquqszp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xynrgxdtdl .gt_row_group_first th {
+#fshsquqszp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xynrgxdtdl .gt_summary_row {
+#fshsquqszp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -812,16 +812,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#xynrgxdtdl .gt_first_summary_row {
+#fshsquqszp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xynrgxdtdl .gt_first_summary_row.thick {
+#fshsquqszp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xynrgxdtdl .gt_last_summary_row {
+#fshsquqszp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -831,7 +831,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#xynrgxdtdl .gt_grand_summary_row {
+#fshsquqszp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -841,7 +841,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#xynrgxdtdl .gt_first_grand_summary_row {
+#fshsquqszp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -851,7 +851,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#xynrgxdtdl .gt_last_grand_summary_row_top {
+#fshsquqszp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -861,11 +861,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#xynrgxdtdl .gt_striped {
+#fshsquqszp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xynrgxdtdl .gt_table_body {
+#fshsquqszp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -874,7 +874,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#xynrgxdtdl .gt_footnotes {
+#fshsquqszp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -888,7 +888,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#xynrgxdtdl .gt_footnote {
+#fshsquqszp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -897,7 +897,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#xynrgxdtdl .gt_sourcenotes {
+#fshsquqszp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -911,7 +911,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#xynrgxdtdl .gt_sourcenote {
+#fshsquqszp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -919,72 +919,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#xynrgxdtdl .gt_left {
+#fshsquqszp .gt_left {
   text-align: left;
 }
 
-#xynrgxdtdl .gt_center {
+#fshsquqszp .gt_center {
   text-align: center;
 }
 
-#xynrgxdtdl .gt_right {
+#fshsquqszp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xynrgxdtdl .gt_font_normal {
+#fshsquqszp .gt_font_normal {
   font-weight: normal;
 }
 
-#xynrgxdtdl .gt_font_bold {
+#fshsquqszp .gt_font_bold {
   font-weight: bold;
 }
 
-#xynrgxdtdl .gt_font_italic {
+#fshsquqszp .gt_font_italic {
   font-style: italic;
 }
 
-#xynrgxdtdl .gt_super {
+#fshsquqszp .gt_super {
   font-size: 65%;
 }
 
-#xynrgxdtdl .gt_footnote_marks {
+#fshsquqszp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xynrgxdtdl .gt_asterisk {
+#fshsquqszp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xynrgxdtdl .gt_indent_1 {
+#fshsquqszp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xynrgxdtdl .gt_indent_2 {
+#fshsquqszp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xynrgxdtdl .gt_indent_3 {
+#fshsquqszp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xynrgxdtdl .gt_indent_4 {
+#fshsquqszp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xynrgxdtdl .gt_indent_5 {
+#fshsquqszp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#xynrgxdtdl .katex-display {
+#fshsquqszp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#xynrgxdtdl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fshsquqszp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1116,28 +1116,82 @@ run;</code></pre>
 <p>几何均数，几何变异系数（%）</p>
 <p><span class="math inline">\(\text{几何均数（Geo Mean）}=e^{\overline{\ln(x)}}\)</span>，其中<span class="math inline">\(\overline{\ln(x)}=\frac{\sum_{i=1}^{n}\ln(x_i)}{n}\)</span></p>
 <p><span class="math inline">\(\text{几何变异系数（GeoCV%）}=\sqrt{e^{SD_{\ln}^2}-1}\times100\)</span>,其中<span class="math inline">\(SD_{\ln}=\text{log转换后数据的标准差}\)</span></p>
-<p>几何均数和几何变异系数不能直接通过模型计算，我们先需要计算自然对数转换后的均值和标准差。然后再根据公式计算几何均数和几何变异系数。具体步骤如下：</p>
+<p><strong>几何均数和几何变异系数不能直接通过模型计算，我们先需要计算自然对数转换后的均值和标准差。然后再根据公式计算几何均数和几何变异系数。</strong></p>
+<p><strong>具体步骤如下：</strong></p>
 <p>1.计算自然对数转换后的均值（Mean log transformed）和标准差（SD log transformed)</p>
 <pre class="sas"><code>proc means data=adpc; 
 by trt01pn trt01p avisitn avisit aptptn aptpt maxdlen;
 var logaval;
 output out=stat_adpc n= nmiss= mean= std= cv= min= max= median= /autoname;
 run;</code></pre>
-<p>2.用上步得到的自然对数尺度下得到的均值和标准差，计算几何均数和几何变异系数。</p>
+<p><strong>2.用上步得到的自然对数尺度下得到的均值和标准差，计算几何均数和几何变异系数。</strong></p>
 <pre class="sas"><code>if logaval_mean&gt;. then geomean = exp(logaval_mean);
 if logaval_stddev&gt;. then geostd = exp(logaval_stddev);
 if nmiss(logaval_stddev,logaval_mean)=0 then geocv = sqrt(exp(logaval_stddev**2)-1)*100;</code></pre>
 </section>
-<section id="小数位数保留" class="level3">
-<h3 class="anchored" data-anchor-id="小数位数保留">3.2.3 小数位数保留</h3>
-<section id="位小数" class="level4">
-<h4 class="anchored" data-anchor-id="位小数">2位小数</h4>
-</section>
-<section id="位有效数字" class="level4">
-<h4 class="anchored" data-anchor-id="位有效数字">2位有效数字</h4>
+<section id="小数位数保留小数vs有效数字" class="level3">
+<h3 class="anchored" data-anchor-id="小数位数保留小数vs有效数字">3.2.3 小数位数保留（小数VS有效数字）</h3>
+<p><strong>小数位数保留：</strong>通常是指保留几位小数，例如保留两位小数，3.14159保留为3.14。</p>
+<p><strong>有效数字：</strong>是指从第一个非零数字开始算起的数字位数，例如保留两位有效数字，3.14159保留为3.1，0.00314159保留为0.0031（小数点前面的0不算）。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>数字</th>
+<th>有效数字</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1234</td>
+<td>1、2、3、4</td>
+</tr>
+<tr class="even">
+<td>0.01234</td>
+<td>1、2、3、4（前面的0没意义）</td>
+</tr>
+<tr class="odd">
+<td>0.001020</td>
+<td>1、0、2、0（末尾0有意义）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>保留n位有效数字的数学逻辑：</strong></p>
+<ol type="1">
+<li><p>找到数量级：<span class="math inline">\({\log_{10}(|x|)}\)</span>，x=1234，log10(x)=3.09，floor后为3。</p></li>
+<li><p>算出需要round到什么精度：<span class="math inline">\({10^{\log_{10}(|x|)-n+1}}\)</span>，如果n=3，则值为10。所以round(1234,10)=1230</p></li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>数字</th>
+<th>数量级</th>
+<th>Round精度</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1234</td>
+<td>3</td>
+<td>1</td>
+<td>1230</td>
+</tr>
+<tr class="even">
+<td>0.01234</td>
+<td>-2</td>
+<td>-3</td>
+<td>0.012</td>
+</tr>
+<tr class="odd">
+<td>0.001020</td>
+<td>-3</td>
+<td>-5</td>
+<td>0.00102</td>
+</tr>
+</tbody>
+</table>
 
 
-</section>
 </section>
 </section>
 </section>

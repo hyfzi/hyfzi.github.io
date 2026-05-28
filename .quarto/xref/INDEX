@@ -88,5 +88,17 @@
   },
   "lb/lb_ctcae.qmd": {
     "lb_ctcae.html": "ba42bdf5"
+  },
+  "r/transform.qmd": {
+    "transform.html": "e5c426de"
+  },
+  "clinical-programming.qmd": {
+    "clinical-programming.html": "07a67d1a"
+  },
+  "r-programming.qmd": {
+    "r-programming.html": "dfff6d36"
+  },
+  "rules/dipp.qmd": {
+    "dipp.html": "912c80d2"
   }
 }

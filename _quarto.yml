@@ -10,27 +10,27 @@ website:
       - text: "首页"
         href: index.qmd
       - text: "临床编程"
-        href: knowledge_base.qmd       
+        href: clinical-programming.qmd       
       - text: "R语言"
-        href: r/R.qmd
+        href: r-programming.qmd
         
   sidebar:
     - title: "R语言"
       style: "docked"
       background: light
       contents:
-        # - section: "数据处理"
-        #   contents:
-        #     - r/R.qmd
+        - section: "数据处理"
+          contents:
+            - r/transform.qmd
         #     - r/R1.qmd
         # - section: "tidyverse"
         #   href: r/tidyverse.qmd
         #   contents:
         #     - r/tidyverse.qmd
-        - section: "画图-ggplot2"
-          href: r/barplot.qmd
-          contents:
-            - r/barplot.qmd
+        # - section: "画图-ggplot2"
+        #   href: r/barplot.qmd
+        #   contents:
+        #     - r/barplot.qmd
     - title: "实体瘤"
       style: "docked"
       background: light
@@ -61,6 +61,14 @@ website:
           href: pk/pk.qmd
           contents:
             - pk/pk.qmd
+    - title: "法规"
+      style: "docked"
+      background: light
+      contents:
+        - section: "法规"
+          href: rules/dipp.qmd
+          contents:
+            - rules/dipp.qmd
             
 format:
   html:

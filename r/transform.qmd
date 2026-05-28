@@ -1,0 +1,167 @@
+---
+title: "数据处理（Transform）"
+format: html
+---
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(nycflights13)
+library(dplyr)
+
+options(
+  dplyr.summarise.inform = FALSE
+)
+```
+
+# 1 逻辑向量（logical vectors）
+
+## 1.1 数值比较（Numeric comparison)
+
+数值比较是最常见的生成逻辑向量的方式，比较运算符号包括：`>`, `<`, `>=`, `<=`, `==`, `!=`，常和filter()搭配使用。
+```{r}
+flights |> 
+  filter(dep_delay > 60)
+```
+
+### 1.1.1 浮点数比较（Floating point comparison）
+
+由于计算机存储数值的方式，浮点数比较可能会出现意外的结果，建议使用`near()`函数进行比较。
+
+```{r}
+x <- c(1/5*5, sqrt(2)^2)
+x
+x == c(1,2)
+near(x, c(1,2))
+print(x, digits = 20)
+```
+
+### 1.1.2 NA (missing values)
+
+NA可以理解为未知（UNKNOWN）,与任何值（包括NA）比较的结果都是NA。如果要判断一个值是否为NA，应该使用`is.na()`函数。而不是`variable == NA`。
+
+```{r}
+NA > 5
+# 不知道 是否等于 不知道 等于 不知道
+NA == NA
+
+flights |> 
+  filter(is.na(dep_delay))
+
+flights |> 
+  filter(dep_delay == NA)
+```
+
+## 1.2 布尔运行（Boolean algebra）
+
+布尔运算符有`&`（AND）, `|`（OR）, `!`（NOT），`xor()`（exclusive OR）。需要注意的是`||`和`&&`是短路运算符，他们只会返回一个TRUE/FALSE值，通常用于控制流语句中。
+
+### 1.2.1 在布尔运算中的NA
+
+在布尔运算中，NA有点复杂，比如下面的例子，你乍看一眼会觉得不一致。
+
+```{r}
+df <- tibble(
+  x = c(TRUE, FALSE, NA)
+)
+df |> 
+  mutate(
+    and = x & NA,
+    or = x | NA
+  )
+```
+
+一个非常好的帮助我们理解的方法是：我们可以把NA想象成既可以是TRUE也可是FALSE的值，那么TRUE & NA的结果可以是TRUE & TRUE（TRUE）或者TRUE & FALSE（FALSE），所以最终结果是NA。同样的，FALSE \| NA的结果可以是FALSE \| TRUE（TRUE）或者FALSE \| FALSE（FALSE），所以最终结果FALSE。NA 遇到任何值任何运算都是NA。
+
+### 1.2.2 %in% 操作符
+
+`%in%`操作符是一个非常有用的工具，可以用来检查一个值是否在一个向量中。它的语法是：`x %in% y`，返回一个长度与x相同的逻辑向量，表示x中的每个元素是否在y中出现过。注意，NA在%in%和布尔比较中结果不一致，NA %in% c(NA, 1)返回TRUE，而NA == NA返回NA。
+
+### 1.2.3 对逻辑向量进行统计汇总（Logical summaries）
+
+在R里，TRUE会被当做1，FALSE会被当做0。因此，我们可以对逻辑向量进行统计汇总，比如求和、平均值等。比如下面的例子，我们可以计算飞机起飞延误不超过1小时的比例。
+
+```{r}
+flights |> 
+  group_by(year, month, day) |>
+  summarise(
+    prop = mean(dep_delay <= 60, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+```
+
+`any`和`all`函数也非常有用，`any(x)`等于`|`，`all(x)`等于`&`。
+
+### 1.2.4 逻辑向量的子集（Subsetting with logical vectors）
+
+逻辑向量可以用来对数据进行子集化，在实际中非常常见。比如下面的例子，我们可以得到飞机延误的记录。
+
+```{r}
+
+flights |> 
+  filter(arr_delay > 0) |> 
+  group_by(year, month, day) |>
+  summarise(
+    behind = mean(dep_delay, na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  )
+```
+
+上面的例子计算了飞机延误的时间平均值，但如果我们同时也想得到飞机提前的平均值呢？下面的例子展示了如何使用条件子集来计算飞机延误和提前的平均值。
+
+```{r}
+
+# 平均延误时间
+flights |> 
+  group_by(year, month, day) |>
+  summarise(
+    behind = mean(dep_delay[dep_delay > 0], na.rm = TRUE),
+    ahead = mean(dep_delay[dep_delay < 0], na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  )
+# 延误航班占比
+flights |> 
+  group_by(year, month, day) |>
+  summarise(
+    behind = mean(dep_delay > 0, na.rm = TRUE),
+    ahead = mean(dep_delay < 0, na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  )
+```
+
+### 1.2.5 条件赋值 (Conditional transformations)
+
+#### (1) if_else()
+
+`if_else()`有4个参数，第1个是条件判断，第2个是条件判断为TRUE是返回的值，第3个是条件判断为FALSE时返回的值，第4个是条件判断为NA时返回的值。
+
+```{r}
+x <- c(-3:3, NA)
+if_else(x > 0, "+ve", "-ve", "???")
+if_else(x == 0, "0", if_else(x > 0, "+ve", "-ve", "???"))
+```
+
+#### (1) case_when()
+
+`case_when()`类似嵌套的`if_else()`语句，如果没有匹配到条件，会赋值NA。
+
+```{r}
+x <- c(-3:3, NA)
+case_when(
+  x == 0 ~ "0",
+  x < 0 ~ "-ve",
+  x > 0 ~ "+ve",
+  is.na(x) ~ "???"
+)
+case_when(
+  x < 0 ~ "-ve",
+  x > 0 ~ "+ve"
+)
+```
+
+需要注意的是，`case_when`和`if_else()` 的输出结果需要时兼容的，例如输出的结果必需全是字符型或数值型，不能字符和数值两种形式掺杂。

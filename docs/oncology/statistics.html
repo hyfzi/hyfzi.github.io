@@ -95,11 +95,11 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">首页</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../knowledge_base.html"> 
+    <a class="nav-link" href="../clinical-programming.html"> 
 <span class="menu-text">临床编程</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../r/R.html"> 
+    <a class="nav-link" href="../r-programming.html"> 
 <span class="menu-text">R语言</span></a>
   </li>  
 </ul>
@@ -190,17 +190,31 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#最佳总体缓解bor相关统计方法" id="toc-最佳总体缓解bor相关统计方法" class="nav-link active" data-scroll-target="#最佳总体缓解bor相关统计方法">1 最佳总体缓解(BOR)相关统计方法</a>
   <ul class="collapse">
-  <li><a href="#确切概率法clopper-pearson" id="toc-确切概率法clopper-pearson" class="nav-link" data-scroll-target="#确切概率法clopper-pearson">1.1 确切概率法（Clopper-Pearson）</a></li>
-  <li><a href="#miettinen-nurminen法" id="toc-miettinen-nurminen法" class="nav-link" data-scroll-target="#miettinen-nurminen法">1.2 Miettinen-Nurminen法</a></li>
+  <li><a href="#客观缓解率及各组率的95ci" id="toc-客观缓解率及各组率的95ci" class="nav-link" data-scroll-target="#客观缓解率及各组率的95ci">1.1 客观缓解率及各组率的95%CI</a>
+  <ul class="collapse">
+  <li><a href="#clopper-pearson法" id="toc-clopper-pearson法" class="nav-link" data-scroll-target="#clopper-pearson法">1.1.1 Clopper-Pearson法</a></li>
+  </ul></li>
+  <li><a href="#率差及其95置信区间" id="toc-率差及其95置信区间" class="nav-link" data-scroll-target="#率差及其95置信区间">1.2 率差及其95%置信区间</a>
+  <ul class="collapse">
+  <li><a href="#miettinen-nurminen法" id="toc-miettinen-nurminen法" class="nav-link" data-scroll-target="#miettinen-nurminen法">1.2.1 Miettinen-Nurminen法</a></li>
+  <li><a href="#cochran-mantel-haenszelcmh法-分层率差" id="toc-cochran-mantel-haenszelcmh法-分层率差" class="nav-link" data-scroll-target="#cochran-mantel-haenszelcmh法-分层率差">1.2.2 Cochran-Mantel-Haenszel（CMH）法-分层率差</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#无进展生存期相关统计方法" id="toc-无进展生存期相关统计方法" class="nav-link" data-scroll-target="#无进展生存期相关统计方法">2 无进展生存期相关统计方法</a>
   <ul class="collapse">
   <li><a href="#kaplan-meier法估计各治疗组的中位pfs及其95ci" id="toc-kaplan-meier法估计各治疗组的中位pfs及其95ci" class="nav-link" data-scroll-target="#kaplan-meier法估计各治疗组的中位pfs及其95ci">2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI</a></li>
   <li><a href="#kaplan-meier法估计各时间点的无进展生存率" id="toc-kaplan-meier法估计各时间点的无进展生存率" class="nav-link" data-scroll-target="#kaplan-meier法估计各时间点的无进展生存率">2.2 Kaplan-Meier法估计各时间点的无进展生存率</a></li>
-  <li><a href="#对数秩检验log-rank-test进行组间p值" id="toc-对数秩检验log-rank-test进行组间p值" class="nav-link" data-scroll-target="#对数秩检验log-rank-test进行组间p值">2.3 对数秩检验（log-rank test）进行组间P值</a></li>
-  <li><a href="#cox比例风险模型评估组间hr及95-ci" id="toc-cox比例风险模型评估组间hr及95-ci" class="nav-link" data-scroll-target="#cox比例风险模型评估组间hr及95-ci">2.4 Cox比例风险模型评估组间HR及95% CI</a></li>
+  <li><a href="#对数秩检验log-rank-test进行组间p值" id="toc-对数秩检验log-rank-test进行组间p值" class="nav-link" data-scroll-target="#对数秩检验log-rank-test进行组间p值">2.3 对数秩检验（log-rank test）进行组间P值</a>
+  <ul class="collapse">
+  <li><a href="#非分层对数秩检验" id="toc-非分层对数秩检验" class="nav-link" data-scroll-target="#非分层对数秩检验">2.3.1 非分层对数秩检验</a></li>
+  <li><a href="#分层对数秩检验" id="toc-分层对数秩检验" class="nav-link" data-scroll-target="#分层对数秩检验">2.3.2 分层对数秩检验</a></li>
+  </ul></li>
+  <li><a href="#cox比例风险模型评估组间hr及95-ci" id="toc-cox比例风险模型评估组间hr及95-ci" class="nav-link" data-scroll-target="#cox比例风险模型评估组间hr及95-ci">2.4 Cox比例风险模型评估组间HR及95% CI</a>
+  <ul class="collapse">
+  <li><a href="#非分层cox比例风险模型" id="toc-非分层cox比例风险模型" class="nav-link" data-scroll-target="#非分层cox比例风险模型">2.4.1 非分层Cox比例风险模型</a></li>
+  <li><a href="#分层cox比例风险模型" id="toc-分层cox比例风险模型" class="nav-link" data-scroll-target="#分层cox比例风险模型">2.4.2 分层Cox比例风险模型</a></li>
+  </ul></li>
   <li><a href="#pfs随访时间" id="toc-pfs随访时间" class="nav-link" data-scroll-target="#pfs随访时间">2.5 PFS随访时间</a></li>
-  <li><a href="#sas代码" id="toc-sas代码" class="nav-link" data-scroll-target="#sas代码">3 SAS代码</a></li>
   <li><a href="#参数说明" id="toc-参数说明" class="nav-link" data-scroll-target="#参数说明">3.1 参数说明</a></li>
   </ul></li>
   </ul>
@@ -230,11 +244,42 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="最佳总体缓解bor相关统计方法" class="level1">
 <h1>1 最佳总体缓解(BOR)相关统计方法</h1>
-<section id="确切概率法clopper-pearson" class="level2">
-<h2 class="anchored" data-anchor-id="确切概率法clopper-pearson">1.1 确切概率法（Clopper-Pearson）</h2>
+<section id="客观缓解率及各组率的95ci" class="level2">
+<h2 class="anchored" data-anchor-id="客观缓解率及各组率的95ci">1.1 客观缓解率及各组率的95%CI</h2>
+<section id="clopper-pearson法" class="level3">
+<h3 class="anchored" data-anchor-id="clopper-pearson法">1.1.1 Clopper-Pearson法</h3>
+<pre class="sas"><code>proc freq data=orr_nonstaf;
+by trt01pn;
+weight count/zeros;
+tables resp/binomial(exact level='1') alpha=0.05;
+ods output binomialcls=cl_orr;
+run;</code></pre>
 </section>
-<section id="miettinen-nurminen法" class="level2">
-<h2 class="anchored" data-anchor-id="miettinen-nurminen法">1.2 Miettinen-Nurminen法</h2>
+</section>
+<section id="率差及其95置信区间" class="level2">
+<h2 class="anchored" data-anchor-id="率差及其95置信区间">1.2 率差及其95%置信区间</h2>
+<section id="miettinen-nurminen法" class="level3">
+<h3 class="anchored" data-anchor-id="miettinen-nurminen法">1.2.1 Miettinen-Nurminen法</h3>
+<pre class="sas"><code>ods trace on;
+ods output PdiffCLs=PdiffCLs;
+proc freq data=orr;
+  weight count/zeros;
+  table trt01pn*resp/riskdiff(cl=mn column=2)  alpha=0.05;
+run;
+ods output close;
+ods trace off;</code></pre>
+</section>
+<section id="cochran-mantel-haenszelcmh法-分层率差" class="level3">
+<h3 class="anchored" data-anchor-id="cochran-mantel-haenszelcmh法-分层率差">1.2.2 Cochran-Mantel-Haenszel（CMH）法-分层率差</h3>
+<pre class="sas"><code>ods trace on;
+ods output CommonPdiff=CommonPdiff;
+proc freq data=orr;
+  weight count/zeros;
+  table stratirt*trt01pn*resp/commonriskdiff(cl=mh column=2)  alpha=0.05;
+run;
+ods output close;
+ods trace off;</code></pre>
+</section>
 </section>
 </section>
 <section id="无进展生存期相关统计方法" class="level1">
@@ -248,20 +293,47 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="对数秩检验log-rank-test进行组间p值" class="level2">
 <h2 class="anchored" data-anchor-id="对数秩检验log-rank-test进行组间p值">2.3 对数秩检验（log-rank test）进行组间P值</h2>
+<section id="非分层对数秩检验" class="level3">
+<h3 class="anchored" data-anchor-id="非分层对数秩检验">2.3.1 非分层对数秩检验</h3>
 </section>
-<section id="cox比例风险模型评估组间hr及95-ci" class="level2">
-<h2 class="anchored" data-anchor-id="cox比例风险模型评估组间hr及95-ci">2.4 Cox比例风险模型评估组间HR及95% CI</h2>
-</section>
-<section id="pfs随访时间" class="level2">
-<h2 class="anchored" data-anchor-id="pfs随访时间">2.5 PFS随访时间</h2>
-</section>
-<section id="sas代码" class="level2">
-<h2 class="anchored" data-anchor-id="sas代码">3 SAS代码</h2>
-<pre class="sas"><code>proc lifetest data=adtte outsurv=occur1 method=KM timelist=3,6,9,12 reduceout;
+<section id="分层对数秩检验" class="level3">
+<h3 class="anchored" data-anchor-id="分层对数秩检验">2.3.2 分层对数秩检验</h3>
+<pre class="sas"><code>proc lifetest data=adtte method=KM;
   time aval*cnsr(1);
   strata trt01pn / test=logrank;
   ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;
-run;</code></pre>
+run;
+
+  *优效性 单侧p值,group="P"中的P是对照组 *;
+ proc sql noprint;
+   select logrank into :rank1 from stats1 where grpn=2; ***group="P";
+ quit;
+
+
+data homtests2;
+    set homtests1; 
+  /*对照组好*/
+    if &amp;rank1.&lt;0 then p_oneside=1-probchisq/2;   /*单侧P值*/
+  /*试验组好*/
+  if &amp;rank1.&gt;=0 then p_oneside=probchisq/2;
+
+    if p_oneside&lt;0.0001 then pvalue="&lt;0.0001";
+    else pvalue=strip(put(round(p_oneside,0.0001),8.4));
+run;
+</code></pre>
+</section>
+</section>
+<section id="cox比例风险模型评估组间hr及95-ci" class="level2">
+<h2 class="anchored" data-anchor-id="cox比例风险模型评估组间hr及95-ci">2.4 Cox比例风险模型评估组间HR及95% CI</h2>
+<section id="非分层cox比例风险模型" class="level3">
+<h3 class="anchored" data-anchor-id="非分层cox比例风险模型">2.4.1 非分层Cox比例风险模型</h3>
+</section>
+<section id="分层cox比例风险模型" class="level3">
+<h3 class="anchored" data-anchor-id="分层cox比例风险模型">2.4.2 分层Cox比例风险模型</h3>
+</section>
+</section>
+<section id="pfs随访时间" class="level2">
+<h2 class="anchored" data-anchor-id="pfs随访时间">2.5 PFS随访时间</h2>
 </section>
 <section id="参数说明" class="level2">
 <h2 class="anchored" data-anchor-id="参数说明">3.1 参数说明</h2>
