@@ -68,6 +68,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -178,6 +181,10 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">前列腺癌</span></span>
+  </li>
     </ul>
     </div>
 </nav>
@@ -190,6 +197,13 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#recist-1.1简介" id="toc-recist-1.1简介" class="nav-link active" data-scroll-target="#recist-1.1简介">1 RECIST 1.1简介</a>
   <ul class="collapse">
+  <li><a href="#recistv1.1病灶" id="toc-recistv1.1病灶" class="nav-link" data-scroll-target="#recistv1.1病灶">1.1 RECISTv1.1病灶</a></li>
+  <li><a href="#可测量病灶" id="toc-可测量病灶" class="nav-link" data-scroll-target="#可测量病灶">1.2 可测量病灶</a></li>
+  <li><a href="#不可测量病灶" id="toc-不可测量病灶" class="nav-link" data-scroll-target="#不可测量病灶">1.3 不可测量病灶</a></li>
+  <li><a href="#靶病灶" id="toc-靶病灶" class="nav-link" data-scroll-target="#靶病灶">1.4 靶病灶</a></li>
+  <li><a href="#非靶病灶" id="toc-非靶病灶" class="nav-link" data-scroll-target="#非靶病灶">1.5 非靶病灶</a></li>
+  <li><a href="#新病灶" id="toc-新病灶" class="nav-link" data-scroll-target="#新病灶">1.6 新病灶</a></li>
+  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结">1.7 总结</a></li>
   <li><a href="#时间点疗效time-point-response" id="toc-时间点疗效time-point-response" class="nav-link" data-scroll-target="#时间点疗效time-point-response">1.1 时间点疗效(Time point response)</a></li>
   <li><a href="#最佳总体疗效best-overall-response-bor" id="toc-最佳总体疗效best-overall-response-bor" class="nav-link" data-scroll-target="#最佳总体疗效best-overall-response-bor">1.2 最佳总体疗效(Best overall response, BOR)</a>
   <ul class="collapse">
@@ -229,11 +243,72 @@ ul.task-list li input[type="checkbox"] {
 <section id="recist-1.1简介" class="level1">
 <h1>1 RECIST 1.1简介</h1>
 <p>Response Evaluation Criteria in Solid Tumors (RECIST) 1.1是实体瘤疗效评估的标准方法，主要用于评估肿瘤对治疗的反应。RECIST 1.1定义了肿瘤的测量方法、评估时间点以及不同疗效类别的标准。</p>
+<section id="recistv1.1病灶" class="level2">
+<h2 class="anchored" data-anchor-id="recistv1.1病灶">1.1 RECISTv1.1病灶</h2>
+<p>在RECISTv1.1评估标准中，病灶定义为：与研究适应症直接相关的病灶，包括：</p>
+<ul>
+<li><p>任意大小非淋巴结恶性病灶</p></li>
+<li><p>最短垂直径≥10mm的淋巴结病灶</p></li>
+<li><p>腹水、胸腔或心包积液</p></li>
+</ul>
+<p>淋巴结病灶</p>
+</section>
+<section id="可测量病灶" class="level2">
+<h2 class="anchored" data-anchor-id="可测量病灶">1.2 可测量病灶</h2>
+<p>在断层扫描图像层厚≤5mm的影像检查中，可测量病灶定义为可以在连续两个层面上显示，且轴向断层平面上进行精确测量的病灶，并且其尺寸需要满足以下条件：</p>
+<ul>
+<li><p>非淋巴结病灶：最长径（LDi）≥10mm</p></li>
+<li><p>淋巴结病灶<strong>：</strong>最长垂直径（SDi）≥15mm</p></li>
+</ul>
+<p>注意：如果层厚&gt;5mm，则可测量病灶的最小值为层厚的两倍。</p>
+</section>
+<section id="不可测量病灶" class="level2">
+<h2 class="anchored" data-anchor-id="不可测量病灶">1.3 不可测量病灶</h2>
+<p>不可测量病灶包括：</p>
+<ul>
+<li><p>非淋巴结病灶，即最长径（LDi）＜10mm的非淋巴结病灶，以及10mm≤最长垂直径（SDi）＜15mm的淋巴结；</p></li>
+<li><p>真正不可测量病灶，例如：无可测量软组织成分的骨病灶，脑膜疾病、腹水、胸腔或心包积液、炎性乳腺癌、皮肤/肺的癌性淋巴管炎、影像无法重复测量的病灶、通过体格检查发现的腹部肿块/腹部器官肿大等。</p></li>
+</ul>
+</section>
+<section id="靶病灶" class="level2">
+<h2 class="anchored" data-anchor-id="靶病灶">1.4 靶病灶</h2>
+<p>靶病灶为可测量病灶的子集，病灶总数不能超过5个，且每个器官不能超过2个。</p>
+</section>
+<section id="非靶病灶" class="level2">
+<h2 class="anchored" data-anchor-id="非靶病灶">1.5 非靶病灶</h2>
+<p>所有不可测量病灶或符合靶病灶，但因数量限制而未能归为靶病灶的可测量病灶</p>
+</section>
+<section id="新病灶" class="level2">
+<h2 class="anchored" data-anchor-id="新病灶">1.6 新病灶</h2>
+<p>与基线相比新出现，且符合<a href="#recistv1.1病灶">1.1 RECISTv1.1病灶</a>章节定义的病灶。</p>
+</section>
+<section id="总结" class="level2">
+<h2 class="anchored" data-anchor-id="总结">1.7 总结</h2>
+<p>RECISITv1.1适用于能形成实体肿块的肿瘤（病灶），血液肿瘤不能用RECISIT，是因为白血病、淋巴瘤血里是肿瘤细胞，不能那尺子量。而前列腺癌为什么又部分适合，是因为前列腺癌属于实体瘤，但是很多转移到骨头里，骨病灶不容易按RECIST测量。</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  A[所有病灶] --&gt; B[RECIST病灶]
+  B[RECIST病灶] --&gt; C1[可测量]
+  B[RECIST病灶] --&gt; C2[不可测量病灶]
+  C1[可测量] --&gt; D1[靶病灶]
+  C1[可测量] --&gt; D2[非靶病灶]
+  C2[不可测量病灶] --&gt; D2[非靶病灶]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>实体瘤评估的具体过程：<br>
 1. <strong>基线评估</strong>：在治疗开始前，对患者的肿瘤进行全面评估，选定一定数量的靶病灶和非靶病灶，计算所有靶病灶的直径和。对应CRF中的1.肿瘤评估_靶病灶（筛选期），2.肿瘤评估_非靶病灶（筛选期）两个页面。<br>
 2. <strong>肿瘤评估</strong>：在治疗过程中，按照预定的时间点对患者进行评估，如靶病灶的径长、直径和，非靶病灶的状态以及是否出现新病灶等。对应CRF中的1.肿瘤评估_靶病灶，2.肿瘤评估_非靶病灶，3.肿瘤评估_新病灶三个页面。<br>
 3. <strong>总体评估</strong>：研究人员为每个时间点的靶病灶、非靶病灶、新病灶的肿瘤评估结果进行分类，<mark>同时结合所有病灶判断总的总体评估结果</mark>。后续说的总体评估结果都是指结合所有病灶得到的总体评估结果。对应CRF中的1.肿瘤评估_总体疗效一个页面。<br>
 4. <strong>最佳总体疗效（BOR）</strong>：根据3所有病灶总的总体评估结果，计算整个治疗过程中患者达到的最佳疗效类别，作为最终的疗效评估结果。CRF不收集BOR，通常由编程衍生。</p>
+</section>
 <section id="时间点疗效time-point-response" class="level2">
 <h2 class="anchored" data-anchor-id="时间点疗效time-point-response">1.1 时间点疗效(Time point response)</h2>
 <p>最佳时点疗效由CRF中肿瘤评估_总体疗效页面直接收集，不需要衍生计算。</p>

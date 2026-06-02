@@ -31,7 +31,7 @@ website:
         #   href: r/barplot.qmd
         #   contents:
         #     - r/barplot.qmd
-    - title: "实体瘤"
+    - title: "肿瘤"
       style: "docked"
       background: light
       contents:
@@ -45,6 +45,8 @@ website:
             - oncology/addates.qmd
             - oncology/adtte.qmd
             - oncology/statistics.qmd
+        - section: "前列腺癌"
+          href: oncology/prostate_cancer.qmd
     - title: "药物暴露"
       style: "docked"
       background: light

@@ -2,6 +2,7 @@
 title: "数据处理（Transform）"
 format: html
 ---
+
 ```{r}
 #| label: setup
 #| include: false
@@ -20,6 +21,7 @@ options(
 ## 1.1 数值比较（Numeric comparison)
 
 数值比较是最常见的生成逻辑向量的方式，比较运算符号包括：`>`, `<`, `>=`, `<=`, `==`, `!=`，常和filter()搭配使用。
+
 ```{r}
 flights |> 
   filter(dep_delay > 60)
@@ -165,3 +167,238 @@ case_when(
 ```
 
 需要注意的是，`case_when`和`if_else()` 的输出结果需要时兼容的，例如输出的结果必需全是字符型或数值型，不能字符和数值两种形式掺杂。
+
+# 2 数字（Numbers）
+
+## 2.1 衍生数值变量（Making numbers）
+
+`pares_double`和`parse_number()`能将字符形式的数值转换为数值型，`parse_number()`会自动去掉字符串中的非数字字符，而`parse_double()`则会保留这些字符。
+
+```{r}
+x <- c("1.23","4.5")
+parse_double(x)
+x <- c("$1.23", "4,5")
+parse_number(x)
+```
+
+## 2.2 计算频数（Counts）
+
+`count()`函数可以用来计算频数
+
+```{r}
+flights |>
+  count(dest, sort = TRUE)
+# 如果你想要展示所有的数据，可以使用 |> print(n = Inf) 或|> View() 来查看完整的数据。
+```
+
+同时，使用`group_by``()`,`summarize``()`和`n()` 也能达到此目的，并且还能计算其他变量的汇总分析。
+
+```{r}
+flights |>
+  group_by(dest) |>
+  summarise(
+    n = n(),
+    delay = mean(dep_delay, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+`n()`函数只能在`summarise()`和`mutate()`中使用，与`n()`函数类似的还有`n_distinct()`函数，可以用来计算不同值的数量。
+```{r}
+flights |> 
+  group_by(dest) |>
+  summarise(
+    n = n(),
+    n_distinct = n_distinct(carrier),
+    .groups = "drop"
+  )
+```
+
+## 2.3 算数运算和向量回收规则
+算数运算符包括：`+`, `-`, `*`, `/`, `^`，这些运算符可以用来对数值进行基本的算术运算，算数运算很简单，我们不会详细介绍。但需要注意的是，在进行算术运算时，如果两个向量的长度不相等，R会自动进行向量回收（vector recycling），R会重复较短的向量来匹配较长的向量。
+通常情况下，我们希望回收单个数值（长度为1的向量），但R会对任何长度较短的向量执行回收操作。如果较长的向量的长度不是较短的向量长度的倍数，R会发出一个警告，提示回收可能导致不一致的结果。
+```{r}
+x <- c(1, 2, 3, 4)
+y <- c(10, 20)
+x + y
+x1 <- c(1, 2)
+y1 <- c(10, 20, 3, 4)
+x1 * y1
+x2 <- c(1, 2)
+y2 <- c(10, 20, 3)
+x2 * y2
+```
+
+回收规则同样应用于比较运算（`>`, `<`, `==`等），会产生意外的结果如果使用`==`而不是`%in%`来检查一个值是否在一个向量中。
+```{r}
+flights |> 
+  filter(month == c(1, 2))
+```
+
+上面这段代码，仅会返回奇数行且月份为1或偶数行月份为2的记录，而不是返回月份为1或2的记录。正确的做法是使用`%in%`操作符。
+
+### 2.4 最小值和最大值（Min and max）
+`pmin()`和`pmax()`函数可以用来计算两个或多个向量的元素级最小值和最大值。
+需要注意的是`min()`和`max()`函数返回的是整个向量的最小值和最大值，会得到所有行的min和max值有一样的错误结果，而不是元素级的最小值和最大值。
+```{r}
+df <- tibble(
+  x = c(1, 2, 3),
+  y = c(4, 1, NA)
+)
+
+df %>%
+  mutate(
+    min = pmin(x, y, na.rm = TRUE),
+    max = pmax(x, y, na.rm = TRUE)
+  )
+
+df %>%
+  mutate(
+    min = min(x, y, na.rm = TRUE),
+    max = max(x, y, na.rm = TRUE)
+  )
+```
+
+### 2.5 膜运算（Modular arithmetic）
+
+`%%`和`%/%`运算符可以用来进行膜运算，`%%`返回除法的余数，而`%/%`返回除法的商的整数部分。在flights数据集中，我们可以使用膜运算来将变量`sched_dep_time`转换为小时和分钟的格式。
+```{r}
+flights %>%
+  mutate(
+    dep_hour = sched_dep_time %/% 100,
+    dep_minute = sched_dep_time %% 100
+  )
+```
+
+### 2.6 对数运算（Logarithms）
+常用的对数函数包括：`log()`（以e为底）, `log10()`（以10为底）, `log2()`（以2为底）。
+
+### 2.7 四舍五入（Rounding）
+`round()`是常用的四舍五入函数,`round()`函数会将数值四舍五入至整数。当然，可以用过digits来控制精度，`round(x, digits)`会将数值四舍五入至最接近的10^-n位数，所以digits=2表示四舍五入到最接近的0.01位。同理，若digits=-2示四舍五入到最接近的100位。
+```{r}
+round(123.456)
+round(123.456, digits = 2)  
+round(123.456, digits = -2)
+```
+
+有个地方需要注意的是，`round()`函数在处理.5的情况时，采用的是"round to even"的规则，也就是当数值正好在两个整数的中间时，会将其四舍五入到最近的偶数。这是为了避免在大量数据中产生系统性的偏差，一半的.5会向上取整，一半会向下取整。
+```{r}
+round(2.5)
+round(4.5)
+```
+
+类似的函数还有`ceiling()`和`floor()`，`ceiling()`函数会将数值向上取整到最近的整数，而`floor()`函数会将数值向下取整到最近的整数。
+```{r}
+ceiling(2.3)
+floor(2.7)
+```
+
+同时，如果你想把一个整数四舍五入到某个数的倍数，可以先除以那个数，使用`round()`函数进行四舍五入，然后再乘以那个数。这在画图横坐标最大刻度计算时非常有用。
+```{r}
+round(123.456 / 5) * 5
+round(123.456 / 10) * 10
+```
+
+### 2.8 将数值分段（Cutting and binning）
+`cut()`函数可以用来将数值分段，`cut(x, breaks)`函数会将数值x分成由breaks指定的区间，并返回一个因子变量，表示每个数值所属的区间。`cut()`函数还有一些其他参数，比如`labels`可以用来指定每个区间的标签。在范围外的数值会被标记为NA。同时可以通过`include.lowest`参数来控制是否将边界值包含在第一个区间中，默认情况下，`cut()`函数会将左边界包含在区间外，而将右边界排除在内。
+```{r}  
+x <- c(1, 2, 3, 4, 5, -1)
+cut(x, breaks = c(0, 2, 4, 6))
+z <- cut(x, breaks = c(0, 2, 4, 6), labels = c("Low", "Medium", "High"))
+z
+class(z)
+```
+
+### 2.9 累积与滚动汇总（Cumulative and rolling summaries）
+`cumsum()`函数可以用来计算累积和，`cumprod()`函数可以用来计算累积积，`cummin()`函数可以用来计算累积最小值，`cummax()`函数可以用来计算累积最大值。这些函数在数据分析中非常有用，可以帮助我们理解数据的趋势和变化。
+
+### 2.10 排序（Ranks）
+`min_rank()`函数可以用来计算最小排名，row_number()函数可以用来计算行号，dense_rank()函数可以用来计算密集排名，percent_rank()函数可以用来计算百分位排名。这些函数在数据分析中非常有用，可以帮助我们理解数据的分布和相对位置。
+```{r}
+x <- tibble(
+  x = c(1, 5, 5, 17, 22, NA)
+)
+
+x |> 
+  mutate(
+    min_rank = min_rank(x),
+    row_number = row_number(x),
+    dense_rank = dense_rank(x),
+    percent_rank = percent_rank(x)
+  )
+
+```
+
+### 2.11 差分（Offsets）
+`lag()`函数可以用来计算滞后值，`lead()`函数可以用来计算前导值。这些函数在时间序列分析中非常有用，可以帮助我们理解数据的变化和趋势。
+
+### 2.12 连续标识符（Cumulative identifiers）
+```{r}
+events <- tibble(
+  time = c(0,1,2,3,5,10,12,15,17,19,30,40,44,67)
+)
+
+events <- events |> 
+  mutate(
+# default = first(time), 用这行的第一个值来填充NA
+    diff = time - lag(time, default = first(time)),
+    has_gap = diff > 5,
+    group = cumsum(has_gap)
+  )
+
+events
+```
+
+如果想要每组内第一行，可以用`consecutive_id()`和`slice_head(n = 1)`来实现。
+```{r}
+events
+
+events |> 
+  group_by(id = consecutive_id(group)) |> 
+  slice_head(n = 1)
+
+# 直接用存在的group列来分组，是不是也可以呢？在这个例子中，结果是一样的。
+# 但如果group列中有相同的值但不连续，那么结果就不一样了。详细看下面的介绍：
+
+events |> 
+  group_by(group) |> 
+  slice_head(n = 1)
+```
+
+上面两段代码的区别是，group_by(group)会将group列中的相同值分为一组，而group_by(id = consecutive_id(group))会将group列中连续相同的值分为一组。也就是说，如果group列中有相同的值但不连续，那么group_by(group)会将它们分为一组，而group_by(id = consecutive_id(group))会将它们分为不同的组。
+
+```{r}
+x <- tibble(
+  group = c("A", "A", "B", "B", "A", "A")
+)
+x |> 
+  group_by(group) |> 
+  slice_head(n = 1)
+
+x |>
+  group_by(id = consecutive_id(group)) |> 
+  slice_head(n = 1)
+```
+
+### 根据位置选择观测（Positions）
+在`summarize()`中，我们可以使用`first(x)`、`nth(x, n)`和`last(x)`函数来根据位置选择观测。可以通过`na_rm = TRUE`参数来忽略NA值，通过`order_by`参数来指定排序变量，以便在选择观测时按照特定的顺序进行选择。若数据中没有特定位置的值时，也可以通过`default`参数来确定默认值。
+```{r}
+# 当没有order_by参数时，first()、nth()和last()函数会按照数据的原始顺序来选择观测。也就是说，它们会选择每组中的第一个、第二个或最后一个观测，而不考虑任何特定的排序。
+flights |> 
+  group_by(year, month, day) |> 
+  summarize(
+    first = first(dep_delay, na_rm = TRUE),
+    second = nth(dep_delay, 2, na_rm = TRUE),
+    last = last(dep_delay, na_rm = TRUE),
+    .groups = "drop"
+  )
+
+flights |> 
+  group_by(year, month, day) |> 
+  summarize(
+    first = first(dep_delay, na_rm = TRUE, order_by = dep_delay),
+    second = nth(dep_delay, 2, na_rm = TRUE, order_by = dep_delay),
+    last = last(dep_delay, na_rm = TRUE, order_by = dep_delay),
+    .groups = "drop"
+  )
+```

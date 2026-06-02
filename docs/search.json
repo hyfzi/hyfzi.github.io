@@ -63,6 +63,39 @@
     ]
   },
   {
+    "objectID": "r/transform.html#衍生数值变量making-numbers",
+    "href": "r/transform.html#衍生数值变量making-numbers",
+    "title": "数据处理（Transform）",
+    "section": "2.1 衍生数值变量（Making numbers）",
+    "text": "2.1 衍生数值变量（Making numbers）\npares_double和parse_number()能将字符形式的数值转换为数值型，parse_number()会自动去掉字符串中的非数字字符，而parse_double()则会保留这些字符。\n\nx &lt;- c(\"1.23\",\"4.5\")\nparse_double(x)\n\n[1] 1.23 4.50\n\nx &lt;- c(\"$1.23\", \"4,5\")\nparse_number(x)\n\n[1]  1.23 45.00",
+    "crumbs": [
+      "数据处理",
+      "数据处理（Transform）"
+    ]
+  },
+  {
+    "objectID": "r/transform.html#计算频数counts",
+    "href": "r/transform.html#计算频数counts",
+    "title": "数据处理（Transform）",
+    "section": "2.2 计算频数（Counts）",
+    "text": "2.2 计算频数（Counts）\ncount()函数可以用来计算频数\n\nflights |&gt;\n  count(dest, sort = TRUE)\n\n# A tibble: 105 × 2\n   dest      n\n   &lt;chr&gt; &lt;int&gt;\n 1 ORD   17283\n 2 ATL   17215\n 3 LAX   16174\n 4 BOS   15508\n 5 MCO   14082\n 6 CLT   14064\n 7 SFO   13331\n 8 FLL   12055\n 9 MIA   11728\n10 DCA    9705\n# ℹ 95 more rows\n\n# 如果你想要展示所有的数据，可以使用 |&gt; print(n = Inf) 或|&gt; View() 来查看完整的数据。\n\n同时，使用group_by``(),summarize``()和n() 也能达到此目的，并且还能计算其他变量的汇总分析。\n\nflights |&gt;\n  group_by(dest) |&gt;\n  summarise(\n    n = n(),\n    delay = mean(dep_delay, na.rm = TRUE),\n    .groups = \"drop\"\n  )\n\n# A tibble: 105 × 3\n   dest      n delay\n   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;\n 1 ABQ     254 13.7 \n 2 ACK     265  6.46\n 3 ALB     439 23.6 \n 4 ANC       8 12.9 \n 5 ATL   17215 12.5 \n 6 AUS    2439 13.0 \n 7 AVL     275  8.19\n 8 BDL     443 17.7 \n 9 BGR     375 19.5 \n10 BHM     297 29.7 \n# ℹ 95 more rows\n\n\nn()函数只能在summarise()和mutate()中使用，与n()函数类似的还有n_distinct()函数，可以用来计算不同值的数量。\n\nflights |&gt; \n  group_by(dest) |&gt;\n  summarise(\n    n = n(),\n    n_distinct = n_distinct(carrier),\n    .groups = \"drop\"\n  )\n\n# A tibble: 105 × 3\n   dest      n n_distinct\n   &lt;chr&gt; &lt;int&gt;      &lt;int&gt;\n 1 ABQ     254          1\n 2 ACK     265          1\n 3 ALB     439          1\n 4 ANC       8          1\n 5 ATL   17215          7\n 6 AUS    2439          6\n 7 AVL     275          2\n 8 BDL     443          2\n 9 BGR     375          2\n10 BHM     297          1\n# ℹ 95 more rows",
+    "crumbs": [
+      "数据处理",
+      "数据处理（Transform）"
+    ]
+  },
+  {
+    "objectID": "r/transform.html#算数运算和向量回收规则",
+    "href": "r/transform.html#算数运算和向量回收规则",
+    "title": "数据处理（Transform）",
+    "section": "2.3 算数运算和向量回收规则",
+    "text": "2.3 算数运算和向量回收规则\n算数运算符包括：+, -, *, /, ^，这些运算符可以用来对数值进行基本的算术运算，算数运算很简单，我们不会详细介绍。但需要注意的是，在进行算术运算时，如果两个向量的长度不相等，R会自动进行向量回收（vector recycling），R会重复较短的向量来匹配较长的向量。 通常情况下，我们希望回收单个数值（长度为1的向量），但R会对任何长度较短的向量执行回收操作。如果较长的向量的长度不是较短的向量长度的倍数，R会发出一个警告，提示回收可能导致不一致的结果。\n\nx &lt;- c(1, 2, 3, 4)\ny &lt;- c(10, 20)\nx + y\n\n[1] 11 22 13 24\n\nx1 &lt;- c(1, 2)\ny1 &lt;- c(10, 20, 3, 4)\nx1 * y1\n\n[1] 10 40  3  8\n\nx2 &lt;- c(1, 2)\ny2 &lt;- c(10, 20, 3)\nx2 * y2\n\nWarning in x2 * y2: longer object length is not a multiple of shorter object\nlength\n\n\n[1] 10 40  3\n\n\n回收规则同样应用于比较运算（&gt;, &lt;, ==等），会产生意外的结果如果使用==而不是%in%来检查一个值是否在一个向量中。\n\nflights |&gt; \n  filter(month == c(1, 2))\n\n# A tibble: 25,977 × 19\n    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;\n 1  2013     1     1      517            515         2      830            819\n 2  2013     1     1      542            540         2      923            850\n 3  2013     1     1      554            600        -6      812            837\n 4  2013     1     1      555            600        -5      913            854\n 5  2013     1     1      557            600        -3      838            846\n 6  2013     1     1      558            600        -2      849            851\n 7  2013     1     1      558            600        -2      924            917\n 8  2013     1     1      559            600        -1      941            910\n 9  2013     1     1      559            600        -1      854            902\n10  2013     1     1      600            600         0      837            825\n# ℹ 25,967 more rows\n# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,\n#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,\n#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;\n\n\n上面这段代码，仅会返回奇数行且月份为1或偶数行月份为2的记录，而不是返回月份为1或2的记录。正确的做法是使用%in%操作符。\n\n2.4 最小值和最大值（Min and max）\npmin()和pmax()函数可以用来计算两个或多个向量的元素级最小值和最大值。 需要注意的是min()和max()函数返回的是整个向量的最小值和最大值，会得到所有行的min和max值有一样的错误结果，而不是元素级的最小值和最大值。\n\ndf &lt;- tibble(\n  x = c(1, 2, 3),\n  y = c(4, 1, NA)\n)\n\ndf %&gt;%\n  mutate(\n    min = pmin(x, y, na.rm = TRUE),\n    max = pmax(x, y, na.rm = TRUE)\n  )\n\n# A tibble: 3 × 4\n      x     y   min   max\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     1     4     1     4\n2     2     1     1     2\n3     3    NA     3     3\n\ndf %&gt;%\n  mutate(\n    min = min(x, y, na.rm = TRUE),\n    max = max(x, y, na.rm = TRUE)\n  )\n\n# A tibble: 3 × 4\n      x     y   min   max\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     1     4     1     4\n2     2     1     1     4\n3     3    NA     1     4\n\n\n\n\n2.5 膜运算（Modular arithmetic）\n%%和%/%运算符可以用来进行膜运算，%%返回除法的余数，而%/%返回除法的商的整数部分。在flights数据集中，我们可以使用膜运算来将变量sched_dep_time转换为小时和分钟的格式。\n\nflights %&gt;%\n  mutate(\n    dep_hour = sched_dep_time %/% 100,\n    dep_minute = sched_dep_time %% 100\n  )\n\n# A tibble: 336,776 × 21\n    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;\n 1  2013     1     1      517            515         2      830            819\n 2  2013     1     1      533            529         4      850            830\n 3  2013     1     1      542            540         2      923            850\n 4  2013     1     1      544            545        -1     1004           1022\n 5  2013     1     1      554            600        -6      812            837\n 6  2013     1     1      554            558        -4      740            728\n 7  2013     1     1      555            600        -5      913            854\n 8  2013     1     1      557            600        -3      709            723\n 9  2013     1     1      557            600        -3      838            846\n10  2013     1     1      558            600        -2      753            745\n# ℹ 336,766 more rows\n# ℹ 13 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,\n#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,\n#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, dep_hour &lt;dbl&gt;,\n#   dep_minute &lt;dbl&gt;\n\n\n\n\n2.6 对数运算（Logarithms）\n常用的对数函数包括：log()（以e为底）, log10()（以10为底）, log2()（以2为底）。\n\n\n2.7 四舍五入（Rounding）\nround()是常用的四舍五入函数,round()函数会将数值四舍五入至整数。当然，可以用过digits来控制精度，round(x, digits)会将数值四舍五入至最接近的10^-n位数，所以digits=2表示四舍五入到最接近的0.01位。同理，若digits=-2示四舍五入到最接近的100位。\n\nround(123.456)\n\n[1] 123\n\nround(123.456, digits = 2)  \n\n[1] 123.46\n\nround(123.456, digits = -2)\n\n[1] 100\n\n\n有个地方需要注意的是，round()函数在处理.5的情况时，采用的是”round to even”的规则，也就是当数值正好在两个整数的中间时，会将其四舍五入到最近的偶数。这是为了避免在大量数据中产生系统性的偏差，一半的.5会向上取整，一半会向下取整。\n\nround(2.5)\n\n[1] 2\n\nround(4.5)\n\n[1] 4\n\n\n类似的函数还有ceiling()和floor()，ceiling()函数会将数值向上取整到最近的整数，而floor()函数会将数值向下取整到最近的整数。\n\nceiling(2.3)\n\n[1] 3\n\nfloor(2.7)\n\n[1] 2\n\n\n同时，如果你想把一个整数四舍五入到某个数的倍数，可以先除以那个数，使用round()函数进行四舍五入，然后再乘以那个数。这在画图横坐标最大刻度计算时非常有用。\n\nround(123.456 / 5) * 5\n\n[1] 125\n\nround(123.456 / 10) * 10\n\n[1] 120\n\n\n\n\n2.8 将数值分段（Cutting and binning）\ncut()函数可以用来将数值分段，cut(x, breaks)函数会将数值x分成由breaks指定的区间，并返回一个因子变量，表示每个数值所属的区间。cut()函数还有一些其他参数，比如labels可以用来指定每个区间的标签。在范围外的数值会被标记为NA。同时可以通过include.lowest参数来控制是否将边界值包含在第一个区间中，默认情况下，cut()函数会将左边界包含在区间外，而将右边界排除在内。\n\nx &lt;- c(1, 2, 3, 4, 5, -1)\ncut(x, breaks = c(0, 2, 4, 6))\n\n[1] (0,2] (0,2] (2,4] (2,4] (4,6] &lt;NA&gt; \nLevels: (0,2] (2,4] (4,6]\n\nz &lt;- cut(x, breaks = c(0, 2, 4, 6), labels = c(\"Low\", \"Medium\", \"High\"))\nz\n\n[1] Low    Low    Medium Medium High   &lt;NA&gt;  \nLevels: Low Medium High\n\nclass(z)\n\n[1] \"factor\"\n\n\n\n\n2.9 累积与滚动汇总（Cumulative and rolling summaries）\ncumsum()函数可以用来计算累积和，cumprod()函数可以用来计算累积积，cummin()函数可以用来计算累积最小值，cummax()函数可以用来计算累积最大值。这些函数在数据分析中非常有用，可以帮助我们理解数据的趋势和变化。\n\n\n2.10 排序（Ranks）\nmin_rank()函数可以用来计算最小排名，row_number()函数可以用来计算行号，dense_rank()函数可以用来计算密集排名，percent_rank()函数可以用来计算百分位排名。这些函数在数据分析中非常有用，可以帮助我们理解数据的分布和相对位置。\n\nx &lt;- tibble(\n  x = c(1, 5, 5, 17, 22, NA)\n)\n\nx |&gt; \n  mutate(\n    min_rank = min_rank(x),\n    row_number = row_number(x),\n    dense_rank = dense_rank(x),\n    percent_rank = percent_rank(x)\n  )\n\n# A tibble: 6 × 5\n      x min_rank row_number dense_rank percent_rank\n  &lt;dbl&gt;    &lt;int&gt;      &lt;int&gt;      &lt;int&gt;        &lt;dbl&gt;\n1     1        1          1          1         0   \n2     5        2          2          2         0.25\n3     5        2          3          2         0.25\n4    17        4          4          3         0.75\n5    22        5          5          4         1   \n6    NA       NA         NA         NA        NA   \n\n\n\n\n2.11 差分（Offsets）\nlag()函数可以用来计算滞后值，lead()函数可以用来计算前导值。这些函数在时间序列分析中非常有用，可以帮助我们理解数据的变化和趋势。\n\n\n2.12 连续标识符（Cumulative identifiers）\n\nevents &lt;- tibble(\n  time = c(0,1,2,3,5,10,12,15,17,19,30,40,44,67)\n)\n\nevents &lt;- events |&gt; \n  mutate(\n# default = first(time), 用这行的第一个值来填充NA\n    diff = time - lag(time, default = first(time)),\n    has_gap = diff &gt; 5,\n    group = cumsum(has_gap)\n  )\n\nevents\n\n# A tibble: 14 × 4\n    time  diff has_gap group\n   &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;   &lt;int&gt;\n 1     0     0 FALSE       0\n 2     1     1 FALSE       0\n 3     2     1 FALSE       0\n 4     3     1 FALSE       0\n 5     5     2 FALSE       0\n 6    10     5 FALSE       0\n 7    12     2 FALSE       0\n 8    15     3 FALSE       0\n 9    17     2 FALSE       0\n10    19     2 FALSE       0\n11    30    11 TRUE        1\n12    40    10 TRUE        2\n13    44     4 FALSE       2\n14    67    23 TRUE        3\n\n\n如果想要每组内第一行，可以用consecutive_id()和slice_head(n = 1)来实现。\n\nevents\n\n# A tibble: 14 × 4\n    time  diff has_gap group\n   &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;   &lt;int&gt;\n 1     0     0 FALSE       0\n 2     1     1 FALSE       0\n 3     2     1 FALSE       0\n 4     3     1 FALSE       0\n 5     5     2 FALSE       0\n 6    10     5 FALSE       0\n 7    12     2 FALSE       0\n 8    15     3 FALSE       0\n 9    17     2 FALSE       0\n10    19     2 FALSE       0\n11    30    11 TRUE        1\n12    40    10 TRUE        2\n13    44     4 FALSE       2\n14    67    23 TRUE        3\n\nevents |&gt; \n  group_by(id = consecutive_id(group)) |&gt; \n  slice_head(n = 1)\n\n# A tibble: 4 × 5\n# Groups:   id [4]\n   time  diff has_gap group    id\n  &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;   &lt;int&gt; &lt;int&gt;\n1     0     0 FALSE       0     1\n2    30    11 TRUE        1     2\n3    40    10 TRUE        2     3\n4    67    23 TRUE        3     4\n\n# 直接用存在的group列来分组，是不是也可以呢？在这个例子中，结果是一样的。\n# 但如果group列中有相同的值但不连续，那么结果就不一样了。详细看下面的介绍：\n\nevents |&gt; \n  group_by(group) |&gt; \n  slice_head(n = 1)\n\n# A tibble: 4 × 4\n# Groups:   group [4]\n   time  diff has_gap group\n  &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;   &lt;int&gt;\n1     0     0 FALSE       0\n2    30    11 TRUE        1\n3    40    10 TRUE        2\n4    67    23 TRUE        3\n\n\n上面两段代码的区别是，group_by(group)会将group列中的相同值分为一组，而group_by(id = consecutive_id(group))会将group列中连续相同的值分为一组。也就是说，如果group列中有相同的值但不连续，那么group_by(group)会将它们分为一组，而group_by(id = consecutive_id(group))会将它们分为不同的组。\n\nx &lt;- tibble(\n  group = c(\"A\", \"A\", \"B\", \"B\", \"A\", \"A\")\n)\nx |&gt; \n  group_by(group) |&gt; \n  slice_head(n = 1)\n\n# A tibble: 2 × 1\n# Groups:   group [2]\n  group\n  &lt;chr&gt;\n1 A    \n2 B    \n\nx |&gt;\n  group_by(id = consecutive_id(group)) |&gt; \n  slice_head(n = 1)\n\n# A tibble: 3 × 2\n# Groups:   id [3]\n  group    id\n  &lt;chr&gt; &lt;int&gt;\n1 A         1\n2 B         2\n3 A         3\n\n\n\n\n根据位置选择观测（Positions）\n在summarize()中，我们可以使用first(x)、nth(x, n)和last(x)函数来根据位置选择观测。可以通过na_rm = TRUE参数来忽略NA值，通过order_by参数来指定排序变量，以便在选择观测时按照特定的顺序进行选择。若数据中没有特定位置的值时，也可以通过default参数来确定默认值。\n\n# 当没有order_by参数时，first()、nth()和last()函数会按照数据的原始顺序来选择观测。也就是说，它们会选择每组中的第一个、第二个或最后一个观测，而不考虑任何特定的排序。\nflights |&gt; \n  group_by(year, month, day) |&gt; \n  summarize(\n    first = first(dep_delay, na_rm = TRUE),\n    second = nth(dep_delay, 2, na_rm = TRUE),\n    last = last(dep_delay, na_rm = TRUE),\n    .groups = \"drop\"\n  )\n\n# A tibble: 365 × 6\n    year month   day first second  last\n   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n 1  2013     1     1     2      4    -3\n 2  2013     1     2    43    156    -5\n 3  2013     1     3    33    185   -10\n 4  2013     1     4    26    141    -1\n 5  2013     1     5    15    127    -2\n 6  2013     1     6    17     -2    -4\n 7  2013     1     7    50     -6     0\n 8  2013     1     8    -6     -1    -8\n 9  2013     1     9     3      9     3\n10  2013     1    10     4     17    30\n# ℹ 355 more rows\n\nflights |&gt; \n  group_by(year, month, day) |&gt; \n  summarize(\n    first = first(dep_delay, na_rm = TRUE, order_by = dep_delay),\n    second = nth(dep_delay, 2, na_rm = TRUE, order_by = dep_delay),\n    last = last(dep_delay, na_rm = TRUE, order_by = dep_delay),\n    .groups = \"drop\"\n  )\n\n# A tibble: 365 × 6\n    year month   day first second  last\n   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n 1  2013     1     1   -15    -15   853\n 2  2013     1     2   -13    -13   379\n 3  2013     1     3   -13    -12   291\n 4  2013     1     4   -19    -17   288\n 5  2013     1     5   -16    -14   327\n 6  2013     1     6   -15    -12   202\n 7  2013     1     7   -17    -15   366\n 8  2013     1     8   -16    -15   188\n 9  2013     1     9   -17    -15  1301\n10  2013     1    10   -17    -16  1126\n# ℹ 355 more rows",
+    "crumbs": [
+      "数据处理",
+      "数据处理（Transform）"
+    ]
+  },
+  {
     "objectID": "r/R1.html",
     "href": "r/R1.html",
     "title": "版本升级",
@@ -88,7 +121,7 @@
     "href": "oncology/statistics.html",
     "title": "统计方法",
     "section": "",
-    "text": "proc freq data=orr_nonstaf;\nby trt01pn;\nweight count/zeros;\ntables resp/binomial(exact level='1') alpha=0.05;\nods output binomialcls=cl_orr;\nrun;\n\n\n\n\n\n\nods trace on;\nods output PdiffCLs=PdiffCLs;\nproc freq data=orr;\n  weight count/zeros;\n  table trt01pn*resp/riskdiff(cl=mn column=2)  alpha=0.05;\nrun;\nods output close;\nods trace off;\n\n\n\nods trace on;\nods output CommonPdiff=CommonPdiff;\nproc freq data=orr;\n  weight count/zeros;\n  table stratirt*trt01pn*resp/commonriskdiff(cl=mh column=2)  alpha=0.05;\nrun;\nods output close;\nods trace off;",
+    "text": "统计量\n试验组\n对照组\n\n\n\n\n客观缓解率（ORR）\nxx (x)\nxx (x)\n\n\n各组率的95%置信区间\n(x.xx, x.xx)\n(x.xx, x.xx)\n\n\n基于分层CMH法的率差及其95%置信区间（%）\nx.xx (x.xx, x.xx)\nx.xx (x.xx, x.xx)\n\n\n基于M-N法的率差及其95%置信区间（%）\nx.xx (x.xx, x.xx)\nx.xx (x.xx, x.xx)\n\n\n\n\n\n\n\n\n\n\n\n\n\nClopper-Pearson法（确切概率法）是一种基于二项分布的精确置信区间估计方法，常用于估计二分类终点（如ORR、DCR等）的率及其95%置信区间。适用于样本量较小的情况。\n\n\n\nproc freq data=orr;\nby trt01pn;\nweight count/zeros;\ntables resp/binomial(exact level='1') alpha=0.05;\nods output binomialcls=cl_orr;\nrun;\n其中，数据集orr的格式为:\n\n\n\ntrt01pn\nresp\ncount\n\n\n\n\n1\n0\n5\n\n\n1\n1\n6\n\n\n2\n0\n7\n\n\n2\n1\n0\n\n\n\n其中，TRT01PN为治疗组别；RESP为响应变量，RESP=1代表达到客观缓解，RESP=0代表未达到客观缓解；COUNT为每个TRT01PN*RESP类别下的例数。需要主要的是，即使某个类别下例数为0，我们也要在数据集中展示。\n\n\n\n\n\n\n\n\n\n\n参数\n说明\n\n\n\n\nbinomial\n二项分布\n\n\nexact\n采样exact法计算置信区间\n\n\nlevel='1'\n基于第1水平（将达到客观缓解作为分子）计算二项分布率\n\n\nbinomialcls\n输出基于二项分布的精确置信区间\n\n\n\n\n\n\n输出结果通常包括：\n\nProportion：响应率（Response Rate）\nLowerCL：95%置信区间下限\nUpperCL：95%置信区间上限\n\n\n\n\n\n\n\n\n一种基于score统计量、用于两独立样本率差置信区间估计的稳健方法，在小样本或极端事件率情况下较Wald法具有更好的统计性能。\nods trace on;\nods output PdiffCLs=PdiffCLs;\nproc freq data=orr;\n  weight count/zeros;\n  table trt01pn*resp/riskdiff(cl=mn column=2)  alpha=0.05;\nrun;\nods output close;\nods trace off;\n输入数据集orr同上。\n\n\n\n\n\n\n\n\n\n参数\n说明\n\n\n\n\nriskdiff\n计算两组间率差（Risk Difference）\n\n\ncl=mn\n采用MN法估计率差的置信区间\n\n\ncolumn=2\n基于第二列事件率（达到客观缓解）计算组间率差（resp=1）。\n默认是第一行-第二行（即trt01pn=1 减去 trt01pn=2，试验组-对照组）\n\n\nPdiffCLs\n输出率差及其置信区间结果的数据集\n\n\n\n\n\n\n\nRiskDifference：率差（客观缓解率，试验组-对照组）\nLowerCL：95%置信区间下限\nUpperCL：95%置信区间上限\n\n\n\n\n\nCMH法常用于随机分层临床试验中二分类终点的组间比较。该方法通过在各分层内计算组间率差，并采用Mantel-Haenszel方法进行加权合并，从而得到考虑分层因素后的共同率差（Common Risk Difference）及其95%置信区间。\n相比直接计算总体率差，CMH法能够降低分层因素不平衡对结果的影响，因此广泛应用于ORR、DCR等疗效终点分析。\nods trace on;\nods output CommonPdiff=CommonPdiff;\nproc freq data=orr_stratirt;\n  weight count/zeros;\n  table stratirt*trt01pn*resp/commonriskdiff(cl=mh column=2)  alpha=0.05;\nrun;\nods output close;\nods trace off;\n输入数据集orr_stratirt的格式为：\n\n\n\n\n\n\n\n\n\nstratirt\ntrt01pn\nresp\ncount\n\n\n\n\n男\n1\n0\n3\n\n\n男\n1\n1\n4\n\n\n女\n2\n0\n0\n\n\n女\n2\n1\n3\n\n\n\n其中，stratirt代表分层因素变量，可以存在多个，如果存在多个分层变量，可通过strat1 * strat2 * strat3 * trt01pn * resp。需要主要的是，数据集的格式必须为分层变量 * 治疗组别 * 应答变量。因为我们会column=2作为事件率，行1-行2计算率差，所以输入表格的最后两列必须为 trt01p和resp。\n\n\n\n\n\n\n\n\n\n参数\n说明\n\n\n\n\nstratirt\n分层因素\n\n\ncommonriskdiff\n计算考虑分层因素后的共同率差（Common Risk Difference）\n\n\ncl=mh\n采用Mantel-Haenszel方法估计率差的95%置信区间\n\n\ncolumn=2\n基于第2列事件率计算组间率差，通常对应响应率\n\n\nCommonPdiff\n输出共同率差及其95%置信区间结果的数据集\n\n\n\n\n\n\n\nValue：公共率差\nLowerCL：95%置信区间下限\nUpperCL：95%置信区间上限",
     "crumbs": [
       "实体瘤",
       "统计方法"
@@ -99,7 +132,7 @@
     "href": "oncology/statistics.html#客观缓解率及各组率的95ci",
     "title": "统计方法",
     "section": "",
-    "text": "proc freq data=orr_nonstaf;\nby trt01pn;\nweight count/zeros;\ntables resp/binomial(exact level='1') alpha=0.05;\nods output binomialcls=cl_orr;\nrun;",
+    "text": "Clopper-Pearson法（确切概率法）是一种基于二项分布的精确置信区间估计方法，常用于估计二分类终点（如ORR、DCR等）的率及其95%置信区间。适用于样本量较小的情况。\n\n\n\nproc freq data=orr;\nby trt01pn;\nweight count/zeros;\ntables resp/binomial(exact level='1') alpha=0.05;\nods output binomialcls=cl_orr;\nrun;\n其中，数据集orr的格式为:\n\n\n\ntrt01pn\nresp\ncount\n\n\n\n\n1\n0\n5\n\n\n1\n1\n6\n\n\n2\n0\n7\n\n\n2\n1\n0\n\n\n\n其中，TRT01PN为治疗组别；RESP为响应变量，RESP=1代表达到客观缓解，RESP=0代表未达到客观缓解；COUNT为每个TRT01PN*RESP类别下的例数。需要主要的是，即使某个类别下例数为0，我们也要在数据集中展示。\n\n\n\n\n\n\n\n\n\n\n参数\n说明\n\n\n\n\nbinomial\n二项分布\n\n\nexact\n采样exact法计算置信区间\n\n\nlevel='1'\n基于第1水平（将达到客观缓解作为分子）计算二项分布率\n\n\nbinomialcls\n输出基于二项分布的精确置信区间\n\n\n\n\n\n\n输出结果通常包括：\n\nProportion：响应率（Response Rate）\nLowerCL：95%置信区间下限\nUpperCL：95%置信区间上限",
     "crumbs": [
       "实体瘤",
       "统计方法"
@@ -110,7 +143,7 @@
     "href": "oncology/statistics.html#率差及其95置信区间",
     "title": "统计方法",
     "section": "",
-    "text": "ods trace on;\nods output PdiffCLs=PdiffCLs;\nproc freq data=orr;\n  weight count/zeros;\n  table trt01pn*resp/riskdiff(cl=mn column=2)  alpha=0.05;\nrun;\nods output close;\nods trace off;\n\n\n\nods trace on;\nods output CommonPdiff=CommonPdiff;\nproc freq data=orr;\n  weight count/zeros;\n  table stratirt*trt01pn*resp/commonriskdiff(cl=mh column=2)  alpha=0.05;\nrun;\nods output close;\nods trace off;",
+    "text": "一种基于score统计量、用于两独立样本率差置信区间估计的稳健方法，在小样本或极端事件率情况下较Wald法具有更好的统计性能。\nods trace on;\nods output PdiffCLs=PdiffCLs;\nproc freq data=orr;\n  weight count/zeros;\n  table trt01pn*resp/riskdiff(cl=mn column=2)  alpha=0.05;\nrun;\nods output close;\nods trace off;\n输入数据集orr同上。\n\n\n\n\n\n\n\n\n\n参数\n说明\n\n\n\n\nriskdiff\n计算两组间率差（Risk Difference）\n\n\ncl=mn\n采用MN法估计率差的置信区间\n\n\ncolumn=2\n基于第二列事件率（达到客观缓解）计算组间率差（resp=1）。\n默认是第一行-第二行（即trt01pn=1 减去 trt01pn=2，试验组-对照组）\n\n\nPdiffCLs\n输出率差及其置信区间结果的数据集\n\n\n\n\n\n\n\nRiskDifference：率差（客观缓解率，试验组-对照组）\nLowerCL：95%置信区间下限\nUpperCL：95%置信区间上限\n\n\n\n\n\nCMH法常用于随机分层临床试验中二分类终点的组间比较。该方法通过在各分层内计算组间率差，并采用Mantel-Haenszel方法进行加权合并，从而得到考虑分层因素后的共同率差（Common Risk Difference）及其95%置信区间。\n相比直接计算总体率差，CMH法能够降低分层因素不平衡对结果的影响，因此广泛应用于ORR、DCR等疗效终点分析。\nods trace on;\nods output CommonPdiff=CommonPdiff;\nproc freq data=orr_stratirt;\n  weight count/zeros;\n  table stratirt*trt01pn*resp/commonriskdiff(cl=mh column=2)  alpha=0.05;\nrun;\nods output close;\nods trace off;\n输入数据集orr_stratirt的格式为：\n\n\n\n\n\n\n\n\n\nstratirt\ntrt01pn\nresp\ncount\n\n\n\n\n男\n1\n0\n3\n\n\n男\n1\n1\n4\n\n\n女\n2\n0\n0\n\n\n女\n2\n1\n3\n\n\n\n其中，stratirt代表分层因素变量，可以存在多个，如果存在多个分层变量，可通过strat1 * strat2 * strat3 * trt01pn * resp。需要主要的是，数据集的格式必须为分层变量 * 治疗组别 * 应答变量。因为我们会column=2作为事件率，行1-行2计算率差，所以输入表格的最后两列必须为 trt01p和resp。\n\n\n\n\n\n\n\n\n\n参数\n说明\n\n\n\n\nstratirt\n分层因素\n\n\ncommonriskdiff\n计算考虑分层因素后的共同率差（Common Risk Difference）\n\n\ncl=mh\n采用Mantel-Haenszel方法估计率差的95%置信区间\n\n\ncolumn=2\n基于第2列事件率计算组间率差，通常对应响应率\n\n\nCommonPdiff\n输出共同率差及其95%置信区间结果的数据集\n\n\n\n\n\n\n\nValue：公共率差\nLowerCL：95%置信区间下限\nUpperCL：95%置信区间上限",
     "crumbs": [
       "实体瘤",
       "统计方法"
@@ -121,7 +154,7 @@
     "href": "oncology/statistics.html#kaplan-meier法估计各治疗组的中位pfs及其95ci",
     "title": "统计方法",
     "section": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
-    "text": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI",
+    "text": "2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI\n/*未分层*/\nproc lifetest data=adtte outsurv=occur1 method=KM timelist=3,6,9,12 reduceout;\n  time aval*cnsr(1);\n    strata trt01pn / test=logrank;\n    ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;\nrun;\n\n/*分层计算logrank*/\nproc lifetest data=adtte outsurv=occur1 method=KM;;\n  time aval*cnsr(1);\n  strata stratirt1 stratirt2 stratirt3 / group= trt01pn test=logrank;\n  ods output homtests=homtests1 Homstats=stats1;\nrun;\n\n参数说明\n\n\n\n\n\n\n\n参数\n说明\n\n\n\n\nstrata stratirt1 stratirt2 stratirt3\n\n\n\naval\n\n\n\ncnsr\n删失指示符（0=事件，1=删失）\n\n\ngroup= trt01pn\n\n\n\ntest=logrank\n\n\n\nhomtests\n\n\n\nhomstats\n\n\n\n\n\n\n输出结果",
     "crumbs": [
       "实体瘤",
       "统计方法"
@@ -154,7 +187,7 @@
     "href": "oncology/statistics.html#cox比例风险模型评估组间hr及95-ci",
     "title": "统计方法",
     "section": "2.4 Cox比例风险模型评估组间HR及95% CI",
-    "text": "2.4 Cox比例风险模型评估组间HR及95% CI\n\n2.4.1 非分层Cox比例风险模型\n\n\n2.4.2 分层Cox比例风险模型",
+    "text": "2.4 Cox比例风险模型评估组间HR及95% CI\n\n2.4.1 非分层Cox比例风险模型\n\n\n2.4.2 分层Cox比例风险模型\n问题：为什么计算logrank或HR值，有分层和未分层两种方式，但计算中位无进展生存期或各时点无进展生存率，就不会考虑分层和未分层？\n答：“估计性描述”和”组间比较”是两类不同的统计问题。中位PFS和PFS率是在“描述组本身”，而logrank或HR是组间比较。",
     "crumbs": [
       "实体瘤",
       "统计方法"
@@ -172,233 +205,14 @@
     ]
   },
   {
-    "objectID": "oncology/statistics.html#参数说明",
-    "href": "oncology/statistics.html#参数说明",
+    "objectID": "oncology/statistics.html#参数说明-4",
+    "href": "oncology/statistics.html#参数说明-4",
     "title": "统计方法",
     "section": "3.1 参数说明",
     "text": "3.1 参数说明",
     "crumbs": [
       "实体瘤",
       "统计方法"
-    ]
-  },
-  {
-    "objectID": "oncology/oncology.html",
-    "href": "oncology/oncology.html",
-    "title": "RECIST 1.1",
-    "section": "",
-    "text": "Response Evaluation Criteria in Solid Tumors (RECIST) 1.1是实体瘤疗效评估的标准方法，主要用于评估肿瘤对治疗的反应。RECIST 1.1定义了肿瘤的测量方法、评估时间点以及不同疗效类别的标准。\n实体瘤评估的具体过程：\n1. 基线评估：在治疗开始前，对患者的肿瘤进行全面评估，选定一定数量的靶病灶和非靶病灶，计算所有靶病灶的直径和。对应CRF中的1.肿瘤评估_靶病灶（筛选期），2.肿瘤评估_非靶病灶（筛选期）两个页面。\n2. 肿瘤评估：在治疗过程中，按照预定的时间点对患者进行评估，如靶病灶的径长、直径和，非靶病灶的状态以及是否出现新病灶等。对应CRF中的1.肿瘤评估_靶病灶，2.肿瘤评估_非靶病灶，3.肿瘤评估_新病灶三个页面。\n3. 总体评估：研究人员为每个时间点的靶病灶、非靶病灶、新病灶的肿瘤评估结果进行分类，同时结合所有病灶判断总的总体评估结果。后续说的总体评估结果都是指结合所有病灶得到的总体评估结果。对应CRF中的1.肿瘤评估_总体疗效一个页面。\n4. 最佳总体疗效（BOR）：根据3所有病灶总的总体评估结果，计算整个治疗过程中患者达到的最佳疗效类别，作为最终的疗效评估结果。CRF不收集BOR，通常由编程衍生。\n\n\n最佳时点疗效由CRF中肿瘤评估_总体疗效页面直接收集，不需要衍生计算。\n\n靶病灶评估\n\n基线无靶病灶\n完全缓解(CR)：所有靶病灶消失，淋巴结短径&lt;10mm。\n部分缓解(PR)：以基线为参照，靶病灶直径总和至少减少30%。\n疾病进展(PD)：以既往直径总和最小值作为参照，靶病灶直径总和至少增加20%，且增加的绝对值至少5mm。\n疾病稳定(SD)：既不满足PR也不满足PD的情况。\n无法评估(NE)：无法评估靶病灶的情况。\n\n非靶病灶评估\n\n基线无非靶病灶\n完全缓解(CR)：所有非靶病灶消失，且肿瘤标志物正常，淋巴结短径&lt;10mm。\n疾病进展(PD)：出现一个或多个新病灶，或非靶病灶明显恶化。\n非完全缓解/非疾病进展(Non-CR/Non-PD)：既不满足CR也不满足PD的情况。\n不可评估(NE)：无法评估非靶病灶的情况。\n\n新病灶评估\n\n有新病灶\n无新病灶\n\n总体评估（所有病灶总的总体评估结果）\n\n总体评估结果分两类，一类是基线存在靶病灶，另一类是基线无靶病灶。两种情况的总体评估判断规则如下表所示。\n\n\n\n\n\n\n\n\n基线存在靶病灶\n\n\n\n\n\n\n\n基线不存在靶病灶\n\n\n\n\n\n\n\n\n\n\n总体评估日期(Date of Response)始终基于影像学检查日期，而非CRF总体评估页面中收集的评估日期（可能不是实际的影像学检查日期而是研究者给出的判定日期）。如果针对特定访视的影像学检查在不同日期进行，若总体评估为疾病进展（PD），则总体评估日期为该访视内最早一次的影像学检查日期；否则为最晚的影像学检查日期。后续提及的肿瘤评估日期或总体评估日期，都是说的这个日期。\n最佳总体疗效（BOR）为基线后、疾病进展或新抗前最佳的总体评估结果。通常CRF不会直接收集，由编程计算。最佳总体疗效可分未确认的和未确认的两类。\n\n\n\n\n确认的最佳总体疗效判断规则如下：\n\nCR：在新抗或疾病进展前存在至少两次评估结果为CR，且两次评估之间至少间隔4周。\nPR：在新抗或疾病进展前存在至少两次评估结果为PR或更好（PR-CR,PR-PR），且两次评估之间至少间隔4周。PR-SD-PR能被确认为PR，若两个PR之间的间隔大于等于4周。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为CR、PR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为非完全缓解/非疾病进展或更优，但未被确认为CR、PR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为CR、PR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n值得注意的是，CR后面不能跟PR、SD。PR后面能跟一个SD，如PR-SD-PR可以被确认为PR。但PR-SD-SD-PR不能被确认为PR。若中间存在小于等于两个NE,这可被确认为PR，如PR-NR-PR,PR-NE-NE-PR,PR-SD-NE-PR,PR-NE-SD-PR等都可以被确认为PR。\n\n\n\n\n\n\n未确认的最佳总体疗效判断规则如下：\n\nuCR：在新抗或疾病进展前存在CR。\nuPR：在新抗或疾病进展前存在PR。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为uCR、uPR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他\n\n\n\n\n\n\n\n客观缓解率是指在特定分析集中BOR为CR或PR的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的ORR。\n\n\n\n疾病控制率是指在特定分析集中BOR为CR、PR或SD的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的DCR。\n\n\n\n临床获益率是指在特定分析集中BOR为CR、PR或SD持续至少T周的患者比例。（T通常设为12周）。也分为基于确认的BOR和未确认的BOR计算的两个版本的CBR。",
-    "crumbs": [
-      "实体瘤"
-    ]
-  },
-  {
-    "objectID": "oncology/oncology.html#时间点疗效time-point-response",
-    "href": "oncology/oncology.html#时间点疗效time-point-response",
-    "title": "RECIST 1.1",
-    "section": "",
-    "text": "最佳时点疗效由CRF中肿瘤评估_总体疗效页面直接收集，不需要衍生计算。\n\n靶病灶评估\n\n基线无靶病灶\n完全缓解(CR)：所有靶病灶消失，淋巴结短径&lt;10mm。\n部分缓解(PR)：以基线为参照，靶病灶直径总和至少减少30%。\n疾病进展(PD)：以既往直径总和最小值作为参照，靶病灶直径总和至少增加20%，且增加的绝对值至少5mm。\n疾病稳定(SD)：既不满足PR也不满足PD的情况。\n无法评估(NE)：无法评估靶病灶的情况。\n\n非靶病灶评估\n\n基线无非靶病灶\n完全缓解(CR)：所有非靶病灶消失，且肿瘤标志物正常，淋巴结短径&lt;10mm。\n疾病进展(PD)：出现一个或多个新病灶，或非靶病灶明显恶化。\n非完全缓解/非疾病进展(Non-CR/Non-PD)：既不满足CR也不满足PD的情况。\n不可评估(NE)：无法评估非靶病灶的情况。\n\n新病灶评估\n\n有新病灶\n无新病灶\n\n总体评估（所有病灶总的总体评估结果）\n\n总体评估结果分两类，一类是基线存在靶病灶，另一类是基线无靶病灶。两种情况的总体评估判断规则如下表所示。\n\n\n\n\n\n\n\n\n基线存在靶病灶\n\n\n\n\n\n\n\n基线不存在靶病灶",
-    "crumbs": [
-      "实体瘤"
-    ]
-  },
-  {
-    "objectID": "oncology/oncology.html#最佳总体疗效best-overall-response-bor",
-    "href": "oncology/oncology.html#最佳总体疗效best-overall-response-bor",
-    "title": "RECIST 1.1",
-    "section": "",
-    "text": "总体评估日期(Date of Response)始终基于影像学检查日期，而非CRF总体评估页面中收集的评估日期（可能不是实际的影像学检查日期而是研究者给出的判定日期）。如果针对特定访视的影像学检查在不同日期进行，若总体评估为疾病进展（PD），则总体评估日期为该访视内最早一次的影像学检查日期；否则为最晚的影像学检查日期。后续提及的肿瘤评估日期或总体评估日期，都是说的这个日期。\n最佳总体疗效（BOR）为基线后、疾病进展或新抗前最佳的总体评估结果。通常CRF不会直接收集，由编程计算。最佳总体疗效可分未确认的和未确认的两类。\n\n\n\n\n确认的最佳总体疗效判断规则如下：\n\nCR：在新抗或疾病进展前存在至少两次评估结果为CR，且两次评估之间至少间隔4周。\nPR：在新抗或疾病进展前存在至少两次评估结果为PR或更好（PR-CR,PR-PR），且两次评估之间至少间隔4周。PR-SD-PR能被确认为PR，若两个PR之间的间隔大于等于4周。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为CR、PR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为非完全缓解/非疾病进展或更优，但未被确认为CR、PR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为CR、PR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n值得注意的是，CR后面不能跟PR、SD。PR后面能跟一个SD，如PR-SD-PR可以被确认为PR。但PR-SD-SD-PR不能被确认为PR。若中间存在小于等于两个NE,这可被确认为PR，如PR-NR-PR,PR-NE-NE-PR,PR-SD-NE-PR,PR-NE-SD-PR等都可以被确认为PR。\n\n\n\n\n\n\n未确认的最佳总体疗效判断规则如下：\n\nuCR：在新抗或疾病进展前存在CR。\nuPR：在新抗或疾病进展前存在PR。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为uCR、uPR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他",
-    "crumbs": [
-      "实体瘤"
-    ]
-  },
-  {
-    "objectID": "oncology/oncology.html#客观缓解率overall-response-rate-orr",
-    "href": "oncology/oncology.html#客观缓解率overall-response-rate-orr",
-    "title": "RECIST 1.1",
-    "section": "",
-    "text": "客观缓解率是指在特定分析集中BOR为CR或PR的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的ORR。",
-    "crumbs": [
-      "实体瘤"
-    ]
-  },
-  {
-    "objectID": "oncology/oncology.html#疾病控制率disease-control-rate-dcr",
-    "href": "oncology/oncology.html#疾病控制率disease-control-rate-dcr",
-    "title": "RECIST 1.1",
-    "section": "",
-    "text": "疾病控制率是指在特定分析集中BOR为CR、PR或SD的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的DCR。",
-    "crumbs": [
-      "实体瘤"
-    ]
-  },
-  {
-    "objectID": "oncology/oncology.html#临床获益率clinical-benefit-rate-cbr",
-    "href": "oncology/oncology.html#临床获益率clinical-benefit-rate-cbr",
-    "title": "RECIST 1.1",
-    "section": "",
-    "text": "临床获益率是指在特定分析集中BOR为CR、PR或SD持续至少T周的患者比例。（T通常设为12周）。也分为基于确认的BOR和未确认的BOR计算的两个版本的CBR。",
-    "crumbs": [
-      "实体瘤"
-    ]
-  },
-  {
-    "objectID": "oncology/adtr.html",
-    "href": "oncology/adtr.html",
-    "title": "ADTR",
-    "section": "",
-    "text": "ADTR数据集存放病灶信息，如靶病灶径长、靶病灶直径和、非靶病状态、是否有新病灶等。在出瀑布图时会被用到。\n\n\n\n\n\n\n\n\n\n变量名\n描述\n\n\n\n\nUSUBJID、ASEQ、TRGRPID、TRLNKID、TULOC\n\n\n\nPARAM、PARAMCD\nLDIAM-最长径，LPERP-最短径，TUMSTATE-肿瘤状态，DIAMETER-直径，ASUMDIAM-分析用靶病灶直径总和，SUMDIAM-直径总和。\n按照USUBJID+TREVAL+VISIT，输出一条分析用靶病灶直径和\n\n\nPARAMTYP\n当PARAMCD为ASUMDIAM时，PARAMTYP=衍生\n\n\nPARCAT1\nTRCAT(淋巴结、非淋巴结）\n\n\nAVAL、AVALC\n\n\n\nBASE、BASEC\n\n\n\nCHG\n\n\n\nPCHG\n\n\n\nTRDTC、ADT、ADY\nASUMDIAM的ADT为各访视靶病灶影像学检查日期的最大值\n\n\nVISIT、VISITNUM\n\n\n\nABLFL\n首次给药前最后一次非空检测\n\n\nANL01FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若发生在首次疾病进展和新抗肿瘤当天或之前，则赋值’是’\n\n\nANL02FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若该条记录对应的靶病灶评估结果有效，则赋值’是’\n\n\nANL03FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)且ANL01FL和ANL02FL为’是’的记录，选择基线后最早出现的最小PCHG值。\n\n\nTRMETHOD、TREVAL\n\n\n\nANADIR\n分析用先前最小直径和\n\n\nNADIRCHG\n相对最小直径和变化值\n\n\nPCNSD\n相对最小直径和变化百分比\n\n\n\n需要注意的是，除了EDC中直接收集的靶病灶直径和外，在ADTR中我们还会额外编程衍生\"分析用靶病灶直径和\"。程序员在编程时，最好核对下直接收集的和程序衍生的靶病灶直径和结果是否一致。",
-    "crumbs": [
-      "实体瘤",
-      "ADTR"
-    ]
-  },
-  {
-    "objectID": "oncology/adtr.html#adtr包含的变量",
-    "href": "oncology/adtr.html#adtr包含的变量",
-    "title": "ADTR",
-    "section": "",
-    "text": "变量名\n描述\n\n\n\n\nUSUBJID、ASEQ、TRGRPID、TRLNKID、TULOC\n\n\n\nPARAM、PARAMCD\nLDIAM-最长径，LPERP-最短径，TUMSTATE-肿瘤状态，DIAMETER-直径，ASUMDIAM-分析用靶病灶直径总和，SUMDIAM-直径总和。\n按照USUBJID+TREVAL+VISIT，输出一条分析用靶病灶直径和\n\n\nPARAMTYP\n当PARAMCD为ASUMDIAM时，PARAMTYP=衍生\n\n\nPARCAT1\nTRCAT(淋巴结、非淋巴结）\n\n\nAVAL、AVALC\n\n\n\nBASE、BASEC\n\n\n\nCHG\n\n\n\nPCHG\n\n\n\nTRDTC、ADT、ADY\nASUMDIAM的ADT为各访视靶病灶影像学检查日期的最大值\n\n\nVISIT、VISITNUM\n\n\n\nABLFL\n首次给药前最后一次非空检测\n\n\nANL01FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若发生在首次疾病进展和新抗肿瘤当天或之前，则赋值’是’\n\n\nANL02FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若该条记录对应的靶病灶评估结果有效，则赋值’是’\n\n\nANL03FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)且ANL01FL和ANL02FL为’是’的记录，选择基线后最早出现的最小PCHG值。\n\n\nTRMETHOD、TREVAL\n\n\n\nANADIR\n分析用先前最小直径和\n\n\nNADIRCHG\n相对最小直径和变化值\n\n\nPCNSD\n相对最小直径和变化百分比\n\n\n\n需要注意的是，除了EDC中直接收集的靶病灶直径和外，在ADTR中我们还会额外编程衍生\"分析用靶病灶直径和\"。程序员在编程时，最好核对下直接收集的和程序衍生的靶病灶直径和结果是否一致。",
-    "crumbs": [
-      "实体瘤",
-      "ADTR"
-    ]
-  },
-  {
-    "objectID": "oncology/addates.html",
-    "href": "oncology/addates.html",
-    "title": "ADDATES",
-    "section": "",
-    "text": "1 ADDATES介绍\nADDATES是一个专门用于记录与肿瘤评估相关的日期变量的数据集。它包含了受试者的用药日期、随机化日期、影像学检查日期、疾病进展日期等多个关键时间点。这些日期变量对于计算无进展生存期（PFS）等重要终点指标至关重要。\n\n\n1.1 ADDATES中包含的变量\n\n\n\n变量名\n描述\n\n\n\n\nUSUBJID、ASEQ\n\n\n\nADT\n日期\n\n\nADTDESC\n日期描述\n\n\nADTDECD\n日期描述编号\n\n\nADY\n分析相对日\n\n\nRSEVAL\n评估者\n\n\n\n\n\n1.2 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述\n\n\n\n\n\n\n\n\nADTDESC\nADTDESCD\nADT\n\n\n\n\n受试者水平-USUBJID\n\n\n\n\n首次用药日期\nTRTSDT\nADSL.TRTSDT\n\n\n随机化日期\nRANDDT\nADSL.RANDDT\n\n\n新抗肿瘤治疗日期\nNCTXSDT\nADSL.NCTXSDT\n\n\n研究结束日期\nEOSDT\nADSL.EOSDT\n\n\n已知最后生存日期\nLSTALVTD\nADSL.LSTALVTD\n\n\n死亡日期\nDTHDT\nADSL.DTHDT\n\n\n受试者+评估者-USUBJID+RSEVAL\n\n\n\n\n基线肿瘤检查日期\nTEVALDT\n基线前末次有效的影像学检查日期（TR.TRDTC）\n\n\n每个受试者+评估者+评估标准-USUBJID+RSEVAL+RSCAT\n\n\n\n\n基线后首次有效的肿瘤评估影像学检查日期\nFEVALDT\n基线后、新抗前首次出现的有效的肿瘤总体评估日期\n\n\n首次疾病进展日期\nPDDT\n基线后最早的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC = “PD”\n\n\n新抗肿瘤治疗（若有）及疾病进展（若有）前的末次可评估影像学检查日期\nLINTERDT\n取基线后NCTXSDT(≤)和PDDT(&lt;)之前最晚的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC ≠ “NE”等非有效值评估\n\n\n首次客观缓解（经确认的）日期\nCRUTDT\nADRS.ADT，当 ADRS.ANL12FL = “是”\n\n\n首次客观缓解（未确认的）日期\nURUTDT\nADRS.ADT，当 ADRS.ANL22FL = “是”",
-    "crumbs": [
-      "实体瘤",
-      "ADDATES"
-    ]
-  },
-  {
-    "objectID": "lb/lb.html",
-    "href": "lb/lb.html",
-    "title": "LB",
-    "section": "",
-    "text": "变量名\n描述\n\n\n\n\nUSUBJID\\ASEQ\\LBSEQ\n\n\n\nPARAM\\PARAMCD\\PARAMN\n\n\n\nPARAMTYP\n对于衍生的观测，PARAMTYP=“衍生”\n\n\nPARCAT1\nLB.LBCAT\n\n\nAVAL\\AVALC\nLB.LBSTRESN,若包含&lt;,&gt;号，提取数值部分\n\n\nWAYSHIFT\n低、高、双向（毒性方向参数指示符）\n\n\nATOXGRL/ATOXGRLN/ATOXDSCL\n分析毒性等级-低\n\n\nATOXGRH/ATOXGRHN/ATOXDSCH\n分析毒性等级-高\n\n\nBTOXGRL/BTOXGRLN\n基线分析毒性等级-低\n\n\nBTOXGRH/BTOXGRHN\n基线分析毒性等级-高\n\n\nBASE\\BASEC\n\n\n\nCHG\\PCHG\n\n\n\nANRIND\nLB.LBNRIND（参考范围指示符）\n\n\nBNRIND\n基线参考范围指示符\n\n\nANRLO\nLB.LBSTRNLO\n\n\nANRHI\nLB.LBSTNRHI\n\n\nLBDTC\\ADT\\ADY\n\n\n\nVISIT\\VISITNUM\n\n\n\nAVISIT\\AVISITN\n\n\n\nABLFL\n基线记录\n\n\nAPBLFL\n基线后记录\n\n\nLBCLSIG\\LBCLSIGN\n临床意义\n\n\nBASESIG\\BASESIGN\n基线临床意义\n\n\nANLXXFL"
-  },
-  {
-    "objectID": "lb/lb.html#adam.adlb",
-    "href": "lb/lb.html#adam.adlb",
-    "title": "LB",
-    "section": "",
-    "text": "变量名\n描述\n\n\n\n\nUSUBJID\\ASEQ\\LBSEQ\n\n\n\nPARAM\\PARAMCD\\PARAMN\n\n\n\nPARAMTYP\n对于衍生的观测，PARAMTYP=“衍生”\n\n\nPARCAT1\nLB.LBCAT\n\n\nAVAL\\AVALC\nLB.LBSTRESN,若包含&lt;,&gt;号，提取数值部分\n\n\nWAYSHIFT\n低、高、双向（毒性方向参数指示符）\n\n\nATOXGRL/ATOXGRLN/ATOXDSCL\n分析毒性等级-低\n\n\nATOXGRH/ATOXGRHN/ATOXDSCH\n分析毒性等级-高\n\n\nBTOXGRL/BTOXGRLN\n基线分析毒性等级-低\n\n\nBTOXGRH/BTOXGRHN\n基线分析毒性等级-高\n\n\nBASE\\BASEC\n\n\n\nCHG\\PCHG\n\n\n\nANRIND\nLB.LBNRIND（参考范围指示符）\n\n\nBNRIND\n基线参考范围指示符\n\n\nANRLO\nLB.LBSTRNLO\n\n\nANRHI\nLB.LBSTNRHI\n\n\nLBDTC\\ADT\\ADY\n\n\n\nVISIT\\VISITNUM\n\n\n\nAVISIT\\AVISITN\n\n\n\nABLFL\n基线记录\n\n\nAPBLFL\n基线后记录\n\n\nLBCLSIG\\LBCLSIGN\n临床意义\n\n\nBASESIG\\BASESIGN\n基线临床意义\n\n\nANLXXFL"
-  },
-  {
-    "objectID": "ex/ex.html",
-    "href": "ex/ex.html",
-    "title": "药物暴露",
-    "section": "",
-    "text": "给药记录\n\n\n\n字段名称\n字段值\n\n\n\n\n是否给药\n\n\n\n如否，未给药原因\n不良事件、永久停药、其他\n\n\n未给药原因为不良事件，请选择相关不良事件（可多选）\n\n\n\n其他未给药原因\n\n\n\n是否延迟给药\n\n\n\n如是，延迟给药原因\n不良事件、其他\n\n\n延迟给药原因为不良事件，请选择相关不良事件（可多选）\n\n\n\n其他延迟给药原因\n\n\n\n是否有剂量调整\n\n\n\n剂量调整原因\n不良事件、其他\n\n\n剂量调整原因为不良事件，请选择相关不良事件（可多选）\n\n\n\n其他剂量调整原因描述\n\n\n\n计划给药剂量水平（mg/m^2）\n\n\n\n其他计划给药剂量水平（mg/m^2）\n\n\n\n计划给药总剂量（mg）\n\n\n\n实际给药总剂量（mg）\n\n\n\n若有其他与计划不一致的给药情况，请描述并提供原因\n\n\n\n给药开始日期/时间\n\n\n\n给药结束日期/时间\n\n\n\n给药过程是否中断\n\n\n\n给药中断原因\n不良事件、其他\n\n\n给药中断原因为不良事件，请选择相关不良事件（可多选 ）\n\n\n\n其他原因 ，请描述\n\n\n\n中断后药物处置\n\n\n\n其他处置 ，请描述",
-    "crumbs": [
-      "药物暴露"
-    ]
-  },
-  {
-    "objectID": "ex/ex.html#剂量减少",
-    "href": "ex/ex.html#剂量减少",
-    "title": "药物暴露",
-    "section": "3.1 剂量减少",
-    "text": "3.1 剂量减少\n\n若给药页面剂量调整原因等于不良事件，那么就会有一条对应的不良事件，且该不良事件对研究药物采取的措施为“剂量减少”。\n\n但如果项目有CUTOFF，可能会造成存在导致研究药物剂量减少的AE，但没有剂量调整的给药记录。原因是发生剂量调整的给药开始日期在CUTOFF后，但对应的AE是一条持续发生的，AE开始日期早于CUTOFF日期。例如：S0001 AESTDAT=2025-12-12 AEOUT=未好转/未缓解/持续 AEACN=剂量减少，但给药页面对应的是C5D1 EXSTDAT=2026-04-01 发生剂量减少，所以这条给药记录被删掉了。",
-    "crumbs": [
-      "药物暴露"
-    ]
-  },
-  {
-    "objectID": "ex/ex.html#延迟给药",
-    "href": "ex/ex.html#延迟给药",
-    "title": "药物暴露",
-    "section": "3.2 延迟给药",
-    "text": "3.2 延迟给药\n\n如果药物暴露页面记录了延迟给药原因为不良事件的记录，那对应不良事件页面会存在一条AE，但对研究药物采取的措施不一定为暂停用药，因为这条AE可能同时对应减少剂量和暂停用药。由于剂量减少同时是先发生的，所以对于同时存在减少剂量和暂停用药的AE，AEACN会记录减少剂量。\n如果存在一条AE，AEACN为暂停用药，药物暴露页面也可能不会有对应的给药记录，因为可能没有到给药周期，所以不会录入。\n\n综上，延迟给药/暂停用药对不上是可以接受的，但剂量减少需要注意，在无CUTOFF下，通过两个数据源计算的例数应该保持一致。",
-    "crumbs": [
-      "药物暴露"
-    ]
-  },
-  {
-    "objectID": "clinical-programming.html",
-    "href": "clinical-programming.html",
-    "title": "你在忙什么？",
-    "section": "",
-    "text": "你在忙什么？\n\n\n🧬 实体瘤\nRECIST 1.1, BOR, PFS, DOR\n进入 →\n\n\n💊 药物暴露\nEC、EX\n进入 →\n\n\n🧪 药代动力学\nPK，PP，密集采血\n进入 →\n\n\n📚 法规\nDIPP\n进入 →"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Zoey",
-    "section": "",
-    "text": "临床试验SAS程序员\n\n\n\n上海吃饭大学 | 应用统计学 | 06 2021 - 09 2023\n\n\n\n内资药厂 | SAS程序员 | 09 2023 - present\n\n\n\n基于 R / Shiny 构建的临床试验交互式分析看板，用于： - 👥 巴啦啦1 - 📊 巴啦啦2"
-  },
-  {
-    "objectID": "index.html#个人简介",
-    "href": "index.html#个人简介",
-    "title": "Zoey",
-    "section": "",
-    "text": "临床试验SAS程序员"
-  },
-  {
-    "objectID": "index.html#教育背景",
-    "href": "index.html#教育背景",
-    "title": "Zoey",
-    "section": "",
-    "text": "上海吃饭大学 | 应用统计学 | 06 2021 - 09 2023"
-  },
-  {
-    "objectID": "index.html#工作经验",
-    "href": "index.html#工作经验",
-    "title": "Zoey",
-    "section": "",
-    "text": "内资药厂 | SAS程序员 | 09 2023 - present"
-  },
-  {
-    "objectID": "index.html#项目展示",
-    "href": "index.html#项目展示",
-    "title": "Zoey",
-    "section": "",
-    "text": "基于 R / Shiny 构建的临床试验交互式分析看板，用于： - 👥 巴啦啦1 - 📊 巴啦啦2"
-  },
-  {
-    "objectID": "lb/lb_ctcae.html",
-    "href": "lb/lb_ctcae.html",
-    "title": "Lab值对应的CTCAE等级",
-    "section": "",
-    "text": "1 不良事件、不良反应\n不良事件，指受试者接受试验用药品后出现的所有不良医学事件，不一定与试验用药品有因果关系。 药物不良反应，指临床试验中发生的任何与试验用药品可能有关的医学时间，与试验用药品有合理的因果关系。 # 2 严重程度 两种记录方式： 1. 轻度、中度、重度 2. 1级、2级、3级、4级、5级 ## 常见不良事件评价标准（CTCAE） ≥3级看着都是SAE?? 后续整理下思路"
-  },
-  {
-    "objectID": "oncology/adtte.html",
-    "href": "oncology/adtte.html",
-    "title": "ADTTE",
-    "section": "",
-    "text": "变量名\n描述\n\n\n\n\n\nUSUBJID、ASEQ\n\n\n\n\nPARCAT1\n参数类别1\nRSCIST 1.1\n\n\nPARAM\n参数\n无进展生存期（月）\n\n\nPARAMCD\n参数简称\nPFS、OS、TTR、DOR\n\n\nAVAL\n分析值\n(ADT-STARTDT+1)/30.4375\n\n\nSTARTDT\n事件时间起点日期\n给药日期、开始日期\n\n\nCNSR\n删失\n0,1\n\n\nEVNTDESC\n事件或删失描述\n疾病进展日期、开始新抗肿瘤治疗…..\n\n\nCNSDTDSC\n删失日期描述\n新抗肿瘤前末次肿瘤评估日期…..\n\n\nADT\n日期-分析用\n疾病进展日期、新抗肿瘤前末次肿瘤评估日期.\n\n\nRSEVAL\n评估者\n研究者、IRC",
-    "crumbs": [
-      "实体瘤",
-      "ADTTE"
-    ]
-  },
-  {
-    "objectID": "oncology/adtte.html#pfs事件删失判断流程图",
-    "href": "oncology/adtte.html#pfs事件删失判断流程图",
-    "title": "ADTTE",
-    "section": "2.1 PFS事件/删失判断流程图",
-    "text": "2.1 PFS事件/删失判断流程图\n\n\n\n\n\nflowchart TD\n  A[是否有基线及基线后肿评?] -- 否 --&gt; B1[是否死亡?]\n  A[是否有基线及基线后肿评?] -- 是 --&gt; B2[是否PD?]\n\n  B1[是否死亡?] -- 否 --&gt; CNSR01[CNSR01]\n  B1[是否死亡?] -- 是 --&gt; C1[死亡前是否发生新抗?]\n  C1[死亡前是否发生新抗?] -- 否 --&gt; C2[死亡距离开始日期是否超过两个肿评间隔?]\n  C1[死亡前是否发生新抗?] -- 是 --&gt; CNSR02[CNSR02]\n  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT01[EVNT01]\n  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR03[CNSR03]\n\n  B2[是否PD?] -- 否 --&gt; D2[是否死亡?]\n  B2[是否PD?] -- 是 --&gt; D1[PD前是否发生新抗?]\n  D1[PD前是否发生新抗?] -- 否 --&gt; D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?]\n  D1[PD前是否发生新抗?] -- 是 --&gt; CNSR04[CNSR04]\n  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT03[EVNT03]\n  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR05[CNSR05]\n\n  D2[是否死亡?] -- 否 --&gt; E2[是否发生新抗?]\n  D2[是否死亡?] -- 是 --&gt; E1[死亡前是否发生新抗?]\n\n  E1[死亡前是否发生新抗?] -- 否 --&gt; E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?]\n  E1[死亡前是否发生新抗?] -- 是 --&gt; CNSR06[CNSR06]\n\n  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT02[EVNT02]\n  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR07[CNSR07]\n  E2[是否发生新抗?] -- 否 --&gt; E4[是否退出试验?]\n  E2[是否发生新抗?] -- 是 --&gt; CNSR10[CNSR10]\n  E4[是否退出试验?] -- 否 --&gt; CNSR08[CNSR08]\n  E4[是否退出试验?] -- 是 --&gt; CNSR09[CNSR09]\n  \n\n  %% 点击跳转\n  click EVNT01 \"#evnt01\"\n  click EVNT02 \"#evnt02\"\n  click EVNT03 \"#evnt03\"\n\n  click CNSR01 \"#cnsr01\"\n  click CNSR02 \"#cnsr02\"\n  click CNSR03 \"#cnsr03\"\n  click CNSR04 \"#cnsr04\"\n  click CNSR05 \"#cnsr05\"\n  click CNSR06 \"#cnsr06\"\n  click CNSR07 \"#cnsr07\"\n  click CNSR08 \"#cnsr08\"\n  click CNSR09 \"#cnsr09\"\n  click CNSR10 \"#cnsr10\"\n  %% 样式\n  classDef event fill:#A8E6A3,stroke:#2E7D32,stroke-width:2px;\n  classDef censor fill:#FFE082,stroke:#EF6C00,stroke-width:2px;\n\n  class EVNT01,EVNT02,EVNT03,EVNT04 event;\n  class CNSR01,CNSR02,CNSR03,CNSR04,CNSR05,CNSR06,CNSR07,CNSR08,CNSR09,CNSR10 censor;",
-    "crumbs": [
-      "实体瘤",
-      "ADTTE"
-    ]
-  },
-  {
-    "objectID": "oncology/adtte.html#pfs事件删失详细说明",
-    "href": "oncology/adtte.html#pfs事件删失详细说明",
-    "title": "ADTTE",
-    "section": "2.2 PFS事件/删失详细说明",
-    "text": "2.2 PFS事件/删失详细说明\n下文代码中用的日期在ADDATES 1.2章节中有详细说明，RS2DUR为两次肿评间隔天数，在PFS 1.2.2章节有详细介绍。\n\nEVNT01\n\n逻辑\n\n无基线或无基线后评估\n未发生PD\n未开始新抗肿治疗\n死亡\n死亡距离开始日期未超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(PDDT) & is.na(NCTXSDT) & !is.na(DTHDT) & (DTHDT - STARTDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT02\n\n逻辑\n\n有基线和基线后评估\n未PD\n死亡\n死亡前未发生新抗\n死亡距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT03\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = PDDT\nEVNTDESC = 疾病进展\n\n\n\n\nCNSR01\n\n逻辑\n\n无基线或无基线后评估\n未发生死亡\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(DTHDT)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 无基线或基线后影像学检查\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR02\n\n逻辑\n\n无基线或无基线后评估\n死亡\n死亡前发生新抗\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR03\n\n逻辑\n\n无基线或无基线后评估\n死亡\n未发生新抗\n死亡距离开始日期超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & is.na(NCTXSDT) & (DTHDT - STARTDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR04\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & !is.na(NCTXSDT) & NCTXSDT &lt; PDDT\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期/新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR05\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = STARTDT/疾病进展前的末次可评价影像学检查日期\n\n\n\n\nCNSR06\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR07\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前未发生新抗\n死亡距离上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 死亡前的末次可评价影像学检查日期\n\n\n\n\nCNSR08\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n未退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & is.na(EOSDT)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 继续试验，无事发生\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR09\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(EOSDT)\n\n\n变量值\n\nADT = EOSDT\nEVNTDESC = 失访/撤回知情同意/其他\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR10\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(NCTXSDT)\n\n\n变量值\n\nADT = LINTERDT/STARTDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期/开始日期",
-    "crumbs": [
-      "实体瘤",
-      "ADTTE"
     ]
   },
   {
@@ -476,6 +290,345 @@
     "crumbs": [
       "实体瘤",
       "无进展生存期(PFS)"
+    ]
+  },
+  {
+    "objectID": "oncology/adtte.html",
+    "href": "oncology/adtte.html",
+    "title": "ADTTE",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\n\nUSUBJID、ASEQ\n\n\n\n\nPARCAT1\n参数类别1\nRSCIST 1.1\n\n\nPARAM\n参数\n无进展生存期（月）\n\n\nPARAMCD\n参数简称\nPFS、OS、TTR、DOR\n\n\nAVAL\n分析值\n(ADT-STARTDT+1)/30.4375\n\n\nSTARTDT\n事件时间起点日期\n给药日期、开始日期\n\n\nCNSR\n删失\n0,1\n\n\nEVNTDESC\n事件或删失描述\n疾病进展日期、开始新抗肿瘤治疗…..\n\n\nCNSDTDSC\n删失日期描述\n新抗肿瘤前末次肿瘤评估日期…..\n\n\nADT\n日期-分析用\n疾病进展日期、新抗肿瘤前末次肿瘤评估日期.\n\n\nRSEVAL\n评估者\n研究者、IRC",
+    "crumbs": [
+      "实体瘤",
+      "ADTTE"
+    ]
+  },
+  {
+    "objectID": "oncology/adtte.html#pfs事件删失判断流程图",
+    "href": "oncology/adtte.html#pfs事件删失判断流程图",
+    "title": "ADTTE",
+    "section": "2.1 PFS事件/删失判断流程图",
+    "text": "2.1 PFS事件/删失判断流程图\n\n\n\n\n\nflowchart TD\n  A[是否有基线及基线后肿评?] -- 否 --&gt; B1[是否死亡?]\n  A[是否有基线及基线后肿评?] -- 是 --&gt; B2[是否PD?]\n\n  B1[是否死亡?] -- 否 --&gt; CNSR01[CNSR01]\n  B1[是否死亡?] -- 是 --&gt; C1[死亡前是否发生新抗?]\n  C1[死亡前是否发生新抗?] -- 否 --&gt; C2[死亡距离开始日期是否超过两个肿评间隔?]\n  C1[死亡前是否发生新抗?] -- 是 --&gt; CNSR02[CNSR02]\n  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT01[EVNT01]\n  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR03[CNSR03]\n\n  B2[是否PD?] -- 否 --&gt; D2[是否死亡?]\n  B2[是否PD?] -- 是 --&gt; D1[PD前是否发生新抗?]\n  D1[PD前是否发生新抗?] -- 否 --&gt; D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?]\n  D1[PD前是否发生新抗?] -- 是 --&gt; CNSR04[CNSR04]\n  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT03[EVNT03]\n  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR05[CNSR05]\n\n  D2[是否死亡?] -- 否 --&gt; E2[是否发生新抗?]\n  D2[是否死亡?] -- 是 --&gt; E1[死亡前是否发生新抗?]\n\n  E1[死亡前是否发生新抗?] -- 否 --&gt; E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?]\n  E1[死亡前是否发生新抗?] -- 是 --&gt; CNSR06[CNSR06]\n\n  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT02[EVNT02]\n  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR07[CNSR07]\n  E2[是否发生新抗?] -- 否 --&gt; E4[是否退出试验?]\n  E2[是否发生新抗?] -- 是 --&gt; CNSR10[CNSR10]\n  E4[是否退出试验?] -- 否 --&gt; CNSR08[CNSR08]\n  E4[是否退出试验?] -- 是 --&gt; CNSR09[CNSR09]\n  \n\n  %% 点击跳转\n  click EVNT01 \"#evnt01\"\n  click EVNT02 \"#evnt02\"\n  click EVNT03 \"#evnt03\"\n\n  click CNSR01 \"#cnsr01\"\n  click CNSR02 \"#cnsr02\"\n  click CNSR03 \"#cnsr03\"\n  click CNSR04 \"#cnsr04\"\n  click CNSR05 \"#cnsr05\"\n  click CNSR06 \"#cnsr06\"\n  click CNSR07 \"#cnsr07\"\n  click CNSR08 \"#cnsr08\"\n  click CNSR09 \"#cnsr09\"\n  click CNSR10 \"#cnsr10\"\n  %% 样式\n  classDef event fill:#A8E6A3,stroke:#2E7D32,stroke-width:2px;\n  classDef censor fill:#FFE082,stroke:#EF6C00,stroke-width:2px;\n\n  class EVNT01,EVNT02,EVNT03,EVNT04 event;\n  class CNSR01,CNSR02,CNSR03,CNSR04,CNSR05,CNSR06,CNSR07,CNSR08,CNSR09,CNSR10 censor;",
+    "crumbs": [
+      "实体瘤",
+      "ADTTE"
+    ]
+  },
+  {
+    "objectID": "oncology/adtte.html#pfs事件删失详细说明",
+    "href": "oncology/adtte.html#pfs事件删失详细说明",
+    "title": "ADTTE",
+    "section": "2.2 PFS事件/删失详细说明",
+    "text": "2.2 PFS事件/删失详细说明\n下文代码中用的日期在ADDATES 1.2章节中有详细说明，RS2DUR为两次肿评间隔天数，在PFS 1.2.2章节有详细介绍。\n\nEVNT01\n\n逻辑\n\n无基线或无基线后评估\n未发生PD\n未开始新抗肿治疗\n死亡\n死亡距离开始日期未超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(PDDT) & is.na(NCTXSDT) & !is.na(DTHDT) & (DTHDT - STARTDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT02\n\n逻辑\n\n有基线和基线后评估\n未PD\n死亡\n死亡前未发生新抗\n死亡距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = DTHDT\nEVNTDESC = 死亡\n\n\n\n\nEVNT03\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期未超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &lt;= RS2DUR)\n\n\n变量值\n\nADT = PDDT\nEVNTDESC = 疾病进展\n\n\n\n\nCNSR01\n\n逻辑\n\n无基线或无基线后评估\n未发生死亡\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & is.na(DTHDT)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 无基线或基线后影像学检查\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR02\n\n逻辑\n\n无基线或无基线后评估\n死亡\n死亡前发生新抗\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR03\n\n逻辑\n\n无基线或无基线后评估\n死亡\n未发生新抗\n死亡距离开始日期超过两个肿评间隔\n\n代码\n\n\n(is.na(TEVALDT) | is.na(FEVALDT)) & !is.na(DTHDT) & is.na(NCTXSDT) & (DTHDT - STARTDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 开始日期\n\n\n\n\nCNSR04\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & !is.na(NCTXSDT) & NCTXSDT &lt; PDDT\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 开始日期/新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR05\n\n逻辑\n\n有基线和基线后评估\n发生PD\nPD前未发生新抗\nPD距离开始/上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & !is.na(PDDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= PDDT) & (PDDT - STARTDT/LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = STARTDT/LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = STARTDT/疾病进展前的末次可评价影像学检查日期\n\n\n\n\nCNSR06\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & !is.na(NCTXSDT) & NCTXSDT &lt; DTHDT\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期\n\n\n\n\nCNSR07\n\n逻辑\n\n有基线和基线后评估\n无PD\n死亡\n死亡前未发生新抗\n死亡距离上次肿评日期超过两个肿评间隔\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & !is.na(DTHDT) & (is.na(NCTXSDT) | NCTXSDT &gt;= DTHDT) & (DTHDT - LINTERDT &gt; RS2DUR)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件\nCNSR = 1\nCNSDTDSC = 死亡前的末次可评价影像学检查日期\n\n\n\n\nCNSR08\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n未退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & is.na(EOSDT)\n\n\n变量值\n\nADT = LINTERDT\nEVNTDESC = 继续试验，无事发生\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR09\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n无新抗\n退出试验\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(EOSDT)\n\n\n变量值\n\nADT = EOSDT\nEVNTDESC = 失访/撤回知情同意/其他\nCNSR = 1\nCNSDTDSC = 最后一次可评价影像学检查日期\n\n\n\n\nCNSR10\n\n逻辑\n\n有基线和基线后评估\n无PD\n无死亡\n发生新抗\n\n代码\n\n\n!is.na(TEVALDT) & !is.na(FEVALDT) & is.na(PDDT) & is.na(DTHDT) & !is.na(NCTXSDT)\n\n\n变量值\n\nADT = LINTERDT/STARTDT\nEVNTDESC = 开始新抗肿瘤治疗\nCNSR = 1\nCNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期/开始日期",
+    "crumbs": [
+      "实体瘤",
+      "ADTTE"
+    ]
+  },
+  {
+    "objectID": "lb/lb_ctcae.html",
+    "href": "lb/lb_ctcae.html",
+    "title": "Lab值对应的CTCAE等级",
+    "section": "",
+    "text": "1 不良事件、不良反应\n不良事件，指受试者接受试验用药品后出现的所有不良医学事件，不一定与试验用药品有因果关系。 药物不良反应，指临床试验中发生的任何与试验用药品可能有关的医学时间，与试验用药品有合理的因果关系。 # 2 严重程度 两种记录方式： 1. 轻度、中度、重度 2. 1级、2级、3级、4级、5级 ## 常见不良事件评价标准（CTCAE） ≥3级看着都是SAE?? 后续整理下思路"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Zoey",
+    "section": "",
+    "text": "临床试验SAS程序员\n\n\n\n上海吃饭大学 | 应用统计学 | 06 2021 - 09 2023\n\n\n\n内资药厂 | SAS程序员 | 09 2023 - present\n\n\n\n基于 R / Shiny 构建的临床试验交互式分析看板，用于： - 👥 巴啦啦1 - 📊 巴啦啦2"
+  },
+  {
+    "objectID": "index.html#个人简介",
+    "href": "index.html#个人简介",
+    "title": "Zoey",
+    "section": "",
+    "text": "临床试验SAS程序员"
+  },
+  {
+    "objectID": "index.html#教育背景",
+    "href": "index.html#教育背景",
+    "title": "Zoey",
+    "section": "",
+    "text": "上海吃饭大学 | 应用统计学 | 06 2021 - 09 2023"
+  },
+  {
+    "objectID": "index.html#工作经验",
+    "href": "index.html#工作经验",
+    "title": "Zoey",
+    "section": "",
+    "text": "内资药厂 | SAS程序员 | 09 2023 - present"
+  },
+  {
+    "objectID": "index.html#项目展示",
+    "href": "index.html#项目展示",
+    "title": "Zoey",
+    "section": "",
+    "text": "基于 R / Shiny 构建的临床试验交互式分析看板，用于： - 👥 巴啦啦1 - 📊 巴啦啦2"
+  },
+  {
+    "objectID": "clinical-programming.html",
+    "href": "clinical-programming.html",
+    "title": "你在忙什么？",
+    "section": "",
+    "text": "你在忙什么？\n\n\n🧬 实体瘤\nRECIST 1.1, BOR, PFS, DOR\n进入 →\n\n\n💊 药物暴露\nEC、EX\n进入 →\n\n\n🧪 药代动力学\nPK，PP，密集采血\n进入 →\n\n\n📚 法规\nDIPP\n进入 →"
+  },
+  {
+    "objectID": "ex/ex.html",
+    "href": "ex/ex.html",
+    "title": "药物暴露",
+    "section": "",
+    "text": "给药记录\n\n\n\n字段名称\n字段值\n\n\n\n\n是否给药\n\n\n\n如否，未给药原因\n不良事件、永久停药、其他\n\n\n未给药原因为不良事件，请选择相关不良事件（可多选）\n\n\n\n其他未给药原因\n\n\n\n是否延迟给药\n\n\n\n如是，延迟给药原因\n不良事件、其他\n\n\n延迟给药原因为不良事件，请选择相关不良事件（可多选）\n\n\n\n其他延迟给药原因\n\n\n\n是否有剂量调整\n\n\n\n剂量调整原因\n不良事件、其他\n\n\n剂量调整原因为不良事件，请选择相关不良事件（可多选）\n\n\n\n其他剂量调整原因描述\n\n\n\n计划给药剂量水平（mg/m^2）\n\n\n\n其他计划给药剂量水平（mg/m^2）\n\n\n\n计划给药总剂量（mg）\n\n\n\n实际给药总剂量（mg）\n\n\n\n若有其他与计划不一致的给药情况，请描述并提供原因\n\n\n\n给药开始日期/时间\n\n\n\n给药结束日期/时间\n\n\n\n给药过程是否中断\n\n\n\n给药中断原因\n不良事件、其他\n\n\n给药中断原因为不良事件，请选择相关不良事件（可多选 ）\n\n\n\n其他原因 ，请描述\n\n\n\n中断后药物处置\n\n\n\n其他处置 ，请描述",
+    "crumbs": [
+      "药物暴露"
+    ]
+  },
+  {
+    "objectID": "ex/ex.html#剂量减少",
+    "href": "ex/ex.html#剂量减少",
+    "title": "药物暴露",
+    "section": "3.1 剂量减少",
+    "text": "3.1 剂量减少\n\n若给药页面剂量调整原因等于不良事件，那么就会有一条对应的不良事件，且该不良事件对研究药物采取的措施为“剂量减少”。\n\n但如果项目有CUTOFF，可能会造成存在导致研究药物剂量减少的AE，但没有剂量调整的给药记录。原因是发生剂量调整的给药开始日期在CUTOFF后，但对应的AE是一条持续发生的，AE开始日期早于CUTOFF日期。例如：S0001 AESTDAT=2025-12-12 AEOUT=未好转/未缓解/持续 AEACN=剂量减少，但给药页面对应的是C5D1 EXSTDAT=2026-04-01 发生剂量减少，所以这条给药记录被删掉了。",
+    "crumbs": [
+      "药物暴露"
+    ]
+  },
+  {
+    "objectID": "ex/ex.html#延迟给药",
+    "href": "ex/ex.html#延迟给药",
+    "title": "药物暴露",
+    "section": "3.2 延迟给药",
+    "text": "3.2 延迟给药\n\n如果药物暴露页面记录了延迟给药原因为不良事件的记录，那对应不良事件页面会存在一条AE，但对研究药物采取的措施不一定为暂停用药，因为这条AE可能同时对应减少剂量和暂停用药。由于剂量减少同时是先发生的，所以对于同时存在减少剂量和暂停用药的AE，AEACN会记录减少剂量。\n如果存在一条AE，AEACN为暂停用药，药物暴露页面也可能不会有对应的给药记录，因为可能没有到给药周期，所以不会录入。\n\n综上，延迟给药/暂停用药对不上是可以接受的，但剂量减少需要注意，在无CUTOFF下，通过两个数据源计算的例数应该保持一致。",
+    "crumbs": [
+      "药物暴露"
+    ]
+  },
+  {
+    "objectID": "lb/lb.html",
+    "href": "lb/lb.html",
+    "title": "LB",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nUSUBJID\\ASEQ\\LBSEQ\n\n\n\nPARAM\\PARAMCD\\PARAMN\n\n\n\nPARAMTYP\n对于衍生的观测，PARAMTYP=“衍生”\n\n\nPARCAT1\nLB.LBCAT\n\n\nAVAL\\AVALC\nLB.LBSTRESN,若包含&lt;,&gt;号，提取数值部分\n\n\nWAYSHIFT\n低、高、双向（毒性方向参数指示符）\n\n\nATOXGRL/ATOXGRLN/ATOXDSCL\n分析毒性等级-低\n\n\nATOXGRH/ATOXGRHN/ATOXDSCH\n分析毒性等级-高\n\n\nBTOXGRL/BTOXGRLN\n基线分析毒性等级-低\n\n\nBTOXGRH/BTOXGRHN\n基线分析毒性等级-高\n\n\nBASE\\BASEC\n\n\n\nCHG\\PCHG\n\n\n\nANRIND\nLB.LBNRIND（参考范围指示符）\n\n\nBNRIND\n基线参考范围指示符\n\n\nANRLO\nLB.LBSTRNLO\n\n\nANRHI\nLB.LBSTNRHI\n\n\nLBDTC\\ADT\\ADY\n\n\n\nVISIT\\VISITNUM\n\n\n\nAVISIT\\AVISITN\n\n\n\nABLFL\n基线记录\n\n\nAPBLFL\n基线后记录\n\n\nLBCLSIG\\LBCLSIGN\n临床意义\n\n\nBASESIG\\BASESIGN\n基线临床意义\n\n\nANLXXFL"
+  },
+  {
+    "objectID": "lb/lb.html#adam.adlb",
+    "href": "lb/lb.html#adam.adlb",
+    "title": "LB",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nUSUBJID\\ASEQ\\LBSEQ\n\n\n\nPARAM\\PARAMCD\\PARAMN\n\n\n\nPARAMTYP\n对于衍生的观测，PARAMTYP=“衍生”\n\n\nPARCAT1\nLB.LBCAT\n\n\nAVAL\\AVALC\nLB.LBSTRESN,若包含&lt;,&gt;号，提取数值部分\n\n\nWAYSHIFT\n低、高、双向（毒性方向参数指示符）\n\n\nATOXGRL/ATOXGRLN/ATOXDSCL\n分析毒性等级-低\n\n\nATOXGRH/ATOXGRHN/ATOXDSCH\n分析毒性等级-高\n\n\nBTOXGRL/BTOXGRLN\n基线分析毒性等级-低\n\n\nBTOXGRH/BTOXGRHN\n基线分析毒性等级-高\n\n\nBASE\\BASEC\n\n\n\nCHG\\PCHG\n\n\n\nANRIND\nLB.LBNRIND（参考范围指示符）\n\n\nBNRIND\n基线参考范围指示符\n\n\nANRLO\nLB.LBSTRNLO\n\n\nANRHI\nLB.LBSTNRHI\n\n\nLBDTC\\ADT\\ADY\n\n\n\nVISIT\\VISITNUM\n\n\n\nAVISIT\\AVISITN\n\n\n\nABLFL\n基线记录\n\n\nAPBLFL\n基线后记录\n\n\nLBCLSIG\\LBCLSIGN\n临床意义\n\n\nBASESIG\\BASESIGN\n基线临床意义\n\n\nANLXXFL"
+  },
+  {
+    "objectID": "oncology/addates.html",
+    "href": "oncology/addates.html",
+    "title": "ADDATES",
+    "section": "",
+    "text": "1 ADDATES介绍\nADDATES是一个专门用于记录与肿瘤评估相关的日期变量的数据集。它包含了受试者的用药日期、随机化日期、影像学检查日期、疾病进展日期等多个关键时间点。这些日期变量对于计算无进展生存期（PFS）等重要终点指标至关重要。\n\n\n1.1 ADDATES中包含的变量\n\n\n\n变量名\n描述\n\n\n\n\nUSUBJID、ASEQ\n\n\n\nADT\n日期\n\n\nADTDESC\n日期描述\n\n\nADTDECD\n日期描述编号\n\n\nADY\n分析相对日\n\n\nRSEVAL\n评估者\n\n\n\n\n\n1.2 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述\n\n\n\n\n\n\n\n\nADTDESC\nADTDESCD\nADT\n\n\n\n\n受试者水平-USUBJID\n\n\n\n\n首次用药日期\nTRTSDT\nADSL.TRTSDT\n\n\n随机化日期\nRANDDT\nADSL.RANDDT\n\n\n新抗肿瘤治疗日期\nNCTXSDT\nADSL.NCTXSDT\n\n\n研究结束日期\nEOSDT\nADSL.EOSDT\n\n\n已知最后生存日期\nLSTALVTD\nADSL.LSTALVTD\n\n\n死亡日期\nDTHDT\nADSL.DTHDT\n\n\n受试者+评估者-USUBJID+RSEVAL\n\n\n\n\n基线肿瘤检查日期\nTEVALDT\n基线前末次有效的影像学检查日期（TR.TRDTC）\n\n\n每个受试者+评估者+评估标准-USUBJID+RSEVAL+RSCAT\n\n\n\n\n基线后首次有效的肿瘤评估影像学检查日期\nFEVALDT\n基线后、新抗前首次出现的有效的肿瘤总体评估日期\n\n\n首次疾病进展日期\nPDDT\n基线后最早的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC = “PD”\n\n\n新抗肿瘤治疗（若有）及疾病进展（若有）前的末次可评估影像学检查日期\nLINTERDT\n取基线后NCTXSDT(≤)和PDDT(&lt;)之前最晚的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC ≠ “NE”等非有效值评估\n\n\n首次客观缓解（经确认的）日期\nCRUTDT\nADRS.ADT，当 ADRS.ANL12FL = “是”\n\n\n首次客观缓解（未确认的）日期\nURUTDT\nADRS.ADT，当 ADRS.ANL22FL = “是”",
+    "crumbs": [
+      "实体瘤",
+      "ADDATES"
+    ]
+  },
+  {
+    "objectID": "oncology/adtr.html",
+    "href": "oncology/adtr.html",
+    "title": "ADTR",
+    "section": "",
+    "text": "ADTR数据集存放病灶信息，如靶病灶径长、靶病灶直径和、非靶病状态、是否有新病灶等。在出瀑布图时会被用到。\n\n\n\n\n\n\n\n\n\n变量名\n描述\n\n\n\n\nUSUBJID、ASEQ、TRGRPID、TRLNKID、TULOC\n\n\n\nPARAM、PARAMCD\nLDIAM-最长径，LPERP-最短径，TUMSTATE-肿瘤状态，DIAMETER-直径，ASUMDIAM-分析用靶病灶直径总和，SUMDIAM-直径总和。\n按照USUBJID+TREVAL+VISIT，输出一条分析用靶病灶直径和\n\n\nPARAMTYP\n当PARAMCD为ASUMDIAM时，PARAMTYP=衍生\n\n\nPARCAT1\nTRCAT(淋巴结、非淋巴结）\n\n\nAVAL、AVALC\n\n\n\nBASE、BASEC\n\n\n\nCHG\n\n\n\nPCHG\n\n\n\nTRDTC、ADT、ADY\nASUMDIAM的ADT为各访视靶病灶影像学检查日期的最大值\n\n\nVISIT、VISITNUM\n\n\n\nABLFL\n首次给药前最后一次非空检测\n\n\nANL01FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若发生在首次疾病进展和新抗肿瘤当天或之前，则赋值’是’\n\n\nANL02FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若该条记录对应的靶病灶评估结果有效，则赋值’是’\n\n\nANL03FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)且ANL01FL和ANL02FL为’是’的记录，选择基线后最早出现的最小PCHG值。\n\n\nTRMETHOD、TREVAL\n\n\n\nANADIR\n分析用先前最小直径和\n\n\nNADIRCHG\n相对最小直径和变化值\n\n\nPCNSD\n相对最小直径和变化百分比\n\n\n\n需要注意的是，除了EDC中直接收集的靶病灶直径和外，在ADTR中我们还会额外编程衍生\"分析用靶病灶直径和\"。程序员在编程时，最好核对下直接收集的和程序衍生的靶病灶直径和结果是否一致。",
+    "crumbs": [
+      "实体瘤",
+      "ADTR"
+    ]
+  },
+  {
+    "objectID": "oncology/adtr.html#adtr包含的变量",
+    "href": "oncology/adtr.html#adtr包含的变量",
+    "title": "ADTR",
+    "section": "",
+    "text": "变量名\n描述\n\n\n\n\nUSUBJID、ASEQ、TRGRPID、TRLNKID、TULOC\n\n\n\nPARAM、PARAMCD\nLDIAM-最长径，LPERP-最短径，TUMSTATE-肿瘤状态，DIAMETER-直径，ASUMDIAM-分析用靶病灶直径总和，SUMDIAM-直径总和。\n按照USUBJID+TREVAL+VISIT，输出一条分析用靶病灶直径和\n\n\nPARAMTYP\n当PARAMCD为ASUMDIAM时，PARAMTYP=衍生\n\n\nPARCAT1\nTRCAT(淋巴结、非淋巴结）\n\n\nAVAL、AVALC\n\n\n\nBASE、BASEC\n\n\n\nCHG\n\n\n\nPCHG\n\n\n\nTRDTC、ADT、ADY\nASUMDIAM的ADT为各访视靶病灶影像学检查日期的最大值\n\n\nVISIT、VISITNUM\n\n\n\nABLFL\n首次给药前最后一次非空检测\n\n\nANL01FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若发生在首次疾病进展和新抗肿瘤当天或之前，则赋值’是’\n\n\nANL02FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若该条记录对应的靶病灶评估结果有效，则赋值’是’\n\n\nANL03FL\n对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)且ANL01FL和ANL02FL为’是’的记录，选择基线后最早出现的最小PCHG值。\n\n\nTRMETHOD、TREVAL\n\n\n\nANADIR\n分析用先前最小直径和\n\n\nNADIRCHG\n相对最小直径和变化值\n\n\nPCNSD\n相对最小直径和变化百分比\n\n\n\n需要注意的是，除了EDC中直接收集的靶病灶直径和外，在ADTR中我们还会额外编程衍生\"分析用靶病灶直径和\"。程序员在编程时，最好核对下直接收集的和程序衍生的靶病灶直径和结果是否一致。",
+    "crumbs": [
+      "实体瘤",
+      "ADTR"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html",
+    "href": "oncology/oncology.html",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "Response Evaluation Criteria in Solid Tumors (RECIST) 1.1是实体瘤疗效评估的标准方法，主要用于评估肿瘤对治疗的反应。RECIST 1.1定义了肿瘤的测量方法、评估时间点以及不同疗效类别的标准。\n\n\n在RECISTv1.1评估标准中，病灶定义为：与研究适应症直接相关的病灶，包括：\n\n任意大小非淋巴结恶性病灶\n最短垂直径≥10mm的淋巴结病灶\n腹水、胸腔或心包积液\n\n淋巴结病灶\n\n\n\n在断层扫描图像层厚≤5mm的影像检查中，可测量病灶定义为可以在连续两个层面上显示，且轴向断层平面上进行精确测量的病灶，并且其尺寸需要满足以下条件：\n\n非淋巴结病灶：最长径（LDi）≥10mm\n淋巴结病灶：最长垂直径（SDi）≥15mm\n\n注意：如果层厚&gt;5mm，则可测量病灶的最小值为层厚的两倍。\n\n\n\n不可测量病灶包括：\n\n非淋巴结病灶，即最长径（LDi）＜10mm的非淋巴结病灶，以及10mm≤最长垂直径（SDi）＜15mm的淋巴结；\n真正不可测量病灶，例如：无可测量软组织成分的骨病灶，脑膜疾病、腹水、胸腔或心包积液、炎性乳腺癌、皮肤/肺的癌性淋巴管炎、影像无法重复测量的病灶、通过体格检查发现的腹部肿块/腹部器官肿大等。\n\n\n\n\n靶病灶为可测量病灶的子集，病灶总数不能超过5个，且每个器官不能超过2个。\n\n\n\n所有不可测量病灶或符合靶病灶，但因数量限制而未能归为靶病灶的可测量病灶\n\n\n\n与基线相比新出现，且符合1.1 RECISTv1.1病灶章节定义的病灶。\n\n\n\nRECISITv1.1适用于能形成实体肿块的肿瘤（病灶），血液肿瘤不能用RECISIT，是因为白血病、淋巴瘤血里是肿瘤细胞，不能那尺子量。而前列腺癌为什么又部分适合，是因为前列腺癌属于实体瘤，但是很多转移到骨头里，骨病灶不容易按RECIST测量。\n\n\n\n\n\nflowchart TD\n  A[所有病灶] --&gt; B[RECIST病灶]\n  B[RECIST病灶] --&gt; C1[可测量]\n  B[RECIST病灶] --&gt; C2[不可测量病灶]\n  C1[可测量] --&gt; D1[靶病灶]\n  C1[可测量] --&gt; D2[非靶病灶]\n  C2[不可测量病灶] --&gt; D2[非靶病灶]\n\n\n\n\n\n\n实体瘤评估的具体过程：\n1. 基线评估：在治疗开始前，对患者的肿瘤进行全面评估，选定一定数量的靶病灶和非靶病灶，计算所有靶病灶的直径和。对应CRF中的1.肿瘤评估_靶病灶（筛选期），2.肿瘤评估_非靶病灶（筛选期）两个页面。\n2. 肿瘤评估：在治疗过程中，按照预定的时间点对患者进行评估，如靶病灶的径长、直径和，非靶病灶的状态以及是否出现新病灶等。对应CRF中的1.肿瘤评估_靶病灶，2.肿瘤评估_非靶病灶，3.肿瘤评估_新病灶三个页面。\n3. 总体评估：研究人员为每个时间点的靶病灶、非靶病灶、新病灶的肿瘤评估结果进行分类，同时结合所有病灶判断总的总体评估结果。后续说的总体评估结果都是指结合所有病灶得到的总体评估结果。对应CRF中的1.肿瘤评估_总体疗效一个页面。\n4. 最佳总体疗效（BOR）：根据3所有病灶总的总体评估结果，计算整个治疗过程中患者达到的最佳疗效类别，作为最终的疗效评估结果。CRF不收集BOR，通常由编程衍生。\n\n\n\n最佳时点疗效由CRF中肿瘤评估_总体疗效页面直接收集，不需要衍生计算。\n\n靶病灶评估\n\n基线无靶病灶\n完全缓解(CR)：所有靶病灶消失，淋巴结短径&lt;10mm。\n部分缓解(PR)：以基线为参照，靶病灶直径总和至少减少30%。\n疾病进展(PD)：以既往直径总和最小值作为参照，靶病灶直径总和至少增加20%，且增加的绝对值至少5mm。\n疾病稳定(SD)：既不满足PR也不满足PD的情况。\n无法评估(NE)：无法评估靶病灶的情况。\n\n非靶病灶评估\n\n基线无非靶病灶\n完全缓解(CR)：所有非靶病灶消失，且肿瘤标志物正常，淋巴结短径&lt;10mm。\n疾病进展(PD)：出现一个或多个新病灶，或非靶病灶明显恶化。\n非完全缓解/非疾病进展(Non-CR/Non-PD)：既不满足CR也不满足PD的情况。\n不可评估(NE)：无法评估非靶病灶的情况。\n\n新病灶评估\n\n有新病灶\n无新病灶\n\n总体评估（所有病灶总的总体评估结果）\n\n总体评估结果分两类，一类是基线存在靶病灶，另一类是基线无靶病灶。两种情况的总体评估判断规则如下表所示。\n\n\n\n\n\n\n\n\n基线存在靶病灶\n\n\n\n\n\n\n\n基线不存在靶病灶\n\n\n\n\n\n\n\n\n\n\n总体评估日期(Date of Response)始终基于影像学检查日期，而非CRF总体评估页面中收集的评估日期（可能不是实际的影像学检查日期而是研究者给出的判定日期）。如果针对特定访视的影像学检查在不同日期进行，若总体评估为疾病进展（PD），则总体评估日期为该访视内最早一次的影像学检查日期；否则为最晚的影像学检查日期。后续提及的肿瘤评估日期或总体评估日期，都是说的这个日期。\n最佳总体疗效（BOR）为基线后、疾病进展或新抗前最佳的总体评估结果。通常CRF不会直接收集，由编程计算。最佳总体疗效可分未确认的和未确认的两类。\n\n\n\n\n确认的最佳总体疗效判断规则如下：\n\nCR：在新抗或疾病进展前存在至少两次评估结果为CR，且两次评估之间至少间隔4周。\nPR：在新抗或疾病进展前存在至少两次评估结果为PR或更好（PR-CR,PR-PR），且两次评估之间至少间隔4周。PR-SD-PR能被确认为PR，若两个PR之间的间隔大于等于4周。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为CR、PR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为非完全缓解/非疾病进展或更优，但未被确认为CR、PR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为CR、PR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n值得注意的是，CR后面不能跟PR、SD。PR后面能跟一个SD，如PR-SD-PR可以被确认为PR。但PR-SD-SD-PR不能被确认为PR。若中间存在小于等于两个NE,这可被确认为PR，如PR-NR-PR,PR-NE-NE-PR,PR-SD-NE-PR,PR-NE-SD-PR等都可以被确认为PR。\n\n\n\n\n\n\n未确认的最佳总体疗效判断规则如下：\n\nuCR：在新抗或疾病进展前存在CR。\nuPR：在新抗或疾病进展前存在PR。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为uCR、uPR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他\n\n\n\n\n\n\n\n客观缓解率是指在特定分析集中BOR为CR或PR的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的ORR。\n\n\n\n疾病控制率是指在特定分析集中BOR为CR、PR或SD的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的DCR。\n\n\n\n临床获益率是指在特定分析集中BOR为CR、PR或SD持续至少T周的患者比例。（T通常设为12周）。也分为基于确认的BOR和未确认的BOR计算的两个版本的CBR。",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#recistv1.1病灶",
+    "href": "oncology/oncology.html#recistv1.1病灶",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "在RECISTv1.1评估标准中，病灶定义为：与研究适应症直接相关的病灶，包括：\n\n任意大小非淋巴结恶性病灶\n最短垂直径≥10mm的淋巴结病灶\n腹水、胸腔或心包积液\n\n淋巴结病灶",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#可测量病灶",
+    "href": "oncology/oncology.html#可测量病灶",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "在断层扫描图像层厚≤5mm的影像检查中，可测量病灶定义为可以在连续两个层面上显示，且轴向断层平面上进行精确测量的病灶，并且其尺寸需要满足以下条件：\n\n非淋巴结病灶：最长径（LDi）≥10mm\n淋巴结病灶：最长垂直径（SDi）≥15mm\n\n注意：如果层厚&gt;5mm，则可测量病灶的最小值为层厚的两倍。",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#不可测量病灶",
+    "href": "oncology/oncology.html#不可测量病灶",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "不可测量病灶包括：\n\n非淋巴结病灶，即最长径（LDi）＜10mm的非淋巴结病灶，以及10mm≤最长垂直径（SDi）＜15mm的淋巴结；\n真正不可测量病灶，例如：无可测量软组织成分的骨病灶，脑膜疾病、腹水、胸腔或心包积液、炎性乳腺癌、皮肤/肺的癌性淋巴管炎、影像无法重复测量的病灶、通过体格检查发现的腹部肿块/腹部器官肿大等。",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#靶病灶",
+    "href": "oncology/oncology.html#靶病灶",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "靶病灶为可测量病灶的子集，病灶总数不能超过5个，且每个器官不能超过2个。",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#非靶病灶",
+    "href": "oncology/oncology.html#非靶病灶",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "所有不可测量病灶或符合靶病灶，但因数量限制而未能归为靶病灶的可测量病灶",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#新病灶",
+    "href": "oncology/oncology.html#新病灶",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "与基线相比新出现，且符合1.1 RECISTv1.1病灶章节定义的病灶。",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#总结",
+    "href": "oncology/oncology.html#总结",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "RECISITv1.1适用于能形成实体肿块的肿瘤（病灶），血液肿瘤不能用RECISIT，是因为白血病、淋巴瘤血里是肿瘤细胞，不能那尺子量。而前列腺癌为什么又部分适合，是因为前列腺癌属于实体瘤，但是很多转移到骨头里，骨病灶不容易按RECIST测量。\n\n\n\n\n\nflowchart TD\n  A[所有病灶] --&gt; B[RECIST病灶]\n  B[RECIST病灶] --&gt; C1[可测量]\n  B[RECIST病灶] --&gt; C2[不可测量病灶]\n  C1[可测量] --&gt; D1[靶病灶]\n  C1[可测量] --&gt; D2[非靶病灶]\n  C2[不可测量病灶] --&gt; D2[非靶病灶]\n\n\n\n\n\n\n实体瘤评估的具体过程：\n1. 基线评估：在治疗开始前，对患者的肿瘤进行全面评估，选定一定数量的靶病灶和非靶病灶，计算所有靶病灶的直径和。对应CRF中的1.肿瘤评估_靶病灶（筛选期），2.肿瘤评估_非靶病灶（筛选期）两个页面。\n2. 肿瘤评估：在治疗过程中，按照预定的时间点对患者进行评估，如靶病灶的径长、直径和，非靶病灶的状态以及是否出现新病灶等。对应CRF中的1.肿瘤评估_靶病灶，2.肿瘤评估_非靶病灶，3.肿瘤评估_新病灶三个页面。\n3. 总体评估：研究人员为每个时间点的靶病灶、非靶病灶、新病灶的肿瘤评估结果进行分类，同时结合所有病灶判断总的总体评估结果。后续说的总体评估结果都是指结合所有病灶得到的总体评估结果。对应CRF中的1.肿瘤评估_总体疗效一个页面。\n4. 最佳总体疗效（BOR）：根据3所有病灶总的总体评估结果，计算整个治疗过程中患者达到的最佳疗效类别，作为最终的疗效评估结果。CRF不收集BOR，通常由编程衍生。",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#时间点疗效time-point-response",
+    "href": "oncology/oncology.html#时间点疗效time-point-response",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "最佳时点疗效由CRF中肿瘤评估_总体疗效页面直接收集，不需要衍生计算。\n\n靶病灶评估\n\n基线无靶病灶\n完全缓解(CR)：所有靶病灶消失，淋巴结短径&lt;10mm。\n部分缓解(PR)：以基线为参照，靶病灶直径总和至少减少30%。\n疾病进展(PD)：以既往直径总和最小值作为参照，靶病灶直径总和至少增加20%，且增加的绝对值至少5mm。\n疾病稳定(SD)：既不满足PR也不满足PD的情况。\n无法评估(NE)：无法评估靶病灶的情况。\n\n非靶病灶评估\n\n基线无非靶病灶\n完全缓解(CR)：所有非靶病灶消失，且肿瘤标志物正常，淋巴结短径&lt;10mm。\n疾病进展(PD)：出现一个或多个新病灶，或非靶病灶明显恶化。\n非完全缓解/非疾病进展(Non-CR/Non-PD)：既不满足CR也不满足PD的情况。\n不可评估(NE)：无法评估非靶病灶的情况。\n\n新病灶评估\n\n有新病灶\n无新病灶\n\n总体评估（所有病灶总的总体评估结果）\n\n总体评估结果分两类，一类是基线存在靶病灶，另一类是基线无靶病灶。两种情况的总体评估判断规则如下表所示。\n\n\n\n\n\n\n\n\n基线存在靶病灶\n\n\n\n\n\n\n\n基线不存在靶病灶",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#最佳总体疗效best-overall-response-bor",
+    "href": "oncology/oncology.html#最佳总体疗效best-overall-response-bor",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "总体评估日期(Date of Response)始终基于影像学检查日期，而非CRF总体评估页面中收集的评估日期（可能不是实际的影像学检查日期而是研究者给出的判定日期）。如果针对特定访视的影像学检查在不同日期进行，若总体评估为疾病进展（PD），则总体评估日期为该访视内最早一次的影像学检查日期；否则为最晚的影像学检查日期。后续提及的肿瘤评估日期或总体评估日期，都是说的这个日期。\n最佳总体疗效（BOR）为基线后、疾病进展或新抗前最佳的总体评估结果。通常CRF不会直接收集，由编程计算。最佳总体疗效可分未确认的和未确认的两类。\n\n\n\n\n确认的最佳总体疗效判断规则如下：\n\nCR：在新抗或疾病进展前存在至少两次评估结果为CR，且两次评估之间至少间隔4周。\nPR：在新抗或疾病进展前存在至少两次评估结果为PR或更好（PR-CR,PR-PR），且两次评估之间至少间隔4周。PR-SD-PR能被确认为PR，若两个PR之间的间隔大于等于4周。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为CR、PR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为非完全缓解/非疾病进展或更优，但未被确认为CR、PR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为CR、PR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n值得注意的是，CR后面不能跟PR、SD。PR后面能跟一个SD，如PR-SD-PR可以被确认为PR。但PR-SD-SD-PR不能被确认为PR。若中间存在小于等于两个NE,这可被确认为PR，如PR-NR-PR,PR-NE-NE-PR,PR-SD-NE-PR,PR-NE-SD-PR等都可以被确认为PR。\n\n\n\n\n\n\n未确认的最佳总体疗效判断规则如下：\n\nuCR：在新抗或疾病进展前存在CR。\nuPR：在新抗或疾病进展前存在PR。\nSD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。\nNon-CR/Non-PD：基线后起至少X周后、疾病进展及新的抗肿瘤治疗开始前，至少有一次疗效评估为稳定或更优，但未被确认为uCR、uPR。X通常设为6周。(Non-CR/Non-PD仅在基线无靶病灶的情况下存在，且后续分析也可能合并为SD)\nPD：基线后新抗前存在疗效评估为PD，且未被确认为uCR、uPR或SD。\nNE：除上述情况外的其他情况。NE的原因需要被汇总记录。\n\n所有基线后肿瘤总体评估均为NE。\n基线后首次评估前开启新的抗肿瘤治疗。\n无基线后肿瘤评估。\nSD持续时间不满足≥42天。\n其他",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#客观缓解率overall-response-rate-orr",
+    "href": "oncology/oncology.html#客观缓解率overall-response-rate-orr",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "客观缓解率是指在特定分析集中BOR为CR或PR的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的ORR。",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#疾病控制率disease-control-rate-dcr",
+    "href": "oncology/oncology.html#疾病控制率disease-control-rate-dcr",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "疾病控制率是指在特定分析集中BOR为CR、PR或SD的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的DCR。",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/oncology.html#临床获益率clinical-benefit-rate-cbr",
+    "href": "oncology/oncology.html#临床获益率clinical-benefit-rate-cbr",
+    "title": "RECIST 1.1",
+    "section": "",
+    "text": "临床获益率是指在特定分析集中BOR为CR、PR或SD持续至少T周的患者比例。（T通常设为12周）。也分为基于确认的BOR和未确认的BOR计算的两个版本的CBR。",
+    "crumbs": [
+      "实体瘤"
+    ]
+  },
+  {
+    "objectID": "oncology/prostate_cancer.html",
+    "href": "oncology/prostate_cancer.html",
+    "title": "前列腺癌（Prostate Cancer）",
+    "section": "",
+    "text": "前列腺癌是常见的泌尿系统恶性肿瘤，在世界范围内发病率位居男性恶性肿瘤的第二位。\n根据雄激素剥夺治疗的敏感性及是否发生远处转移分为：\n\n转移性激素敏感性前列腺癌（mHSPC）\n转移性去势抵抗性前列腺癌（mCRPC-Metastatic Castration-Resistant Prostate Cancer）\n非转移性去势抵抗性前列腺癌（nmCRPC-Non-Metastatic Castration-Resistant Prostate Cancer）\n\n前列腺治疗大多数依赖雄激素生长，降低雄激素能抑制肿瘤生长。但去势抵抗性前列腺癌意思是虽然把雄激素水平降到很低，但肿瘤仍然在继续发展，这就叫CRPC。那什么事nmCRPC呢，nmCRPC，非转移性去势抵抗性前列腺癌，意思是虽然肿瘤变坏了，但还没跑到其他器官。那相比nmCRPC，mCRPC多了一个转移性，意思是说患者已经发生远处转移了。\n前列腺癌进展相对缓慢（生长速度慢、疾病进展慢、生存时间长），如nmCRPC患者中位总生存期近5年，如果将OS作为临床试验终点，那么临床试验必须等到足够多的患者死亡后才能得到结果。对于进展较缓慢的前列腺癌，这个过程可能需要很多年，因此新药上市和患者获益的时间都会被推迟。\n但是，前列腺癌独特的疾病特征如高发的骨转移，因此可以采用替代终点（Surrogate Endpoint），如：影像学无进展生存期（Radiographic Progression Free Survival，rPFS）",
+    "crumbs": [
+      "前列腺癌"
+    ]
+  },
+  {
+    "objectID": "oncology/prostate_cancer.html#影像学无进展生存期radiographic-progression-free-survivalrpfs",
+    "href": "oncology/prostate_cancer.html#影像学无进展生存期radiographic-progression-free-survivalrpfs",
+    "title": "前列腺癌（Prostate Cancer）",
+    "section": "2.1 影像学无进展生存期（Radiographic Progression Free Survival，rPFS）",
+    "text": "2.1 影像学无进展生存期（Radiographic Progression Free Survival，rPFS）\n通常实体瘤采用常规RECIST1.1标准评估肿瘤缓解或进展。晚期前列腺癌有较高比例的骨转移病灶，按照RECIST1.1评价骨转移病灶通常归为不可测量病灶，不作为靶病灶进行评估，而是通过骨扫描采样PCWG3标准进展评价。\n\n\n\n\n\n\nNote\n\n\n\nRECIST1.1对于骨病灶相关的描述：\n不可测量病灶：无可测量软组织成分的骨病灶\n含软组织成分的骨病灶：CT或MRI上可见的溶骨性病灶或混合性骨病灶，其软组织部分符合可测量定义，且适合重复测量的，在没有其他软组织病灶可选时，可选为靶病灶。仅在骨扫描、PET或X线检查中发现的骨病灶不作为靶病灶。\n无软组织成分的骨病灶：鉴于图像对骨化和成骨性肿瘤的鉴别能力方面的限制，骨性病灶应被选为非靶病灶。\n\n\nrPFS定义为自随机日期开始至出现影像学进展或任何原因导致死亡是时间，影像学进展包括根据RECIST1.1标准和PCWG3标准，对原发病灶、区域淋巴结侵犯、软组织转移和骨转移病灶进展情况的评价。",
+    "crumbs": [
+      "前列腺癌"
+    ]
+  },
+  {
+    "objectID": "oncology/prostate_cancer.html#无转移生存期metastasis-free-survival-mfs",
+    "href": "oncology/prostate_cancer.html#无转移生存期metastasis-free-survival-mfs",
+    "title": "前列腺癌（Prostate Cancer）",
+    "section": "2.2 无转移生存期（Metastasis-Free Survival, MFS）",
+    "text": "2.2 无转移生存期（Metastasis-Free Survival, MFS）\nMFS定义为随机化至出现远处转移证据或任何原因死亡的时间。需在MFS定义中明确转移性疾病（骨转移、内脏转移、远处淋巴结转移）的定义。该定义应排除局部疾病进展时间（例如主动脉分叉以下的盆腔淋巴结）。",
+    "crumbs": [
+      "前列腺癌"
+    ]
+  },
+  {
+    "objectID": "oncology/prostate_cancer.html#基于psa水平的终点",
+    "href": "oncology/prostate_cancer.html#基于psa水平的终点",
+    "title": "前列腺癌（Prostate Cancer）",
+    "section": "2.3 基于PSA水平的终点",
+    "text": "2.3 基于PSA水平的终点\nPSA升高在临床实践中被视为前列腺癌进展的早期信号，是敏感性肿瘤标志物。\n\n2.3.1 PSA50、PSA90缓解率\nPSA水平从基线至基线后下降≥50%或≥90%，并且由至少3周后再次评估确定PSA缓解。PSA缓解率通常将在某个时间点PSA下降≥50%或≥90%的患者比例作为评估指标。\n\n\n\n2.3.2 至首发症状性骨相关事件（Symptomatic Skeletal Event,SSE）时间\n定义为随机至首次发生SSE的时间，SSE包括使用外照射放射治疗来预防或缓解骨骼症状、出现新发症状性病理性骨折，出现脊髓压迫等。",
+    "crumbs": [
+      "前列腺癌"
+    ]
+  },
+  {
+    "objectID": "oncology/prostate_cancer.html#小结",
+    "href": "oncology/prostate_cancer.html#小结",
+    "title": "前列腺癌（Prostate Cancer）",
+    "section": "2.4 小结",
+    "text": "2.4 小结\n对于不同的基本阶段可考虑选择合理的替代终点，例如未经治疗的mCRPC和mHSPC患者可选择rPFS作为主要终点，OS作为关键次要终点。nmCRPC可选择MFS作为主要终点。\n按照PCWG3标准，影像学结巴进展的骨转移需要进行确认。受试者可能在骨转移病灶再次进行影像学确认前脱落，导致骨转移病灶进展确证性数据缺失。",
+    "crumbs": [
+      "前列腺癌"
     ]
   },
   {

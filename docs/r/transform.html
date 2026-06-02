@@ -203,6 +203,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#条件赋值-conditional-transformations" id="toc-条件赋值-conditional-transformations" class="nav-link" data-scroll-target="#条件赋值-conditional-transformations">1.2.5 条件赋值 (Conditional transformations)</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#数字numbers" id="toc-数字numbers" class="nav-link" data-scroll-target="#数字numbers">2 数字（Numbers）</a>
+  <ul class="collapse">
+  <li><a href="#衍生数值变量making-numbers" id="toc-衍生数值变量making-numbers" class="nav-link" data-scroll-target="#衍生数值变量making-numbers">2.1 衍生数值变量（Making numbers）</a></li>
+  <li><a href="#计算频数counts" id="toc-计算频数counts" class="nav-link" data-scroll-target="#计算频数counts">2.2 计算频数（Counts）</a></li>
+  <li><a href="#算数运算和向量回收规则" id="toc-算数运算和向量回收规则" class="nav-link" data-scroll-target="#算数运算和向量回收规则">2.3 算数运算和向量回收规则</a>
+  <ul class="collapse">
+  <li><a href="#最小值和最大值min-and-max" id="toc-最小值和最大值min-and-max" class="nav-link" data-scroll-target="#最小值和最大值min-and-max">2.4 最小值和最大值（Min and max）</a></li>
+  <li><a href="#膜运算modular-arithmetic" id="toc-膜运算modular-arithmetic" class="nav-link" data-scroll-target="#膜运算modular-arithmetic">2.5 膜运算（Modular arithmetic）</a></li>
+  <li><a href="#对数运算logarithms" id="toc-对数运算logarithms" class="nav-link" data-scroll-target="#对数运算logarithms">2.6 对数运算（Logarithms）</a></li>
+  <li><a href="#四舍五入rounding" id="toc-四舍五入rounding" class="nav-link" data-scroll-target="#四舍五入rounding">2.7 四舍五入（Rounding）</a></li>
+  <li><a href="#将数值分段cutting-and-binning" id="toc-将数值分段cutting-and-binning" class="nav-link" data-scroll-target="#将数值分段cutting-and-binning">2.8 将数值分段（Cutting and binning）</a></li>
+  <li><a href="#累积与滚动汇总cumulative-and-rolling-summaries" id="toc-累积与滚动汇总cumulative-and-rolling-summaries" class="nav-link" data-scroll-target="#累积与滚动汇总cumulative-and-rolling-summaries">2.9 累积与滚动汇总（Cumulative and rolling summaries）</a></li>
+  <li><a href="#排序ranks" id="toc-排序ranks" class="nav-link" data-scroll-target="#排序ranks">2.10 排序（Ranks）</a></li>
+  <li><a href="#差分offsets" id="toc-差分offsets" class="nav-link" data-scroll-target="#差分offsets">2.11 差分（Offsets）</a></li>
+  <li><a href="#连续标识符cumulative-identifiers" id="toc-连续标识符cumulative-identifiers" class="nav-link" data-scroll-target="#连续标识符cumulative-identifiers">2.12 连续标识符（Cumulative identifiers）</a></li>
+  <li><a href="#根据位置选择观测positions" id="toc-根据位置选择观测positions" class="nav-link" data-scroll-target="#根据位置选择观测positions">根据位置选择观测（Positions）</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -508,9 +526,512 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>需要注意的是，<code>case_when</code>和<code>if_else()</code> 的输出结果需要时兼容的，例如输出的结果必需全是字符型或数值型，不能字符和数值两种形式掺杂。</p>
-
-
 </section>
+</section>
+</section>
+</section>
+<section id="数字numbers" class="level1">
+<h1>2 数字（Numbers）</h1>
+<section id="衍生数值变量making-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="衍生数值变量making-numbers">2.1 衍生数值变量（Making numbers）</h2>
+<p><code>pares_double</code>和<code>parse_number()</code>能将字符形式的数值转换为数值型，<code>parse_number()</code>会自动去掉字符串中的非数字字符，而<code>parse_double()</code>则会保留这些字符。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"1.23"</span>,<span class="st">"4.5"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">parse_double</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.23 4.50</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"$1.23"</span>, <span class="st">"4,5"</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">parse_number</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  1.23 45.00</code></pre>
+</div>
+</div>
+</section>
+<section id="计算频数counts" class="level2">
+<h2 class="anchored" data-anchor-id="计算频数counts">2.2 计算频数（Counts）</h2>
+<p><code>count()</code>函数可以用来计算频数</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dest, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 105 × 2
+   dest      n
+   &lt;chr&gt; &lt;int&gt;
+ 1 ORD   17283
+ 2 ATL   17215
+ 3 LAX   16174
+ 4 BOS   15508
+ 5 MCO   14082
+ 6 CLT   14064
+ 7 SFO   13331
+ 8 FLL   12055
+ 9 MIA   11728
+10 DCA    9705
+# ℹ 95 more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 如果你想要展示所有的数据，可以使用 |&gt; print(n = Inf) 或|&gt; View() 来查看完整的数据。</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>同时，使用<code>group_by``()</code>,<code>summarize``()</code>和<code>n()</code> 也能达到此目的，并且还能计算其他变量的汇总分析。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dest) <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">delay =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 105 × 3
+   dest      n delay
+   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;
+ 1 ABQ     254 13.7 
+ 2 ACK     265  6.46
+ 3 ALB     439 23.6 
+ 4 ANC       8 12.9 
+ 5 ATL   17215 12.5 
+ 6 AUS    2439 13.0 
+ 7 AVL     275  8.19
+ 8 BDL     443 17.7 
+ 9 BGR     375 19.5 
+10 BHM     297 29.7 
+# ℹ 95 more rows</code></pre>
+</div>
+</div>
+<p><code>n()</code>函数只能在<code>summarise()</code>和<code>mutate()</code>中使用，与<code>n()</code>函数类似的还有<code>n_distinct()</code>函数，可以用来计算不同值的数量。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dest) <span class="sc">|&gt;</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_distinct =</span> <span class="fu">n_distinct</span>(carrier),</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 105 × 3
+   dest      n n_distinct
+   &lt;chr&gt; &lt;int&gt;      &lt;int&gt;
+ 1 ABQ     254          1
+ 2 ACK     265          1
+ 3 ALB     439          1
+ 4 ANC       8          1
+ 5 ATL   17215          7
+ 6 AUS    2439          6
+ 7 AVL     275          2
+ 8 BDL     443          2
+ 9 BGR     375          2
+10 BHM     297          1
+# ℹ 95 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="算数运算和向量回收规则" class="level2">
+<h2 class="anchored" data-anchor-id="算数运算和向量回收规则">2.3 算数运算和向量回收规则</h2>
+<p>算数运算符包括：<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>，这些运算符可以用来对数值进行基本的算术运算，算数运算很简单，我们不会详细介绍。但需要注意的是，在进行算术运算时，如果两个向量的长度不相等，R会自动进行向量回收（vector recycling），R会重复较短的向量来匹配较长的向量。 通常情况下，我们希望回收单个数值（长度为1的向量），但R会对任何长度较短的向量执行回收操作。如果较长的向量的长度不是较短的向量长度的倍数，R会发出一个警告，提示回收可能导致不一致的结果。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11 22 13 24</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="sc">*</span> y1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 40  3  8</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">3</span>)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="sc">*</span> y2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in x2 * y2: longer object length is not a multiple of shorter object
+length</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 40  3</code></pre>
+</div>
+</div>
+<p>回收规则同样应用于比较运算（<code>&gt;</code>, <code>&lt;</code>, <code>==</code>等），会产生意外的结果如果使用<code>==</code>而不是<code>%in%</code>来检查一个值是否在一个向量中。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 25,977 × 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      542            540         2      923            850
+ 3  2013     1     1      554            600        -6      812            837
+ 4  2013     1     1      555            600        -5      913            854
+ 5  2013     1     1      557            600        -3      838            846
+ 6  2013     1     1      558            600        -2      849            851
+ 7  2013     1     1      558            600        -2      924            917
+ 8  2013     1     1      559            600        -1      941            910
+ 9  2013     1     1      559            600        -1      854            902
+10  2013     1     1      600            600         0      837            825
+# ℹ 25,967 more rows
+# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+</div>
+<p>上面这段代码，仅会返回奇数行且月份为1或偶数行月份为2的记录，而不是返回月份为1或2的记录。正确的做法是使用<code>%in%</code>操作符。</p>
+<section id="最小值和最大值min-and-max" class="level3">
+<h3 class="anchored" data-anchor-id="最小值和最大值min-and-max">2.4 最小值和最大值（Min and max）</h3>
+<p><code>pmin()</code>和<code>pmax()</code>函数可以用来计算两个或多个向量的元素级最小值和最大值。 需要注意的是<code>min()</code>和<code>max()</code>函数返回的是整个向量的最小值和最大值，会得到所有行的min和max值有一样的错误结果，而不是元素级的最小值和最大值。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="cn">NA</span>)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">pmin</span>(x, y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">pmax</span>(x, y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+      x     y   min   max
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1     4     1     4
+2     2     1     1     2
+3     3    NA     3     3</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(x, y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(x, y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+      x     y   min   max
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1     4     1     4
+2     2     1     1     4
+3     3    NA     1     4</code></pre>
+</div>
+</div>
+</section>
+<section id="膜运算modular-arithmetic" class="level3">
+<h3 class="anchored" data-anchor-id="膜运算modular-arithmetic">2.5 膜运算（Modular arithmetic）</h3>
+<p><code>%%</code>和<code>%/%</code>运算符可以用来进行膜运算，<code>%%</code>返回除法的余数，而<code>%/%</code>返回除法的商的整数部分。在flights数据集中，我们可以使用膜运算来将变量<code>sched_dep_time</code>转换为小时和分钟的格式。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep_hour =</span> sched_dep_time <span class="sc">%/%</span> <span class="dv">100</span>,</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep_minute =</span> sched_dep_time <span class="sc">%%</span> <span class="dv">100</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 336,776 × 21
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      542            540         2      923            850
+ 4  2013     1     1      544            545        -1     1004           1022
+ 5  2013     1     1      554            600        -6      812            837
+ 6  2013     1     1      554            558        -4      740            728
+ 7  2013     1     1      555            600        -5      913            854
+ 8  2013     1     1      557            600        -3      709            723
+ 9  2013     1     1      557            600        -3      838            846
+10  2013     1     1      558            600        -2      753            745
+# ℹ 336,766 more rows
+# ℹ 13 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, dep_hour &lt;dbl&gt;,
+#   dep_minute &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="对数运算logarithms" class="level3">
+<h3 class="anchored" data-anchor-id="对数运算logarithms">2.6 对数运算（Logarithms）</h3>
+<p>常用的对数函数包括：<code>log()</code>（以e为底）, <code>log10()</code>（以10为底）, <code>log2()</code>（以2为底）。</p>
+</section>
+<section id="四舍五入rounding" class="level3">
+<h3 class="anchored" data-anchor-id="四舍五入rounding">2.7 四舍五入（Rounding）</h3>
+<p><code>round()</code>是常用的四舍五入函数,<code>round()</code>函数会将数值四舍五入至整数。当然，可以用过digits来控制精度，<code>round(x, digits)</code>会将数值四舍五入至最接近的10^-n位数，所以digits=2表示四舍五入到最接近的0.01位。同理，若digits=-2示四舍五入到最接近的100位。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">123.456</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 123</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">123.456</span>, <span class="at">digits =</span> <span class="dv">2</span>)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 123.46</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">123.456</span>, <span class="at">digits =</span> <span class="sc">-</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100</code></pre>
+</div>
+</div>
+<p>有个地方需要注意的是，<code>round()</code>函数在处理.5的情况时，采用的是”round to even”的规则，也就是当数值正好在两个整数的中间时，会将其四舍五入到最近的偶数。这是为了避免在大量数据中产生系统性的偏差，一半的.5会向上取整，一半会向下取整。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">2.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">4.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>类似的函数还有<code>ceiling()</code>和<code>floor()</code>，<code>ceiling()</code>函数会将数值向上取整到最近的整数，而<code>floor()</code>函数会将数值向下取整到最近的整数。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>(<span class="fl">2.3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">floor</span>(<span class="fl">2.7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<p>同时，如果你想把一个整数四舍五入到某个数的倍数，可以先除以那个数，使用<code>round()</code>函数进行四舍五入，然后再乘以那个数。这在画图横坐标最大刻度计算时非常有用。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">123.456</span> <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">*</span> <span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 125</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">123.456</span> <span class="sc">/</span> <span class="dv">10</span>) <span class="sc">*</span> <span class="dv">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 120</code></pre>
+</div>
+</div>
+</section>
+<section id="将数值分段cutting-and-binning" class="level3">
+<h3 class="anchored" data-anchor-id="将数值分段cutting-and-binning">2.8 将数值分段（Cutting and binning）</h3>
+<p><code>cut()</code>函数可以用来将数值分段，<code>cut(x, breaks)</code>函数会将数值x分成由breaks指定的区间，并返回一个因子变量，表示每个数值所属的区间。<code>cut()</code>函数还有一些其他参数，比如<code>labels</code>可以用来指定每个区间的标签。在范围外的数值会被标记为NA。同时可以通过<code>include.lowest</code>参数来控制是否将边界值包含在第一个区间中，默认情况下，<code>cut()</code>函数会将左边界包含在区间外，而将右边界排除在内。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span>(x, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] (0,2] (0,2] (2,4] (2,4] (4,6] &lt;NA&gt; 
+Levels: (0,2] (2,4] (4,6]</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">cut</span>(x, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>))</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Low    Low    Medium Medium High   &lt;NA&gt;  
+Levels: Low Medium High</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(z)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "factor"</code></pre>
+</div>
+</div>
+</section>
+<section id="累积与滚动汇总cumulative-and-rolling-summaries" class="level3">
+<h3 class="anchored" data-anchor-id="累积与滚动汇总cumulative-and-rolling-summaries">2.9 累积与滚动汇总（Cumulative and rolling summaries）</h3>
+<p><code>cumsum()</code>函数可以用来计算累积和，<code>cumprod()</code>函数可以用来计算累积积，<code>cummin()</code>函数可以用来计算累积最小值，<code>cummax()</code>函数可以用来计算累积最大值。这些函数在数据分析中非常有用，可以帮助我们理解数据的趋势和变化。</p>
+</section>
+<section id="排序ranks" class="level3">
+<h3 class="anchored" data-anchor-id="排序ranks">2.10 排序（Ranks）</h3>
+<p><code>min_rank()</code>函数可以用来计算最小排名，row_number()函数可以用来计算行号，dense_rank()函数可以用来计算密集排名，percent_rank()函数可以用来计算百分位排名。这些函数在数据分析中非常有用，可以帮助我们理解数据的分布和相对位置。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">17</span>, <span class="dv">22</span>, <span class="cn">NA</span>)</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> </span>
+<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_rank =</span> <span class="fu">min_rank</span>(x),</span>
+<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_number =</span> <span class="fu">row_number</span>(x),</span>
+<span id="cb87-9"><a href="#cb87-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">dense_rank =</span> <span class="fu">dense_rank</span>(x),</span>
+<span id="cb87-10"><a href="#cb87-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_rank =</span> <span class="fu">percent_rank</span>(x)</span>
+<span id="cb87-11"><a href="#cb87-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+      x min_rank row_number dense_rank percent_rank
+  &lt;dbl&gt;    &lt;int&gt;      &lt;int&gt;      &lt;int&gt;        &lt;dbl&gt;
+1     1        1          1          1         0   
+2     5        2          2          2         0.25
+3     5        2          3          2         0.25
+4    17        4          4          3         0.75
+5    22        5          5          4         1   
+6    NA       NA         NA         NA        NA   </code></pre>
+</div>
+</div>
+</section>
+<section id="差分offsets" class="level3">
+<h3 class="anchored" data-anchor-id="差分offsets">2.11 差分（Offsets）</h3>
+<p><code>lag()</code>函数可以用来计算滞后值，<code>lead()</code>函数可以用来计算前导值。这些函数在时间序列分析中非常有用，可以帮助我们理解数据的变化和趋势。</p>
+</section>
+<section id="连续标识符cumulative-identifiers" class="level3">
+<h3 class="anchored" data-anchor-id="连续标识符cumulative-identifiers">2.12 连续标识符（Cumulative identifiers）</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>events <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">12</span>,<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">19</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">44</span>,<span class="dv">67</span>)</span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>events <span class="ot">&lt;-</span> events <span class="sc">|&gt;</span> </span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="co"># default = first(time), 用这行的第一个值来填充NA</span></span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">diff =</span> time <span class="sc">-</span> <span class="fu">lag</span>(time, <span class="at">default =</span> <span class="fu">first</span>(time)),</span>
+<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">has_gap =</span> diff <span class="sc">&gt;</span> <span class="dv">5</span>,</span>
+<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> <span class="fu">cumsum</span>(has_gap)</span>
+<span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-13"><a href="#cb89-13" aria-hidden="true" tabindex="-1"></a>events</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 4
+    time  diff has_gap group
+   &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;   &lt;int&gt;
+ 1     0     0 FALSE       0
+ 2     1     1 FALSE       0
+ 3     2     1 FALSE       0
+ 4     3     1 FALSE       0
+ 5     5     2 FALSE       0
+ 6    10     5 FALSE       0
+ 7    12     2 FALSE       0
+ 8    15     3 FALSE       0
+ 9    17     2 FALSE       0
+10    19     2 FALSE       0
+11    30    11 TRUE        1
+12    40    10 TRUE        2
+13    44     4 FALSE       2
+14    67    23 TRUE        3</code></pre>
+</div>
+</div>
+<p>如果想要每组内第一行，可以用<code>consecutive_id()</code>和<code>slice_head(n = 1)</code>来实现。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>events</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 4
+    time  diff has_gap group
+   &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;   &lt;int&gt;
+ 1     0     0 FALSE       0
+ 2     1     1 FALSE       0
+ 3     2     1 FALSE       0
+ 4     3     1 FALSE       0
+ 5     5     2 FALSE       0
+ 6    10     5 FALSE       0
+ 7    12     2 FALSE       0
+ 8    15     3 FALSE       0
+ 9    17     2 FALSE       0
+10    19     2 FALSE       0
+11    30    11 TRUE        1
+12    40    10 TRUE        2
+13    44     4 FALSE       2
+14    67    23 TRUE        3</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>events <span class="sc">|&gt;</span> </span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">id =</span> <span class="fu">consecutive_id</span>(group)) <span class="sc">|&gt;</span> </span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+# Groups:   id [4]
+   time  diff has_gap group    id
+  &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;   &lt;int&gt; &lt;int&gt;
+1     0     0 FALSE       0     1
+2    30    11 TRUE        1     2
+3    40    10 TRUE        2     3
+4    67    23 TRUE        3     4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 直接用存在的group列来分组，是不是也可以呢？在这个例子中，结果是一样的。</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 但如果group列中有相同的值但不连续，那么结果就不一样了。详细看下面的介绍：</span></span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>events <span class="sc">|&gt;</span> </span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span> </span>
+<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+# Groups:   group [4]
+   time  diff has_gap group
+  &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;   &lt;int&gt;
+1     0     0 FALSE       0
+2    30    11 TRUE        1
+3    40    10 TRUE        2
+4    67    23 TRUE        3</code></pre>
+</div>
+</div>
+<p>上面两段代码的区别是，group_by(group)会将group列中的相同值分为一组，而group_by(id = consecutive_id(group))会将group列中连续相同的值分为一组。也就是说，如果group列中有相同的值但不连续，那么group_by(group)会将它们分为一组，而group_by(id = consecutive_id(group))会将它们分为不同的组。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>)</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> </span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span> </span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 1
+# Groups:   group [2]
+  group
+  &lt;chr&gt;
+1 A    
+2 B    </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">id =</span> <span class="fu">consecutive_id</span>(group)) <span class="sc">|&gt;</span> </span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+# Groups:   id [3]
+  group    id
+  &lt;chr&gt; &lt;int&gt;
+1 A         1
+2 B         2
+3 A         3</code></pre>
+</div>
+</div>
+</section>
+<section id="根据位置选择观测positions" class="level3">
+<h3 class="anchored" data-anchor-id="根据位置选择观测positions">根据位置选择观测（Positions）</h3>
+<p>在<code>summarize()</code>中，我们可以使用<code>first(x)</code>、<code>nth(x, n)</code>和<code>last(x)</code>函数来根据位置选择观测。可以通过<code>na_rm = TRUE</code>参数来忽略NA值，通过<code>order_by</code>参数来指定排序变量，以便在选择观测时按照特定的顺序进行选择。若数据中没有特定位置的值时，也可以通过<code>default</code>参数来确定默认值。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 当没有order_by参数时，first()、nth()和last()函数会按照数据的原始顺序来选择观测。也就是说，它们会选择每组中的第一个、第二个或最后一个观测，而不考虑任何特定的排序。</span></span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span> </span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">first =</span> <span class="fu">first</span>(dep_delay, <span class="at">na_rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">second =</span> <span class="fu">nth</span>(dep_delay, <span class="dv">2</span>, <span class="at">na_rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb101-7"><a href="#cb101-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">last =</span> <span class="fu">last</span>(dep_delay, <span class="at">na_rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb101-8"><a href="#cb101-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb101-9"><a href="#cb101-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 365 × 6
+    year month   day first second  last
+   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+ 1  2013     1     1     2      4    -3
+ 2  2013     1     2    43    156    -5
+ 3  2013     1     3    33    185   -10
+ 4  2013     1     4    26    141    -1
+ 5  2013     1     5    15    127    -2
+ 6  2013     1     6    17     -2    -4
+ 7  2013     1     7    50     -6     0
+ 8  2013     1     8    -6     -1    -8
+ 9  2013     1     9     3      9     3
+10  2013     1    10     4     17    30
+# ℹ 355 more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span> </span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">first =</span> <span class="fu">first</span>(dep_delay, <span class="at">na_rm =</span> <span class="cn">TRUE</span>, <span class="at">order_by =</span> dep_delay),</span>
+<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">second =</span> <span class="fu">nth</span>(dep_delay, <span class="dv">2</span>, <span class="at">na_rm =</span> <span class="cn">TRUE</span>, <span class="at">order_by =</span> dep_delay),</span>
+<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">last =</span> <span class="fu">last</span>(dep_delay, <span class="at">na_rm =</span> <span class="cn">TRUE</span>, <span class="at">order_by =</span> dep_delay),</span>
+<span id="cb103-7"><a href="#cb103-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb103-8"><a href="#cb103-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 365 × 6
+    year month   day first second  last
+   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+ 1  2013     1     1   -15    -15   853
+ 2  2013     1     2   -13    -13   379
+ 3  2013     1     3   -13    -12   291
+ 4  2013     1     4   -19    -17   288
+ 5  2013     1     5   -16    -14   327
+ 6  2013     1     6   -15    -12   202
+ 7  2013     1     7   -17    -15   366
+ 8  2013     1     8   -16    -15   188
+ 9  2013     1     9   -17    -15  1301
+10  2013     1    10   -17    -16  1126
+# ℹ 355 more rows</code></pre>
+</div>
+</div>
+
+
 </section>
 </section>
 </section>

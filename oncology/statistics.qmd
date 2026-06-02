@@ -2,12 +2,58 @@
 title: "统计方法"
 ---
 
-# 1 最佳总体缓解(BOR)相关统计方法
+# 1 最佳总体疗效汇总分析
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+# 隐藏代码，只显示结果
+library(gt)
+library(tibble)
+library(dplyr)
+
+df <- tribble(
+  ~统计量, ~试验组, ~对照组, ~type,
+  "客观缓解率（ORR）", "xx (x)", "xx (x)", "section",
+  "各组率的95%置信区间", "(x.xx, x.xx)", "(x.xx, x.xx)","detail",
+  "基于分层CMH法的率差及其95%置信区间（%）", "x.xx (x.xx, x.xx)", "x.xx (x.xx, x.xx)","detail",
+  "基于M-N法的率差及其95%置信区间（%）", "x.xx (x.xx, x.xx)", "x.xx (x.xx, x.xx)","detail"
+)
+
+gt_tbl <- df %>%
+  select(-type) %>%
+  gt()
+
+gt_tbl %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_body(
+      rows = df$type == "section",
+      columns = 统计量
+    )
+  ) %>%
+  tab_style(
+    style = cell_text(indent = px(20)),
+    locations = cells_body(
+      rows = df$type == "detail",
+      columns = 统计量
+    )
+  )
+```
 
 ## 1.1 客观缓解率及各组率的95%CI
-### 1.1.1 Clopper-Pearson法
+
+### 1.1.1 确切概率法（Clopper-Pearson）法
+
+#### 方法简介
+
+Clopper-Pearson法（确切概率法）是一种基于二项分布的精确置信区间估计方法，常用于估计二分类终点（如ORR、DCR等）的率及其95%置信区间。适用于样本量较小的情况。
+
+#### SAS模版代码
+
 ``` sas
-proc freq data=orr_nonstaf;
+proc freq data=orr;
 by trt01pn;
 weight count/zeros;
 tables resp/binomial(exact level='1') alpha=0.05;
@@ -15,9 +61,45 @@ ods output binomialcls=cl_orr;
 run;
 ```
 
+其中，数据集`orr`的格式为:
+
+| trt01pn | resp | count |
+|---------|------|-------|
+| 1       | 0    | 5     |
+| 1       | 1    | 6     |
+| 2       | 0    | 7     |
+| 2       | 1    | 0     |
+
+其中，TRT01PN为治疗组别；RESP为响应变量，RESP=1代表达到客观缓解，RESP=0代表未达到客观缓解；COUNT为每个TRT01PN\*RESP类别下的例数。需要主要的是，即使某个类别下例数为0，我们也要在数据集中展示。
+
+#### 参数说明
+
++------------------+-----------------------------------------------------+
+| 参数             | 说明                                                |
++==================+=====================================================+
+| `binomial`       | 二项分布                                            |
++------------------+-----------------------------------------------------+
+| `exact`          | 采样exact法计算置信区间                             |
++------------------+-----------------------------------------------------+
+| `level='1'`      | 基于第1水平（将达到客观缓解作为分子）计算二项分布率 |
++------------------+-----------------------------------------------------+
+| `binomialcls`    | 输出基于二项分布的精确置信区间                      |
++------------------+-----------------------------------------------------+
+
+#### 输出结果
+
+输出结果通常包括：
+
+-   Proportion：响应率（Response Rate）
+-   LowerCL：95%置信区间下限
+-   UpperCL：95%置信区间上限
+
 ## 1.2 率差及其95%置信区间
 
 ### 1.2.1 Miettinen-Nurminen法
+
+一种基于score统计量、用于两独立样本率差置信区间估计的稳健方法，在小样本或极端事件率情况下较Wald法具有更好的统计性能。
+
 ``` sas
 ods trace on;
 ods output PdiffCLs=PdiffCLs;
@@ -29,11 +111,42 @@ ods output close;
 ods trace off;
 ```
 
+输入数据集`orr`同上。
+
+#### 参数说明
+
++--------------+------------------------------------------------------------------+
+| 参数         | 说明                                                             |
++==============+==================================================================+
+| `riskdiff`   | 计算两组间率差（Risk Difference）                                |
++--------------+------------------------------------------------------------------+
+| `cl=mn`      | 采用MN法估计率差的置信区间                                       |
++--------------+------------------------------------------------------------------+
+| `column=2`   | 基于第二列事件率（达到客观缓解）计算组间率差（resp=1）。         |
+|              |                                                                  |
+|              | 默认是第一行-第二行（即trt01pn=1 减去 trt01pn=2，试验组-对照组） |
++--------------+------------------------------------------------------------------+
+| `PdiffCLs`   | 输出率差及其置信区间结果的数据集                                 |
++--------------+------------------------------------------------------------------+
+
+#### 输出结果
+
+-   RiskDifference：率差（客观缓解率，试验组-对照组）
+
+-   LowerCL：95%置信区间下限
+
+-   UpperCL：95%置信区间上限
+
 ### 1.2.2 Cochran-Mantel-Haenszel（CMH）法-分层率差
+
+CMH法常用于随机分层临床试验中二分类终点的组间比较。该方法通过在各分层内计算组间率差，并采用Mantel-Haenszel方法进行加权合并，从而得到考虑分层因素后的共同率差（Common Risk Difference）及其95%置信区间。
+
+相比直接计算总体率差，CMH法能够降低分层因素不平衡对结果的影响，因此广泛应用于ORR、DCR等疗效终点分析。
+
 ``` sas
 ods trace on;
 ods output CommonPdiff=CommonPdiff;
-proc freq data=orr;
+proc freq data=orr_stratirt;
   weight count/zeros;
   table stratirt*trt01pn*resp/commonriskdiff(cl=mh column=2)  alpha=0.05;
 run;
@@ -41,18 +154,154 @@ ods output close;
 ods trace off;
 ```
 
+输入数据集`orr_stratirt`的格式为：
+
++---------------+---------------+---------------+---------------+
+| stratirt      | trt01pn       | resp          | count         |
++===============+===============+===============+===============+
+| 男            | 1             | 0             | 3             |
++---------------+---------------+---------------+---------------+
+| 男            | 1             | 1             | 4             |
++---------------+---------------+---------------+---------------+
+| 女            | 2             | 0             | 0             |
++---------------+---------------+---------------+---------------+
+| 女            | 2             | 1             | 3             |
++---------------+---------------+---------------+---------------+
+
+其中，stratirt代表分层因素变量，可以存在多个，如果存在多个分层变量，可通过`strat1 * strat2 * strat3 * trt01pn * resp`。需要主要的是，数据集的格式必须为`分层变量 * 治疗组别 * 应答变量`。因为我们会column=2作为事件率，行1-行2计算率差，所以输入表格的最后两列必须为 trt01p和resp。
+
+#### 参数说明
+
++------------------+--------------------------------------------------------+
+| 参数             | 说明                                                   |
++==================+========================================================+
+| `stratirt`       | 分层因素                                               |
++------------------+--------------------------------------------------------+
+| `commonriskdiff` | 计算考虑分层因素后的共同率差（Common Risk Difference） |
++------------------+--------------------------------------------------------+
+| `cl=mh`          | 采用Mantel-Haenszel方法估计率差的95%置信区间           |
++------------------+--------------------------------------------------------+
+| `column=2`       | 基于第2列事件率计算组间率差，通常对应响应率            |
++------------------+--------------------------------------------------------+
+| `CommonPdiff`    | 输出共同率差及其95%置信区间结果的数据集                |
++------------------+--------------------------------------------------------+
+
+#### 输出结果
+
+-   Value：公共率差
+
+-   LowerCL：95%置信区间下限
+
+-   UpperCL：95%置信区间上限
 
 # 2 无进展生存期相关统计方法
 
-研究常涉及的无进展生存期相关统计方法：采用Kaplan-Meier法估计各治疗组的中位PFS及其95%CI，并构建各治疗组的Kaplan-Meier曲线。同时，还将用Kaplan-Meier法估计在3、6、9、12个月（或其他合适时间点）时的无进展生存率及其95% CI。同时将采用对数秩检验（log-rank test）进行组间比较。采用Cox比例风险模型评估组间HR及95% CI。
+研究常涉及的无进展生存期相关统计方法：
+
+1.  采用Kaplan-Meier法估计各治疗组的中位PFS及其95%CI，并构建各治疗组的Kaplan-Meier曲线。
+
+2.  采用Kaplan-Meier法估计在3、6、9、12个月（或其他合适时间点）时的无进展生存率及其95% CI。
+
+3.  采用对数秩检验（log-rank test）进行组间比较。
+
+4.  采用Cox比例风险模型评估组间HR及95% CI。
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+# 隐藏代码，只显示结果
+library(gt)
+library(tibble)
+library(dplyr)
+
+df <- tribble(
+  ~统计量, ~试验组, ~对照组, ~type,
+  "无进展生存期（月）", "", "", "section",
+  "Q1（95%置信区间）", "x.xx (x.xx, x.xx)", "x.xx (x.xx, x.xx)","detail",
+  "中位数（95%置信区间）", "x.xx (x.xx, x.xx)", "x.xx (x.xx, x.xx)","detail",
+  "Q3（95%置信区间）", "x.xx (x.xx, x.xx)", "x.xx (x.xx, x.xx)","detail",
+  "分层分析", "xx (x)", "xx (x)", "section",
+  "组间比较P值/组间比较P值（单侧）", "x.xx", "","detail",
+  "风险比（95%置信区间）", "x.xx (x.xx, x.xx)", "","detail",
+  "非分层分析", "", "", "section",
+  "组间比较P值/组间比较P值（单侧）", "x.xx", "","detail",
+  "风险比（95%置信区间）", "x.xx (x.xx, x.xx)", "","detail",
+  "无进展生存率（95%置信区间）（%）", "", "", "section",
+  "3个月", "x.xx (x.xx, x.xx)", "x.xx (x.xx, x.xx)","detail",
+  "6个月", "x.xx (x.xx, x.xx)", "x.xx (x.xx, x.xx)","detail",
+  "9个月", "x.xx (x.xx, x.xx)", "x.xx (x.xx, x.xx)","detail"
+)
+
+gt_tbl <- df %>%
+  select(-type) %>%
+  gt()
+
+gt_tbl %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_body(
+      rows = df$type == "section",
+      columns = 统计量
+    )
+  ) %>%
+  tab_style(
+    style = cell_text(indent = px(20)),
+    locations = cells_body(
+      rows = df$type == "detail",
+      columns = 统计量
+    )
+  )
+```
 
 ## 2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI
+
+``` sas
+/*未分层*/
+proc lifetest data=adtte outsurv=occur1 method=KM timelist=3,6,9,12 reduceout;
+  time aval*cnsr(1);
+    strata trt01pn / test=logrank;
+    ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;
+run;
+
+/*分层计算logrank*/
+proc lifetest data=adtte outsurv=occur1 method=KM;;
+  time aval*cnsr(1);
+  strata stratirt1 stratirt2 stratirt3 / group= trt01pn test=logrank;
+  ods output homtests=homtests1 Homstats=stats1;
+run;
+```
+
+#### 参数说明
+
++----------------------------------------+---------------------------------+
+| 参数                                   | 说明                            |
++========================================+=================================+
+| `strata stratirt1 stratirt2 stratirt3` |                                 |
++----------------------------------------+---------------------------------+
+| `aval`                                 |                                 |
++----------------------------------------+---------------------------------+
+| `cnsr`                                 | 删失指示符（0=事件，1=删失）    |
++----------------------------------------+---------------------------------+
+| `group= trt01pn`                       |                                 |
++----------------------------------------+---------------------------------+
+| `test=logrank`                         |                                 |
++----------------------------------------+---------------------------------+
+| `homtests`                             |                                 |
++----------------------------------------+---------------------------------+
+| `homstats`                             |                                 |
++----------------------------------------+---------------------------------+
+
+#### 输出结果
 
 ## 2.2 Kaplan-Meier法估计各时间点的无进展生存率
 
 ## 2.3 对数秩检验（log-rank test）进行组间P值
+
 ### 2.3.1 非分层对数秩检验
+
 ### 2.3.2 分层对数秩检验
+
 ``` sas
 proc lifetest data=adtte method=KM;
   time aval*cnsr(1);
@@ -67,21 +316,26 @@ run;
 
 
 data homtests2;
-	set homtests1; 
+    set homtests1; 
   /*对照组好*/
-	if &rank1.<0 then p_oneside=1-probchisq/2;   /*单侧P值*/
+    if &rank1.<0 then p_oneside=1-probchisq/2;   /*单侧P值*/
   /*试验组好*/
   if &rank1.>=0 then p_oneside=probchisq/2;
 
-	if p_oneside<0.0001 then pvalue="<0.0001";
-	else pvalue=strip(put(round(p_oneside,0.0001),8.4));
+    if p_oneside<0.0001 then pvalue="<0.0001";
+    else pvalue=strip(put(round(p_oneside,0.0001),8.4));
 run;
-
 ```
 
 ## 2.4 Cox比例风险模型评估组间HR及95% CI
+
 ### 2.4.1 非分层Cox比例风险模型
+
 ### 2.4.2 分层Cox比例风险模型
+
+问题：为什么计算logrank或HR值，有分层和未分层两种方式，但计算中位无进展生存期或各时点无进展生存率，就不会考虑分层和未分层？
+
+答："估计性描述"和"组间比较"是两类不同的统计问题。中位PFS和PFS率是在“描述组本身”，而logrank或HR是组间比较。
 
 ## 2.5 PFS随访时间
 

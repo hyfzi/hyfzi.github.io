@@ -100,5 +100,8 @@
   },
   "rules/dipp.qmd": {
     "dipp.html": "912c80d2"
+  },
+  "oncology/prostate_cancer.qmd": {
+    "prostate_cancer.html": "150ef805"
   }
 }

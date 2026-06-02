@@ -178,6 +178,10 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">前列腺癌</span></span>
+  </li>
     </ul>
     </div>
 </nav>
@@ -188,11 +192,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#最佳总体缓解bor相关统计方法" id="toc-最佳总体缓解bor相关统计方法" class="nav-link active" data-scroll-target="#最佳总体缓解bor相关统计方法">1 最佳总体缓解(BOR)相关统计方法</a>
+  <li><a href="#最佳总体疗效汇总分析" id="toc-最佳总体疗效汇总分析" class="nav-link active" data-scroll-target="#最佳总体疗效汇总分析">1 最佳总体疗效汇总分析</a>
   <ul class="collapse">
   <li><a href="#客观缓解率及各组率的95ci" id="toc-客观缓解率及各组率的95ci" class="nav-link" data-scroll-target="#客观缓解率及各组率的95ci">1.1 客观缓解率及各组率的95%CI</a>
   <ul class="collapse">
-  <li><a href="#clopper-pearson法" id="toc-clopper-pearson法" class="nav-link" data-scroll-target="#clopper-pearson法">1.1.1 Clopper-Pearson法</a></li>
+  <li><a href="#确切概率法clopper-pearson法" id="toc-确切概率法clopper-pearson法" class="nav-link" data-scroll-target="#确切概率法clopper-pearson法">1.1.1 确切概率法（Clopper-Pearson）法</a></li>
   </ul></li>
   <li><a href="#率差及其95置信区间" id="toc-率差及其95置信区间" class="nav-link" data-scroll-target="#率差及其95置信区间">1.2 率差及其95%置信区间</a>
   <ul class="collapse">
@@ -215,7 +219,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#分层cox比例风险模型" id="toc-分层cox比例风险模型" class="nav-link" data-scroll-target="#分层cox比例风险模型">2.4.2 分层Cox比例风险模型</a></li>
   </ul></li>
   <li><a href="#pfs随访时间" id="toc-pfs随访时间" class="nav-link" data-scroll-target="#pfs随访时间">2.5 PFS随访时间</a></li>
-  <li><a href="#参数说明" id="toc-参数说明" class="nav-link" data-scroll-target="#参数说明">3.1 参数说明</a></li>
+  <li><a href="#参数说明-4" id="toc-参数说明-4" class="nav-link" data-scroll-target="#参数说明-4">3.1 参数说明</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -242,24 +246,594 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="最佳总体缓解bor相关统计方法" class="level1">
-<h1>1 最佳总体缓解(BOR)相关统计方法</h1>
+<section id="最佳总体疗效汇总分析" class="level1">
+<h1>1 最佳总体疗效汇总分析</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div id="mqhbdtqigi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mqhbdtqigi table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mqhbdtqigi thead, #mqhbdtqigi tbody, #mqhbdtqigi tfoot, #mqhbdtqigi tr, #mqhbdtqigi td, #mqhbdtqigi th {
+  border-style: none;
+}
+
+#mqhbdtqigi p {
+  margin: 0;
+  padding: 0;
+}
+
+#mqhbdtqigi .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mqhbdtqigi .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mqhbdtqigi .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mqhbdtqigi .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mqhbdtqigi .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mqhbdtqigi .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mqhbdtqigi .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mqhbdtqigi .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mqhbdtqigi .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mqhbdtqigi .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mqhbdtqigi .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mqhbdtqigi .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mqhbdtqigi .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mqhbdtqigi .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mqhbdtqigi .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mqhbdtqigi .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mqhbdtqigi .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mqhbdtqigi .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mqhbdtqigi .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mqhbdtqigi .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mqhbdtqigi .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mqhbdtqigi .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mqhbdtqigi .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mqhbdtqigi .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mqhbdtqigi .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mqhbdtqigi .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mqhbdtqigi .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mqhbdtqigi .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mqhbdtqigi .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mqhbdtqigi .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mqhbdtqigi .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mqhbdtqigi .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mqhbdtqigi .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mqhbdtqigi .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mqhbdtqigi .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mqhbdtqigi .gt_left {
+  text-align: left;
+}
+
+#mqhbdtqigi .gt_center {
+  text-align: center;
+}
+
+#mqhbdtqigi .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mqhbdtqigi .gt_font_normal {
+  font-weight: normal;
+}
+
+#mqhbdtqigi .gt_font_bold {
+  font-weight: bold;
+}
+
+#mqhbdtqigi .gt_font_italic {
+  font-style: italic;
+}
+
+#mqhbdtqigi .gt_super {
+  font-size: 65%;
+}
+
+#mqhbdtqigi .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mqhbdtqigi .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mqhbdtqigi .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mqhbdtqigi .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mqhbdtqigi .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mqhbdtqigi .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mqhbdtqigi .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#mqhbdtqigi .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mqhbdtqigi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="a统计量" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">统计量</th>
+<th id="a试验组" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">试验组</th>
+<th id="a对照组" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">对照组</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="统计量" style="font-weight: bold">客观缓解率（ORR）</td>
+<td class="gt_row gt_left" headers="试验组">xx (x)</td>
+<td class="gt_row gt_left" headers="对照组">xx (x)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="统计量" style="text-indent: 20px">各组率的95%置信区间</td>
+<td class="gt_row gt_left" headers="试验组">(x.xx, x.xx)</td>
+<td class="gt_row gt_left" headers="对照组">(x.xx, x.xx)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="统计量" style="text-indent: 20px">基于分层CMH法的率差及其95%置信区间（%）</td>
+<td class="gt_row gt_left" headers="试验组">x.xx (x.xx, x.xx)</td>
+<td class="gt_row gt_left" headers="对照组">x.xx (x.xx, x.xx)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="统计量" style="text-indent: 20px">基于M-N法的率差及其95%置信区间（%）</td>
+<td class="gt_row gt_left" headers="试验组">x.xx (x.xx, x.xx)</td>
+<td class="gt_row gt_left" headers="对照组">x.xx (x.xx, x.xx)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 <section id="客观缓解率及各组率的95ci" class="level2">
 <h2 class="anchored" data-anchor-id="客观缓解率及各组率的95ci">1.1 客观缓解率及各组率的95%CI</h2>
-<section id="clopper-pearson法" class="level3">
-<h3 class="anchored" data-anchor-id="clopper-pearson法">1.1.1 Clopper-Pearson法</h3>
-<pre class="sas"><code>proc freq data=orr_nonstaf;
+<section id="确切概率法clopper-pearson法" class="level3">
+<h3 class="anchored" data-anchor-id="确切概率法clopper-pearson法">1.1.1 确切概率法（Clopper-Pearson）法</h3>
+<section id="方法简介" class="level4">
+<h4 class="anchored" data-anchor-id="方法简介">方法简介</h4>
+<p>Clopper-Pearson法（确切概率法）是一种基于二项分布的精确置信区间估计方法，常用于估计二分类终点（如ORR、DCR等）的率及其95%置信区间。适用于样本量较小的情况。</p>
+</section>
+<section id="sas模版代码" class="level4">
+<h4 class="anchored" data-anchor-id="sas模版代码">SAS模版代码</h4>
+<pre class="sas"><code>proc freq data=orr;
 by trt01pn;
 weight count/zeros;
 tables resp/binomial(exact level='1') alpha=0.05;
 ods output binomialcls=cl_orr;
 run;</code></pre>
+<p>其中，数据集<code>orr</code>的格式为:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>trt01pn</th>
+<th>resp</th>
+<th>count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>其中，TRT01PN为治疗组别；RESP为响应变量，RESP=1代表达到客观缓解，RESP=0代表未达到客观缓解；COUNT为每个TRT01PN*RESP类别下的例数。需要主要的是，即使某个类别下例数为0，我们也要在数据集中展示。</p>
+</section>
+<section id="参数说明" class="level4">
+<h4 class="anchored" data-anchor-id="参数说明">参数说明</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 73%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>binomial</code></td>
+<td>二项分布</td>
+</tr>
+<tr class="even">
+<td><code>exact</code></td>
+<td>采样exact法计算置信区间</td>
+</tr>
+<tr class="odd">
+<td><code>level='1'</code></td>
+<td>基于第1水平（将达到客观缓解作为分子）计算二项分布率</td>
+</tr>
+<tr class="even">
+<td><code>binomialcls</code></td>
+<td>输出基于二项分布的精确置信区间</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="输出结果" class="level4">
+<h4 class="anchored" data-anchor-id="输出结果">输出结果</h4>
+<p>输出结果通常包括：</p>
+<ul>
+<li>Proportion：响应率（Response Rate）</li>
+<li>LowerCL：95%置信区间下限</li>
+<li>UpperCL：95%置信区间上限</li>
+</ul>
+</section>
 </section>
 </section>
 <section id="率差及其95置信区间" class="level2">
 <h2 class="anchored" data-anchor-id="率差及其95置信区间">1.2 率差及其95%置信区间</h2>
 <section id="miettinen-nurminen法" class="level3">
 <h3 class="anchored" data-anchor-id="miettinen-nurminen法">1.2.1 Miettinen-Nurminen法</h3>
+<p>一种基于score统计量、用于两独立样本率差置信区间估计的稳健方法，在小样本或极端事件率情况下较Wald法具有更好的统计性能。</p>
 <pre class="sas"><code>ods trace on;
 ods output PdiffCLs=PdiffCLs;
 proc freq data=orr;
@@ -268,25 +842,763 @@ proc freq data=orr;
 run;
 ods output close;
 ods trace off;</code></pre>
+<p>输入数据集<code>orr</code>同上。</p>
+<section id="参数说明-1" class="level4">
+<h4 class="anchored" data-anchor-id="参数说明-1">参数说明</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>riskdiff</code></td>
+<td>计算两组间率差（Risk Difference）</td>
+</tr>
+<tr class="even">
+<td><code>cl=mn</code></td>
+<td>采用MN法估计率差的置信区间</td>
+</tr>
+<tr class="odd">
+<td><code>column=2</code></td>
+<td><p>基于第二列事件率（达到客观缓解）计算组间率差（resp=1）。</p>
+<p>默认是第一行-第二行（即trt01pn=1 减去 trt01pn=2，试验组-对照组）</p></td>
+</tr>
+<tr class="even">
+<td><code>PdiffCLs</code></td>
+<td>输出率差及其置信区间结果的数据集</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="输出结果-1" class="level4">
+<h4 class="anchored" data-anchor-id="输出结果-1">输出结果</h4>
+<ul>
+<li><p>RiskDifference：率差（客观缓解率，试验组-对照组）</p></li>
+<li><p>LowerCL：95%置信区间下限</p></li>
+<li><p>UpperCL：95%置信区间上限</p></li>
+</ul>
+</section>
 </section>
 <section id="cochran-mantel-haenszelcmh法-分层率差" class="level3">
 <h3 class="anchored" data-anchor-id="cochran-mantel-haenszelcmh法-分层率差">1.2.2 Cochran-Mantel-Haenszel（CMH）法-分层率差</h3>
+<p>CMH法常用于随机分层临床试验中二分类终点的组间比较。该方法通过在各分层内计算组间率差，并采用Mantel-Haenszel方法进行加权合并，从而得到考虑分层因素后的共同率差（Common Risk Difference）及其95%置信区间。</p>
+<p>相比直接计算总体率差，CMH法能够降低分层因素不平衡对结果的影响，因此广泛应用于ORR、DCR等疗效终点分析。</p>
 <pre class="sas"><code>ods trace on;
 ods output CommonPdiff=CommonPdiff;
-proc freq data=orr;
+proc freq data=orr_stratirt;
   weight count/zeros;
   table stratirt*trt01pn*resp/commonriskdiff(cl=mh column=2)  alpha=0.05;
 run;
 ods output close;
 ods trace off;</code></pre>
+<p>输入数据集<code>orr_stratirt</code>的格式为：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>stratirt</th>
+<th>trt01pn</th>
+<th>resp</th>
+<th>count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>男</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>男</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>女</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>女</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>其中，stratirt代表分层因素变量，可以存在多个，如果存在多个分层变量，可通过<code>strat1 * strat2 * strat3 * trt01pn * resp</code>。需要主要的是，数据集的格式必须为<code>分层变量 * 治疗组别 * 应答变量</code>。因为我们会column=2作为事件率，行1-行2计算率差，所以输入表格的最后两列必须为 trt01p和resp。</p>
+<section id="参数说明-2" class="level4">
+<h4 class="anchored" data-anchor-id="参数说明-2">参数说明</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>stratirt</code></td>
+<td>分层因素</td>
+</tr>
+<tr class="even">
+<td><code>commonriskdiff</code></td>
+<td>计算考虑分层因素后的共同率差（Common Risk Difference）</td>
+</tr>
+<tr class="odd">
+<td><code>cl=mh</code></td>
+<td>采用Mantel-Haenszel方法估计率差的95%置信区间</td>
+</tr>
+<tr class="even">
+<td><code>column=2</code></td>
+<td>基于第2列事件率计算组间率差，通常对应响应率</td>
+</tr>
+<tr class="odd">
+<td><code>CommonPdiff</code></td>
+<td>输出共同率差及其95%置信区间结果的数据集</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="输出结果-2" class="level4">
+<h4 class="anchored" data-anchor-id="输出结果-2">输出结果</h4>
+<ul>
+<li><p>Value：公共率差</p></li>
+<li><p>LowerCL：95%置信区间下限</p></li>
+<li><p>UpperCL：95%置信区间上限</p></li>
+</ul>
+</section>
 </section>
 </section>
 </section>
 <section id="无进展生存期相关统计方法" class="level1">
 <h1>2 无进展生存期相关统计方法</h1>
-<p>研究常涉及的无进展生存期相关统计方法：采用Kaplan-Meier法估计各治疗组的中位PFS及其95%CI，并构建各治疗组的Kaplan-Meier曲线。同时，还将用Kaplan-Meier法估计在3、6、9、12个月（或其他合适时间点）时的无进展生存率及其95% CI。同时将采用对数秩检验（log-rank test）进行组间比较。采用Cox比例风险模型评估组间HR及95% CI。</p>
+<p>研究常涉及的无进展生存期相关统计方法：</p>
+<ol type="1">
+<li><p>采用Kaplan-Meier法估计各治疗组的中位PFS及其95%CI，并构建各治疗组的Kaplan-Meier曲线。</p></li>
+<li><p>采用Kaplan-Meier法估计在3、6、9、12个月（或其他合适时间点）时的无进展生存率及其95% CI。</p></li>
+<li><p>采用对数秩检验（log-rank test）进行组间比较。</p></li>
+<li><p>采用Cox比例风险模型评估组间HR及95% CI。</p></li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div id="nlbqeiwate" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nlbqeiwate table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#nlbqeiwate thead, #nlbqeiwate tbody, #nlbqeiwate tfoot, #nlbqeiwate tr, #nlbqeiwate td, #nlbqeiwate th {
+  border-style: none;
+}
+
+#nlbqeiwate p {
+  margin: 0;
+  padding: 0;
+}
+
+#nlbqeiwate .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#nlbqeiwate .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#nlbqeiwate .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#nlbqeiwate .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#nlbqeiwate .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#nlbqeiwate .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nlbqeiwate .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#nlbqeiwate .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#nlbqeiwate .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#nlbqeiwate .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#nlbqeiwate .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#nlbqeiwate .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#nlbqeiwate .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#nlbqeiwate .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#nlbqeiwate .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#nlbqeiwate .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#nlbqeiwate .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#nlbqeiwate .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#nlbqeiwate .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nlbqeiwate .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#nlbqeiwate .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#nlbqeiwate .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#nlbqeiwate .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nlbqeiwate .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#nlbqeiwate .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#nlbqeiwate .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nlbqeiwate .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nlbqeiwate .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#nlbqeiwate .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nlbqeiwate .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#nlbqeiwate .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nlbqeiwate .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#nlbqeiwate .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nlbqeiwate .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#nlbqeiwate .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nlbqeiwate .gt_left {
+  text-align: left;
+}
+
+#nlbqeiwate .gt_center {
+  text-align: center;
+}
+
+#nlbqeiwate .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#nlbqeiwate .gt_font_normal {
+  font-weight: normal;
+}
+
+#nlbqeiwate .gt_font_bold {
+  font-weight: bold;
+}
+
+#nlbqeiwate .gt_font_italic {
+  font-style: italic;
+}
+
+#nlbqeiwate .gt_super {
+  font-size: 65%;
+}
+
+#nlbqeiwate .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#nlbqeiwate .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#nlbqeiwate .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#nlbqeiwate .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#nlbqeiwate .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#nlbqeiwate .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#nlbqeiwate .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#nlbqeiwate .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#nlbqeiwate div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="a统计量" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">统计量</th>
+<th id="a试验组" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">试验组</th>
+<th id="a对照组" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">对照组</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="统计量" style="font-weight: bold">无进展生存期（月）</td>
+<td class="gt_row gt_left" headers="试验组"></td>
+<td class="gt_row gt_left" headers="对照组"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="统计量" style="text-indent: 20px">Q1（95%置信区间）</td>
+<td class="gt_row gt_left" headers="试验组">x.xx (x.xx, x.xx)</td>
+<td class="gt_row gt_left" headers="对照组">x.xx (x.xx, x.xx)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="统计量" style="text-indent: 20px">中位数（95%置信区间）</td>
+<td class="gt_row gt_left" headers="试验组">x.xx (x.xx, x.xx)</td>
+<td class="gt_row gt_left" headers="对照组">x.xx (x.xx, x.xx)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="统计量" style="text-indent: 20px">Q3（95%置信区间）</td>
+<td class="gt_row gt_left" headers="试验组">x.xx (x.xx, x.xx)</td>
+<td class="gt_row gt_left" headers="对照组">x.xx (x.xx, x.xx)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="统计量" style="font-weight: bold">分层分析</td>
+<td class="gt_row gt_left" headers="试验组">xx (x)</td>
+<td class="gt_row gt_left" headers="对照组">xx (x)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="统计量" style="text-indent: 20px">组间比较P值/组间比较P值（单侧）</td>
+<td class="gt_row gt_left" headers="试验组">x.xx</td>
+<td class="gt_row gt_left" headers="对照组"></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="统计量" style="text-indent: 20px">风险比（95%置信区间）</td>
+<td class="gt_row gt_left" headers="试验组">x.xx (x.xx, x.xx)</td>
+<td class="gt_row gt_left" headers="对照组"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="统计量" style="font-weight: bold">非分层分析</td>
+<td class="gt_row gt_left" headers="试验组"></td>
+<td class="gt_row gt_left" headers="对照组"></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="统计量" style="text-indent: 20px">组间比较P值/组间比较P值（单侧）</td>
+<td class="gt_row gt_left" headers="试验组">x.xx</td>
+<td class="gt_row gt_left" headers="对照组"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="统计量" style="text-indent: 20px">风险比（95%置信区间）</td>
+<td class="gt_row gt_left" headers="试验组">x.xx (x.xx, x.xx)</td>
+<td class="gt_row gt_left" headers="对照组"></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="统计量" style="font-weight: bold">无进展生存率（95%置信区间）（%）</td>
+<td class="gt_row gt_left" headers="试验组"></td>
+<td class="gt_row gt_left" headers="对照组"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="统计量" style="text-indent: 20px">3个月</td>
+<td class="gt_row gt_left" headers="试验组">x.xx (x.xx, x.xx)</td>
+<td class="gt_row gt_left" headers="对照组">x.xx (x.xx, x.xx)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="统计量" style="text-indent: 20px">6个月</td>
+<td class="gt_row gt_left" headers="试验组">x.xx (x.xx, x.xx)</td>
+<td class="gt_row gt_left" headers="对照组">x.xx (x.xx, x.xx)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="统计量" style="text-indent: 20px">9个月</td>
+<td class="gt_row gt_left" headers="试验组">x.xx (x.xx, x.xx)</td>
+<td class="gt_row gt_left" headers="对照组">x.xx (x.xx, x.xx)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 <section id="kaplan-meier法估计各治疗组的中位pfs及其95ci" class="level2">
 <h2 class="anchored" data-anchor-id="kaplan-meier法估计各治疗组的中位pfs及其95ci">2.1 Kaplan-Meier法估计各治疗组的中位PFS及其95%CI</h2>
+<pre class="sas"><code>/*未分层*/
+proc lifetest data=adtte outsurv=occur1 method=KM timelist=3,6,9,12 reduceout;
+  time aval*cnsr(1);
+    strata trt01pn / test=logrank;
+    ods output homtests=homtests1 Homstats=stats1 quartiles=quar1;
+run;
+
+/*分层计算logrank*/
+proc lifetest data=adtte outsurv=occur1 method=KM;;
+  time aval*cnsr(1);
+  strata stratirt1 stratirt2 stratirt3 / group= trt01pn test=logrank;
+  ods output homtests=homtests1 Homstats=stats1;
+run;</code></pre>
+<section id="参数说明-3" class="level4">
+<h4 class="anchored" data-anchor-id="参数说明-3">参数说明</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 54%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>strata stratirt1 stratirt2 stratirt3</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>aval</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>cnsr</code></td>
+<td>删失指示符（0=事件，1=删失）</td>
+</tr>
+<tr class="even">
+<td><code>group= trt01pn</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>test=logrank</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>homtests</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>homstats</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="输出结果-3" class="level4">
+<h4 class="anchored" data-anchor-id="输出结果-3">输出结果</h4>
+</section>
 </section>
 <section id="kaplan-meier法估计各时间点的无进展生存率" class="level2">
 <h2 class="anchored" data-anchor-id="kaplan-meier法估计各时间点的无进展生存率">2.2 Kaplan-Meier法估计各时间点的无进展生存率</h2>
@@ -319,8 +1631,7 @@ data homtests2;
 
     if p_oneside&lt;0.0001 then pvalue="&lt;0.0001";
     else pvalue=strip(put(round(p_oneside,0.0001),8.4));
-run;
-</code></pre>
+run;</code></pre>
 </section>
 </section>
 <section id="cox比例风险模型评估组间hr及95-ci" class="level2">
@@ -330,13 +1641,15 @@ run;
 </section>
 <section id="分层cox比例风险模型" class="level3">
 <h3 class="anchored" data-anchor-id="分层cox比例风险模型">2.4.2 分层Cox比例风险模型</h3>
+<p>问题：为什么计算logrank或HR值，有分层和未分层两种方式，但计算中位无进展生存期或各时点无进展生存率，就不会考虑分层和未分层？</p>
+<p>答：“估计性描述”和”组间比较”是两类不同的统计问题。中位PFS和PFS率是在“描述组本身”，而logrank或HR是组间比较。</p>
 </section>
 </section>
 <section id="pfs随访时间" class="level2">
 <h2 class="anchored" data-anchor-id="pfs随访时间">2.5 PFS随访时间</h2>
 </section>
-<section id="参数说明" class="level2">
-<h2 class="anchored" data-anchor-id="参数说明">3.1 参数说明</h2>
+<section id="参数说明-4" class="level2">
+<h2 class="anchored" data-anchor-id="参数说明-4">3.1 参数说明</h2>
 
 
 </section>
