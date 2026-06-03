@@ -214,12 +214,30 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#影像学无进展生存期radiographic-progression-free-survivalrpfs" id="toc-影像学无进展生存期radiographic-progression-free-survivalrpfs" class="nav-link" data-scroll-target="#影像学无进展生存期radiographic-progression-free-survivalrpfs">2.1 影像学无进展生存期（Radiographic Progression Free Survival，rPFS）</a></li>
   <li><a href="#无转移生存期metastasis-free-survival-mfs" id="toc-无转移生存期metastasis-free-survival-mfs" class="nav-link" data-scroll-target="#无转移生存期metastasis-free-survival-mfs">2.2 无转移生存期（Metastasis-Free Survival, MFS）</a></li>
-  <li><a href="#基于psa水平的终点" id="toc-基于psa水平的终点" class="nav-link" data-scroll-target="#基于psa水平的终点">2.3 基于PSA水平的终点</a>
+  <li><a href="#基于psaprostate-specific-antigen水平的终点" id="toc-基于psaprostate-specific-antigen水平的终点" class="nav-link" data-scroll-target="#基于psaprostate-specific-antigen水平的终点">2.3 基于PSA（Prostate-Specific Antigen）水平的终点</a>
   <ul class="collapse">
-  <li><a href="#psa50psa90缓解率" id="toc-psa50psa90缓解率" class="nav-link" data-scroll-target="#psa50psa90缓解率">2.3.1 PSA50、PSA90缓解率</a></li>
-  <li><a href="#至首发症状性骨相关事件symptomatic-skeletal-eventsse时间" id="toc-至首发症状性骨相关事件symptomatic-skeletal-eventsse时间" class="nav-link" data-scroll-target="#至首发症状性骨相关事件symptomatic-skeletal-eventsse时间">2.3.2 至首发症状性骨相关事件（Symptomatic Skeletal Event,SSE）时间</a></li>
+  <li><a href="#psa相关指标" id="toc-psa相关指标" class="nav-link" data-scroll-target="#psa相关指标">2.3.1 PSA相关指标</a></li>
+  <li><a href="#psa缓解率psa-response-rate" id="toc-psa缓解率psa-response-rate" class="nav-link" data-scroll-target="#psa缓解率psa-response-rate">2.3.2 PSA缓解率(PSA Response Rate)</a></li>
+  <li><a href="#至psa进展时间" id="toc-至psa进展时间" class="nav-link" data-scroll-target="#至psa进展时间">2.3.3 至PSA进展时间</a></li>
+  <li><a href="#至首发症状性骨相关事件symptomatic-skeletal-eventsse时间" id="toc-至首发症状性骨相关事件symptomatic-skeletal-eventsse时间" class="nav-link" data-scroll-target="#至首发症状性骨相关事件symptomatic-skeletal-eventsse时间">2.3.3 至首发症状性骨相关事件（Symptomatic Skeletal Event,SSE）时间</a></li>
   </ul></li>
   <li><a href="#小结" id="toc-小结" class="nav-link" data-scroll-target="#小结">2.4 小结</a></li>
+  </ul></li>
+  <li><a href="#crf" id="toc-crf" class="nav-link" data-scroll-target="#crf">3 CRF</a>
+  <ul class="collapse">
+  <li><a href="#前列腺癌骨扫描" id="toc-前列腺癌骨扫描" class="nav-link" data-scroll-target="#前列腺癌骨扫描">3.1 <strong>前列腺癌骨扫描</strong></a></li>
+  <li><a href="#前列腺癌骨扫描_骨病灶总体反应评价" id="toc-前列腺癌骨扫描_骨病灶总体反应评价" class="nav-link" data-scroll-target="#前列腺癌骨扫描_骨病灶总体反应评价">3.2 <strong>前列腺癌骨扫描_骨病灶总体反应评价</strong></a></li>
+  <li><a href="#前列腺癌总体影像学评估结果" id="toc-前列腺癌总体影像学评估结果" class="nav-link" data-scroll-target="#前列腺癌总体影像学评估结果">3.3 <strong>前列腺癌总体影像学评估结果</strong></a></li>
+  </ul></li>
+  <li><a href="#mock-shell" id="toc-mock-shell" class="nav-link" data-scroll-target="#mock-shell">4 Mock Shell</a>
+  <ul class="collapse">
+  <li><a href="#os" id="toc-os" class="nav-link" data-scroll-target="#os">4.1 OS</a></li>
+  <li><a href="#psa" id="toc-psa" class="nav-link" data-scroll-target="#psa">4.2 PSA</a></li>
+  </ul></li>
+  <li><a href="#分析数据集" id="toc-分析数据集" class="nav-link" data-scroll-target="#分析数据集">5 分析数据集</a>
+  <ul class="collapse">
+  <li><a href="#addatesadtte" id="toc-addatesadtte" class="nav-link" data-scroll-target="#addatesadtte">5.1 ADDATES、ADTTE</a></li>
+  <li><a href="#adpsa" id="toc-adpsa" class="nav-link" data-scroll-target="#adpsa">5.2 ADPSA</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -255,25 +273,13 @@ ul.task-list li input[type="checkbox"] {
 <li><p>转移性去势抵抗性前列腺癌（mCRPC-Metastatic Castration-Resistant Prostate Cancer）</p></li>
 <li><p>非转移性去势抵抗性前列腺癌（nmCRPC-Non-Metastatic Castration-Resistant Prostate Cancer）</p></li>
 </ol>
-<p>前列腺治疗大多数依赖雄激素生长，降低雄激素能抑制肿瘤生长。但去势抵抗性前列腺癌意思是虽然把雄激素水平降到很低，但肿瘤仍然在继续发展，这就叫CRPC。那什么事nmCRPC呢，nmCRPC，非转移性去势抵抗性前列腺癌，意思是虽然肿瘤变坏了，但还没跑到其他器官。那相比nmCRPC，mCRPC多了一个转移性，意思是说患者已经发生远处转移了。</p>
-<p>前列腺癌进展相对缓慢（生长速度慢、疾病进展慢、生存时间长），如nmCRPC患者中位总生存期近5年，如果将OS作为临床试验终点，那么临床试验必须等到足够多的患者死亡后才能得到结果。对于进展较缓慢的前列腺癌，这个过程可能需要很多年，因此新药上市和患者获益的时间都会被推迟。</p>
-<p>但是，前列腺癌独特的疾病特征如高发的骨转移，因此可以采用替代终点（Surrogate Endpoint），如：影像学无进展生存期（Radiographic Progression Free Survival，rPFS）</p>
+<p>前列腺治疗大多数依赖雄激素生长，降低雄激素能抑制肿瘤生长。去势抵抗性（CRPC）的意思是虽然把雄激素水平降到很低，但肿瘤仍然在继续发展。那什么是非转移性去势抵抗性前列腺癌（nmCRPC）呢？顾名思义，nmCRPC是虽然肿瘤变坏了，但还没跑到其他器官。那相比nmCRPC，转移性去势抵抗性前列腺癌（mCRPC）多了一个转移性，也就是说患者已经发生远处转移了。</p>
+<p>前列腺癌进展相对缓慢（生长速度慢、疾病进展慢、生存时间长），如nmCRPC患者中位总生存期近5年，如果将OS作为临床试验终点，那么临床试验必须等到足够多的患者死亡后才能得到结果。因此如果以OS为主要终点指标，会导致新药上市和患者获益的时间都会被推迟。</p>
+<p>研究发现，前列腺癌独特的疾病特征如高发的骨转移，因此可以采用替代终点（Surrogate Endpoint），如：影像学无进展生存期（Radiographic Progression Free Survival，rPFS）、PSA变化等。</p>
 </section>
 <section id="pcwg3prostate-cancer-clinical-trials-working-group3" class="level1">
 <h1>2 PCWG3（Prostate Cancer Clinical Trials Working Group3）</h1>
-<p>对于前列腺癌患者，PCWG3建议用RECIST1.1评估非骨病灶，用PCWG3评估骨病灶，最后，结合该受试者的所有病灶（非骨病灶,RECIST1.1+骨病灶,PCWG3）衍生TPR（PCWG3 time point response）</p>
-<section id="tprpcwg3-time-point-response" class="level3">
-<h3 class="anchored" data-anchor-id="tprpcwg3-time-point-response">2.1 TPR（PCWG3 time point response）</h3>
-<p><img src="images/paste-3.png" class="img-fluid"></p>
-<p>疾病进展的时间是Overall PCWG TPR为PD的时间-类似RSDTC（需要程序员自己衍生）。</p>
-<p>BOR（best overall response）基于TPR判定，CR和PR需要确认？</p>
-</section>
-</section>
-<section id="前列腺癌主要终点" class="level1">
-<h1>2 前列腺癌主要终点</h1>
-<section id="影像学无进展生存期radiographic-progression-free-survivalrpfs" class="level2">
-<h2 class="anchored" data-anchor-id="影像学无进展生存期radiographic-progression-free-survivalrpfs">2.1 影像学无进展生存期（Radiographic Progression Free Survival，rPFS）</h2>
-<p>通常实体瘤采用常规RECIST1.1标准评估肿瘤缓解或进展。晚期前列腺癌有较高比例的骨转移病灶，按照RECIST1.1评价骨转移病灶通常归为不可测量病灶，不作为靶病灶进行评估，而是通过骨扫描采样PCWG3标准进展评价。</p>
+<p>通常实体瘤采用常规的RECIST1.1标准评估肿瘤缓解或疾病进展情况。晚期前列腺癌有较高比例的骨转移病灶，按照RECIST1.1评价骨转移病灶通常归为不可测量病灶，不作为靶病灶评估，而是通过骨扫描采用PCWG3标准进行评价。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -290,22 +296,78 @@ Note
 <p><strong>无软组织成分的骨病灶：</strong>鉴于图像对骨化和成骨性肿瘤的鉴别能力方面的限制，骨性病灶应被选为非靶病灶。</p>
 </div>
 </div>
-<p>rPFS定义为自随机日期开始至出现影像学进展或任何原因导致死亡是时间，影像学进展包括根据RECIST1.1标准和PCWG3标准，对原发病灶、区域淋巴结侵犯、软组织转移和骨转移病灶进展情况的评价。</p>
+<p>骨病灶很容易出现假性PD，所以骨病灶评估结果会有<strong>PD（确认的），PDu（未确认的）</strong>。</p>
+<section id="tprpcwg3-time-point-response" class="level3">
+<h3 class="anchored" data-anchor-id="tprpcwg3-time-point-response">2.1 TPR（PCWG3 time point response）</h3>
+<p><img src="..\images/prostat_overall_time_point.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Best overall response (BOR) will be assessed by reviewing all time point response (TPR) prior to the assessment of PD.</p>
+<p>The best response of CR or PR needs to be confirmed by applying the TPR from two subsequent assessments.</p>
+<p>*来源于：PharmaSUG-2024-DS-287</p>
+</div>
+</div>
+</section>
+</section>
+<section id="前列腺癌主要终点" class="level1">
+<h1>2 前列腺癌主要终点</h1>
+<section id="影像学无进展生存期radiographic-progression-free-survivalrpfs" class="level2">
+<h2 class="anchored" data-anchor-id="影像学无进展生存期radiographic-progression-free-survivalrpfs">2.1 影像学无进展生存期（Radiographic Progression Free Survival，rPFS）</h2>
+<p>rPFS定义为自随机日期开始至出现影像学进展或任何原因导致死亡是时间，影像学进展中，软组织病灶为RECIST1.1标准，骨病灶为PCWG3标准，同时需注意骨病灶需要时<strong>确认的PD</strong>。</p>
 </section>
 <section id="无转移生存期metastasis-free-survival-mfs" class="level2">
 <h2 class="anchored" data-anchor-id="无转移生存期metastasis-free-survival-mfs">2.2 无转移生存期（Metastasis-Free Survival, MFS）</h2>
 <p>MFS定义为随机化至出现远处转移证据或任何原因死亡的时间。需在MFS定义中明确转移性疾病（骨转移、内脏转移、远处淋巴结转移）的定义。该定义应排除局部疾病进展时间（例如主动脉分叉以下的盆腔淋巴结）。</p>
 </section>
-<section id="基于psa水平的终点" class="level2">
-<h2 class="anchored" data-anchor-id="基于psa水平的终点">2.3 基于PSA水平的终点</h2>
+<section id="基于psaprostate-specific-antigen水平的终点" class="level2">
+<h2 class="anchored" data-anchor-id="基于psaprostate-specific-antigen水平的终点">2.3 基于PSA（Prostate-Specific Antigen）水平的终点</h2>
 <p>PSA升高在临床实践中被视为前列腺癌进展的早期信号，是敏感性肿瘤标志物。</p>
-<section id="psa50psa90缓解率" class="level3">
-<h3 class="anchored" data-anchor-id="psa50psa90缓解率">2.3.1 PSA50、PSA90缓解率</h3>
-<p>PSA水平从基线至基线后下降≥50%或≥90%，并且由至少3周后再次评估确定PSA缓解。PSA缓解率通常将在某个时间点PSA下降≥50%或≥90%的患者比例作为评估指标。</p>
+<section id="psa相关指标" class="level3">
+<h3 class="anchored" data-anchor-id="psa相关指标">2.3.1 PSA相关指标</h3>
 <p><img src="..\images/prostate-psa.png" class="img-fluid"></p>
+<ol type="1">
+<li><p>PSA50TOT: PSA Response &gt;= 50%</p></li>
+<li><p>Total PSA50CNF: PSA Response &gt;= 50%</p></li>
+<li><p>Confirmed PSA90TOT: PSA Response &gt;= 90%</p></li>
+<li><p>Total PSA90CNF: PSA Response &gt;= 90%</p></li>
+<li><p>Confirmed PSAPROG: Time to PSA Progression (Months)</p></li>
+</ol>
+</section>
+<section id="psa缓解率psa-response-rate" class="level3">
+<h3 class="anchored" data-anchor-id="psa缓解率psa-response-rate">2.3.2 PSA缓解率(PSA Response Rate)</h3>
+<p>PSA缓解率定义为PSA水平较基线下降≥50%，并且由至少3周连续再次评估确认。</p>
+</section>
+<section id="至psa进展时间" class="level3">
+<h3 class="anchored" data-anchor-id="至psa进展时间">2.3.3 至PSA进展时间</h3>
+<p>至PSA进展时间定义为从首次给药/随机到PSA进展的时间。</p>
+<p>PSA进展定义为：对于较基线PSA发生了下降的参与者，较最低值PSA升高≥2ng/mL，且较最低值升高≥25%，且由至少3周后连续再次评估确定；对于较基线PSA没有下降的参与者，至少干预12周后出现PSA水平较基线升高≥2ng/mL，且较基线值升高≥25%。 没有发生PSA进展的参与者将删失在末次PSA采样的时间；对没有基线PSA或者没有基线后PSA检测结果的参与者，将删失在首次给药日期；PSA进展前发生新抗肿瘤治疗则删失在新抗肿瘤前末次PSA采样时间。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For patients with PSA declines after baseline, the PSA progression date is defined as the date that a ≥&nbsp;25% increase and an absolute increase of ≥ 2&nbsp;µg/L (2&nbsp;ng/mL) above the nadir is documented, which is confirmed by a second consecutive value obtained at least 3&nbsp;weeks later.</p>
+<p><strong>Early rises (before week 12) should be ignored in determining progression.</strong>&nbsp; As such, for patients with no PSA declines after baseline, the PSA progression date is defined as the date that a ≥&nbsp;25% increase and an absolute increase of ≥&nbsp;2&nbsp;µg/L (2&nbsp;ng/mL) above the baseline is documented after 12 weeks of treatment, which is confirmed by a second consecutive value at least 3&nbsp;weeks later.</p>
+<p>Patients without PSA progression will be censored at the last adequate PSA assessment. &nbsp;Patients without any post baseline assessments will be censored at the start date (date of randomization or first dose as appropriate).</p>
+<p>来源于：Prostate Oncology Statistics Rulebook final jan2019</p>
+</div>
+</div>
 </section>
 <section id="至首发症状性骨相关事件symptomatic-skeletal-eventsse时间" class="level3">
-<h3 class="anchored" data-anchor-id="至首发症状性骨相关事件symptomatic-skeletal-eventsse时间">2.3.2 至首发症状性骨相关事件（Symptomatic Skeletal Event,SSE）时间</h3>
+<h3 class="anchored" data-anchor-id="至首发症状性骨相关事件symptomatic-skeletal-eventsse时间">2.3.3 至首发症状性骨相关事件（Symptomatic Skeletal Event,SSE）时间</h3>
 <p>定义为随机至首次发生SSE的时间，SSE包括使用外照射放射治疗来预防或缓解骨骼症状、出现新发症状性病理性骨折，出现脊髓压迫等。</p>
 </section>
 </section>
@@ -313,6 +375,182 @@ Note
 <h2 class="anchored" data-anchor-id="小结">2.4 小结</h2>
 <p>对于不同的基本阶段可考虑选择合理的替代终点，例如未经治疗的mCRPC和mHSPC患者可选择rPFS作为主要终点，OS作为关键次要终点。nmCRPC可选择MFS作为主要终点。</p>
 <p>按照PCWG3标准，影像学结巴进展的骨转移需要进行确认。受试者可能在骨转移病灶再次进行影像学确认前脱落，导致骨转移病灶进展确证性数据缺失。</p>
+</section>
+</section>
+<section id="crf" class="level1">
+<h1>3 CRF</h1>
+<section id="前列腺癌骨扫描" class="level2">
+<h2 class="anchored" data-anchor-id="前列腺癌骨扫描">3.1 <strong>前列腺癌骨扫描</strong></h2>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>是否有骨病灶</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>病灶部位</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>检查日期</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>前列腺癌本次骨扫描反应评估</td>
+<td>存在,消失,无法评估</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="前列腺癌骨扫描_骨病灶总体反应评价" class="level2">
+<h2 class="anchored" data-anchor-id="前列腺癌骨扫描_骨病灶总体反应评价">3.2 <strong>前列腺癌骨扫描_骨病灶总体反应评价</strong></h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 77%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>是否进行骨病灶总体反应评估？</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>评估日期</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>骨病灶总体反应评价</td>
+<td>完全缓解（CR） ,疾病进展（PD） ,PD待确认（PDu）,非完全缓解/非疾病进展（Non CR/Non PD）,不可评估（NE）</td>
+</tr>
+<tr class="even">
+<td>确认PD的日期</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="前列腺癌总体影像学评估结果" class="level2">
+<h2 class="anchored" data-anchor-id="前列腺癌总体影像学评估结果">3.3 <strong>前列腺癌总体影像学评估结果</strong></h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>是否进行前列腺癌总体影像学评估</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>评估日期</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>前列腺癌总体影像学评估结果</td>
+<td>完全缓解（CR）,部分缓解（PR）,疾病稳定（SD）,非完全缓解/非疾病进展（Non CR/Non PD）,疾病进展（PD）,PD待确认（PDu）,不可评估（NE）</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="mock-shell" class="level1">
+<h1>4 Mock Shell</h1>
+<section id="os" class="level2">
+<h2 class="anchored" data-anchor-id="os">4.1 OS</h2>
+<p><strong>Table: Duration of Overall Survival</strong></p>
+<p><img src="..\images/prostate-tlf-os1.png" class="img-fluid"></p>
+<p><img src="..\images/prostate-tlf-os2.png" class="img-fluid"></p>
+</section>
+<section id="psa" class="level2">
+<h2 class="anchored" data-anchor-id="psa">4.2 PSA</h2>
+<p><strong>Table: Best PSA Response Rate (Decrease from Baseline &gt;=50%)</strong></p>
+<p><img src="..\images/prostate-tlf-pas.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="分析数据集" class="level1">
+<h1>5 分析数据集</h1>
+<section id="addatesadtte" class="level2">
+<h2 class="anchored" data-anchor-id="addatesadtte">5.1 ADDATES、ADTTE</h2>
+<p>ADDATES-Intermediate Event Dates Dataset，数据集包含了患者的随机化日期、治疗开始日期、治疗结束日期等重要时间点信息。通过分析ADDATES数据集，我们可以计算出患者的rPFS、MFS等关键终点指标。 ADDATES数据集和<a href="../oncology/addates.html"><strong>实体瘤的ADDATES</strong></a>一致。</p>
+</section>
+<section id="adpsa" class="level2">
+<h2 class="anchored" data-anchor-id="adpsa">5.2 ADPSA</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 4%">
+<col style="width: 93%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>变量名</th>
+<th>描述</th>
+<th>衍生规则</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PARCAT1</td>
+<td>parameter Cat1</td>
+<td>PSA Response; PSA Time to Event</td>
+</tr>
+<tr class="even">
+<td>PARAM</td>
+<td>Parameter</td>
+<td><p>PSA Response &gt;=50% Total;</p>
+<p>PSA Response &gt;=50% Confirmed</p>
+<p>Time to PSA Progression (Months)</p></td>
+</tr>
+<tr class="odd">
+<td>PARAMCD</td>
+<td>Parameter Code</td>
+<td><p>Note that the two percentage values are given only as examples of response levels that may be analyzed</p>
+<p>PSA50TOT: PSA Response &gt;= 50%</p>
+<p>Total PSA50CNF: PSA Response &gt;= 50%</p>
+<p>Confirmed PSA90TOT: PSA Response &gt;= 90%</p>
+<p>Total PSA90CNF: PSA Response &gt;= 90%</p>
+<p>Confirmed PSAPROG: Time to PSA Progression (Months)</p></td>
+</tr>
+<tr class="even">
+<td>AVALC</td>
+<td>Analysis Value(C)</td>
+<td><p>PSA50TOT: if subject has any post-baseline PSA values with a decrease from baseline &gt;= 50%; PSA50CNF: if subject has any post-baseline PSA values with a decrease from baseline &gt;= 50%, with a consecutive value that also has a decrease from baseline &gt;= 50%, taken &gt;=3 weeks later. (If consecutive value meets response criteria but is &lt; 3 weeks later and next consecutive value also meets response criteria and is &gt;=3 weeks later than initial progression, this should be considered confirmed response.)</p>
+<p>Else if subject has both baseline and post-baseline PSA values but response criteria are not met, then set to “No PSA Response.”</p>
+<p><strong>If subject has no baseline or no post-baseline PSA values set to null.</strong></p></td>
+</tr>
+<tr class="odd">
+<td>AVAL</td>
+<td>Analysis Value</td>
+<td><p>For PSA response, set to 1 if AVALC = “PSA Response” and 0 if AVALC = “No PSA Response”</p>
+<p>For time to PSA progression, AVAL = (ADT - RANDDT + 1)/30.4375</p></td>
+</tr>
+<tr class="even">
+<td>ADT</td>
+<td>Analysis Date</td>
+<td><p>For PSA response: If AVALC = “PSA Response,” then assign ADT = LB.LBDTC accordingly for PSA value with a decrease. If there are multiple dates with a decrease, take the earliest date. If no response, then set to null.</p>
+<p>For time to PSA progression:</p>
+<p>If subject had confirmed PSA progression (CNSR = 0) then ADT = LB.LBDTC for date of first confirmed PSA progression on or after Week 13 (&gt;= Study Day 72).</p>
+<p>Else if no baseline or no post-baseline PSA values, then ADT = ADSL.RANDDT.</p>
+<p>Else if no PSA progression, then ADT = LB.LBDTC for latest PSA value that does not fit progression criteria above. (Note: Do not take date of PSA progression that is not confirmed.)</p></td>
+</tr>
+<tr class="odd">
+<td>CNSR</td>
+<td>Censored</td>
+<td><p>Derive based on EVNTDESC (below)</p>
+<p>Set to 1 if EVNTDESC in (“Censored - No PSA Progression,” “Censored - No Baseline or No Post-baseline PSA Values”)</p>
+<p>Set to 0 if EVNTDESC = “PSA Progression”</p></td>
+</tr>
+<tr class="even">
+<td>EVNTDESC</td>
+<td>Event or Censoring Description</td>
+<td><p>EVNTDESC = “PSA Progression” if:</p>
+<p>1) Patient had a PSA decrease from baseline to Week 13 (Study Day 72 to 99 based on analysis window visit in SAP) AND a PSA value with (an increase above <strong>nadir</strong> &gt;=25% AND a &gt;=2ng/mL increase above nadir) that is confirmed with a consecutive value that is also (an increase above nadir &gt;=25% AND a &gt;=2ng/mL increase above nadir), taken &gt;=3 weeks later. (If consecutive value meets progression criteria but is &lt; 3 weeks later and next consecutive value also meets progression criteria and is &gt;=3 weeks later than initial progression, this should be considered confirmed progression.)</p>
+<p>OR 2) Patient’s Week 13 PSA value was &gt;= baseline AND a PSA value with (an increase above <strong>baseline</strong> &gt;=25% AND a &gt;=2ng/mL increase above baseline) that is confirmed with a consecutive value that is also (an increase above baseline &gt;=25% AND a &gt;=2ng/mL increase above baseline), taken &gt;=3 weeks later. (If consecutive value meets progression criteria but is &lt; 3 weeks later and next consecutive value also meets progression criteria and is &gt;=3 weeks later than initial progression, this should be considered confirmed progression.)</p>
+<p>OR 3) Patient did not have a post-baseline PSA value on Week 13 and had a PSA value after Week 13 with (an increase above <strong>min(nadir, baseline)</strong> &gt;=25% AND a &gt;=2ng/mL increase above min(nadir, baseline)) that is confirmed with a consecutive value that is also (an increase above min(nadir, baseline) &gt;=25% AND a &gt;=2ng/mL increase above min(nadir, baseline)), taken &gt;=3 weeks later. (If consecutive value meets progression criteria but is &lt; 3 weeks later and next consecutive value also meets progression criteria and is &gt;=3 weeks later than initial progression, this should be considered confirmed progression.)</p>
+<p>NOTE: Nadir is defined as the lowest previous PSA value and should be derived separately for each timepoint.</p></td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
