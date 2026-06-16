@@ -40,10 +40,6 @@ website:
           contents:
             - oncology/oncology.qmd
             - oncology/pfs.qmd
-            - oncology/adtr.qmd
-            - oncology/adrs.qmd
-            - oncology/addates.qmd
-            - oncology/adtte.qmd
             - oncology/statistics.qmd
         - section: "前列腺癌"
           href: oncology/prostate_cancer.qmd

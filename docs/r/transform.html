@@ -221,6 +221,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#根据位置选择观测positions" id="toc-根据位置选择观测positions" class="nav-link" data-scroll-target="#根据位置选择观测positions">根据位置选择观测（Positions）</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#字符串strings" id="toc-字符串strings" class="nav-link" data-scroll-target="#字符串strings">3 字符串（Strings）</a>
+  <ul class="collapse">
+  <li><a href="#创建字符串函数" id="toc-创建字符串函数" class="nav-link" data-scroll-target="#创建字符串函数">3.1.2 创建字符串函数</a></li>
+  <li><a href="#str_glue" id="toc-str_glue" class="nav-link" data-scroll-target="#str_glue">(2) str_glue()</a></li>
+  <li><a href="#str_flatten" id="toc-str_flatten" class="nav-link" data-scroll-target="#str_flatten">(3) str_flatten()</a></li>
+  <li><a href="#拆分字符串" id="toc-拆分字符串" class="nav-link" data-scroll-target="#拆分字符串">3.2 拆分字符串</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1030,9 +1037,117 @@ Levels: Low Medium High</code></pre>
 # ℹ 355 more rows</code></pre>
 </div>
 </div>
-
-
 </section>
+</section>
+</section>
+<section id="字符串strings" class="level1">
+<h1>3 字符串（Strings）</h1>
+<p>在程序中，你可以输入<code>str_</code>来查看字符串相关的函数，字符串相关的函数非常多，下面我们介绍一些常用的函数。 ## 3.1 创建字符串 ### 3.1.1 转义符 字符串中常包含单引号或双引号，可以使用转义字符<code>\</code>来表示这些特殊字符，或者使用不同类型的引号来包裹字符串。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>backslash <span class="ot">&lt;-</span> <span class="st">"</span><span class="sc">\\</span><span class="st">"</span></span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>single_quote <span class="ot">&lt;-</span> <span class="st">"</span><span class="sc">\'</span><span class="st">"</span></span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>double_quote <span class="ot">&lt;-</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span></span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="fu">c</span>(backslash,single_quote,double_quote))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ \
+[2] │ '
+[3] │ "</code></pre>
+</div>
+</div>
+<section id="创建字符串函数" class="level3">
+<h3 class="anchored" data-anchor-id="创建字符串函数">3.1.2 创建字符串函数</h3>
+<section id="str_c" class="level4">
+<h4 class="anchored" data-anchor-id="str_c">(1) str_c()</h4>
+<p><code>str_c()</code>函数可以用来连接字符串，类似paste0()函数，但<code>str_c()</code>函数有一些额外的功能，比如可以指定分隔符、处理NA值等。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>letters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"x"</span>, <span class="cn">NA</span>, <span class="st">"z"</span>)</span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(letters, <span class="st">"-a"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "x-a" NA    "z-a"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(letters, letters)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "xx" NA   "zz"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(letters, <span class="st">"-a"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "x-a"  "NA-a" "z-a" </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="fu">str_replace_na</span>(letters, <span class="st">"y"</span>), <span class="st">"-a"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "x-a" "y-a" "z-a"</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="str_glue" class="level3">
+<h3 class="anchored" data-anchor-id="str_glue">(2) str_glue()</h3>
+<p><code>str_glue()</code>函数可以用来创建字符串，类似于Python中的f-string，可以在字符串中直接嵌入变量，非常方便。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>),</span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="cn">NA</span>)</span>
+<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">message =</span> <span class="fu">str_glue</span>(<span class="st">"{name} is {age} years old."</span>)</span>
+<span id="cb115-8"><a href="#cb115-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  name      age message                 
+  &lt;chr&gt;   &lt;dbl&gt; &lt;glue&gt;                  
+1 Alice      25 Alice is 25 years old.  
+2 Bob        30 Bob is 30 years old.    
+3 Charlie    NA Charlie is NA years old.</code></pre>
+</div>
+</div>
+<p>NA在<code>str_c()</code>和<code>str_glue()</code>中的处理方式不同，<code>str_c()</code>会将NA视为一个字符串，而<code>str_glue()</code>会将NA视为一个缺失值，并且在生成的字符串中会显示为NA。 如果你想显示文本<code>{</code>,<code>}</code>，可以使用双大括号来转义它们。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>),</span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="cn">NA</span>)</span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb117-6"><a href="#cb117-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb117-7"><a href="#cb117-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">message =</span> <span class="fu">str_glue</span>(<span class="st">"{{{name} is {age} years old.}}"</span>)</span>
+<span id="cb117-8"><a href="#cb117-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  name      age message                   
+  &lt;chr&gt;   &lt;dbl&gt; &lt;glue&gt;                    
+1 Alice      25 {Alice is 25 years old.}  
+2 Bob        30 {Bob is 30 years old.}    
+3 Charlie    NA {Charlie is NA years old.}</code></pre>
+</div>
+</div>
+</section>
+<section id="str_flatten" class="level3">
+<h3 class="anchored" data-anchor-id="str_flatten">(3) str_flatten()</h3>
+<p><code>str_flatten()</code>函数可以用来将一个字符串向量连接成一个单一的字符串，可以指定分隔符。在summarize()中使用<code>str_flatten()</code>函数可以将一个分组内的字符串连接成一个单一的字符串，非常有用。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>),</span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"z"</span>, <span class="st">"w"</span>)</span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb119-6"><a href="#cb119-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span> </span>
+<span id="cb119-7"><a href="#cb119-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb119-8"><a href="#cb119-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">combined =</span> <span class="fu">str_flatten</span>(value, <span class="at">collapse =</span> <span class="st">","</span>),</span>
+<span id="cb119-9"><a href="#cb119-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb119-10"><a href="#cb119-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  group combined
+  &lt;chr&gt; &lt;chr&gt;   
+1 A     x,y     
+2 B     z,w     </code></pre>
+</div>
+</div>
+</section>
+<section id="拆分字符串" class="level2">
+<h2 class="anchored" data-anchor-id="拆分字符串">3.2 拆分字符串</h2>
+
+
 </section>
 </section>
 

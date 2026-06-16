@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RECIST 1.1 – Zoey</title>
+<title>实体瘤 – Zoey</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -140,37 +175,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../oncology/oncology.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">RECIST 1.1</span></a>
+ <span class="menu-text">实体瘤</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../oncology/pfs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">无进展生存期(PFS)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../oncology/adtr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ADTR</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../oncology/adrs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">adrs</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../oncology/addates.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ADDATES</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../oncology/adtte.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ADTTE</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -208,7 +219,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#recist-1.1简介" id="toc-recist-1.1简介" class="nav-link active" data-scroll-target="#recist-1.1简介">1 RECIST 1.1简介</a>
+  <li><a href="#recistv1.1影像评估标准的相关定义" id="toc-recistv1.1影像评估标准的相关定义" class="nav-link active" data-scroll-target="#recistv1.1影像评估标准的相关定义">1 RECISTv1.1影像评估标准的相关定义</a>
   <ul class="collapse">
   <li><a href="#recistv1.1病灶" id="toc-recistv1.1病灶" class="nav-link" data-scroll-target="#recistv1.1病灶">1.1 RECISTv1.1病灶</a></li>
   <li><a href="#可测量病灶" id="toc-可测量病灶" class="nav-link" data-scroll-target="#可测量病灶">1.2 可测量病灶</a></li>
@@ -217,16 +228,61 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#非靶病灶" id="toc-非靶病灶" class="nav-link" data-scroll-target="#非靶病灶">1.5 非靶病灶</a></li>
   <li><a href="#新病灶" id="toc-新病灶" class="nav-link" data-scroll-target="#新病灶">1.6 新病灶</a></li>
   <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结">1.7 总结</a></li>
-  <li><a href="#时间点疗效time-point-response" id="toc-时间点疗效time-point-response" class="nav-link" data-scroll-target="#时间点疗效time-point-response">1.1 时间点疗效(Time point response)</a></li>
-  <li><a href="#最佳总体疗效best-overall-response-bor" id="toc-最佳总体疗效best-overall-response-bor" class="nav-link" data-scroll-target="#最佳总体疗效best-overall-response-bor">1.2 最佳总体疗效(Best overall response, BOR)</a>
-  <ul class="collapse">
-  <li><a href="#date-of-response" id="toc-date-of-response" class="nav-link" data-scroll-target="#date-of-response">1.2.1 总体评估日期</a></li>
-  <li><a href="#确认的最佳总体疗效" id="toc-确认的最佳总体疗效" class="nav-link" data-scroll-target="#确认的最佳总体疗效">1.2.1 确认的最佳总体疗效</a></li>
-  <li><a href="#未确认的最佳总体疗效" id="toc-未确认的最佳总体疗效" class="nav-link" data-scroll-target="#未确认的最佳总体疗效">1.2.2 未确认的最佳总体疗效</a></li>
   </ul></li>
-  <li><a href="#客观缓解率overall-response-rate-orr" id="toc-客观缓解率overall-response-rate-orr" class="nav-link" data-scroll-target="#客观缓解率overall-response-rate-orr">1.3 客观缓解率(overall response rate, ORR)</a></li>
-  <li><a href="#疾病控制率disease-control-rate-dcr" id="toc-疾病控制率disease-control-rate-dcr" class="nav-link" data-scroll-target="#疾病控制率disease-control-rate-dcr">1.4 疾病控制率(disease control rate, DCR)</a></li>
-  <li><a href="#临床获益率clinical-benefit-rate-cbr" id="toc-临床获益率clinical-benefit-rate-cbr" class="nav-link" data-scroll-target="#临床获益率clinical-benefit-rate-cbr">1.5 临床获益率(clinical benefit rate, CBR)</a></li>
+  <li><a href="#总体疗效time-point-response" id="toc-总体疗效time-point-response" class="nav-link" data-scroll-target="#总体疗效time-point-response">2 总体疗效（Time point response）</a>
+  <ul class="collapse">
+  <li><a href="#总体疗效评估介绍" id="toc-总体疗效评估介绍" class="nav-link" data-scroll-target="#总体疗效评估介绍">2.1 总体疗效评估介绍</a></li>
+  <li><a href="#总体评估日期rs.rsdtc" id="toc-总体评估日期rs.rsdtc" class="nav-link" data-scroll-target="#总体评估日期rs.rsdtc">2.2 <strong>总体评估日期</strong>（RS.RSDTC）</a></li>
+  </ul></li>
+  <li><a href="#crf" id="toc-crf" class="nav-link" data-scroll-target="#crf">3 CRF</a></li>
+  <li><a href="#实体瘤疗效终点" id="toc-实体瘤疗效终点" class="nav-link" data-scroll-target="#实体瘤疗效终点">4 实体瘤疗效终点</a>
+  <ul class="collapse">
+  <li><a href="#分类" id="toc-分类" class="nav-link" data-scroll-target="#分类">4.1 分类</a>
+  <ul class="collapse">
+  <li><a href="#最佳总体疗效best-overall-response-bor" id="toc-最佳总体疗效best-overall-response-bor" class="nav-link" data-scroll-target="#最佳总体疗效best-overall-response-bor">4.1.1 最佳总体疗效(Best overall response, BOR)</a></li>
+  <li><a href="#客观缓解率overall-response-rate-orr" id="toc-客观缓解率overall-response-rate-orr" class="nav-link" data-scroll-target="#客观缓解率overall-response-rate-orr">4.1.2 客观缓解率(overall response rate, ORR)</a></li>
+  <li><a href="#疾病控制率disease-control-rate-dcr" id="toc-疾病控制率disease-control-rate-dcr" class="nav-link" data-scroll-target="#疾病控制率disease-control-rate-dcr">4.1.3 疾病控制率(disease control rate, DCR)</a></li>
+  <li><a href="#临床获益率clinical-benefit-rate-cbr" id="toc-临床获益率clinical-benefit-rate-cbr" class="nav-link" data-scroll-target="#临床获益率clinical-benefit-rate-cbr">4.1.4 临床获益率(clinical benefit rate, CBR)</a></li>
+  </ul></li>
+  <li><a href="#time-to-event" id="toc-time-to-event" class="nav-link" data-scroll-target="#time-to-event">4.2 Time to Event</a>
+  <ul class="collapse">
+  <li><a href="#pfs" id="toc-pfs" class="nav-link" data-scroll-target="#pfs">4.2.1 PFS</a></li>
+  <li><a href="#dor" id="toc-dor" class="nav-link" data-scroll-target="#dor">4.2.1 DoR</a></li>
+  <li><a href="#ttr" id="toc-ttr" class="nav-link" data-scroll-target="#ttr">4.2.3 TTR</a></li>
+  <li><a href="#os" id="toc-os" class="nav-link" data-scroll-target="#os">4.2.4 OS</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#mock-shell" id="toc-mock-shell" class="nav-link" data-scroll-target="#mock-shell">5 Mock Shell</a></li>
+  <li><a href="#分析数据集" id="toc-分析数据集" class="nav-link" data-scroll-target="#分析数据集">6 分析数据集</a>
+  <ul class="collapse">
+  <li><a href="#adtr" id="toc-adtr" class="nav-link" data-scroll-target="#adtr">6.1 ADTR</a>
+  <ul class="collapse">
+  <li><a href="#adtr包含的变量" id="toc-adtr包含的变量" class="nav-link" data-scroll-target="#adtr包含的变量">6.1.1 ADTR包含的变量</a></li>
+  </ul></li>
+  <li><a href="#adrs" id="toc-adrs" class="nav-link" data-scroll-target="#adrs">6.2 ADRS</a></li>
+  <li><a href="#addates" id="toc-addates" class="nav-link" data-scroll-target="#addates">6.3 ADDATES</a>
+  <ul class="collapse">
+  <li><a href="#addates介绍" id="toc-addates介绍" class="nav-link" data-scroll-target="#addates介绍">6.3.1 ADDATES介绍</a></li>
+  <li><a href="#addates中包含的变量" id="toc-addates中包含的变量" class="nav-link" data-scroll-target="#addates中包含的变量">6.3.2 ADDATES中包含的变量</a></li>
+  <li><a href="#addates-adtdesc" id="toc-addates-adtdesc" class="nav-link" data-scroll-target="#addates-adtdesc">6.3.3 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述</a></li>
+  </ul></li>
+  <li><a href="#adtte" id="toc-adtte" class="nav-link" data-scroll-target="#adtte">6.4 ADTTE</a>
+  <ul class="collapse">
+  <li><a href="#adtte中包含的变量" id="toc-adtte中包含的变量" class="nav-link" data-scroll-target="#adtte中包含的变量">6.4.1 ADTTE中包含的变量</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#疗效终点详细算法" id="toc-疗效终点详细算法" class="nav-link" data-scroll-target="#疗效终点详细算法">7 疗效终点详细算法</a>
+  <ul class="collapse">
+  <li><a href="#pfs-1" id="toc-pfs-1" class="nav-link" data-scroll-target="#pfs-1">7.1 PFS</a>
+  <ul class="collapse">
+  <li><a href="#pfs事件删失判断流程图" id="toc-pfs事件删失判断流程图" class="nav-link" data-scroll-target="#pfs事件删失判断流程图">7.1.1 PFS事件/删失判断流程图</a></li>
+  <li><a href="#pfs事件删失详细说明" id="toc-pfs事件删失详细说明" class="nav-link" data-scroll-target="#pfs事件删失详细说明">7.2.2 PFS事件/删失详细说明</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#统计模型" id="toc-统计模型" class="nav-link" data-scroll-target="#统计模型">8 统计模型</a>
+  <ul class="collapse">
+  <li><a href="#分类变量" id="toc-分类变量" class="nav-link" data-scroll-target="#分类变量">8.1 分类变量</a></li>
+  <li><a href="#time-to-event-1" id="toc-time-to-event-1" class="nav-link" data-scroll-target="#time-to-event-1">8.2 Time to Event</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -236,7 +292,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">RECIST 1.1</h1>
+<h1 class="title">实体瘤</h1>
 </div>
 
 
@@ -253,8 +309,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="recist-1.1简介" class="level1">
-<h1>1 RECIST 1.1简介</h1>
+<section id="recistv1.1影像评估标准的相关定义" class="level1">
+<h1>1 RECISTv1.1影像评估标准的相关定义</h1>
 <p>Response Evaluation Criteria in Solid Tumors (RECIST) 1.1是实体瘤疗效评估的标准方法，主要用于评估肿瘤对治疗的反应。RECIST 1.1定义了肿瘤的测量方法、评估时间点以及不同疗效类别的标准。</p>
 <section id="recistv1.1病灶" class="level2">
 <h2 class="anchored" data-anchor-id="recistv1.1病灶">1.1 RECISTv1.1病灶</h2>
@@ -264,7 +320,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>最短垂直径≥10mm的淋巴结病灶</p></li>
 <li><p>腹水、胸腔或心包积液</p></li>
 </ul>
-<p>淋巴结病灶</p>
+<p>将参与者肿瘤负荷的病灶分为可测量及不可测量两类。在肿瘤疗效时点评估中，则根据靶病灶、非靶病灶和新病灶的状态进行总体疗效评估。即：每个时间点都会有1.靶病灶评估，2.非靶病灶评估，3.新病灶评估，4.总体疗效评估。其中，总体疗效评估是综合靶病灶、非靶病灶和新病灶做出的综合疗效判读。程序员也将会直接用4.总体疗效评估去衍生BOR。</p>
 </section>
 <section id="可测量病灶" class="level2">
 <h2 class="anchored" data-anchor-id="可测量病灶">1.2 可测量病灶</h2>
@@ -279,8 +335,8 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="不可测量病灶">1.3 不可测量病灶</h2>
 <p>不可测量病灶包括：</p>
 <ul>
-<li><p>非淋巴结病灶，即最长径（LDi）＜10mm的非淋巴结病灶，以及10mm≤最长垂直径（SDi）＜15mm的淋巴结；</p></li>
-<li><p>真正不可测量病灶，例如：无可测量软组织成分的骨病灶，脑膜疾病、腹水、胸腔或心包积液、炎性乳腺癌、皮肤/肺的癌性淋巴管炎、影像无法重复测量的病灶、通过体格检查发现的腹部肿块/腹部器官肿大等。</p></li>
+<li><p>小病灶，非淋巴结病灶，即最长径（LDi）＜10mm的非淋巴结病灶，以及10mm≤最长垂直径（SDi）＜15mm的淋巴结；</p></li>
+<li><p>真正不可测量病灶。</p></li>
 </ul>
 </section>
 <section id="靶病灶" class="level2">
@@ -293,11 +349,11 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="新病灶" class="level2">
 <h2 class="anchored" data-anchor-id="新病灶">1.6 新病灶</h2>
-<p>与基线相比新出现，且符合<a href="#recistv1.1病灶">1.1 RECISTv1.1病灶</a>章节定义的病灶。</p>
+<p>与基线相比新出现，且符合<a href="#recistv1.1病灶">1.1 RECISTv1.1病灶</a>的定义。</p>
 </section>
 <section id="总结" class="level2">
 <h2 class="anchored" data-anchor-id="总结">1.7 总结</h2>
-<p>RECISITv1.1适用于能形成实体肿块的肿瘤（病灶），血液肿瘤不能用RECISIT，是因为白血病、淋巴瘤血里是肿瘤细胞，不能那尺子量。而前列腺癌为什么又部分适合，是因为前列腺癌属于实体瘤，但是很多转移到骨头里，骨病灶不容易按RECIST测量。</p>
+<p>RECISIT v1.1适用于能形成实体肿块的肿瘤（病灶），血液肿瘤不能用RECISIT，是因为白血病、淋巴瘤血里是肿瘤细胞，不能那尺子量。而前列腺癌为什么又部分适合，是因为前列腺癌属于实体瘤，但是很多转移到骨头里，骨病灶不容易按RECIST测量。</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -322,8 +378,11 @@ ul.task-list li input[type="checkbox"] {
 3. <strong>总体评估</strong>：研究人员为每个时间点的靶病灶、非靶病灶、新病灶的肿瘤评估结果进行分类，<mark>同时结合所有病灶判断总的总体评估结果</mark>。后续说的总体评估结果都是指结合所有病灶得到的总体评估结果。对应CRF中的1.肿瘤评估_总体疗效一个页面。<br>
 4. <strong>最佳总体疗效（BOR）</strong>：根据3所有病灶总的总体评估结果，计算整个治疗过程中患者达到的最佳疗效类别，作为最终的疗效评估结果。CRF不收集BOR，通常由编程衍生。</p>
 </section>
-<section id="时间点疗效time-point-response" class="level2">
-<h2 class="anchored" data-anchor-id="时间点疗效time-point-response">1.1 时间点疗效(Time point response)</h2>
+</section>
+<section id="总体疗效time-point-response" class="level1">
+<h1>2 总体疗效（Time point response）</h1>
+<section id="总体疗效评估介绍" class="level2">
+<h2 class="anchored" data-anchor-id="总体疗效评估介绍">2.1 总体疗效评估介绍</h2>
 <p>最佳时点疗效由CRF中肿瘤评估_总体疗效页面直接收集，不需要衍生计算。</p>
 <ol type="1">
 <li>靶病灶评估
@@ -374,15 +433,24 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="最佳总体疗效best-overall-response-bor" class="level2">
-<h2 class="anchored" data-anchor-id="最佳总体疗效best-overall-response-bor">1.2 最佳总体疗效(Best overall response, BOR)</h2>
-<section id="date-of-response" class="level3">
-<h3 class="anchored" data-anchor-id="date-of-response">1.2.1 总体评估日期</h3>
-<p><strong>总体评估日期(Date of Response)</strong>始终基于影像学检查日期，而非CRF总体评估页面中收集的<em>评估日期</em>（可能不是实际的影像学检查日期而是研究者给出的判定日期）。如果针对特定访视的影像学检查在不同日期进行，若总体评估为疾病进展（PD），则总体评估日期为该访视内最早一次的影像学检查日期；否则为最晚的影像学检查日期。<mark>后续提及的肿瘤评估日期或总体评估日期，都是说的这个日期</mark>。</p>
-<p><strong>最佳总体疗效（BOR）</strong>为基线后、疾病进展或新抗前最佳的总体评估结果。通常CRF不会直接收集，由编程计算。最佳总体疗效可分未确认的和未确认的两类。</p>
+<section id="总体评估日期rs.rsdtc" class="level2">
+<h2 class="anchored" data-anchor-id="总体评估日期rs.rsdtc">2.2 <strong>总体评估日期</strong>（RS.RSDTC）</h2>
+<p>总体疗效评估日期需要由程序员衍生，因为EDC中收集的是研究者给出的判定日期，而分析需要的是肿瘤的影像学检查日期。</p>
+<p><strong>总体评估日期（Date of Response）</strong>始终基于影像学检查日期，而非CRF总体评估页面中收集的<em>评估日期</em>（研究者给出的判定日期）。如果针对特定访视的影像学检查在不同日期进行，若总体评估为疾病进展（PD），则总体评估日期为该访视内最早一次的影像学检查日期；否则为最晚的影像学检查日期。<mark>后续提及的肿瘤评估日期或总体评估日期，都是说的这个日期</mark>。</p>
 </section>
-<section id="确认的最佳总体疗效" class="level3">
-<h3 class="anchored" data-anchor-id="确认的最佳总体疗效">1.2.1 确认的最佳总体疗效</h3>
+</section>
+<section id="crf" class="level1">
+<h1>3 CRF</h1>
+</section>
+<section id="实体瘤疗效终点" class="level1">
+<h1>4 实体瘤疗效终点</h1>
+<section id="分类" class="level2">
+<h2 class="anchored" data-anchor-id="分类">4.1 分类</h2>
+<section id="最佳总体疗效best-overall-response-bor" class="level3">
+<h3 class="anchored" data-anchor-id="最佳总体疗效best-overall-response-bor">4.1.1 最佳总体疗效(Best overall response, BOR)</h3>
+<p><strong>最佳总体疗效（BOR）</strong>为基线后、疾病进展或新抗前最佳的总体评估结果。通常CRF不会直接收集，由编程计算。最佳总体疗效可分未确认的和未确认的两类。</p>
+<section id="确认的最佳总体疗效" class="level4">
+<h4 class="anchored" data-anchor-id="确认的最佳总体疗效">4.1.1.1 确认的最佳总体疗效</h4>
 <ul>
 <li>确认的最佳总体疗效判断规则如下：
 <ul>
@@ -415,8 +483,8 @@ Note
 </div>
 </div>
 </section>
-<section id="未确认的最佳总体疗效" class="level3">
-<h3 class="anchored" data-anchor-id="未确认的最佳总体疗效">1.2.2 未确认的最佳总体疗效</h3>
+<section id="未确认的最佳总体疗效" class="level4">
+<h4 class="anchored" data-anchor-id="未确认的最佳总体疗效">4.1.1.2 未确认的最佳总体疗效</h4>
 <ul>
 <li>未确认的最佳总体疗效判断规则如下：
 <ul>
@@ -437,17 +505,771 @@ Note
 </ul>
 </section>
 </section>
-<section id="客观缓解率overall-response-rate-orr" class="level2">
-<h2 class="anchored" data-anchor-id="客观缓解率overall-response-rate-orr">1.3 客观缓解率(overall response rate, ORR)</h2>
+<section id="客观缓解率overall-response-rate-orr" class="level3">
+<h3 class="anchored" data-anchor-id="客观缓解率overall-response-rate-orr">4.1.2 客观缓解率(overall response rate, ORR)</h3>
 <p>客观缓解率是指在特定分析集中BOR为CR或PR的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的ORR。</p>
 </section>
-<section id="疾病控制率disease-control-rate-dcr" class="level2">
-<h2 class="anchored" data-anchor-id="疾病控制率disease-control-rate-dcr">1.4 疾病控制率(disease control rate, DCR)</h2>
+<section id="疾病控制率disease-control-rate-dcr" class="level3">
+<h3 class="anchored" data-anchor-id="疾病控制率disease-control-rate-dcr">4.1.3 疾病控制率(disease control rate, DCR)</h3>
 <p>疾病控制率是指在特定分析集中BOR为CR、PR或SD的患者比例。也分为基于确认的BOR和未确认的BOR计算的两个版本的DCR。</p>
 </section>
-<section id="临床获益率clinical-benefit-rate-cbr" class="level2">
-<h2 class="anchored" data-anchor-id="临床获益率clinical-benefit-rate-cbr">1.5 临床获益率(clinical benefit rate, CBR)</h2>
+<section id="临床获益率clinical-benefit-rate-cbr" class="level3">
+<h3 class="anchored" data-anchor-id="临床获益率clinical-benefit-rate-cbr">4.1.4 临床获益率(clinical benefit rate, CBR)</h3>
 <p>临床获益率是指在特定分析集中BOR为CR、PR或SD持续至少T周的患者比例。（T通常设为12周）。也分为基于确认的BOR和未确认的BOR计算的两个版本的CBR。</p>
+</section>
+</section>
+<section id="time-to-event" class="level2">
+<h2 class="anchored" data-anchor-id="time-to-event">4.2 Time to Event</h2>
+<section id="pfs" class="level3">
+<h3 class="anchored" data-anchor-id="pfs">4.2.1 PFS</h3>
+</section>
+<section id="dor" class="level3">
+<h3 class="anchored" data-anchor-id="dor">4.2.1 DoR</h3>
+</section>
+<section id="ttr" class="level3">
+<h3 class="anchored" data-anchor-id="ttr">4.2.3 TTR</h3>
+</section>
+<section id="os" class="level3">
+<h3 class="anchored" data-anchor-id="os">4.2.4 OS</h3>
+</section>
+</section>
+</section>
+<section id="mock-shell" class="level1">
+<h1>5 Mock Shell</h1>
+</section>
+<section id="分析数据集" class="level1">
+<h1>6 分析数据集</h1>
+<section id="adtr" class="level2">
+<h2 class="anchored" data-anchor-id="adtr">6.1 ADTR</h2>
+<p>ADTR数据集存放病灶信息，如靶病灶径长、靶病灶直径和、非靶病状态、是否有新病灶等。在出瀑布图时会被用到。</p>
+<section id="adtr包含的变量" class="level3">
+<h3 class="anchored" data-anchor-id="adtr包含的变量">6.1.1 ADTR包含的变量</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 73%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>变量名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>USUBJID、ASEQ、TRGRPID、TRLNKID、TULOC</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>PARAM、PARAMCD</td>
+<td><p>LDIAM-最长径，LPERP-最短径，TUMSTATE-肿瘤状态，DIAMETER-直径，ASUMDIAM-分析用靶病灶直径总和，SUMDIAM-直径总和。</p>
+<p>按照USUBJID+TREVAL+VISIT，输出一条分析用靶病灶直径和</p></td>
+</tr>
+<tr class="odd">
+<td>PARAMTYP</td>
+<td>当PARAMCD为ASUMDIAM时，PARAMTYP=衍生</td>
+</tr>
+<tr class="even">
+<td>PARCAT1</td>
+<td>TRCAT(淋巴结、非淋巴结）</td>
+</tr>
+<tr class="odd">
+<td>AVAL、AVALC</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>BASE、BASEC</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>CHG</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>PCHG</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>TRDTC、ADT、ADY</td>
+<td>ASUMDIAM的ADT为各访视靶病灶影像学检查日期的最大值</td>
+</tr>
+<tr class="even">
+<td>VISIT、VISITNUM</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ABLFL</td>
+<td>首次给药前最后一次非空检测</td>
+</tr>
+<tr class="even">
+<td>ANL01FL</td>
+<td>对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若发生在首次疾病进展和新抗肿瘤当天或之前，则赋值’是’</td>
+</tr>
+<tr class="odd">
+<td>ANL02FL</td>
+<td>对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)的记录，若该条记录对应的靶病灶评估结果有效，则赋值’是’</td>
+</tr>
+<tr class="even">
+<td>ANL03FL</td>
+<td>对于PARAMCD in (‘SUMDIAM’,‘ASUMDIAM’)且ANL01FL和ANL02FL为’是’的记录，选择基线后最早出现的最小PCHG值。</td>
+</tr>
+<tr class="odd">
+<td>TRMETHOD、TREVAL</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ANADIR</td>
+<td>分析用先前最小直径和</td>
+</tr>
+<tr class="odd">
+<td>NADIRCHG</td>
+<td>相对最小直径和变化值</td>
+</tr>
+<tr class="even">
+<td>PCNSD</td>
+<td>相对最小直径和变化百分比</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>需要注意的是，除了EDC中直接收集的靶病灶直径和外，在ADTR中我们还会额外编程衍生”分析用靶病灶直径和”。程序员在编程时，最好核对下直接收集的和程序衍生的靶病灶直径和结果是否一致。</p>
+</div>
+</div>
+</section>
+</section>
+<section id="adrs" class="level2">
+<h2 class="anchored" data-anchor-id="adrs">6.2 ADRS</h2>
+</section>
+<section id="addates" class="level2">
+<h2 class="anchored" data-anchor-id="addates">6.3 ADDATES</h2>
+<section id="addates介绍" class="level3">
+<h3 class="anchored" data-anchor-id="addates介绍">6.3.1 ADDATES介绍</h3>
+<p>ADDATES是一个专门用于记录与肿瘤评估相关的日期变量的数据集。它包含了受试者的用药日期、随机化日期、影像学检查日期、疾病进展日期等多个关键时间点。这些日期变量对于计算无进展生存期（PFS）等重要终点指标至关重要。</p>
+</section>
+<section id="addates中包含的变量" class="level3">
+<h3 class="anchored" data-anchor-id="addates中包含的变量">6.3.2 ADDATES中包含的变量</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>变量名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>USUBJID、ASEQ</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ADT</td>
+<td>日期</td>
+</tr>
+<tr class="odd">
+<td>ADTDESC</td>
+<td>日期描述</td>
+</tr>
+<tr class="even">
+<td>ADTDECD</td>
+<td>日期描述编号</td>
+</tr>
+<tr class="odd">
+<td>ADY</td>
+<td>分析相对日</td>
+</tr>
+<tr class="even">
+<td>RSEVAL</td>
+<td>评估者</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="addates-adtdesc" class="level3">
+<h3 class="anchored" data-anchor-id="addates-adtdesc">6.3.3 ADDATES中的ADTDESC、ADTDECD和ADT变量详细描述</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 6%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ADTDESC</th>
+<th>ADTDESCD</th>
+<th>ADT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>受试者水平-USUBJID</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>首次用药日期</td>
+<td>TRTSDT</td>
+<td>ADSL.TRTSDT</td>
+</tr>
+<tr class="odd">
+<td>随机化日期</td>
+<td>RANDDT</td>
+<td>ADSL.RANDDT</td>
+</tr>
+<tr class="even">
+<td>新抗肿瘤治疗日期</td>
+<td>NCTXSDT</td>
+<td>ADSL.NCTXSDT</td>
+</tr>
+<tr class="odd">
+<td>研究结束日期</td>
+<td>EOSDT</td>
+<td>ADSL.EOSDT</td>
+</tr>
+<tr class="even">
+<td>已知最后生存日期</td>
+<td>LSTALVTD</td>
+<td>ADSL.LSTALVTD</td>
+</tr>
+<tr class="odd">
+<td>死亡日期</td>
+<td>DTHDT</td>
+<td>ADSL.DTHDT</td>
+</tr>
+<tr class="even">
+<td><strong>受试者+评估者-USUBJID+RSEVAL</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>基线肿瘤检查日期</td>
+<td>TEVALDT</td>
+<td>基线前末次有效的影像学检查日期（TR.TRDTC）</td>
+</tr>
+<tr class="even">
+<td><strong>每个受试者+评估者+评估标准-USUBJID+RSEVAL+RSCAT</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>基线后首次有效的肿瘤评估影像学检查日期</td>
+<td>FEVALDT</td>
+<td>基线后、新抗前首次出现的有效的肿瘤总体评估日期</td>
+</tr>
+<tr class="even">
+<td>首次疾病进展日期</td>
+<td>PDDT</td>
+<td>基线后最早的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC = “PD”</td>
+</tr>
+<tr class="odd">
+<td>新抗肿瘤治疗（若有）及疾病进展（若有）前的末次可评估影像学检查日期</td>
+<td>LINTERDT</td>
+<td>取基线后NCTXSDT(≤)和PDDT(&lt;)之前最晚的ADRS.ADT，当ADRS.PARAMCD = “OVRLRESP”，ADRS.AVALC ≠ “NE”等非有效值评估</td>
+</tr>
+<tr class="even">
+<td>首次客观缓解（经确认的）日期</td>
+<td>CRUTDT</td>
+<td>ADRS.ADT，当 ADRS.ANL12FL = “是”</td>
+</tr>
+<tr class="odd">
+<td>首次客观缓解（未确认的）日期</td>
+<td>URUTDT</td>
+<td>ADRS.ADT，当 ADRS.ANL22FL = “是”</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="adtte" class="level2">
+<h2 class="anchored" data-anchor-id="adtte">6.4 ADTTE</h2>
+<section id="adtte中包含的变量" class="level3">
+<h3 class="anchored" data-anchor-id="adtte中包含的变量">6.4.1 ADTTE中包含的变量</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 23%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>变量名</th>
+<th>描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>USUBJID、ASEQ</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>PARCAT1</td>
+<td>参数类别1</td>
+<td>RSCIST 1.1</td>
+</tr>
+<tr class="odd">
+<td>PARAM</td>
+<td>参数</td>
+<td>无进展生存期（月）</td>
+</tr>
+<tr class="even">
+<td>PARAMCD</td>
+<td>参数简称</td>
+<td>PFS、OS、TTR、DOR</td>
+</tr>
+<tr class="odd">
+<td>AVAL</td>
+<td>分析值</td>
+<td>(ADT-STARTDT+1)/30.4375</td>
+</tr>
+<tr class="even">
+<td>STARTDT</td>
+<td>事件时间起点日期</td>
+<td>给药日期、开始日期</td>
+</tr>
+<tr class="odd">
+<td>CNSR</td>
+<td>删失</td>
+<td>0,1</td>
+</tr>
+<tr class="even">
+<td>EVNTDESC</td>
+<td>事件或删失描述</td>
+<td>疾病进展日期、开始新抗肿瘤治疗…..</td>
+</tr>
+<tr class="odd">
+<td>CNSDTDSC</td>
+<td>删失日期描述</td>
+<td>新抗肿瘤前末次肿瘤评估日期…..</td>
+</tr>
+<tr class="even">
+<td>ADT</td>
+<td>日期-分析用</td>
+<td>疾病进展日期、新抗肿瘤前末次肿瘤评估日期.</td>
+</tr>
+<tr class="odd">
+<td>RSEVAL</td>
+<td>评估者</td>
+<td>研究者、IRC</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="疗效终点详细算法" class="level1">
+<h1>7 疗效终点详细算法</h1>
+<section id="pfs-1" class="level2">
+<h2 class="anchored" data-anchor-id="pfs-1">7.1 PFS</h2>
+<section id="pfs事件删失判断流程图" class="level3">
+<h3 class="anchored" data-anchor-id="pfs事件删失判断流程图">7.1.1 PFS事件/删失判断流程图</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  A[是否有基线及基线后肿评?] -- 否 --&gt; B1[是否死亡?]
+  A[是否有基线及基线后肿评?] -- 是 --&gt; B2[是否PD?]
+
+  B1[是否死亡?] -- 否 --&gt; CNSR01[CNSR01]
+  B1[是否死亡?] -- 是 --&gt; C1[死亡前是否发生新抗?]
+  C1[死亡前是否发生新抗?] -- 否 --&gt; C2[死亡距离开始日期是否超过两个肿评间隔?]
+  C1[死亡前是否发生新抗?] -- 是 --&gt; CNSR02[CNSR02]
+  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT01[EVNT01]
+  C2[死亡距离开始日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR03[CNSR03]
+
+  B2[是否PD?] -- 否 --&gt; D2[是否死亡?]
+  B2[是否PD?] -- 是 --&gt; D1[PD前是否发生新抗?]
+  D1[PD前是否发生新抗?] -- 否 --&gt; D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?]
+  D1[PD前是否发生新抗?] -- 是 --&gt; CNSR04[CNSR04]
+  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT03[EVNT03]
+  D3[PD距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR05[CNSR05]
+
+  D2[是否死亡?] -- 否 --&gt; E2[是否发生新抗?]
+  D2[是否死亡?] -- 是 --&gt; E1[死亡前是否发生新抗?]
+
+  E1[死亡前是否发生新抗?] -- 否 --&gt; E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?]
+  E1[死亡前是否发生新抗?] -- 是 --&gt; CNSR06[CNSR06]
+
+  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 否 --&gt; EVNT02[EVNT02]
+  E3[死亡距离开始/上次肿评日期是否超过两个肿评间隔?] -- 是 --&gt; CNSR07[CNSR07]
+  E2[是否发生新抗?] -- 否 --&gt; E4[是否退出试验?]
+  E2[是否发生新抗?] -- 是 --&gt; CNSR10[CNSR10]
+  E4[是否退出试验?] -- 否 --&gt; CNSR08[CNSR08]
+  E4[是否退出试验?] -- 是 --&gt; CNSR09[CNSR09]
+  
+
+  %% 点击跳转
+  click EVNT01 "#evnt01"
+  click EVNT02 "#evnt02"
+  click EVNT03 "#evnt03"
+
+  click CNSR01 "#cnsr01"
+  click CNSR02 "#cnsr02"
+  click CNSR03 "#cnsr03"
+  click CNSR04 "#cnsr04"
+  click CNSR05 "#cnsr05"
+  click CNSR06 "#cnsr06"
+  click CNSR07 "#cnsr07"
+  click CNSR08 "#cnsr08"
+  click CNSR09 "#cnsr09"
+  click CNSR10 "#cnsr10"
+  %% 样式
+  classDef event fill:#A8E6A3,stroke:#2E7D32,stroke-width:2px;
+  classDef censor fill:#FFE082,stroke:#EF6C00,stroke-width:2px;
+
+  class EVNT01,EVNT02,EVNT03,EVNT04 event;
+  class CNSR01,CNSR02,CNSR03,CNSR04,CNSR05,CNSR06,CNSR07,CNSR08,CNSR09,CNSR10 censor;
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="pfs事件删失详细说明" class="level3">
+<h3 class="anchored" data-anchor-id="pfs事件删失详细说明">7.2.2 PFS事件/删失详细说明</h3>
+<p>下文代码中用的日期在ADDATES <a href="addates.qmd#addates-adtdesc">1.2章节</a>中有详细说明，RS2DUR为两次肿评间隔天数，在PFS <a href="../oncology/pfs.html#pfs-rs2dur">1.2.2章节</a>有详细介绍。</p>
+<section id="evnt01" class="level4">
+<h4 class="anchored" data-anchor-id="evnt01">EVNT01</h4>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>无基线或无基线后评估</li>
+<li>未发生PD</li>
+<li>未开始新抗肿治疗</li>
+<li>死亡</li>
+<li>死亡距离开始日期未超过两个肿评间隔</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.na</span>(TEVALDT) <span class="sc">|</span> <span class="fu">is.na</span>(FEVALDT)) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(NCTXSDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> (DTHDT <span class="sc">-</span> STARTDT <span class="sc">&lt;=</span> RS2DUR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = DTHDT</li>
+<li>EVNTDESC = 死亡</li>
+</ol></li>
+</ol>
+</section>
+<section id="evnt02" class="level4">
+<h4 class="anchored" data-anchor-id="evnt02">EVNT02</h4>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>未PD</li>
+<li>死亡</li>
+<li>死亡前未发生新抗</li>
+<li>死亡距离开始/上次肿评日期未超过两个肿评间隔</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> (<span class="fu">is.na</span>(NCTXSDT) <span class="sc">|</span> NCTXSDT <span class="sc">&gt;=</span> DTHDT) <span class="sc">&amp;</span> (DTHDT <span class="sc">-</span> STARTDT<span class="sc">/</span>LINTERDT <span class="sc">&lt;=</span> RS2DUR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = DTHDT</li>
+<li>EVNTDESC = 死亡</li>
+</ol></li>
+</ol>
+</section>
+<section id="evnt03" class="level4">
+<h4 class="anchored" data-anchor-id="evnt03">EVNT03</h4>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>发生PD</li>
+<li>PD前未发生新抗</li>
+<li>PD距离开始/上次肿评日期未超过两个肿评间隔</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> (<span class="fu">is.na</span>(NCTXSDT) <span class="sc">|</span> NCTXSDT <span class="sc">&gt;=</span> PDDT) <span class="sc">&amp;</span> (PDDT <span class="sc">-</span> STARTDT<span class="sc">/</span>LINTERDT <span class="sc">&lt;=</span> RS2DUR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = PDDT</li>
+<li>EVNTDESC = 疾病进展</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr01" class="level4">
+<h4 class="anchored" data-anchor-id="cnsr01">CNSR01</h4>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>无基线或无基线后评估</li>
+<li>未发生死亡</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.na</span>(TEVALDT) <span class="sc">|</span> <span class="fu">is.na</span>(FEVALDT)) <span class="sc">&amp;</span> <span class="fu">is.na</span>(DTHDT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = STARTDT</li>
+<li>EVNTDESC = 无基线或基线后影像学检查</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 开始日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr02" class="level4">
+<h4 class="anchored" data-anchor-id="cnsr02">CNSR02</h4>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>无基线或无基线后评估</li>
+<li>死亡</li>
+<li>死亡前发生新抗</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.na</span>(TEVALDT) <span class="sc">|</span> <span class="fu">is.na</span>(FEVALDT)) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(NCTXSDT) <span class="sc">&amp;</span> NCTXSDT <span class="sc">&lt;</span> DTHDT</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = STARTDT</li>
+<li>EVNTDESC = 开始新抗肿瘤治疗</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 开始日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr03" class="level4">
+<h4 class="anchored" data-anchor-id="cnsr03">CNSR03</h4>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>无基线或无基线后评估</li>
+<li>死亡</li>
+<li>未发生新抗</li>
+<li>死亡距离开始日期超过两个肿评间隔</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.na</span>(TEVALDT) <span class="sc">|</span> <span class="fu">is.na</span>(FEVALDT)) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(NCTXSDT) <span class="sc">&amp;</span> (DTHDT <span class="sc">-</span> STARTDT <span class="sc">&gt;</span> RS2DUR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = STARTDT</li>
+<li>EVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 开始日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr04" class="level4">
+<h4 class="anchored" data-anchor-id="cnsr04">CNSR04</h4>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>发生PD</li>
+<li>PD前发生新抗</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(NCTXSDT) <span class="sc">&amp;</span> NCTXSDT <span class="sc">&lt;</span> PDDT</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = STARTDT/LINTERDT</li>
+<li>EVNTDESC = 开始新抗肿瘤治疗</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 开始日期/新抗肿瘤治疗之前的末次可评价影像学检查日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr05" class="level4">
+<h4 class="anchored" data-anchor-id="cnsr05">CNSR05</h4>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>发生PD</li>
+<li>PD前未发生新抗</li>
+<li>PD距离开始/上次肿评日期超过两个肿评间隔</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> (<span class="fu">is.na</span>(NCTXSDT) <span class="sc">|</span> NCTXSDT <span class="sc">&gt;=</span> PDDT) <span class="sc">&amp;</span> (PDDT <span class="sc">-</span> STARTDT<span class="sc">/</span>LINTERDT <span class="sc">&gt;</span> RS2DUR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = STARTDT/LINTERDT</li>
+<li>EVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = STARTDT/疾病进展前的末次可评价影像学检查日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr06" class="level4">
+<h4 class="anchored" data-anchor-id="cnsr06">CNSR06</h4>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>无PD</li>
+<li>死亡</li>
+<li>死亡前发生新抗</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(NCTXSDT) <span class="sc">&amp;</span> NCTXSDT <span class="sc">&lt;</span> DTHDT</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = LINTERDT</li>
+<li>EVNTDESC = 开始新抗肿瘤治疗</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr07" class="level4">
+<h4 class="anchored" data-anchor-id="cnsr07">CNSR07</h4>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>无PD</li>
+<li>死亡</li>
+<li>死亡前未发生新抗</li>
+<li>死亡距离上次肿评日期超过两个肿评间隔</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> (<span class="fu">is.na</span>(NCTXSDT) <span class="sc">|</span> NCTXSDT <span class="sc">&gt;=</span> DTHDT) <span class="sc">&amp;</span> (DTHDT <span class="sc">-</span> LINTERDT <span class="sc">&gt;</span> RS2DUR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = LINTERDT</li>
+<li>EVNTDESC = 连续2次及以上肿瘤评估缺失后发生事件</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 死亡前的末次可评价影像学检查日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr08" class="level4">
+<h4 class="anchored" data-anchor-id="cnsr08">CNSR08</h4>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>无PD</li>
+<li>无死亡</li>
+<li>无新抗</li>
+<li>未退出试验</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(EOSDT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = LINTERDT</li>
+<li>EVNTDESC = 继续试验，无事发生</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 最后一次可评价影像学检查日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr09" class="level4">
+<h4 class="anchored" data-anchor-id="cnsr09">CNSR09</h4>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>无PD</li>
+<li>无死亡</li>
+<li>无新抗</li>
+<li>退出试验</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(EOSDT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = EOSDT</li>
+<li>EVNTDESC = 失访/撤回知情同意/其他</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 最后一次可评价影像学检查日期</li>
+</ol></li>
+</ol>
+</section>
+<section id="cnsr10" class="level4">
+<h4 class="anchored" data-anchor-id="cnsr10">CNSR10</h4>
+<ol type="1">
+<li>逻辑
+<ol type="a">
+<li>有基线和基线后评估</li>
+<li>无PD</li>
+<li>无死亡</li>
+<li>发生新抗</li>
+</ol></li>
+<li>代码</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(TEVALDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(FEVALDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(PDDT) <span class="sc">&amp;</span> <span class="fu">is.na</span>(DTHDT) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(NCTXSDT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>变量值
+<ol type="a">
+<li>ADT = LINTERDT/STARTDT</li>
+<li>EVNTDESC = 开始新抗肿瘤治疗</li>
+<li>CNSR = 1</li>
+<li>CNSDTDSC = 新抗肿瘤治疗之前的末次可评价影像学检查日期/开始日期 # 6 统计模型</li>
+</ol></li>
+</ol>
+</section>
+</section>
+</section>
+</section>
+<section id="统计模型" class="level1">
+<h1>8 统计模型</h1>
+<section id="分类变量" class="level2">
+<h2 class="anchored" data-anchor-id="分类变量">8.1 分类变量</h2>
+</section>
+<section id="time-to-event-1" class="level2">
+<h2 class="anchored" data-anchor-id="time-to-event-1">8.2 Time to Event</h2>
 
 
 </section>

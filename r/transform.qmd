@@ -402,3 +402,71 @@ flights |>
     .groups = "drop"
   )
 ```
+
+# 3 字符串（Strings）
+在程序中，你可以输入`str_`来查看字符串相关的函数，字符串相关的函数非常多，下面我们介绍一些常用的函数。
+## 3.1 创建字符串
+### 3.1.1 转义符
+字符串中常包含单引号或双引号，可以使用转义字符`\`来表示这些特殊字符，或者使用不同类型的引号来包裹字符串。
+```{r}
+backslash <- "\\"
+single_quote <- "\'"
+double_quote <- "\""
+str_view(c(backslash,single_quote,double_quote))
+```
+
+### 3.1.2 创建字符串函数
+#### (1) str_c()
+`str_c()`函数可以用来连接字符串，类似paste0()函数，但`str_c()`函数有一些额外的功能，比如可以指定分隔符、处理NA值等。
+```{r}
+letters <- c("x", NA, "z")
+str_c(letters, "-a")
+str_c(letters, letters)
+paste0(letters, "-a")
+str_c(str_replace_na(letters, "y"), "-a")
+```
+
+### (2) str_glue()
+`str_glue()`函数可以用来创建字符串，类似于Python中的f-string，可以在字符串中直接嵌入变量，非常方便。
+```{r}
+df <- tibble(
+  name = c("Alice", "Bob", "Charlie"),
+  age = c(25, 30, NA)
+)
+df |> 
+  mutate(
+    message = str_glue("{name} is {age} years old.")
+  )
+
+```
+
+NA在`str_c()`和`str_glue()`中的处理方式不同，`str_c()`会将NA视为一个字符串，而`str_glue()`会将NA视为一个缺失值，并且在生成的字符串中会显示为NA。
+如果你想显示文本`{`,`}`，可以使用双大括号来转义它们。
+```{r}
+df <- tibble(
+  name = c("Alice", "Bob", "Charlie"),
+  age = c(25, 30, NA)
+)
+df |> 
+  mutate(
+    message = str_glue("{{{name} is {age} years old.}}")
+  )
+
+```
+
+### (3) str_flatten()
+`str_flatten()`函数可以用来将一个字符串向量连接成一个单一的字符串，可以指定分隔符。在summarize()中使用`str_flatten()`函数可以将一个分组内的字符串连接成一个单一的字符串，非常有用。
+```{r}
+df <- tibble(
+  group = c("A", "A", "B", "B"),
+  value = c("x", "y", "z", "w")
+)
+df |> 
+  group_by(group) |> 
+  summarize(
+    combined = str_flatten(value, collapse = ","),
+    .groups = "drop"
+  )
+```
+
+## 3.2 拆分字符串

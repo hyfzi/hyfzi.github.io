@@ -36,7 +36,31 @@ title: "前列腺癌（Prostate Cancer）"
 
 骨病灶很容易出现假性PD，所以骨病灶评估结果会有**PD（确认的），PDu（未确认的）**。
 
-### 2.1 TPR（PCWG3 time point response）
+**PD的确认分两种情况：**
+
+（1）场景1：筛选期（访视0）+治疗后首次访视（访视1）+治疗后第2次访视（访视2）。 在这种“0, 1, 2”的场景下，PCWG3对骨病灶的进展判断原则为“2+2”：即，访视1较访视0出现至少2处新骨病灶，且访视2较访视1再出现至少2处新骨病灶，且访视1中出现的至少2处新骨病灶在访视2中观察到持续存在。 这种情况下，疾病进展时间为访视1。
+
+（2）场景2：筛选期（访视0）+治疗后首次访视（访视1）+……+治疗后第n次访视（访视n）+治疗后第n+1次访视（访视n+1）（n≥2） 疾病进展条件：访视n较访视1出现至少2处新骨病灶，且其中至少2处新骨病灶在访视n+1中持续存在。这种情况下，疾病进展时间为访视n。
+
+### 2.1.1 结合软组织病灶和骨病灶评估结果的Time Point Response（Overall Soft Tissue Tesponse Considering Bone Progression）
+
+**（1）在Prostate Oncology Statistics Rulebook中，对结合软组织病灶和骨病灶的Time Point Response的衍生进行了介绍：**
+
+1.  如果某访视对应的骨病灶被确认疾病进展，那么该时点（软组织+骨病灶）的Time Point Response应改为PD
+
+2.  如果某访视对应的骨病灶没有被确认疾病进展，那么该时点（软组织+骨病灶）的Time Point Response等于软组织病灶疗效评估结果。
+
+然后根据软组织+骨病灶的Time Point Response去衍生BOR。BOR的衍生规则和RECISIT1.1保持一致。
+
+::: callout-note
+Prior to determining the best overall soft tissue response, the date of confirmed bone progression (if applicable) will be determined.  If confirmed bone progression is documented and the soft tissue response at the visit where the bone progression criteria are first met is not PD, the soft tissue response will be modified to PD prior to determining the best overall response.  If the confirmed bone progression is not met (i.e. the bone assessment is Non-PD or Not Evaluable) then no modification is made to the soft tissue response (i.e. the Overall Soft Tissue Response Considering Bone Progression (derived) is the same as the soft tissue response.  Examples are provided in Table 3.  Once the overall soft tissue response considering bone progression is derived for the visit level assessments, the rules outlined in sections 2.2.1.5 will be applied to assess best overall response and overall response rates respectively.
+
+来源于：Prostate Oncology Statistics Rulebook
+:::
+
+![](/images/prostate_rulebook_time_point_resp.png){fig-align="center"}
+
+**（2）在PharmaSUG-2024-DS-287中也罗列了软组织病灶+骨病灶的TPR判定**
 
 ![](/images/prostat_overall_time_point.png)
 
@@ -48,59 +72,101 @@ The best response of CR or PR needs to be confirmed by applying the TPR from two
 \*来源于：PharmaSUG-2024-DS-287
 :::
 
-# 2 前列腺癌主要终点
+**（3）总结：**
 
-## 2.1 影像学无进展生存期（Radiographic Progression Free Survival，rPFS）
+1.  前列腺癌BOR、ORR的判断需要同时考虑软组织病灶（RECISIT1.1）和骨病灶（PCWG3）的疗效评估结果；
 
-rPFS定义为自随机日期开始至出现影像学进展或任何原因导致死亡是时间，影像学进展中，软组织病灶为RECIST1.1标准，骨病灶为PCWG3标准，同时需注意骨病灶需要时**确认的PD**。
+2.  ORR通常仅针对基线有可测量靶病灶的受试者；
 
-## 2.2 无转移生存期（Metastasis-Free Survival, MFS）
+3.  BOR和ORR的衍生基于时点疗效评估结果（Time Point Response）。在前列腺癌研究中，时点疗效评估需综合软组织病灶和骨病灶结果：
+
+    1.  若出现确认的骨进展（Confirmed PD，CPD），则该时点总体疗效评估结果判定为PD；
+
+    2.  若仅出现未确认的骨进展（Unconfirmed PD，UPD），则该时点总体疗效评估结果仍采用软组织病灶的RECIST 1.1评估结果。
+
+4.  BOR的衍生基于上述整合后的时点疗效评估结果序列进行，并按照RECIST 1.1的最佳总体疗效确认规则（包括CR/PR确认要求）确定最终BOR
+
+# 3.前列腺癌主要终点
+
+## 3.1 改良后的最佳总体缓解（Modified Best Overall Response, mBOR)
+
+ORR只适用于基线具有可测量靶病灶的前列腺癌受试者。由于ORR评价中未考虑骨转移病灶的进展情况，因此前列腺癌临床研究中采用了改良后的最佳总体缓解（mBOR），包括基于RECIST1.1符合CR和PR的标准，并且通过PCWG3评估不存在骨转移病灶进展的患者。
+
+## 3.2 客观缓解率（Overall Response Rate, ORR）
+
+人群：在有基线可测量靶病灶参与者的条件下分析前列腺癌患者的确认的以及未确认的BOR。
+
+::: callout-note
+The population for assessing overall response rate should be restricted to patients with measureable soft tissue disease present at baseline.
+
+来源于：Prostate Oncology Statistics Rulebook
+:::
+
+## 3.3 影像学无进展生存期（Radiographic Progression Free Survival，rPFS）
+
+rPFS定义为自随机日期开始至出现**影像学进展**或任何原因导致死亡是时间，影像学进展需要结果软组织病灶和骨病灶一起考虑。软组织病灶为RECIST1.1标准，骨病灶为PCWG3标准，同时需注意骨病灶需要时**确认的PD**。
+
+影像学进展时间需要由程序员衍生，需要同时考虑靶病灶、非靶病灶、新病灶和骨病灶。若总体评估为疾病进展（PD，确认的），则总体评估日期为该访视内最早一次的影像学检查日期；否则为最晚的影像学检查日期。
+
+## 3.4 无转移生存期（Metastasis-Free Survival, MFS）
 
 MFS定义为随机化至出现远处转移证据或任何原因死亡的时间。需在MFS定义中明确转移性疾病（骨转移、内脏转移、远处淋巴结转移）的定义。该定义应排除局部疾病进展时间（例如主动脉分叉以下的盆腔淋巴结）。
 
-## 2.3 基于PSA（Prostate-Specific Antigen）水平的终点
+::: callout-note
+**rPFS和MFS的区别？**
 
-PSA升高在临床实践中被视为前列腺癌进展的早期信号，是敏感性肿瘤标志物。
+rPFS关注的是疾病进展发生的时间，而MFS关注的是发生转移的时间。
 
-### 2.3.1 PSA相关指标
+MFS看的是“第一次长出来（出现转移）”，rPFS看的是“长出来以后是否继续变坏（进展）”。
 
-![](/images/prostate-psa.png)
+-   nmCRPC主要终点往往是 **MFS**；
 
-1.  PSA50TOT: PSA Response \>= 50%
+-   mCRPC研究主要终点往往是 **rPFS**。
+:::
 
-2.  Total PSA50CNF: PSA Response \>= 50%
+## 3.5 基于PSA（Prostate-Specific Antigen）水平的终点
 
-3.  Confirmed PSA90TOT: PSA Response \>= 90%
+PSA升高在临床实践中被视为前列腺癌进展的早期信号，是敏感性肿瘤标志物。前列腺患者用药早期（尤其是12周内）对于PSA的效果可能会延迟，或者单纯的PSA升高不一定伴有影像学或临床进展。
 
-4.  Total PSA90CNF: PSA Response \>= 90%
+### 3.5.1 PSA最佳变化
 
-5.  Confirmed PSAPROG: Time to PSA Progression (Months)
+PSA的最佳变化率是指治疗后PSA检测结果相对基线变化百分比中的最小值，即每例参与者从基线至所有基线后访视的变化百分比中的min（（基线后值–基线值）/基线值）。
 
-### 2.3.2 PSA缓解率(PSA Response Rate)
+### 3.5.2 PSA缓解率(PSA Response Rate)
 
-PSA缓解率定义为PSA水平较基线下降≥50%，并且由至少3周连续再次评估确认。
+PSA缓解定义为PSA水平较基线下降≥50%，并且由至少**3周后连续再次评估确认**。仅将新抗肿瘤治疗前的PSA评估结果纳入分析。分析基于有基线及基线后评估结果的人群。
 
-### 2.3.3 至PSA进展时间
+（1）研究期间的PSA缓解率
+
+（2）12周PSA缓解率
+
+### 3.5.3 至PSA进展时间
 
 至PSA进展时间定义为从首次给药/随机到PSA进展的时间。
 
-PSA进展定义为：对于较基线PSA发生了下降的参与者，较最低值PSA升高≥2ng/mL，且较最低值升高≥25%，且由至少3周后连续再次评估确定；对于较基线PSA没有下降的参与者，至少干预12周后出现PSA水平较基线升高≥2ng/mL，且较基线值升高≥25%。 没有发生PSA进展的参与者将删失在末次PSA采样的时间；对没有基线PSA或者没有基线后PSA检测结果的参与者，将删失在首次给药日期；PSA进展前发生新抗肿瘤治疗则删失在新抗肿瘤前末次PSA采样时间。
+PSA进展定义为：
+
+（1）**对于较基线PSA发生了下降的参与者**，较最低值（nadir）PSA升高≥2ng/mL，且较最低值（nadir）升高≥25%，且由至少**3周后连续再次评估确定**；
+
+（2）**对于较基线PSA没有下降的参与者**，至少**干预12周**后出现PSA水平较基线（baseline ）升高≥2ng/mL，且较基线值（baseline ）升高≥25%。 对于基线没有下降的参与者，PSA不需要确认。
+
+没有发生PSA进展的参与者将删失在末次PSA采样的时间；对没有基线PSA或者没有基线后PSA检测结果的参与者，将删失在首次给药日期；PSA进展前发生新抗肿瘤治疗则删失在新抗肿瘤前末次PSA采样时间。
 
 ::: callout-note
-For patients with PSA declines after baseline, the PSA progression date is defined as the date that a ≥ 25% increase and an absolute increase of ≥ 2 µg/L (2 ng/mL) above the nadir is documented, which is confirmed by a second consecutive value obtained at least 3 weeks later.
+**For patients with PSA declines after baseline**, the PSA progression date is defined as the date that a ≥ 25% increase and an absolute increase of ≥ 2 µg/L (2 ng/mL) above the nadir is documented, which is confirmed by a second consecutive value obtained at least 3 weeks later.
 
 **Early rises (before week 12) should be ignored in determining progression.**  As such, for patients with no PSA declines after baseline, the PSA progression date is defined as the date that a ≥ 25% increase and an absolute increase of ≥ 2 µg/L (2 ng/mL) above the baseline is documented after 12 weeks of treatment, which is confirmed by a second consecutive value at least 3 weeks later.
 
-Patients without PSA progression will be censored at the last adequate PSA assessment.  Patients without any post baseline assessments will be censored at the start date (date of randomization or first dose as appropriate).
+Patients without PSA progression will be censored at the **last adequate PSA assessment**. Patients without any post baseline assessments will be censored at the **start date** (date of randomization or first dose as appropriate).
 
 来源于：Prostate Oncology Statistics Rulebook final jan2019
 :::
 
-### 2.3.3 至首发症状性骨相关事件（Symptomatic Skeletal Event,SSE）时间
+### 3.5.4 至首发症状性骨相关事件（Symptomatic Skeletal Event,SSE）时间
 
 定义为随机至首次发生SSE的时间，SSE包括使用外照射放射治疗来预防或缓解骨骼症状、出现新发症状性病理性骨折，出现脊髓压迫等。
 
-## 2.4 小结
+## 3.6 小结
 
 对于不同的基本阶段可考虑选择合理的替代终点，例如未经治疗的mCRPC和mHSPC患者可选择rPFS作为主要终点，OS作为关键次要终点。nmCRPC可选择MFS作为主要终点。
 
